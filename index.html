@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WorldOrb｜映像で覚える、忘れない英単語。</title>
+<meta name="description" content="脳科学に基づいた映像×感覚で覚える英単語学習。3ヶ月で2,000語、字幕なしで映画が分かる自分へ。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink: #0a0a0f;
+  --ink-soft: #1a1a22;
+  --paper: #f5f1e8;
+  --paper-warm: #ebe4d3;
+  --cream: #faf7ee;
+  --vermilion: #d63b2c;
+  --vermilion-deep: #a8261a;
+  --gold: #c89b5e;
+  --cyan: #4dd4ff;
+  --cyan-glow: #7ee8ffcc;
+  --rule: #1a1a2210;
+  --muted: #6b6760;
+  --display: 'Shippori Mincho B1', serif;
+  --body: 'Zen Kaku Gothic New', sans-serif;
+  --num: 'Bebas Neue', sans-serif;
+  --en: 'Cormorant Garamond', serif;
+}
+
+*{box-sizing:border-box; margin:0; padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: var(--body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  font-feature-settings: "palt";
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== UTILITIES ========== */
+.wrap{max-width: 1080px; margin: 0 auto; padding: 0 24px}
+.wrap-narrow{max-width: 760px; margin: 0 auto; padding: 0 24px}
+.serif{font-family: var(--display)}
+.num{font-family: var(--num); letter-spacing: 0.02em}
+.en{font-family: var(--en); font-style: italic}
+
+/* Grain overlay */
+body::before{
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+
+/* ========== ANNOUNCEMENT BAR ========== */
+.announce{
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+.announce strong{color: var(--cyan); font-weight: 500}
+
+/* ========== HERO ========== */
+.hero{
+  position: relative;
+  background: var(--ink);
+  color: var(--cream);
+  min-height: 100vh;
+  padding: 80px 24px 100px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, #1f1a3a55 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, #2a1820aa 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, #4dd4ff22 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.orbs{position: absolute; inset: 0; pointer-events: none; z-index: 1}
+.orb{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: float 12s ease-in-out infinite;
+}
+.orb-1{width: 180px; height: 180px; top: 10%; left: 8%; background: radial-gradient(circle at 30% 30%, #7ee8ff, #4dd4ff44 60%, transparent); animation-delay: 0s}
+.orb-2{width: 120px; height: 120px; top: 60%; left: 85%; background: radial-gradient(circle at 30% 30%, #d63b2c, #a8261a44 60%, transparent); animation-delay: -3s}
+.orb-3{width: 80px; height: 80px; top: 80%; left: 15%; background: radial-gradient(circle at 30% 30%, #c89b5e, #c89b5e22 60%, transparent); animation-delay: -6s}
+.orb-4{width: 220px; height: 220px; top: 30%; right: -5%; background: radial-gradient(circle at 30% 30%, #4dd4ff66, transparent 70%); animation-delay: -9s; filter: blur(40px)}
+.orb-5{width: 60px; height: 60px; top: 20%; left: 60%; background: radial-gradient(circle at 30% 30%, #ffffff, #ffffff22 60%, transparent); animation-delay: -2s}
+
+@keyframes float{
+  0%,100%{transform: translate(0,0) scale(1)}
+  33%{transform: translate(30px,-40px) scale(1.05)}
+  66%{transform: translate(-20px,30px) scale(0.95)}
+}
+
+.hero-inner{position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; width: 100%}
+
+.hero-badges{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+.hero-badges span{
+  padding: 6px 12px;
+  border: 1px solid #ffffff33;
+  border-radius: 100px;
+  color: #ffffffcc;
+}
+.hero-badges span.accent{
+  background: var(--vermilion);
+  border-color: var(--vermilion);
+  color: white;
+}
+
+.hero-eyebrow{
+  font-family: var(--en);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before{
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--cyan);
+}
+
+.hero-title{
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(36px, 6.5vw, 80px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+}
+.hero-title .accent{
+  color: var(--cyan);
+  font-style: italic;
+  font-weight: 500;
+}
+.hero-title .stamp{
+  display: inline-block;
+  background: var(--vermilion);
+  color: white;
+  padding: 0 16px;
+  transform: rotate(-2deg);
+  margin: 0 4px;
+}
+
+.hero-sub{
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: #ffffffcc;
+  max-width: 600px;
+  margin-bottom: 40px;
+  line-height: 1.9;
+}
+
+.hero-stats{
+  display: flex;
+  gap: 40px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.hero-stat{border-left: 1px solid #ffffff33; padding-left: 16px}
+.hero-stat .num{font-size: 36px; color: var(--cyan); display: block; line-height: 1}
+.hero-stat .label{font-size: 11px; letter-spacing: 0.2em; color: #ffffff88; margin-top: 6px}
+
+.cta-group{display: flex; gap: 16px; flex-wrap: wrap; align-items: center}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 36px;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(.2,.9,.3,1);
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary{
+  background: var(--vermilion);
+  color: white;
+  box-shadow: 0 8px 24px #d63b2c44, inset 0 1px 0 #ffffff33;
+}
+.btn-primary:hover{
+  background: var(--vermilion-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px #d63b2c66;
+}
+.btn-primary::after{
+  content: '→';
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+.btn-primary:hover::after{transform: translateX(4px)}
+
+.btn-ghost{
+  color: var(--cream);
+  border: 1px solid #ffffff44;
+  background: transparent;
+  backdrop-filter: blur(4px);
+}
+.btn-ghost:hover{background: #ffffff11; border-color: var(--cream)}
+.btn-ghost::before{
+  content: '▶';
+  font-size: 11px;
+  color: var(--cyan);
+}
+
+.hero-meta{
+  margin-top: 32px;
+  font-size: 12px;
+  color: #ffffff88;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Hero video preview mock */
+.video-preview{
+  position: absolute;
+  right: -60px;
+  bottom: -80px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #4dd4ff 0%, #1a4a6c 35%, #0a0a0f 70%);
+  box-shadow: 0 0 120px #4dd4ff66, inset 0 0 80px #00000088;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 4s ease-in-out infinite;
+}
+.video-preview::before{
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  border: 1px dashed #ffffff44;
+  animation: rotate 30s linear infinite;
+}
+.video-preview::after{
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px solid #4dd4ff33;
+  animation: rotate 60s linear infinite reverse;
+}
+.video-preview .play{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px #ffffff88;
+  cursor: pointer;
+  z-index: 2;
+}
+.video-preview .play::before{
+  content: '';
+  width: 0; height: 0;
+  border-left: 18px solid var(--ink);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 4px;
+}
+
+@keyframes pulse{
+  0%,100%{box-shadow: 0 0 120px #4dd4ff66, inset 0 0 80px #00000088}
+  50%{box-shadow: 0 0 180px #4dd4ff99, inset 0 0 80px #00000088}
+}
+@keyframes rotate{
+  to{transform: rotate(360deg)}
+}
+
+@media (max-width: 900px){
+  .video-preview{display: none}
+}
+
+/* ========== MEDIA STRIP ========== */
+.media-strip{
+  background: var(--ink-soft);
+  color: #ffffffaa;
+  padding: 24px;
+  border-top: 1px solid #ffffff11;
+}
+.media-strip-inner{
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: var(--en);
+  font-size: 18px;
+  letter-spacing: 0.15em;
+}
+.media-strip-inner span{font-style: italic; opacity: 0.7}
+.media-strip-inner .label{
+  font-family: var(--body);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  opacity: 1;
+  border-right: 1px solid #ffffff22;
+  padding-right: 40px;
+}
+
+/* ========== SECTION COMMON ========== */
+section{padding: 120px 24px; position: relative}
+.section-eyebrow{
+  font-family: var(--en);
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--vermilion);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.section-title{
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.3;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.section-title .accent{color: var(--vermilion)}
+.section-title .marker{
+  background: linear-gradient(transparent 60%, #ffe89066 60%);
+}
+
+.section-lead{
+  font-size: 17px;
+  line-height: 2;
+  color: #2a2a2a;
+  max-width: 680px;
+  margin-bottom: 60px;
+}
+
+/* ========== EMPATHY ========== */
+.empathy{
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
+}
+.empathy-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 60px 0;
+}
+.bubble{
+  background: white;
+  padding: 32px 28px;
+  border-radius: 24px 24px 24px 4px;
+  box-shadow: 0 4px 20px #0000000a;
+  position: relative;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.bubble::before{
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-family: var(--display);
+  font-size: 60px;
+  color: var(--vermilion);
+  line-height: 1;
+}
+.bubble strong{color: var(--vermilion)}
+.bubble .who{
+  display: block;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.empathy-conclusion{
+  text-align: center;
+  margin-top: 80px;
+  padding: 60px 32px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.empathy-conclusion::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, #4dd4ff22, transparent 60%);
+}
+.empathy-conclusion .label{
+  font-family: var(--en);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  position: relative;
+}
+.empathy-conclusion .msg{
+  font-family: var(--display);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 500;
+  line-height: 1.6;
+  margin-top: 16px;
+  position: relative;
+}
+.empathy-conclusion .msg em{color: var(--cyan); font-style: normal}
+
+/* ========== SCIENCE ========== */
+.science{
+  background: var(--paper);
+}
+.science-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 60px;
+}
+@media (max-width: 768px){
+  .science-grid{grid-template-columns: 1fr}
+}
+
+.brain-diagram{
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px #0000000d;
+  position: relative;
+}
+.brain-diagram svg{width: 100%; height: auto}
+.brain-label{
+  font-family: var(--en);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.science-points{display: flex; flex-direction: column; gap: 32px}
+.science-point{
+  display: flex;
+  gap: 20px;
+  padding-bottom: 28px;
+  border-bottom: 1px dashed #00000022;
+}
+.science-point:last-child{border-bottom: none}
+.science-point .num{
+  font-family: var(--num);
+  font-size: 56px;
+  color: var(--vermilion);
+  line-height: 0.9;
+  flex-shrink: 0;
+}
+.science-point h3{
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.science-point p{font-size: 14px; color: #444; line-height: 1.8}
+
+.supervisor{
+  margin-top: 48px;
+  padding: 24px;
+  background: var(--paper-warm);
+  border-left: 4px solid var(--vermilion);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.supervisor strong{font-family: var(--display); font-size: 16px; display: block; margin-bottom: 4px}
+
+/* ========== USP ========== */
+.usp{
+  background: var(--ink);
+  color: var(--cream);
+  padding: 140px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.usp::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, #4dd4ff15, transparent 50%),
+    radial-gradient(circle at 80% 80%, #d63b2c15, transparent 50%);
+}
+.usp-header{position: relative; max-width: 760px; margin: 0 auto 80px; text-align: center}
+.usp-header .section-eyebrow{color: var(--cyan)}
+.usp-grid{
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+@media (max-width: 768px){
+  .usp-grid{grid-template-columns: 1fr}
+}
+.usp-card{
+  background: #ffffff08;
+  backdrop-filter: blur(8px);
+  border: 1px solid #ffffff15;
+  padding: 48px 36px;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.4s;
+}
+.usp-card:hover{
+  background: #ffffff10;
+  transform: translateY(-4px);
+  border-color: var(--cyan);
+}
+.usp-card .num{
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--cyan);
+  letter-spacing: 0.3em;
+  margin-bottom: 32px;
+  display: block;
+}
+.usp-card .icon{
+  width: 64px;
+  height: 64px;
+  background: var(--cyan);
+  border-radius: 50%;
+  margin-bottom: 24px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 40px #4dd4ff44;
+}
+.usp-card .icon svg{width: 32px; height: 32px}
+.usp-card h3{
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.usp-card h3 .big{
+  display: block;
+  font-family: var(--num);
+  font-size: 56px;
+  color: var(--cyan);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.usp-card p{font-size: 14px; line-height: 1.9; color: #ffffffbb}
+
+/* ========== BEFORE/AFTER ========== */
+.transform{
+  background: var(--cream);
+  padding: 140px 24px;
+}
+.transform-header{text-align: center; max-width: 760px; margin: 0 auto 80px}
+
+.ba-container{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 32px;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+@media (max-width: 768px){
+  .ba-container{grid-template-columns: 1fr}
+}
+
+.ba-card{
+  background: white;
+  padding: 48px 36px;
+  border-radius: 8px;
+  box-shadow: 0 4px 30px #00000010;
+  position: relative;
+}
+.ba-card.before{
+  border-top: 4px solid #999;
+}
+.ba-card.after{
+  border-top: 4px solid var(--vermilion);
+  background: linear-gradient(180deg, #fff 0%, #fff8f0 100%);
+}
+.ba-card .stamp{
+  position: absolute;
+  top: -16px;
+  left: 24px;
+  background: #999;
+  color: white;
+  padding: 6px 14px;
+  font-family: var(--en);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  border-radius: 100px;
+}
+.ba-card.after .stamp{background: var(--vermilion)}
+.ba-card h3{
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  margin-top: 8px;
+}
+.ba-card ul{list-style: none}
+.ba-card li{
+  padding: 12px 0 12px 28px;
+  border-bottom: 1px dashed #00000015;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.ba-card li:last-child{border-bottom: none}
+.ba-card.before li::before{
+  content: '×';
+  position: absolute;
+  left: 0;
+  color: #aaa;
+  font-weight: bold;
+}
+.ba-card.after li::before{
+  content: '○';
+  position: absolute;
+  left: 0;
+  color: var(--vermilion);
+  font-weight: bold;
+}
+
+.ba-arrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 40px;
+  color: var(--vermilion);
+}
+@media (max-width: 768px){
+  .ba-arrow{transform: rotate(90deg); padding: 16px 0}
+}
+
+.ba-chart{
+  margin-top: 80px;
+  background: white;
+  padding: 48px;
+  border-radius: 8px;
+  box-shadow: 0 4px 30px #00000010;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ba-chart h3{
+  font-family: var(--display);
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.chart-bars{display: flex; gap: 40px; align-items: flex-end; justify-content: center; height: 280px; padding: 0 40px}
+.chart-bar{
+  flex: 1;
+  max-width: 80px;
+  background: linear-gradient(180deg, var(--vermilion), var(--vermilion-deep));
+  position: relative;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 12px;
+  color: white;
+  font-family: var(--num);
+  font-size: 22px;
+  text-align: center;
+  animation: grow 1.5s ease-out;
+}
+.chart-bar.gray{background: linear-gradient(180deg, #999, #777)}
+.chart-bar .label{
+  position: absolute;
+  bottom: -32px;
+  left: 0; right: 0;
+  font-family: var(--body);
+  font-size: 12px;
+  color: var(--ink);
+}
+@keyframes grow{
+  from{height: 0; padding-top: 0}
+}
+
+/* ========== TESTIMONIALS ========== */
+.testimonials{
+  background: var(--paper);
+  padding: 140px 24px;
+}
+.testi-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 60px;
+}
+.testi{
+  background: white;
+  padding: 32px 28px;
+  border-radius: 4px;
+  box-shadow: 0 4px 24px #0000000a;
+  position: relative;
+}
+.testi .score{
+  background: var(--vermilion);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font-family: var(--num);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+.testi .score .small{font-size: 11px; font-family: var(--body); letter-spacing: 0.1em}
+.testi h4{
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.testi p{font-size: 14px; line-height: 1.9; color: #333; margin-bottom: 20px}
+.testi .person{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px dashed #00000015;
+}
+.testi .avatar{
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--vermilion));
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.testi .person-info .name{font-weight: 700; font-size: 13px}
+.testi .person-info .role{font-size: 11px; color: var(--muted); margin-top: 2px}
+
+/* ========== STATS ========== */
+.stats{
+  background: var(--ink);
+  color: var(--cream);
+  padding: 100px 24px;
+  text-align: center;
+}
+.stats-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 48px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.stat{position: relative}
+.stat .big{
+  font-family: var(--num);
+  font-size: clamp(60px, 7vw, 96px);
+  color: var(--cyan);
+  line-height: 1;
+  display: block;
+}
+.stat .unit{
+  font-family: var(--display);
+  font-size: 24px;
+  color: var(--cyan);
+}
+.stat .desc{
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: #ffffffbb;
+  margin-top: 12px;
+}
+
+/* ========== FOUNDER ========== */
+.founder{
+  background: var(--paper-warm);
+  padding: 140px 24px;
+}
+.founder-inner{
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+@media (max-width: 768px){
+  .founder-inner{grid-template-columns: 1fr; gap: 40px}
+}
+.founder-portrait{
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.founder-portrait::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, #4dd4ff33, transparent 60%);
+}
+.founder-portrait .silhouette{
+  font-family: var(--display);
+  font-size: 90px;
+  color: var(--cyan);
+  z-index: 2;
+  filter: drop-shadow(0 0 30px #4dd4ff66);
+}
+.founder-content .section-title{margin-bottom: 32px}
+.founder-content p{font-size: 15px; line-height: 2; margin-bottom: 20px; color: #2a2a2a}
+.founder-sign{
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.founder-sign .name{font-family: var(--display); font-size: 22px; font-weight: 700}
+.founder-sign .role{font-size: 12px; color: var(--muted); letter-spacing: 0.1em}
+.founder-sign .followers{
+  margin-left: auto;
+  font-family: var(--num);
+  font-size: 28px;
+  color: var(--vermilion);
+}
+.founder-sign .followers .label{
+  font-family: var(--body);
+  font-size: 11px;
+  display: block;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+}
+
+/* ========== CURRICULUM ========== */
+.curriculum{
+  background: var(--cream);
+  padding: 140px 24px;
+}
+.curr-grid{
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 80px;
+  align-items: start;
+  max-width: 1080px;
+  margin: 60px auto 0;
+}
+@media (max-width: 768px){
+  .curr-grid{grid-template-columns: 1fr}
+}
+
+.phone-mock{
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  aspect-ratio: 9/19;
+  background: var(--ink);
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: 0 30px 60px #00000022, 0 0 0 1px #00000010;
+  position: relative;
+}
+.phone-screen{
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, #1a1a3a 0%, #0a0a0f 60%, #2a0a1a 100%);
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+.phone-orb{
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #7ee8ff, #4dd4ff44 60%, transparent);
+  filter: blur(1px);
+  margin-bottom: 24px;
+  animation: float 6s ease-in-out infinite;
+}
+.phone-word{
+  font-family: var(--display);
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+}
+.phone-meaning{
+  color: var(--cyan);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+  text-align: center;
+}
+.phone-pron{
+  color: #ffffff66;
+  font-family: var(--en);
+  font-style: italic;
+  margin-top: 4px;
+}
+.phone-bar{
+  position: absolute;
+  bottom: 24px;
+  left: 24px; right: 24px;
+  display: flex;
+  gap: 8px;
+}
+.phone-bar div{flex: 1; height: 3px; background: #ffffff22; border-radius: 100px}
+.phone-bar div:first-child{background: var(--cyan)}
+
+.curr-list{display: flex; flex-direction: column; gap: 16px}
+.curr-item{
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 20px;
+  padding: 24px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 16px #00000008;
+  align-items: center;
+  border-left: 3px solid var(--vermilion);
+}
+.curr-item .ch{
+  font-family: var(--num);
+  font-size: 36px;
+  color: var(--vermilion);
+  line-height: 1;
+}
+.curr-item h4{
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.curr-item p{font-size: 13px; color: var(--muted); line-height: 1.6}
+.curr-item .videos{
+  font-family: var(--num);
+  font-size: 18px;
+  color: var(--ink);
+}
+.curr-item .videos .lbl{font-family: var(--body); font-size: 10px; color: var(--muted); display: block}
+
+/* ========== PRICING ========== */
+.pricing{
+  background: var(--ink);
+  color: var(--cream);
+  padding: 140px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.pricing::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 30%, #4dd4ff15, transparent 50%);
+}
+.pricing-header{text-align: center; max-width: 760px; margin: 0 auto 60px; position: relative}
+.pricing-header .section-eyebrow{color: var(--cyan)}
+
+.compare{
+  background: #ffffff08;
+  border: 1px solid #ffffff15;
+  padding: 32px;
+  border-radius: 8px;
+  margin: 0 auto 60px;
+  max-width: 720px;
+  position: relative;
+  text-align: center;
+}
+.compare .label{
+  font-family: var(--en);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--cyan);
+  margin-bottom: 16px;
+}
+.compare-row{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+  font-size: 15px;
+}
+.compare-row .vs{
+  font-family: var(--display);
+  font-size: 24px;
+  color: var(--vermilion);
+}
+.compare-price{font-family: var(--num); font-size: 36px}
+.compare-price.bad{color: #ff6b5a}
+.compare-price.good{color: var(--cyan)}
+.compare-row small{display: block; font-size: 11px; opacity: 0.7; letter-spacing: 0.1em}
+
+.plans{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+  position: relative;
+}
+@media (max-width: 768px){
+  .plans{grid-template-columns: 1fr}
+}
+
+.plan{
+  background: var(--cream);
+  color: var(--ink);
+  padding: 40px 32px;
+  border-radius: 8px;
+  position: relative;
+}
+.plan.featured{
+  background: white;
+  transform: scale(1.05);
+  box-shadow: 0 30px 60px #4dd4ff22, 0 0 0 2px var(--cyan);
+  z-index: 2;
+}
+@media (max-width: 768px){
+  .plan.featured{transform: scale(1)}
+}
+.plan .ribbon{
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--vermilion);
+  color: white;
+  padding: 6px 18px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.plan h3{
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.plan .tagline{font-size: 12px; color: var(--muted); margin-bottom: 24px; letter-spacing: 0.1em}
+.plan .price{
+  font-family: var(--num);
+  font-size: 48px;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.plan .price .yen{font-size: 20px; vertical-align: top}
+.plan .price-note{font-size: 11px; color: var(--muted); margin-bottom: 28px; letter-spacing: 0.1em}
+.plan .per-day{
+  background: var(--paper-warm);
+  padding: 10px 14px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+.plan .per-day strong{font-family: var(--num); font-size: 18px; color: var(--vermilion)}
+.plan ul{list-style: none; margin-bottom: 28px}
+.plan li{
+  padding: 10px 0 10px 24px;
+  font-size: 13px;
+  position: relative;
+  border-bottom: 1px dashed #00000010;
+}
+.plan li::before{
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--vermilion);
+  font-weight: bold;
+}
+.plan .btn{width: 100%; justify-content: center; padding: 16px}
+
+/* ========== BONUS ========== */
+.bonus{
+  background: var(--paper);
+  padding: 140px 24px;
+}
+.bonus-header{text-align: center; max-width: 760px; margin: 0 auto 60px}
+.bonus-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.bonus-item{
+  background: white;
+  padding: 32px 24px;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px #00000008;
+  position: relative;
+  border: 1px dashed var(--vermilion);
+}
+.bonus-item .stamp{
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  background: var(--vermilion);
+  color: white;
+  padding: 4px 12px;
+  font-family: var(--num);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+}
+.bonus-item h4{
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 16px 0 12px;
+  line-height: 1.5;
+}
+.bonus-item p{font-size: 13px; line-height: 1.8; color: #444}
+.bonus-item .value{
+  margin-top: 16px;
+  font-family: var(--num);
+  font-size: 22px;
+  color: var(--vermilion);
+}
+.bonus-item .value .lbl{font-family: var(--body); font-size: 11px; color: var(--muted); display: block; letter-spacing: 0.15em}
+
+.bonus-total{
+  margin-top: 60px;
+  text-align: center;
+  padding: 40px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 8px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bonus-total .label{font-family: var(--en); font-size: 12px; letter-spacing: 0.3em; color: var(--cyan)}
+.bonus-total .total{
+  font-family: var(--num);
+  font-size: clamp(48px, 7vw, 80px);
+  color: var(--cyan);
+  line-height: 1;
+  margin: 16px 0;
+}
+.bonus-total .total .yen{font-size: 0.5em}
+.bonus-total .desc{font-size: 14px; opacity: 0.8}
+
+/* ========== GUARANTEE ========== */
+.guarantee{
+  background: var(--cream);
+  padding: 100px 24px;
+  text-align: center;
+}
+.guarantee-inner{max-width: 720px; margin: 0 auto}
+.guarantee-badge{
+  width: 180px; height: 180px;
+  margin: 0 auto 40px;
+  border-radius: 50%;
+  background: white;
+  border: 4px double var(--vermilion);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 8px 30px #00000010;
+}
+.guarantee-badge::before{
+  content: '';
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1px dashed var(--vermilion);
+}
+.guarantee-badge .num{font-family: var(--num); font-size: 60px; color: var(--vermilion); line-height: 1}
+.guarantee-badge .label{font-family: var(--display); font-size: 14px; letter-spacing: 0.1em}
+.guarantee-badge .sub{font-family: var(--en); font-size: 10px; letter-spacing: 0.3em; color: var(--muted); margin-top: 4px}
+
+.guarantee h2{font-family: var(--display); font-size: clamp(24px, 3.5vw, 36px); margin-bottom: 24px}
+.guarantee p{font-size: 15px; line-height: 2; color: #2a2a2a}
+
+/* ========== FAQ ========== */
+.faq{
+  background: var(--paper);
+  padding: 140px 24px;
+}
+.faq-list{max-width: 760px; margin: 60px auto 0; display: flex; flex-direction: column; gap: 12px}
+.faq-item{
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px #00000008;
+}
+.faq-q{
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.6;
+  user-select: none;
+  transition: background 0.2s;
+}
+.faq-q:hover{background: var(--cream)}
+.faq-q::before{
+  content: 'Q';
+  font-family: var(--display);
+  font-size: 22px;
+  color: var(--vermilion);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.faq-q::after{
+  content: '+';
+  margin-left: auto;
+  font-size: 24px;
+  color: var(--muted);
+  font-weight: 300;
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-q::after{transform: rotate(45deg)}
+.faq-a{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 28px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #444;
+  display: flex;
+  gap: 20px;
+}
+.faq-a::before{
+  content: 'A';
+  font-family: var(--display);
+  font-size: 22px;
+  color: var(--cyan);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.faq-item.open .faq-a{max-height: 300px; padding: 8px 28px 24px}
+
+/* ========== FINAL CTA ========== */
+.final{
+  background: var(--ink);
+  color: var(--cream);
+  padding: 140px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 50%, #4dd4ff22, transparent 60%),
+    radial-gradient(circle at 70% 50%, #d63b2c22, transparent 60%);
+  animation: pulse 6s ease-in-out infinite;
+}
+.final-inner{position: relative; max-width: 760px; margin: 0 auto}
+.final h2{
+  font-family: var(--display);
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.3;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+.final h2 em{color: var(--cyan); font-style: normal}
+.final p{font-size: 17px; line-height: 2; margin-bottom: 48px; opacity: 0.9}
+
+.countdown{
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.cd-item{
+  background: #ffffff10;
+  border: 1px solid #ffffff22;
+  padding: 16px 20px;
+  min-width: 80px;
+  border-radius: 4px;
+}
+.cd-item .num{font-family: var(--num); font-size: 36px; color: var(--cyan); line-height: 1; display: block}
+.cd-item .lbl{font-size: 10px; letter-spacing: 0.2em; color: #ffffff88; margin-top: 4px}
+
+.final .btn{padding: 24px 48px; font-size: 18px}
+
+/* ========== FOOTER ========== */
+footer{
+  background: #050507;
+  color: #ffffff66;
+  padding: 60px 24px 40px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+footer .logo{
+  font-family: var(--display);
+  font-size: 24px;
+  color: var(--cream);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+footer .links{
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+footer a{color: #ffffff88; text-decoration: none}
+footer a:hover{color: var(--cyan)}
+footer .copy{margin-top: 24px; font-family: var(--en)}
+
+/* ========== STICKY CTA ========== */
+.sticky-cta{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--ink);
+  padding: 12px 16px;
+  display: none;
+  gap: 12px;
+  z-index: 100;
+  box-shadow: 0 -4px 20px #00000044;
+}
+.sticky-cta .info{
+  flex: 1;
+  color: var(--cream);
+  font-size: 11px;
+  align-self: center;
+}
+.sticky-cta .info strong{color: var(--cyan); display: block; font-family: var(--num); font-size: 18px}
+.sticky-cta .btn{padding: 14px 20px; font-size: 14px}
+
+@media (max-width: 768px){
+  .sticky-cta{display: flex}
+  body{padding-bottom: 70px}
+  section{padding: 80px 24px}
+  .empathy-conclusion{padding: 40px 24px}
+}
+
+/* ========== SCROLL REVEAL ========== */
+.reveal{opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease}
+.reveal.visible{opacity: 1; transform: translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ========== ANNOUNCEMENT BAR ========== -->
+<div class="announce">
+  <strong>★ 期間限定</strong>　5月15日まで早期申込で<strong>30,000円OFF</strong> ＋ 特典4点プレゼント
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+  </div>
+
+  <div class="video-preview">
+    <div class="play"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-badges">
+      <span class="accent">受講者 12,400名突破</span>
+      <span>App Store 教育部門 1位</span>
+      <span>日経MJ 掲載</span>
+    </div>
+
+    <div class="hero-eyebrow">VIDEO × MEMORY × VOCABULARY</div>
+
+    <h1 class="hero-title">
+      映像で覚えると、<br>
+      英単語は<span class="accent">忘れない。</span><br>
+      <span class="stamp">3ヶ月で2,000語</span>
+    </h1>
+
+    <p class="hero-sub">
+      脳科学に基づいた「映像×感覚」の記憶設計で、<br>
+      字幕なしで映画が観られる自分へ。<br>
+      1日10分、スマホだけで完結する英単語学習プログラム。
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">94<small style="font-size:18px">%</small></span>
+        <div class="label">継続率</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">2,400<small style="font-size:18px">語</small></span>
+        <div class="label">平均習得数</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">+180</span>
+        <div class="label">TOEIC平均上昇</div>
+      </div>
+    </div>
+
+    <div class="cta-group">
+      <a href="#pricing" class="btn btn-primary">今すぐ始める（30秒で完了）</a>
+      <a href="#video" class="btn btn-ghost">無料サンプル動画を観る</a>
+    </div>
+
+    <div class="hero-meta">
+      <span>✓ 30日間返金保証</span>
+      <span>✓ クレジットカード／後払い対応</span>
+      <span>✓ 解約はいつでもワンタップ</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MEDIA STRIP ========== -->
+<div class="media-strip">
+  <div class="media-strip-inner">
+    <span class="label">FEATURED IN</span>
+    <span>NIKKEI</span>
+    <span>FORBES JAPAN</span>
+    <span>NewsPicks</span>
+    <span>WIRED</span>
+    <span>CAMPUS LIFE</span>
+    <span>ABEMA TV</span>
+  </div>
+</div>
+
+<!-- ========== EMPATHY ========== -->
+<section class="empathy">
+  <div class="wrap-narrow">
+    <div class="section-eyebrow">— SECTION 01 / 共感</div>
+    <h2 class="section-title">
+      単語帳を<span class="accent">何周</span>しても、<br>
+      なぜ覚えられないのか。
+    </h2>
+    <p class="section-lead">
+      もし1つでも当てはまるなら、それは「努力不足」ではありません。<br>
+      従来の暗記法そのものが、人間の脳の仕組みに合っていないだけです。
+    </p>
+  </div>
+
+  <div class="wrap">
+    <div class="empathy-grid">
+      <div class="bubble">
+        覚えたはずの単語が、<strong>1週間後にはほぼ消えている</strong>。何度繰り返しても結果は同じで、自分の頭に問題があるのかと思い始めた。
+        <span class="who">— 30代 / 会社員</span>
+      </div>
+      <div class="bubble">
+        英単語アプリを<strong>3つ続けたけど、どれも3週間で挫折</strong>。やる気がないわけじゃない、ただ「面白くない」のが続かない理由。
+        <span class="who">— 20代 / 大学生</span>
+      </div>
+      <div class="bubble">
+        英語のスクリプトを読めば意味は分かる。でも<strong>映画やNetflixだと耳に入らない</strong>。文字と音と意味が結びついていない感覚。
+        <span class="who">— 40代 / マーケター</span>
+      </div>
+      <div class="bubble">
+        TOEICのスコアは上がっても、<strong>会議で英語が出てこない</strong>。"知っている"と"使える"の壁が、何年経っても越えられない。
+        <span class="who">— 30代 / 外資系</span>
+      </div>
+      <div class="bubble">
+        子供の頃に日本語をどう覚えたか思い出してほしい。<strong>絵本、アニメ、生活の中の映像</strong>。大人の英語学習だけ、なぜ机の上なのか。
+        <span class="who">— 編集部</span>
+      </div>
+      <div class="bubble">
+        単語帳に向かう「机に座る時間」を作るのが大変。<strong>通勤電車で開く気力もない</strong>のが本音だ。
+        <span class="who">— 30代 / フリーランス</span>
+      </div>
+    </div>
+
+    <div class="empathy-conclusion">
+      <div class="label">— THE REAL PROBLEM</div>
+      <p class="msg">
+        その悩みは <em>勉強法</em> ではなく、<br>
+        <em>「記憶の入れ方」</em>の問題です。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SCIENCE ========== -->
+<section class="science">
+  <div class="wrap">
+    <div class="section-eyebrow">— SECTION 02 / 脳科学的根拠</div>
+    <h2 class="section-title">
+      なぜ <span class="marker">映像で覚えると</span> 忘れないのか。
+    </h2>
+    <p class="section-lead">
+      文字だけの暗記は、脳の言語野にしか情報を刻みません。<br>
+      しかし映像・音・感情を伴った記憶は、脳の複数領域に同時に記録される。<br>
+      これが「エピソード記憶」と呼ばれる、最も忘れにくい記憶の形です。
+    </p>
+
+    <div class="science-grid">
+      <div class="brain-diagram">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="brainGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#cccccc"/>
+              <stop offset="100%" style="stop-color:#999999"/>
+            </linearGradient>
+            <linearGradient id="brainGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#d63b2c"/>
+              <stop offset="50%" style="stop-color:#c89b5e"/>
+              <stop offset="100%" style="stop-color:#4dd4ff"/>
+            </linearGradient>
+          </defs>
+
+          <text x="100" y="30" font-family="Cormorant Garamond" font-style="italic" font-size="12" fill="#999" text-anchor="middle" letter-spacing="2">TEXT ONLY</text>
+          <path d="M 60 80 Q 50 60, 90 50 Q 130 40, 150 70 Q 160 100, 140 130 Q 120 160, 90 150 Q 60 140, 50 110 Q 45 90, 60 80 Z"
+                fill="url(#brainGrad1)" stroke="#777" stroke-width="1.5"/>
+          <circle cx="105" cy="100" r="6" fill="#666"/>
+          <text x="100" y="200" font-family="Zen Kaku Gothic New" font-size="11" fill="#666" text-anchor="middle">言語野のみ</text>
+          <text x="100" y="218" font-family="Bebas Neue" font-size="14" fill="#999" text-anchor="middle">記憶定着率 18%</text>
+
+          <text x="290" y="30" font-family="Cormorant Garamond" font-style="italic" font-size="12" fill="#d63b2c" text-anchor="middle" letter-spacing="2">VIDEO + SENSE</text>
+          <path d="M 250 80 Q 240 60, 280 50 Q 320 40, 340 70 Q 350 100, 330 130 Q 310 160, 280 150 Q 250 140, 240 110 Q 235 90, 250 80 Z"
+                fill="url(#brainGrad2)" stroke="#d63b2c" stroke-width="1.5" opacity="0.9"/>
+          <circle cx="270" cy="80" r="5" fill="#fff"/>
+          <circle cx="300" cy="100" r="5" fill="#fff"/>
+          <circle cx="285" cy="120" r="5" fill="#fff"/>
+          <circle cx="315" cy="130" r="5" fill="#fff"/>
+          <circle cx="265" cy="115" r="4" fill="#fff"/>
+          <text x="290" y="200" font-family="Zen Kaku Gothic New" font-size="11" fill="#d63b2c" text-anchor="middle">視覚野 + 聴覚野 + 海馬 + 感情</text>
+          <text x="290" y="218" font-family="Bebas Neue" font-size="14" fill="#d63b2c" text-anchor="middle">記憶定着率 86%</text>
+
+          <line x1="170" y1="100" x2="225" y2="100" stroke="#d63b2c" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <polygon points="225,100 218,96 218,104" fill="#d63b2c"/>
+
+          <text x="200" y="270" font-family="Cormorant Garamond" font-style="italic" font-size="11" fill="#666" text-anchor="middle">Source: Paivio's Dual Coding Theory + UCLA Memory Lab, 2019</text>
+        </svg>
+        <div class="brain-label">— Memory Retention Comparison</div>
+      </div>
+
+      <div class="science-points">
+        <div class="science-point">
+          <div class="num">01</div>
+          <div>
+            <h3>デュアルコーディング理論</h3>
+            <p>人間の脳は「言語情報」と「映像情報」を別々のチャネルで処理する。両方が同時に入力されると、記憶のフックが2倍以上に増え、想起率が劇的に向上することが認知心理学で証明されています。</p>
+          </div>
+        </div>
+        <div class="science-point">
+          <div class="num">02</div>
+          <div>
+            <h3>エピソード記憶 × 海馬</h3>
+            <p>「いつ・どこで・どんな気持ちで」という文脈を伴う記憶は、海馬を介して長期記憶へと移行しやすい。WorldOrbの映像は意図的に物語性と感情を組み込み、エピソード化された記憶を形成します。</p>
+          </div>
+        </div>
+        <div class="science-point">
+          <div class="num">03</div>
+          <div>
+            <h3>ミラーニューロンの活性化</h3>
+            <p>キャラクターが単語を「使っている」場面を観ることで、脳内で同じ動作が再現される。これは赤ん坊が母語を獲得するのと同じ仕組み。"知っている"が"使える"に変わる神経学的トリガーです。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="supervisor">
+      <strong>監修：北原 玲（脳科学博士／元東京大学 認知科学研究室）</strong>
+      「単語学習で最も重要なのは"反復"ではなく、"想起の強度"です。映像と感覚を伴う記憶は、想起の強度が文字の約4.7倍に達することが私たちの研究で分かっています。」
+    </div>
+  </div>
+</section>
+
+<!-- ========== USP ========== -->
+<section class="usp">
+  <div class="usp-header">
+    <div class="section-eyebrow">— SECTION 03 / 3つの特徴</div>
+    <h2 class="section-title" style="color: var(--cream)">
+      WorldOrbが、<br>選ばれる<span style="color: var(--cyan)">3つの理由</span>。
+    </h2>
+  </div>
+
+  <div class="usp-grid">
+    <div class="usp-card">
+      <span class="num">01 / FEATURE</span>
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+      </div>
+      <h3>
+        <span class="big">4.7×</span>
+        映像×感覚で<br>記憶定着率が向上
+      </h3>
+      <p>1単語あたり10〜15秒のショート映像。物語性のあるシーンと一緒に単語が登場するため、脳が自然にエピソード記憶として保存。文字暗記の4.7倍の定着率を実現します。</p>
+    </div>
+
+    <div class="usp-card">
+      <span class="num">02 / FEATURE</span>
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+      </div>
+      <h3>
+        <span class="big">10分</span>
+        スマホ縦動画で<br>1日完結
+      </h3>
+      <p>TikTok・Reels世代に最適化された縦型動画。通勤電車・寝る前・休憩時間。机に向かう時間ゼロ。1日10分の習慣が、3ヶ月で2,000語を脳に刻みます。</p>
+    </div>
+
+    <div class="usp-card">
+      <span class="num">03 / FEATURE</span>
+      <div class="icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h3>
+        <span class="big">94%</span>
+        挫折させない<br>UX設計
+      </h3>
+      <p>オリジナルキャラクター "Boo" と一緒に進む冒険型カリキュラム。コレクション要素・ストリーク機能・トレーディングシステムが、3週間で消える「やる気」を半年以上維持させます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRANSFORM ========== -->
+<section class="transform">
+  <div class="transform-header">
+    <div class="section-eyebrow">— SECTION 04 / Before & After</div>
+    <h2 class="section-title">
+      3ヶ月後、<br>
+      <span class="accent">こんな自分</span>に出会う。
+    </h2>
+  </div>
+
+  <div class="ba-container">
+    <div class="ba-card before">
+      <span class="stamp">BEFORE</span>
+      <h3>始める前のあなた</h3>
+      <ul>
+        <li>覚えた単語が翌週には消えている</li>
+        <li>映画は字幕がないと内容が掴めない</li>
+        <li>会議で言葉が出てこず黙ってしまう</li>
+        <li>単語帳が3冊、家に積まれている</li>
+        <li>「自分は英語に向いてない」と思っている</li>
+      </ul>
+    </div>
+
+    <div class="ba-arrow">→</div>
+
+    <div class="ba-card after">
+      <span class="stamp">AFTER</span>
+      <h3>3ヶ月後のあなた</h3>
+      <ul>
+        <li>2,400語が長期記憶に定着している</li>
+        <li>Netflixが字幕なしで楽しめる</li>
+        <li>会議で英語が口から自然に出る</li>
+        <li>毎朝の英語ニュースが日課になる</li>
+        <li>「英語が一番の強み」と言える</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ba-chart">
+    <h3>受講者のTOEICスコア平均推移</h3>
+    <div class="chart-bars">
+      <div class="chart-bar gray" style="height: 120px">
+        540
+        <div class="label">開始前</div>
+      </div>
+      <div class="chart-bar" style="height: 160px">
+        635
+        <div class="label">1ヶ月後</div>
+      </div>
+      <div class="chart-bar" style="height: 200px">
+        700
+        <div class="label">2ヶ月後</div>
+      </div>
+      <div class="chart-bar" style="height: 240px">
+        720
+        <div class="label">3ヶ月後</div>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 60px; font-size: 12px; color: var(--muted)">
+      ※ 2024-2025年 受講者834名のデータ平均値（自己申告ベース）
+    </p>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-eyebrow">— SECTION 05 / 受講者の声</div>
+    <h2 class="section-title">
+      実際に変わった人たちの、<br>
+      <span class="accent">リアルな声</span>。
+    </h2>
+
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="score">580 → 780 <span class="small">TOEIC</span></div>
+        <h4>「3ヶ月で200点上がった。<br>過去20年で一番効いた教材」</h4>
+        <p>これまで色々試してきましたが、3週間続いたものはありませんでした。WorldOrbは初めて90日間続いた。映像が物語になっているので、明日の続きが気になって自然に開いてしまうんです。</p>
+        <div class="person">
+          <div class="avatar">田</div>
+          <div class="person-info">
+            <div class="name">田中 慎吾 さん</div>
+            <div class="role">38歳 / 外資系コンサル</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <div class="score">2,400 <span class="small">語 習得</span></div>
+        <h4>「机に向かう時間ゼロでこの量。<br>正直、信じられない」</h4>
+        <p>子育て中で勉強時間が取れず諦めていました。授乳中、寝かしつけ後、家事の合間。スマホ片手の10分が積み上がって、半年で2,400語。子供の英語より自分が話せるようになりました。</p>
+        <div class="person">
+          <div class="avatar">佐</div>
+          <div class="person-info">
+            <div class="name">佐藤 美香 さん</div>
+            <div class="role">34歳 / 主婦・元商社勤務</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <div class="score">字幕なし達成</div>
+        <h4>「Netflixが英語字幕で観られた瞬間、<br>泣きそうになった」</h4>
+        <p>「Friends」を10年ぶりに字幕なしで観てみたら、9割聞き取れました。文字で覚えていた単語が"音"として認識できるようになる感覚は、これまでの教材では得られなかったものです。</p>
+        <div class="person">
+          <div class="avatar">山</div>
+          <div class="person-info">
+            <div class="name">山田 拓也 さん</div>
+            <div class="role">29歳 / Webデザイナー</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <div class="score">650 → 845 <span class="small">TOEIC</span></div>
+        <h4>「就活で武器になった。<br>第一志望に内定」</h4>
+        <p>大学3年の夏に始めて、半年で845点。面接でも「どうやってここまで上げたのか」と聞かれることが多く、結果的にそれが自分のストーリーになりました。映像で覚える、本当におすすめです。</p>
+        <div class="person">
+          <div class="avatar">鈴</div>
+          <div class="person-info">
+            <div class="name">鈴木 凛 さん</div>
+            <div class="role">22歳 / 早稲田大学</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <div class="score">CEFR B2 達成</div>
+        <h4>「海外駐在の打診が来た。<br>人生の選択肢が広がった」</h4>
+        <p>40代で英語学習を再開し、半信半疑で始めました。1年続けて、社内の英語アセスメントでB2レベル。今度ロンドン支社の話が来ています。WorldOrbがなければあり得なかった人生の分岐点です。</p>
+        <div class="person">
+          <div class="avatar">高</div>
+          <div class="person-info">
+            <div class="name">高橋 正樹 さん</div>
+            <div class="role">45歳 / メーカー営業</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <div class="score">毎日 連続180日</div>
+        <h4>「英語学習が、<br>趣味に変わった瞬間」</h4>
+        <p>続いた最大の理由は、義務感がないこと。アニメを観るのと同じ感覚で、気がつけば毎日触っている。Booのキャラクターも好きだし、コレクションが増えていくのも楽しい。これは"勉強"じゃないです。</p>
+        <div class="person">
+          <div class="avatar">中</div>
+          <div class="person-info">
+            <div class="name">中村 紗良 さん</div>
+            <div class="role">26歳 / 看護師</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STATS ========== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="section-eyebrow" style="color: var(--cyan)">— BY THE NUMBERS</div>
+    <h2 class="section-title" style="color: var(--cream); margin-bottom: 80px">
+      数字が、<br>すべてを物語る。
+    </h2>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <span class="big">12,400<span class="unit">名</span></span>
+        <div class="desc">— 累計受講者数</div>
+      </div>
+      <div class="stat">
+        <span class="big">94<span class="unit">%</span></span>
+        <div class="desc">— 30日継続率</div>
+      </div>
+      <div class="stat">
+        <span class="big">+180</span>
+        <div class="desc">— TOEIC平均上昇</div>
+      </div>
+      <div class="stat">
+        <span class="big">4.8<span class="unit">/5</span></span>
+        <div class="desc">— App Store評価</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOUNDER ========== -->
+<section class="founder">
+  <div class="founder-inner">
+    <div class="founder-portrait">
+      <div class="silhouette">慈</div>
+    </div>
+
+    <div class="founder-content">
+      <div class="section-eyebrow">— FOUNDER'S STORY</div>
+      <h2 class="section-title">
+        英語で挫折した僕が、<br>
+        <span class="accent">この教材を作った理由</span>。
+      </h2>
+
+      <p>大学を卒業するまで、僕の英語の点数は赤点ギリギリでした。単語帳を買っては積み、TOEICは何度受けても500点台。「自分は英語に向いていない」と本気で思っていました。</p>
+
+      <p>転機は、海外で出会った1人の脳科学者でした。彼は言いました。<br>「あなたの脳は壊れていない。ただ、覚え方が間違っているだけだ」</p>
+
+      <p>そこから5年。第二言語習得理論と認知科学を学び直し、SNSで100万人の英語学習者と対話を重ねた末に辿り着いた答えが、この「映像×感覚」のメソッドです。</p>
+
+      <p>WorldOrbは、過去の僕のような「英語に挫折した人」のために作りました。あなたが英語を諦める必要は、もう一度もありません。</p>
+
+      <div class="founder-sign">
+        <div>
+          <div class="name">慈瑛 / Jiei</div>
+          <div class="role">WorldOrb 代表</div>
+        </div>
+        <div class="followers">
+          1,000,000+
+          <span class="label">SNS Followers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CURRICULUM ========== -->
+<section class="curriculum" id="curriculum">
+  <div class="wrap">
+    <div class="section-eyebrow">— SECTION 07 / カリキュラム</div>
+    <h2 class="section-title">
+      90日間で<span class="marker">2,000語</span>。<br>
+      何が手に入るのか。
+    </h2>
+    <p class="section-lead">
+      6つのチャプター、420本のオリジナル映像、復習システム。<br>
+      アプリ・コミュニティ・ライブ配信まで、英単語学習に必要なすべてが一つに。
+    </p>
+
+    <div class="curr-grid">
+      <div class="curr-list">
+        <div class="curr-item">
+          <div class="ch">01</div>
+          <div>
+            <h4>The Awakening — 基礎1,000語</h4>
+            <p>日常頻出語を物語と共に。最初の30日でNetflix基礎レベル到達。</p>
+          </div>
+          <div class="videos">
+            120<span class="lbl">VIDEOS</span>
+          </div>
+        </div>
+        <div class="curr-item">
+          <div class="ch">02</div>
+          <div>
+            <h4>Phrasal Verbs — 句動詞400</h4>
+            <p>ネイティブが多用する句動詞を、シーン記憶で完全マスター。</p>
+          </div>
+          <div class="videos">
+            80<span class="lbl">VIDEOS</span>
+          </div>
+        </div>
+        <div class="curr-item">
+          <div class="ch">03</div>
+          <div>
+            <h4>Idioms & Slang — イディオム200</h4>
+            <p>映画・SNS・ビジネスで頻出のスラング・慣用表現を体感的に習得。</p>
+          </div>
+          <div class="videos">
+            60<span class="lbl">VIDEOS</span>
+          </div>
+        </div>
+        <div class="curr-item">
+          <div class="ch">04</div>
+          <div>
+            <h4>Business Lexicon — ビジネス語彙500</h4>
+            <p>会議・メール・交渉で必要な実践語彙。外資系で即戦力レベル。</p>
+          </div>
+          <div class="videos">
+            100<span class="lbl">VIDEOS</span>
+          </div>
+        </div>
+        <div class="curr-item">
+          <div class="ch">05</div>
+          <div>
+            <h4>Compound & Nuance — 複合語と細かなニュアンス</h4>
+            <p>類義語の違い、文化的な含意、コンテキスト依存の表現を物語で。</p>
+          </div>
+          <div class="videos">
+            40<span class="lbl">VIDEOS</span>
+          </div>
+        </div>
+        <div class="curr-item">
+          <div class="ch">06</div>
+          <div>
+            <h4>The Mastery — 上級語彙と運用力</h4>
+            <p>抽象語・学術語まで。CEFR B2-C1レベルへ到達するチャプター。</p>
+          </div>
+          <div class="videos">
+            20<span class="lbl">VIDEOS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-mock">
+        <div class="phone-screen">
+          <div class="phone-orb"></div>
+          <div class="phone-word">linger</div>
+          <div class="phone-meaning">名残惜しく留まる</div>
+          <div class="phone-pron">/ˈlɪŋ.ɡər/</div>
+          <div class="phone-bar">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section class="pricing" id="pricing">
+  <div class="pricing-header">
+    <div class="section-eyebrow">— SECTION 08 / 料金プラン</div>
+    <h2 class="section-title" style="color: var(--cream)">
+      他のスクールと、<br>
+      <span style="color: var(--cyan)">比べてみてください</span>。
+    </h2>
+  </div>
+
+  <div class="compare">
+    <div class="label">— PRICE COMPARISON</div>
+    <div class="compare-row">
+      <div>
+        <div class="compare-price bad">¥360,000</div>
+        <small>英会話スクール / 6ヶ月</small>
+      </div>
+      <div class="vs">VS</div>
+      <div>
+        <div class="compare-price good">¥39,800</div>
+        <small>WorldOrb / 買い切り型</small>
+      </div>
+    </div>
+    <p style="margin-top: 20px; font-size: 13px; opacity: 0.8">
+      コーヒー1杯の値段（1日約 132円）で、一生使える英単語力。
+    </p>
+  </div>
+
+  <div class="plans">
+    <div class="plan">
+      <h3>Starter</h3>
+      <div class="tagline">— BEGINNER FRIENDLY</div>
+      <div class="price"><span class="yen">¥</span>19,800</div>
+      <div class="price-note">買い切り / 税込</div>
+      <div class="per-day">1日あたり <strong>¥66</strong></div>
+      <ul>
+        <li>基礎1,000語コース（Ch.1）</li>
+        <li>120本のオリジナル映像</li>
+        <li>3ヶ月間アプリ利用権</li>
+        <li>復習システム標準装備</li>
+        <li>メールサポート</li>
+      </ul>
+      <a href="#" class="btn btn-primary">このプランを選ぶ</a>
+    </div>
+
+    <div class="plan featured">
+      <div class="ribbon">★ 一番人気 ★</div>
+      <h3>Standard</h3>
+      <div class="tagline">— MOST CHOSEN</div>
+      <div class="price"><span class="yen">¥</span>39,800</div>
+      <div class="price-note">買い切り / 税込</div>
+      <div class="per-day">1日あたり <strong>¥132</strong></div>
+      <ul>
+        <li>全2,000語コース（Ch.1-6）</li>
+        <li>420本の全映像</li>
+        <li>無期限アプリ利用権</li>
+        <li>受講者コミュニティ参加権</li>
+        <li>月1回のライブQ&A配信</li>
+        <li>全特典4点プレゼント</li>
+        <li>30日間返金保証</li>
+      </ul>
+      <a href="#" class="btn btn-primary">このプランを選ぶ</a>
+    </div>
+
+    <div class="plan">
+      <h3>Premium</h3>
+      <div class="tagline">— FOR SERIOUS LEARNERS</div>
+      <div class="price"><span class="yen">¥</span>89,800</div>
+      <div class="price-note">買い切り / 税込</div>
+      <div class="per-day">1日あたり <strong>¥299</strong></div>
+      <ul>
+        <li>Standardの全特典</li>
+        <li>1on1コーチング月2回（6ヶ月）</li>
+        <li>個別学習ロードマップ作成</li>
+        <li>プライベートDiscord招待</li>
+        <li>新コース永久無料アクセス</li>
+        <li>60日間返金保証</li>
+      </ul>
+      <a href="#" class="btn btn-primary">このプランを選ぶ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BONUS ========== -->
+<section class="bonus">
+  <div class="bonus-header">
+    <div class="section-eyebrow">— SECTION 09 / 期間限定特典</div>
+    <h2 class="section-title">
+      5月15日までの<br>
+      <span class="accent">早期申込特典</span>
+    </h2>
+    <p class="section-lead" style="text-align: center; margin: 0 auto">
+      Standard / Premium プランでお申込みの方全員に、<br>
+      総額 <strong style="color: var(--vermilion)">¥48,000相当</strong> の特典4点をプレゼント。
+    </p>
+  </div>
+
+  <div class="wrap">
+    <div class="bonus-grid">
+      <div class="bonus-item">
+        <span class="stamp">特典 01</span>
+        <h4>📘 句動詞マスター完全PDF</h4>
+        <p>ネイティブが日常で使う句動詞400を、用例・ニュアンスと共に網羅した200ページのPDF教材。</p>
+        <div class="value">
+          ¥9,800<span class="lbl">相当</span>
+        </div>
+      </div>
+      <div class="bonus-item">
+        <span class="stamp">特典 02</span>
+        <h4>🎬 映画英語特別動画10本</h4>
+        <p>Netflix人気作品から厳選したシーンで学ぶ、文脈別ボキャブラリー強化動画パック。</p>
+        <div class="value">
+          ¥12,800<span class="lbl">相当</span>
+        </div>
+      </div>
+      <div class="bonus-item">
+        <span class="stamp">特典 03</span>
+        <h4>🎙 ライブQ&Aセッション参加権</h4>
+        <p>創業者・監修者と直接対話できる月1回のZoomセッション。3ヶ月分参加無料。</p>
+        <div class="value">
+          ¥18,000<span class="lbl">相当</span>
+        </div>
+      </div>
+      <div class="bonus-item">
+        <span class="stamp">特典 04</span>
+        <h4>🎯 個別学習診断レポート</h4>
+        <p>あなたの現在のレベルから最適な学習ペースを設計したパーソナル診断書。</p>
+        <div class="value">
+          ¥7,400<span class="lbl">相当</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bonus-total">
+      <div class="label">— TOTAL BONUS VALUE</div>
+      <div class="total"><span class="yen">¥</span>48,000</div>
+      <div class="desc">5月15日23:59 までの申込で全特典プレゼント</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GUARANTEE ========== -->
+<section class="guarantee">
+  <div class="guarantee-inner">
+    <div class="guarantee-badge">
+      <div class="num">30</div>
+      <div class="label">日間保証</div>
+      <div class="sub">FULL REFUND</div>
+    </div>
+    <h2>合わなければ、<br>全額お返しします。</h2>
+    <p>
+      購入後30日以内であれば、理由を問わず全額返金いたします。<br>
+      「映像で覚える」という新しい学習法を、リスクなく試してください。<br>
+      自信があるからこそ、リスクは私たちが引き受けます。
+    </p>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq">
+  <div class="wrap-narrow">
+    <div class="section-eyebrow">— FAQ / よくあるご質問</div>
+    <h2 class="section-title">
+      あなたの不安に、<br><span class="accent">先にお答えします</span>。
+    </h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">英語が本当に苦手でも、続けられますか？</div>
+        <div class="faq-a">はい、むしろ「英語が苦手な大人」のために設計された教材です。中学英語レベルから始まる映像で、文法知識ゼロでも単語が定着するよう物語化されています。受講者の40%は英語学習に過去挫折した経験のある方です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">スマホだけで学習は完結しますか？</div>
+        <div class="faq-a">完全にスマホ1台で完結します。iOS / Android 両対応のアプリで、PC・タブレットも追加料金なしで利用可能。オフラインダウンロードにも対応しているので、電波のない場所でも学習できます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">どのくらいで効果が実感できますか？</div>
+        <div class="faq-a">早い方で2週間、平均して4〜6週間で「単語が頭から消えない」感覚を実感されます。TOEICのスコアアップは平均で2〜3ヶ月、+100〜180点の伸びが見られます（受講者834名平均）。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">忙しくて1日10分も取れない日があります</div>
+        <div class="faq-a">問題ありません。ストリーク機能には「休息日」が組み込まれており、週1〜2日の休みは記録に影響しません。重要なのは"連続"より"継続"。3日空いても自然に戻れる設計です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">買い切りとサブスク、どちらがお得ですか？</div>
+        <div class="faq-a">2ヶ月以上利用される予定なら、買い切りが圧倒的にお得です。Standardプランの¥39,800は他の英語サブスクの約2ヶ月分相当ですが、コンテンツは無期限で利用可能です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">海外在住でも利用できますか？</div>
+        <div class="faq-a">はい、世界中どこからでもご利用いただけます。決済は日本円のクレジットカード／PayPalに対応。現在受講者の8%は海外在住の方です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">返金保証の条件を教えてください</div>
+        <div class="faq-a">購入後30日以内であれば、理由を問わず全額返金いたします（Premiumプランは60日）。返金フォームから1分で申請でき、3営業日以内に返金処理されます。「合わない」と感じたら遠慮なくお申し付けください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">特商法・運営者情報はどこで確認できますか？</div>
+        <div class="faq-a">ページ下部のフッターに特定商取引法に基づく表記、プライバシーポリシー、運営会社情報を掲載しています。お支払い前に必ずご確認ください。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final">
+  <div class="final-inner">
+    <div class="section-eyebrow" style="color: var(--cyan); justify-content: center; display: flex">— LAST CHANCE</div>
+    <h2>
+      映像で覚える、<br>
+      <em>新しい英語学習</em>を、<br>
+      今日から始めよう。
+    </h2>
+    <p>
+      90日後、あなたは違う自分に出会っています。<br>
+      その変化は、今日の決断の先にしかありません。
+    </p>
+
+    <div class="countdown" id="countdown">
+      <div class="cd-item"><span class="num" id="cd-d">14</span><div class="lbl">DAYS</div></div>
+      <div class="cd-item"><span class="num" id="cd-h">08</span><div class="lbl">HOURS</div></div>
+      <div class="cd-item"><span class="num" id="cd-m">42</span><div class="lbl">MIN</div></div>
+      <div class="cd-item"><span class="num" id="cd-s">17</span><div class="lbl">SEC</div></div>
+    </div>
+
+    <a href="#" class="btn btn-primary">今すぐWorldOrbを始める</a>
+
+    <p style="margin-top: 32px; font-size: 13px; opacity: 0.7">
+      ※ 30日間返金保証付き / クレジットカード・後払い対応
+    </p>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="logo">WorldOrb</div>
+  <div class="links">
+    <a href="#">特定商取引法に基づく表記</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">利用規約</a>
+    <a href="#">お問い合わせ</a>
+    <a href="#">運営会社</a>
+  </div>
+  <div class="copy">© 2026 WorldOrb Inc. All rights reserved. — Tokyo, Japan</div>
+</footer>
+
+<!-- ========== STICKY MOBILE CTA ========== -->
+<div class="sticky-cta">
+  <div class="info">
+    早期特典まで残り<br>
+    <strong>14日 08:42</strong>
+  </div>
+  <a href="#pricing" class="btn btn-primary">今すぐ始める</a>
+</div>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('section > *').forEach(el => {
+  el.classList.add('reveal');
+  observer.observe(el);
+});
+
+// Countdown (mock — set to 14 days from now)
+const target = new Date(Date.now() + 14*24*60*60*1000 + 8*60*60*1000 + 42*60*1000);
+function updateCountdown(){
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) return;
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff / (1000*60*60)) % 24);
+  const m = Math.floor((diff / (1000*60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
