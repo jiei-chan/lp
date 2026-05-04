@@ -181,7 +181,7 @@ body{
   align-items: center;
 }
 
-/* Full-bleed background image */
+/* Full-bleed background image (DESKTOP) */
 .hero-bg{
   position: absolute;
   inset: 0;
@@ -195,7 +195,7 @@ body{
   display: block;
 }
 
-/* Dark overlay for text readability */
+/* Dark overlay for text readability (DESKTOP) */
 .hero-overlay{
   position: absolute;
   inset: 0;
@@ -209,18 +209,6 @@ body{
       rgba(5, 8, 16, 0.1) 100%
     );
 }
-@media (max-width: 768px){
-  .hero-overlay{
-    background:
-      linear-gradient(
-        180deg,
-        rgba(5, 8, 16, 0.3) 0%,
-        rgba(5, 8, 16, 0.4) 40%,
-        rgba(5, 8, 16, 0.85) 75%,
-        rgba(5, 8, 16, 0.95) 100%
-      );
-  }
-}
 
 .hero-grid{
   position: relative;
@@ -233,9 +221,37 @@ body{
 .hero-text{
   max-width: 600px;
 }
+
+/* MOBILE: stacked layout — image on top, text below */
 @media (max-width: 768px){
-  .hero{align-items: flex-end; padding: 140px 24px 60px; min-height: 95vh}
-  .hero-text{max-width: 100%}
+  .hero{
+    min-height: auto;
+    padding: 0;
+    display: block;
+    align-items: stretch;
+  }
+  .hero-bg{
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    height: auto;
+  }
+  .hero-bg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-overlay{
+    display: none;
+  }
+  .hero-grid{
+    padding: 32px 20px 56px;
+    background: var(--ink);
+  }
+  .hero-text{
+    max-width: 100%;
+  }
 }
 
 .hero-eyebrow{
@@ -1786,14 +1802,209 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 .sticky-cta .label{font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em}
 .sticky-cta .btn{padding: 14px 20px; font-size: 13px; flex-shrink: 0}
 
+/* ========== MOBILE OPTIMIZATIONS (≤768px) ========== */
 @media (max-width: 768px){
-  .sticky-cta{display: flex}
+  /* ─── Layout basics ─── */
   body{padding-bottom: 76px}
-  section{padding: 72px 24px}
-  .hero{padding: 140px 24px 80px; min-height: auto}
-  .nav{top: 56px}
-  .bundle-card{padding: 36px 24px}
+  section{padding: 64px 20px}
+  .wrap, .wrap-narrow{padding: 0 20px}
+
+  /* ─── Sticky CTA on ─── */
+  .sticky-cta{display: flex}
+
+  /* ─── Announcement bar: keep on one line, small ─── */
+  .announce{padding: 10px 16px; font-size: 11px}
+  .announce-inner{gap: 8px}
+  .announce .pill{padding: 3px 8px; font-size: 9px}
+  .announce .period{font-size: 10px; width: 100%; margin-top: 4px}
+
+  /* ─── Nav ─── */
+  .nav{position: relative; top: 0; padding: 16px 20px; background: var(--ink)}
+  .logo{font-size: 18px}
+  .logo-mark{width: 24px; height: 24px}
+  .nav-cta{padding: 8px 14px; font-size: 12px}
+
+  /* ─── HERO: image top, text bottom ─── */
+  .hero{padding: 0; min-height: auto; display: block}
+  .hero h1{
+    font-size: 30px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .hero h1 br{display: none}
+  .hero-tagline{
+    font-size: 16px;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .hero-tagline br{display: none}
+  .hero-sub{
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+    color: rgba(255,255,255,0.78);
+  }
+  .hero-sub br{display: none}
+  .hero-eyebrow{
+    font-size: 10px;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+  .cta-row{gap: 10px; margin-bottom: 24px; flex-direction: column}
+  .cta-row .btn{width: 100%; padding: 16px 24px; font-size: 14px}
+  .hero-trust{
+    gap: 10px 16px;
+    font-size: 11px;
+  }
+
+  /* ─── WHAT IS INSIDE ─── */
+  .inside{padding: 40px 20px}
+  .inside-inner{gap: 20px}
+  .inside-label{font-size: 11px; letter-spacing: 0.18em}
+  .inside-label .small{font-size: 13px; margin-top: 6px}
+  .inside-product{padding: 12px 14px}
+  .inside-pill{width: 32px; height: 32px; font-size: 11px}
+  .inside-product .name{font-size: 13px}
+  .inside-product .desc{font-size: 10px}
+
+  /* ─── Section titles globally smaller on mobile ─── */
+  .section-eyebrow{font-size: 10px; letter-spacing: 0.18em; margin-bottom: 12px}
+  .section-title{
+    font-size: 26px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .section-title br{display: none}
+  .section-lead{font-size: 14px; line-height: 1.85}
+  .section-lead br{display: none}
+
+  /* ─── Authority section ─── */
+  .authority{padding: 64px 20px}
+  .authority-stats{gap: 12px; padding: 18px}
+  .authority-stat .num-big{font-size: 22px}
+  .authority-stat .label{font-size: 10px}
+
+  /* ─── Empathy bubbles ─── */
+  .bubble{padding: 22px 20px; font-size: 13px}
+
+  /* ─── Problem 3 cards ─── */
+  .p3-card{padding: 28px 24px}
+  .p3-card h3{font-size: 16px}
+  .p3-card h3 br{display: none}
+  .p3-card p{font-size: 13px}
+
+  /* ─── Real Problem (black) ─── */
+  .real-problem{padding: 64px 20px}
+  .real-problem h2{font-size: 22px; line-height: 1.5}
+  .real-problem h2 br{display: none}
+
+  /* ─── Solution ─── */
+  .compare-visual{padding: 20px}
+  .compare-row{grid-template-columns: 1fr; gap: 10px}
+  .compare-row .col{padding: 14px}
+  .compare-row .col-content{font-size: 13px}
+  .solution-point h3{font-size: 16px}
+  .solution-point p{font-size: 13px}
+
+  /* ─── Textbook comparison: scroll horizontally ─── */
+  .textbook{padding: 64px 0}
+  .tb-header{padding: 0 20px}
+  .tb-table-wrap{
+    margin: 0 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tb-table{min-width: 580px; font-size: 11px}
+  .tb-table th, .tb-table td{padding: 10px 8px}
+  .tb-table th{font-size: 11px}
+  .tb-note{padding: 0 20px; margin-top: 16px}
+
+  /* ─── Science ─── */
+  .brain-vis{padding: 24px}
+  .sci-point h3{font-size: 15px}
+  .sci-point p{font-size: 13px}
+
+  /* ─── Achievement band ─── */
+  .achievement{padding: 56px 20px}
+  .achievement .big{font-size: 56px}
+  .achievement .desc{font-size: 13px}
+
+  /* ─── Products ─── */
+  .pcard-header{padding: 24px 22px 20px}
+  .pcard-name{font-size: 22px}
+  .pcard-tagline{font-size: 12px}
+  .pcard-body{padding: 22px}
+  .pcard-desc{font-size: 13px}
+  .pcard-stats{gap: 10px; padding: 12px}
+  .pcard-stats .stat-num{font-size: 17px}
+  .pcard-features li{font-size: 12px}
+
+  /* ─── Bundle card ─── */
+  .bundle{padding: 64px 20px}
+  .bundle-card{padding: 32px 20px}
+  .bundle-ribbon{font-size: 11px; padding: 6px 16px; letter-spacing: 0.1em}
+  .bundle-products{gap: 12px}
+  .bundle-icon{width: 52px; height: 52px; font-size: 16px}
+  .bundle-plus{font-size: 18px}
+  .bundle-title{font-size: 22px}
+  .bundle-title br{display: none}
+  .bundle-sub{font-size: 13px}
+  .bundle-price-block{padding: 22px}
+  .bundle-row{font-size: 13px}
   .bundle-final-left .now-price{font-size: 44px}
+  .bundle-savings{padding: 12px 18px}
+  .bundle-savings .pct{font-size: 26px}
+  .urgency-bar{font-size: 12px; flex-direction: column; align-items: flex-start; gap: 8px}
+  .urgency-bar .time{margin-left: 0}
+
+  /* ─── Community ─── */
+  .community{padding: 64px 20px}
+  .community-embed .play-btn{width: 72px; height: 72px}
+  .community-embed .play-btn::before{
+    border-left: 18px solid var(--ink);
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+  }
+
+  /* ─── Voices ─── */
+  .voice{padding: 20px}
+  .voice .text{font-size: 13px}
+
+  /* ─── FAQ ─── */
+  .faq{padding: 64px 20px}
+  .faq-q{padding: 18px 20px; font-size: 14px}
+  .faq-q .marker{width: 22px; height: 22px}
+  .faq-a{font-size: 13px}
+  .faq-item.open .faq-a{padding: 0 20px 18px}
+
+  /* ─── Final CTA ─── */
+  .final{padding: 72px 20px}
+  .final h2{font-size: 30px; line-height: 1.35}
+  .final h2 br{display: none}
+  .final p{font-size: 14px}
+  .final p br{display: none}
+  .final-price-card{padding: 24px}
+  .final-price-card .price{font-size: 56px}
+  .final .btn-primary{padding: 18px 32px; font-size: 14px; width: 100%}
+  .cd-box{padding: 10px 12px; min-width: 60px}
+  .cd-box .num{font-size: 22px}
+  .final-meta{font-size: 11px; gap: 14px}
+
+  /* ─── Footer ─── */
+  footer{padding: 36px 20px 24px}
+  footer .links{gap: 16px; font-size: 11px}
+}
+
+/* Even smaller mobile (≤400px) */
+@media (max-width: 400px){
+  .hero h1{font-size: 26px}
+  .section-title{font-size: 22px}
+  .bundle-final-left .now-price{font-size: 38px}
+  .achievement .big{font-size: 48px}
+  .final h2{font-size: 26px}
+  .final-price-card .price{font-size: 48px}
 }
 
 /* ========== REVEAL ========== */
