@@ -169,6 +169,20 @@ body{
 }
 .nav-cta:hover{transform: translateY(-1px); box-shadow: 0 8px 20px rgba(255,255,255,0.2)}
 
+.nav-burger{
+  display: none;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: white;
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+.nav-burger:hover{transform: scale(1.05)}
+
 /* ========== HERO (DARK + IMAGE BG) ========== */
 .hero{
   position: relative;
@@ -234,19 +248,20 @@ body{
     position: relative;
     inset: auto;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
     height: auto;
   }
   .hero-bg img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
   }
   .hero-overlay{
     display: none;
   }
   .hero-grid{
-    padding: 32px 20px 56px;
+    padding: 28px 20px 36px;
     background: var(--ink);
   }
   .hero-text{
@@ -353,6 +368,13 @@ body{
   backdrop-filter: blur(8px);
 }
 .btn-ghost:hover{background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.32)}
+.btn-ghost svg{
+  color: var(--accent);
+  background: rgba(0, 212, 255, 0.12);
+  border-radius: 50%;
+  padding: 4px;
+  box-sizing: content-box;
+}
 
 /* On light backgrounds */
 .btn-primary-blue{
@@ -373,14 +395,50 @@ body{
 .btn-outline:hover{border-color: var(--ink); background: var(--bg-soft)}
 
 .hero-trust{
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 4px;
 }
-.hero-trust span{display: flex; align-items: center; gap: 6px}
-.hero-trust svg{color: var(--accent); flex-shrink: 0}
+.trust-badge{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.trust-icon{
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-text{
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  min-width: 0;
+}
+.trust-text strong{
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.01em;
+}
+.trust-text span{
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
+}
 
 /* @keyframes float — used by Boo orb in authority section */
 @keyframes float{
@@ -1812,17 +1870,24 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   /* ─── Sticky CTA on ─── */
   .sticky-cta{display: flex}
 
-  /* ─── Announcement bar: keep on one line, small ─── */
-  .announce{padding: 10px 16px; font-size: 11px}
-  .announce-inner{gap: 8px}
-  .announce .pill{padding: 3px 8px; font-size: 9px}
-  .announce .period{font-size: 10px; width: 100%; margin-top: 4px}
+  /* ─── Announcement bar: stacked layout ─── */
+  .announce{padding: 12px 16px; font-size: 11px; text-align: left}
+  .announce-inner{
+    gap: 6px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .announce .pill{padding: 4px 10px; font-size: 9px; flex-shrink: 0}
+  .announce .period{font-size: 11px; width: 100%; margin-top: 2px; padding-left: 4px; color: rgba(255,255,255,0.6)}
 
   /* ─── Nav ─── */
   .nav{position: relative; top: 0; padding: 16px 20px; background: var(--ink)}
   .logo{font-size: 18px}
   .logo-mark{width: 24px; height: 24px}
-  .nav-cta{padding: 8px 14px; font-size: 12px}
+  .nav-cta{display: none}
+  .nav-burger{display: inline-flex}
 
   /* ─── HERO: image top, text bottom ─── */
   .hero{padding: 0; min-height: auto; display: block}
@@ -1854,9 +1919,19 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .cta-row{gap: 10px; margin-bottom: 24px; flex-direction: column}
   .cta-row .btn{width: 100%; padding: 16px 24px; font-size: 14px}
   .hero-trust{
-    gap: 10px 16px;
-    font-size: 11px;
+    gap: 8px;
+    grid-template-columns: repeat(3, 1fr);
   }
+  .trust-badge{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 10px;
+    gap: 8px;
+  }
+  .trust-icon{width: 32px; height: 32px}
+  .trust-icon svg{width: 18px; height: 18px}
+  .trust-text strong{font-size: 12px}
+  .trust-text span{font-size: 10px}
 
   /* ─── WHAT IS INSIDE ─── */
   .inside{padding: 40px 20px}
@@ -2031,6 +2106,13 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       import
     </a>
     <a href="#bundle" class="nav-cta">バンドルを見る</a>
+    <button class="nav-burger" aria-label="メニュー" onclick="document.body.classList.toggle('menu-open')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </div>
 </nav>
 
@@ -2063,17 +2145,42 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="cta-row">
         <a href="#bundle" class="btn btn-primary">
           GWバンドルを見る
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#what" class="btn btn-ghost">
           中身を10秒で見る
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
         </a>
       </div>
 
       <div class="hero-trust">
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30日間返金保証</span>
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>買い切り型</span>
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>スマホで完結</span>
+        <div class="trust-badge">
+          <div class="trust-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>30日間</strong>
+            <span>返金保証</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>買い切り型</strong>
+            <span>追加費用なし</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>スマホで完結</strong>
+            <span>いつでも学習</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
