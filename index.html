@@ -169,7 +169,7 @@ body{
 }
 .nav-cta:hover{transform: translateY(-1px); box-shadow: 0 8px 20px rgba(255,255,255,0.2)}
 
-/* ========== HERO (DARK / CINEMATIC) ========== */
+/* ========== HERO (DARK + IMAGE BG) ========== */
 .hero{
   position: relative;
   background: var(--ink);
@@ -177,54 +177,65 @@ body{
   min-height: 92vh;
   padding: 160px 24px 100px;
   overflow: hidden;
-}
-.hero::before{
-  content: '';
-  position: absolute;
-  top: -200px; right: -200px;
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.25) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero::after{
-  content: '';
-  position: absolute;
-  bottom: -300px; left: -200px;
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 60%);
-  pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
-/* Floating orbs (subtle) */
-.orb{
+/* Full-bleed background image */
+.hero-bg{
   position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(2px);
-  animation: float 12s ease-in-out infinite;
+  inset: 0;
+  z-index: 0;
 }
-.orb-1{width: 80px; height: 80px; top: 25%; left: 8%; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%); opacity: 0.4}
-.orb-2{width: 60px; height: 60px; top: 60%; left: 15%; background: radial-gradient(circle at 30% 30%, var(--blue), transparent 70%); opacity: 0.5; animation-delay: -4s}
-.orb-3{width: 100px; height: 100px; top: 70%; right: 20%; background: radial-gradient(circle at 30% 30%, #7c5cff, transparent 70%); opacity: 0.3; animation-delay: -8s}
+.hero-bg img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
 
-@keyframes float{
-  0%, 100%{transform: translate(0,0) scale(1)}
-  33%{transform: translate(30px, -40px) scale(1.05)}
-  66%{transform: translate(-20px, 30px) scale(0.95)}
+/* Dark overlay for text readability */
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 8, 16, 0.85) 0%,
+      rgba(5, 8, 16, 0.6) 40%,
+      rgba(5, 8, 16, 0.2) 70%,
+      rgba(5, 8, 16, 0.1) 100%
+    );
+}
+@media (max-width: 768px){
+  .hero-overlay{
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 8, 16, 0.3) 0%,
+        rgba(5, 8, 16, 0.4) 40%,
+        rgba(5, 8, 16, 0.85) 75%,
+        rgba(5, 8, 16, 0.95) 100%
+      );
+  }
 }
 
 .hero-grid{
   position: relative;
+  z-index: 2;
   max-width: 1120px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 80px;
-  align-items: center;
-  z-index: 2;
+  width: 100%;
 }
-@media (max-width: 900px){
-  .hero-grid{grid-template-columns: 1fr; gap: 56px}
+
+.hero-text{
+  max-width: 600px;
+}
+@media (max-width: 768px){
+  .hero{align-items: flex-end; padding: 140px 24px 60px; min-height: 95vh}
+  .hero-text{max-width: 100%}
 }
 
 .hero-eyebrow{
@@ -355,83 +366,11 @@ body{
 .hero-trust span{display: flex; align-items: center; gap: 6px}
 .hero-trust svg{color: var(--accent); flex-shrink: 0}
 
-/* Hero visual - 3 cards stack */
-.hero-visual{
-  position: relative;
-  height: 480px;
-}
-.hero-card{
-  position: absolute;
-  width: 280px;
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-  background: white;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
-}
-.hero-card:hover{transform: scale(1.04) rotate(0deg) !important; z-index: 10}
-
-.hero-card.card-1{
-  top: 0; right: 80px;
-  background: linear-gradient(135deg, #0066ff 0%, #4d94ff 100%);
-  color: white;
-  transform: rotate(-6deg);
-  z-index: 1;
-}
-.hero-card.card-2{
-  top: 100px; right: 0;
-  background: linear-gradient(135deg, #7c5cff 0%, #a78bfa 100%);
-  color: white;
-  transform: rotate(4deg);
-  z-index: 2;
-}
-.hero-card.card-3{
-  top: 220px; right: 60px;
-  background: linear-gradient(135deg, #00b8d4 0%, #00d4ff 100%);
-  color: white;
-  transform: rotate(-3deg);
-  z-index: 3;
-}
-
-.hero-card .card-eyebrow{
-  font-family: var(--en);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  opacity: 0.85;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.hero-card .card-title{
-  font-family: var(--en);
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 4px;
-}
-.hero-card .card-desc{
-  font-size: 12px;
-  opacity: 0.92;
-  margin-bottom: 20px;
-}
-.hero-card .card-stat{
-  font-family: var(--en);
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-.hero-card .card-stat-label{
-  font-size: 11px;
-  opacity: 0.85;
-  letter-spacing: 0.05em;
-}
-
-@media (max-width: 900px){
-  .hero-visual{height: 360px; max-width: 360px; margin: 0 auto}
-  .hero-card.card-1{right: 60px}
-  .hero-card.card-2{right: 0}
-  .hero-card.card-3{right: 40px}
+/* @keyframes float — used by Boo orb in authority section */
+@keyframes float{
+  0%, 100%{transform: translate(0,0) scale(1)}
+  33%{transform: translate(30px, -40px) scale(1.05)}
+  66%{transform: translate(-20px, 30px) scale(0.95)}
 }
 
 /* ========== WHAT IS INSIDE STRIP ========== */
@@ -1884,14 +1823,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 </nav>
 
-<!-- ========== HERO (DARK) ========== -->
+<!-- ========== HERO (DARK + IMAGE BG) ========== -->
 <section class="hero">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+  <picture class="hero-bg">
+    <source media="(max-width: 768px)" srcset="images/hero-mobile.png">
+    <img src="images/hero-pc.png" alt="import" />
+  </picture>
+  <div class="hero-overlay"></div>
 
   <div class="hero-grid">
-    <div>
+    <div class="hero-text">
       <div class="hero-eyebrow">Video × Sound × Memory</div>
 
       <h1>
@@ -1922,30 +1863,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30日間返金保証</span>
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>買い切り型</span>
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>スマホで完結</span>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="hero-card card-1">
-        <div class="card-eyebrow">Product 01</div>
-        <div class="card-title">Essential Verbs</div>
-        <div class="card-desc">頻出400句動詞を映像で完全マスター</div>
-        <div class="card-stat">400+</div>
-        <div class="card-stat-label">PHRASAL VERBS</div>
-      </div>
-      <div class="hero-card card-2">
-        <div class="card-eyebrow">Product 02</div>
-        <div class="card-title">NativeDose</div>
-        <div class="card-desc">ネイティブの口癖・イディオムが身につく</div>
-        <div class="card-stat">300+</div>
-        <div class="card-stat-label">NATIVE EXPRESSIONS</div>
-      </div>
-      <div class="hero-card card-3">
-        <div class="card-eyebrow">Product 03</div>
-        <div class="card-title">Silver Express</div>
-        <div class="card-desc">ビジネス基礎・多義語の本当の使い方</div>
-        <div class="card-stat">500+</div>
-        <div class="card-stat-label">BUSINESS WORDS</div>
       </div>
     </div>
   </div>
