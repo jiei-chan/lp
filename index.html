@@ -617,35 +617,92 @@ body{
 .inside-product .name{font-family: var(--en); font-size: 14px; font-weight: 700; letter-spacing: -0.01em}
 .inside-product .desc{font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px}
 
-/* ========== AUTHORITY (Boo / import) ========== */
+/* ========== AUTHORITY (Boo / import) - DARK FULL BLEED ========== */
 .authority{
-  background: white;
-  padding: 120px 24px;
   position: relative;
+  padding: 0;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 70% 50%, rgba(0, 102, 255, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0e1c 0%, #050810 100%);
+  color: white;
 }
-.authority::before{
-  content: '';
+
+/* Full-bleed background image - transparent PNG over dark bg */
+.authority-bg{
   position: absolute;
-  top: -200px; right: -200px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, var(--blue-soft) 0%, transparent 70%);
+  inset: 0;
+  z-index: 0;
+}
+.authority-bg img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+}
+
+/* Subtle left-side darkening for text legibility */
+.authority-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 8, 16, 0.85) 0%,
+      rgba(5, 8, 16, 0.55) 30%,
+      rgba(5, 8, 16, 0.15) 55%,
+      rgba(5, 8, 16, 0) 75%
+    );
   pointer-events: none;
 }
+
 .authority-grid{
   position: relative;
+  z-index: 2;
   max-width: 1120px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+  padding: 140px 24px;
+  min-height: 720px;
 }
 @media (max-width: 900px){
-  .authority-grid{grid-template-columns: 1fr; gap: 48px}
+  .authority{
+    background:
+      radial-gradient(circle at 50% 60%, rgba(0, 102, 255, 0.18) 0%, transparent 55%),
+      linear-gradient(180deg, #0a0e1c 0%, #050810 100%);
+  }
+  .authority-grid{grid-template-columns: 1fr; gap: 40px; min-height: auto; padding: 80px 20px}
 }
 
-.authority-content .section-eyebrow{margin-bottom: 16px}
+.authority-content{position: relative}
+.authority-content .section-eyebrow{
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+.authority-content .section-eyebrow::before{background: var(--accent)}
+
+.authority-content .section-title{
+  color: white;
+}
+.authority-content .section-title .blue{
+  background: linear-gradient(120deg, var(--accent) 0%, var(--blue-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.authority-content .section-lead{
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.authority-content p{color: rgba(255, 255, 255, 0.7) !important}
+.authority-content p strong{color: white}
 
 .authority-stats{
   display: grid;
@@ -653,9 +710,11 @@ body{
   gap: 16px;
   margin-top: 32px;
   padding: 24px;
-  background: var(--bg-soft);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .authority-stat .num-big{
   font-family: var(--en);
@@ -663,102 +722,43 @@ body{
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1;
-  color: var(--ink);
+  color: white;
 }
-.authority-stat .num-big .plus{color: var(--blue); font-size: 0.7em}
+.authority-stat .num-big .plus{color: var(--accent); font-size: 0.7em}
 .authority-stat .label{
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-soft);
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.05em;
   margin-top: 6px;
   line-height: 1.4;
 }
 
+/* Right column - empty on PC (image fills via background), shows image on mobile */
 .authority-visual{
   position: relative;
-  aspect-ratio: 1;
-  max-width: 480px;
+  max-width: 560px;
   margin: 0 auto;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-3) 100%);
-  border-radius: 24px;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-lg);
 }
-.authority-visual::before{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(0, 102, 255, 0.4) 0%, transparent 50%);
+.about-img{
+  display: block;
+  width: 100%;
 }
-.authority-visual::after{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
+.about-img img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
-.boo-placeholder{
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: white;
-  padding: 32px;
+@media (min-width: 901px){
+  .authority-visual{display: none}
 }
-.boo-placeholder .boo-orb{
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, var(--accent) 0%, var(--blue) 60%, var(--ink) 100%);
-  margin: 0 auto 24px;
-  box-shadow: 0 0 80px rgba(0, 212, 255, 0.4), inset 0 0 40px rgba(0,0,0,0.3);
-  animation: float 6s ease-in-out infinite;
-}
-.boo-placeholder .name{
-  font-family: var(--en);
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-.boo-placeholder .handle{
-  font-family: var(--en);
-  font-size: 14px;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: 0.05em;
-  margin-bottom: 20px;
-}
-.boo-placeholder .insta{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 600;
-  color: white;
-  text-decoration: none;
-  backdrop-filter: blur(8px);
-}
-.boo-placeholder .image-note{
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--en);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.3);
-  text-transform: uppercase;
-  white-space: nowrap;
+@media (max-width: 900px){
+  .authority-bg{display: none}
+  .authority-overlay{display: none}
 }
 
 /* ========== SECTION COMMON ========== */
@@ -2357,6 +2357,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
 <!-- ========== AUTHORITY (Boo / import) ========== -->
 <section class="authority">
+  <picture class="authority-bg">
+    <source media="(max-width: 900px)" srcset="images/about-mobile.png">
+    <img src="images/about-pc.png" alt="" />
+  </picture>
+  <div class="authority-overlay"></div>
+
   <div class="authority-grid">
     <div class="authority-content">
       <div class="section-eyebrow">About import</div>
@@ -2389,16 +2395,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </div>
 
     <div class="authority-visual">
-      <div class="boo-placeholder">
-        <div class="boo-orb"></div>
-        <div class="name">Boo</div>
-        <div class="handle">@import.boo</div>
-        <a href="#" class="insta">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          1,000,000+ Followers
-        </a>
-        <div class="image-note">— Instagram 実績画像 挿入予定</div>
-      </div>
+      <picture class="about-img">
+        <source media="(max-width: 768px)" srcset="images/about-mobile.png">
+        <img src="images/about-pc.png" alt="Boo on Instagram @import.boo" />
+      </picture>
     </div>
   </div>
 </section>
