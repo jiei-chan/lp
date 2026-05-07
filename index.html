@@ -674,10 +674,21 @@ body{
 @media (max-width: 900px){
   .authority{
     background:
-      radial-gradient(circle at 50% 30%, rgba(180, 220, 255, 0.45) 0%, transparent 50%),
-      linear-gradient(180deg, #eaf4ff 0%, #f4f9ff 50%, #f0f8ff 100%);
+      radial-gradient(circle at 50% 60%, rgba(0, 102, 255, 0.15) 0%, transparent 55%),
+      linear-gradient(180deg, #0a0e1c 0%, #050810 100%);
+    color: white;
   }
-  .authority-grid{grid-template-columns: 1fr; gap: 16px; min-height: auto; padding: 48px 20px}
+  .authority .section-eyebrow{color: var(--accent)}
+  .authority .section-eyebrow::before{background: var(--accent)}
+  .authority .section-title{color: white}
+  .authority .section-lead{color: rgba(255, 255, 255, 0.85)}
+  .authority p{color: rgba(255, 255, 255, 0.7) !important}
+  .authority p strong{color: white}
+  .authority-grid{grid-template-columns: 1fr; gap: 0; min-height: auto; padding: 48px 20px 32px}
+  .authority-content > .mobile-only.authority-visual{
+    margin: 0 -20px;
+  }
+  .authority .section-title{margin-bottom: 4px}
 }
 
 .authority-content{position: relative}
@@ -742,10 +753,12 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .about-img{
   display: block;
-  width: 100%;
+  width: 105%;
+  margin: -3% -2.5%;
 }
 .about-img img{
   display: block;
@@ -790,7 +803,7 @@ body{
 @media (max-width: 900px){
   .authority-bg{display: none}
   .authority-overlay{display: none}
-  .authority-visual{margin: 16px -20px 8px}
+  .authority-visual{margin: 8px -20px 0}
 }
 
 /* ========== SECTION COMMON ========== */
@@ -2404,43 +2417,18 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         メインキャラクター。
       </h2>
 
-      <!-- Image with overlaid text content (mobile only) -->
+      <!-- Image with self-contained globe + pins (mobile only) -->
       <div class="authority-visual mobile-only">
         <picture class="about-img">
-          <img src="images/about-mobile.png" alt="Boo on Instagram @import.boo" />
+          <img src="images/about-mobile.png" alt="Boo on Instagram @import.boo - watched in 30+ countries" />
         </picture>
-        <div class="authority-visual-overlay">
-          <p class="visual-lead">
-            SNS総フォロワー <strong>2M+</strong>
-          </p>
-          <p class="visual-sub">
-            世界中の英語学習者が毎日見ている、新しい学習教材。
-          </p>
-        </div>
       </div>
 
-      <p class="section-lead desktop-only">
-        SNS総フォロワー <strong>2M+</strong>。世界中の英語学習者が毎日見ている、新しい学習教材です。
-      </p>
       <p style="font-size: 15px; line-height: 1.95; margin-top: 20px">
         Instagram <strong>@import.boo</strong> は開設から半年で<strong>100万フォロワー</strong>を突破。<br>
         イメージと体験で英語を学べる新しいコンセプトによって、世界から注目されている日本発の次世代英語学習プログラムです。
       </p>
 
-      <div class="authority-stats">
-        <div class="authority-stat">
-          <div class="num-big">2M<span class="plus">+</span></div>
-          <div class="label">SNS総<br>フォロワー</div>
-        </div>
-        <div class="authority-stat">
-          <div class="num-big">100万<span class="plus">+</span></div>
-          <div class="label">@import.boo<br>Instagram</div>
-        </div>
-        <div class="authority-stat">
-          <div class="num-big">6ヶ月</div>
-          <div class="label">100万人<br>達成期間</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
