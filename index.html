@@ -233,7 +233,7 @@ body{
 }
 
 .hero-text{
-  max-width: 600px;
+  max-width: 720px;
 }
 
 /* MOBILE: stacked layout — image on top, text below */
@@ -295,7 +295,7 @@ body{
 }
 
 .hero h1{
-  font-size: clamp(36px, 5.5vw, 64px);
+  font-size: clamp(36px, 4.5vw, 56px);
   line-height: 1.2;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -1870,24 +1870,26 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   /* ─── Sticky CTA on ─── */
   .sticky-cta{display: flex}
 
-  /* ─── Announcement bar: stacked layout ─── */
-  .announce{padding: 12px 16px; font-size: 11px; text-align: left}
+  /* ─── Announcement bar: slim single line ─── */
+  .announce{padding: 8px 12px; font-size: 10px; text-align: center}
   .announce-inner{
     gap: 6px;
-    justify-content: flex-start;
-    align-items: flex-start;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
   }
-  .announce .pill{padding: 4px 10px; font-size: 9px; flex-shrink: 0}
-  .announce .period{font-size: 11px; width: 100%; margin-top: 2px; padding-left: 4px; color: rgba(255,255,255,0.6)}
+  .announce .pill{padding: 2px 8px; font-size: 8px; flex-shrink: 0; letter-spacing: 0.08em}
+  .announce-inner > span:not(.pill):not(.period){
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .announce .period{font-size: 9px; flex-shrink: 0; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; width: auto; margin-top: 0; padding-left: 0}
 
-  /* ─── Nav ─── */
-  .nav{position: relative; top: 0; padding: 16px 20px; background: var(--ink)}
-  .logo{font-size: 18px}
-  .logo-mark{width: 24px; height: 24px}
-  .nav-cta{display: none}
-  .nav-burger{display: inline-flex}
+  /* ─── Nav: hidden on mobile (cleaner hero) ─── */
+  .nav{display: none}
 
   /* ─── HERO: image top, text bottom ─── */
   .hero{padding: 0; min-height: auto; display: block}
