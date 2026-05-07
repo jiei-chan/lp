@@ -804,18 +804,84 @@ body{
 }
 
 /* ========== AUTHORITY STATS NEW (3-stat card) ========== */
+.authority-body{
+  margin-top: 24px;
+}
+.authority-lead{
+  font-size: 19px;
+  line-height: 1.7;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+.authority-lead strong{
+  background: linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+.authority-detail{
+  font-size: 15px;
+  line-height: 1.95;
+  color: var(--text);
+}
+.authority-detail strong{
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 2px solid rgba(0, 102, 255, 0.25);
+  padding-bottom: 1px;
+}
+
+/* Instagram link */
+.insta-link{
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  border-bottom: 2px solid rgba(0, 102, 255, 0.3);
+  padding-bottom: 1px;
+  transition: border-color 0.2s ease;
+}
+.insta-link:hover{
+  border-bottom-color: rgba(0, 102, 255, 0.7);
+}
+
+/* Stats card - enhanced glass effect */
 .authority-stats-new{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 28px;
-  padding: 20px 24px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  padding: 24px 28px;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 40px rgba(10, 22, 40, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 8px 32px rgba(10, 22, 40, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+.authority-stats-new::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    transparent 100%
+  );
 }
 .stat-item{text-align: left}
 .stat-num{
@@ -840,12 +906,13 @@ body{
 }
 
 @media (max-width: 900px){
+  .authority-body{margin-top: 16px}
+  .authority-lead{font-size: 16px; line-height: 1.65; margin-bottom: 10px}
+  .authority-detail{font-size: 13.5px; line-height: 1.85}
   .authority-stats-new{
     margin-top: 16px;
     padding: 16px 14px;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.85);
-    border-color: rgba(0, 102, 255, 0.1);
   }
   .stat-num{font-size: 22px}
   .stat-label{font-size: 10px; margin-top: 6px}
@@ -2469,7 +2536,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </picture>
       </div>
 
-      <!-- Stats card (mobile: below image / PC: below body text, left side bottom) -->
+      <div class="authority-body">
+        <p class="authority-lead">
+          Instagram <a href="https://www.instagram.com/import.boo/" target="_blank" rel="noopener" class="insta-link">@import.boo</a> は開設から半年で<strong>100万フォロワー</strong>を突破。
+        </p>
+        <p class="authority-detail">
+          イメージと体験で英語を学べる新しいコンセプトによって、世界から注目されている<strong>日本発の次世代英語学習プログラム</strong>です。
+        </p>
+      </div>
+
+      <!-- Stats card (placed under body text) -->
       <div class="authority-stats-new">
         <div class="stat-item">
           <div class="stat-num">200万<span class="plus">+</span></div>
@@ -2484,11 +2560,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           <div class="stat-label">ユーザー<br>の国数</div>
         </div>
       </div>
-
-      <p style="font-size: 15px; line-height: 1.95; margin-top: 20px">
-        Instagram <strong>@import.boo</strong> は開設から半年で<strong>100万フォロワー</strong>を突破。<br>
-        イメージと体験で英語を学べる新しいコンセプトによって、世界から注目されている日本発の次世代英語学習プログラムです。
-      </p>
 
     </div>
   </div>
