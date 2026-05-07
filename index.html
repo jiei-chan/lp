@@ -673,17 +673,15 @@ body{
 }
 @media (max-width: 900px){
   .authority{
-    background:
-      radial-gradient(circle at 50% 60%, rgba(0, 102, 255, 0.15) 0%, transparent 55%),
-      linear-gradient(180deg, #0a0e1c 0%, #050810 100%);
-    color: white;
+    background: linear-gradient(180deg, #ffffff 0%, #f4faff 100%);
+    color: var(--ink);
   }
-  .authority .section-eyebrow{color: var(--accent)}
-  .authority .section-eyebrow::before{background: var(--accent)}
-  .authority .section-title{color: white}
-  .authority .section-lead{color: rgba(255, 255, 255, 0.85)}
-  .authority p{color: rgba(255, 255, 255, 0.7) !important}
-  .authority p strong{color: white}
+  .authority .section-eyebrow{color: var(--blue)}
+  .authority .section-eyebrow::before{background: var(--blue)}
+  .authority .section-title{color: var(--ink)}
+  .authority .section-lead{color: var(--text)}
+  .authority p{color: var(--text) !important}
+  .authority p strong{color: var(--ink); font-weight: 700}
   .authority-grid{grid-template-columns: 1fr; gap: 0; min-height: auto; padding: 48px 20px 32px}
   .authority-content > .mobile-only.authority-visual{
     margin: 0 -20px;
@@ -757,8 +755,8 @@ body{
 }
 .about-img{
   display: block;
-  width: 105%;
-  margin: -3% -2.5%;
+  width: 130%;
+  margin: -15% -15%;
 }
 .about-img img{
   display: block;
