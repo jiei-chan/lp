@@ -617,19 +617,19 @@ body{
 .inside-product .name{font-family: var(--en); font-size: 14px; font-weight: 700; letter-spacing: -0.01em}
 .inside-product .desc{font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px}
 
-/* ========== AUTHORITY (Boo / import) - DARK FULL BLEED ========== */
+/* ========== AUTHORITY (Boo / import) - LIGHT CINEMATIC ========== */
 .authority{
   position: relative;
   padding: 0;
   overflow: hidden;
   background:
-    radial-gradient(circle at 70% 50%, rgba(0, 102, 255, 0.18) 0%, transparent 55%),
-    radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-    linear-gradient(180deg, #0a0e1c 0%, #050810 100%);
-  color: white;
+    radial-gradient(circle at 30% 20%, rgba(180, 220, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(150, 210, 255, 0.35) 0%, transparent 55%),
+    linear-gradient(180deg, #eaf4ff 0%, #f4f9ff 45%, #f0f8ff 100%);
+  color: var(--ink);
 }
 
-/* Full-bleed background image - transparent PNG over dark bg */
+/* Full-bleed background image - transparent PNG over light bg */
 .authority-bg{
   position: absolute;
   inset: 0;
@@ -643,7 +643,7 @@ body{
   display: block;
 }
 
-/* Subtle left-side darkening for text legibility */
+/* Subtle left fade on PC for text legibility (light version) */
 .authority-overlay{
   position: absolute;
   inset: 0;
@@ -651,10 +651,10 @@ body{
   background:
     linear-gradient(
       90deg,
-      rgba(5, 8, 16, 0.85) 0%,
-      rgba(5, 8, 16, 0.55) 30%,
-      rgba(5, 8, 16, 0.15) 55%,
-      rgba(5, 8, 16, 0) 75%
+      rgba(234, 244, 255, 0.95) 0%,
+      rgba(234, 244, 255, 0.7) 30%,
+      rgba(234, 244, 255, 0.2) 55%,
+      rgba(234, 244, 255, 0) 75%
     );
   pointer-events: none;
 }
@@ -674,35 +674,35 @@ body{
 @media (max-width: 900px){
   .authority{
     background:
-      radial-gradient(circle at 50% 60%, rgba(0, 102, 255, 0.18) 0%, transparent 55%),
-      linear-gradient(180deg, #0a0e1c 0%, #050810 100%);
+      radial-gradient(circle at 50% 30%, rgba(180, 220, 255, 0.45) 0%, transparent 50%),
+      linear-gradient(180deg, #eaf4ff 0%, #f4f9ff 50%, #f0f8ff 100%);
   }
-  .authority-grid{grid-template-columns: 1fr; gap: 28px; min-height: auto; padding: 56px 20px}
+  .authority-grid{grid-template-columns: 1fr; gap: 16px; min-height: auto; padding: 48px 20px}
 }
 
 .authority-content{position: relative}
 .authority-content .section-eyebrow{
   margin-bottom: 16px;
-  color: var(--accent);
+  color: var(--blue);
 }
-.authority-content .section-eyebrow::before{background: var(--accent)}
+.authority-content .section-eyebrow::before{background: var(--blue)}
 
 .authority-content .section-title{
-  color: white;
+  color: var(--ink);
 }
 .authority-content .section-title .blue{
-  background: linear-gradient(120deg, var(--accent) 0%, var(--blue-light) 100%);
+  background: linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .authority-content .section-lead{
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text);
 }
 
-.authority-content p{color: rgba(255, 255, 255, 0.7) !important}
-.authority-content p strong{color: white}
+.authority-content p{color: var(--text) !important}
+.authority-content p strong{color: var(--ink); font-weight: 700}
 
 .authority-stats{
   display: grid;
@@ -710,11 +710,12 @@ body{
   gap: 16px;
   margin-top: 32px;
   padding: 24px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(10, 22, 40, 0.06);
 }
 .authority-stat .num-big{
   font-family: var(--en);
@@ -722,31 +723,29 @@ body{
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1;
-  color: white;
+  color: var(--ink);
 }
-.authority-stat .num-big .plus{color: var(--accent); font-size: 0.7em}
+.authority-stat .num-big .plus{color: var(--blue); font-size: 0.7em}
 .authority-stat .label{
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-soft);
   letter-spacing: 0.05em;
   margin-top: 6px;
   line-height: 1.4;
 }
 
-/* Right column - empty on PC (image fills via background), shows image on mobile */
+/* Mobile: image above title, large */
 .authority-visual{
   position: relative;
   margin: 0 -20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 .about-img{
   display: block;
-  width: 110%;
-  margin: -8% -5%;
+  width: 100%;
 }
 .about-img img{
   display: block;
@@ -757,6 +756,7 @@ body{
 @media (max-width: 900px){
   .authority-bg{display: none}
   .authority-overlay{display: none}
+  .authority-visual{margin: -32px -20px -16px}
 }
 
 /* ========== SECTION COMMON ========== */
@@ -2363,18 +2363,19 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
   <div class="authority-grid">
     <div class="authority-content">
-      <div class="section-eyebrow">About import</div>
-      <h2 class="section-title">
-        Boo は <span class="blue">import</span> の<br>
-        メインキャラクター。
-      </h2>
 
-      <!-- Image inserted here for mobile (right after title) -->
+      <!-- Image inserted here for mobile (above title) -->
       <div class="authority-visual mobile-only">
         <picture class="about-img">
           <img src="images/about-mobile.png" alt="Boo on Instagram @import.boo" />
         </picture>
       </div>
+
+      <div class="section-eyebrow">About import</div>
+      <h2 class="section-title">
+        Boo は <span class="blue">import</span> の<br>
+        メインキャラクター。
+      </h2>
 
       <p class="section-lead">
         SNS総フォロワー <strong>2M+</strong>。世界中の英語学習者が毎日見ている、新しい学習教材です。
