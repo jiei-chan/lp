@@ -677,7 +677,7 @@ body{
       radial-gradient(circle at 50% 60%, rgba(0, 102, 255, 0.18) 0%, transparent 55%),
       linear-gradient(180deg, #0a0e1c 0%, #050810 100%);
   }
-  .authority-grid{grid-template-columns: 1fr; gap: 40px; min-height: auto; padding: 80px 20px}
+  .authority-grid{grid-template-columns: 1fr; gap: 28px; min-height: auto; padding: 56px 20px}
 }
 
 .authority-content{position: relative}
@@ -737,8 +737,7 @@ body{
 /* Right column - empty on PC (image fills via background), shows image on mobile */
 .authority-visual{
   position: relative;
-  max-width: 560px;
-  margin: 0 auto;
+  margin: 24px -20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -752,9 +751,6 @@ body{
   width: 100%;
   height: auto;
   object-fit: contain;
-}
-@media (min-width: 901px){
-  .authority-visual{display: none}
 }
 @media (max-width: 900px){
   .authority-bg{display: none}
@@ -2370,6 +2366,14 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         Boo は <span class="blue">import</span> の<br>
         メインキャラクター。
       </h2>
+
+      <!-- Image inserted here for mobile (right after title) -->
+      <div class="authority-visual mobile-only">
+        <picture class="about-img">
+          <img src="images/about-mobile.png" alt="Boo on Instagram @import.boo" />
+        </picture>
+      </div>
+
       <p class="section-lead">
         SNS総フォロワー <strong>2M+</strong>。世界中の英語学習者が毎日見ている、新しい学習教材です。
       </p>
@@ -2392,13 +2396,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           <div class="label">100万人<br>達成期間</div>
         </div>
       </div>
-    </div>
-
-    <div class="authority-visual">
-      <picture class="about-img">
-        <source media="(max-width: 768px)" srcset="images/about-mobile.png">
-        <img src="images/about-pc.png" alt="Boo on Instagram @import.boo" />
-      </picture>
     </div>
   </div>
 </section>
