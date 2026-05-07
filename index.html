@@ -735,7 +735,7 @@ body{
   line-height: 1.4;
 }
 
-/* Mobile: image above title, large */
+/* Mobile: image with overlay text */
 .authority-visual{
   position: relative;
   margin: 0 -20px;
@@ -753,10 +753,44 @@ body{
   height: auto;
   object-fit: contain;
 }
+
+.authority-visual-overlay{
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+  text-align: center;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px rgba(10, 22, 40, 0.08);
+}
+.visual-lead{
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.visual-lead strong{
+  color: var(--blue);
+}
+.visual-sub{
+  font-size: 12px;
+  color: var(--text-soft);
+  line-height: 1.55;
+  font-weight: 500;
+}
+
 @media (max-width: 900px){
   .authority-bg{display: none}
   .authority-overlay{display: none}
-  .authority-visual{margin: -32px -20px -16px}
+  .authority-visual{margin: 16px -20px 8px}
 }
 
 /* ========== SECTION COMMON ========== */
@@ -2364,23 +2398,31 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="authority-grid">
     <div class="authority-content">
 
-      <!-- Image inserted here for mobile (above title) -->
-      <div class="authority-visual mobile-only">
-        <picture class="about-img">
-          <img src="images/about-mobile.png" alt="Boo on Instagram @import.boo" />
-        </picture>
-      </div>
-
       <div class="section-eyebrow">About import</div>
       <h2 class="section-title">
         Boo は <span class="blue">import</span> の<br>
         メインキャラクター。
       </h2>
 
-      <p class="section-lead">
+      <!-- Image with overlaid text content (mobile only) -->
+      <div class="authority-visual mobile-only">
+        <picture class="about-img">
+          <img src="images/about-mobile.png" alt="Boo on Instagram @import.boo" />
+        </picture>
+        <div class="authority-visual-overlay">
+          <p class="visual-lead">
+            SNS総フォロワー <strong>2M+</strong>
+          </p>
+          <p class="visual-sub">
+            世界中の英語学習者が毎日見ている、新しい学習教材。
+          </p>
+        </div>
+      </div>
+
+      <p class="section-lead desktop-only">
         SNS総フォロワー <strong>2M+</strong>。世界中の英語学習者が毎日見ている、新しい学習教材です。
       </p>
-      <p style="font-size: 15px; line-height: 1.95; color: var(--text); margin-top: 20px">
+      <p style="font-size: 15px; line-height: 1.95; margin-top: 20px">
         Instagram <strong>@import.boo</strong> は開設から半年で<strong>100万フォロワー</strong>を突破。<br>
         イメージと体験で英語を学べる新しいコンセプトによって、世界から注目されている日本発の次世代英語学習プログラムです。
       </p>
