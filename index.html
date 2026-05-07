@@ -840,38 +840,97 @@ body{
 .ig-growth-header{
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 20px;
+  padding: 10px 14px 10px 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
-.ig-icon{
-  width: 36px; height: 36px;
-  border-radius: 10px;
+.ig-growth-header:hover{
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 102, 255, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(10, 22, 40, 0.06);
+}
+.ig-growth-header:hover .ig-arrow{
+  color: var(--blue);
+  transform: translate(2px, -2px);
+}
+
+.ig-avatar{
+  position: relative;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: visible;
+}
+.ig-avatar img{
+  display: block;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #050810;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.ig-avatar-badge{
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+.ig-avatar-badge svg{
+  width: 18px; height: 18px;
+}
+
 .ig-handle{
+  flex: 1;
   display: flex;
   flex-direction: column;
-  line-height: 1.3;
+  gap: 2px;
+  min-width: 0;
 }
-.ig-label{
-  font-size: 11px;
-  color: var(--text-soft);
-  font-weight: 600;
-  letter-spacing: 0.05em;
+.ig-username-row{
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .ig-username{
   font-family: var(--en);
   font-size: 16px;
   font-weight: 700;
   color: var(--ink);
-  text-decoration: none;
   letter-spacing: -0.01em;
-  transition: color 0.2s ease;
+  line-height: 1.2;
 }
-.ig-username:hover{color: var(--blue)}
+.ig-verified{
+  flex-shrink: 0;
+}
+.ig-followers{
+  font-size: 12px;
+  color: var(--text-soft);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.ig-arrow{
+  flex-shrink: 0;
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
 
 .ig-headline{
   font-size: clamp(18px, 2.2vw, 24px);
@@ -2654,38 +2713,64 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
       <div class="authority-body">
         <p class="authority-lead">
-          Instagram <a href="https://www.instagram.com/import.boo/" target="_blank" rel="noopener" class="insta-link">@import.boo</a> は開設から半年で<strong>100万フォロワー</strong>を突破。
+          世界中の英語学習者に届く、<br>
+          <strong>日本発の次世代英語学習プログラム</strong>。
         </p>
         <p class="authority-detail">
-          イメージと体験で英語を学べる新しいコンセプトによって、世界から注目されている<strong>日本発の次世代英語学習プログラム</strong>です。
+          イメージと体験で英語を学べる新しいコンセプトによって、世界から注目されています。
         </p>
       </div>
 
-      <!-- Instagram growth chart card -->
+      <!-- Stats card (first) -->
+      <div class="authority-stats-new">
+        <div class="stat-item">
+          <div class="stat-num">200万<span class="plus">+</span></div>
+          <div class="stat-label">SNS総<br>フォロワー</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4億<span class="plus">+</span></div>
+          <div class="stat-label">総再生<br>回数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">190<span class="plus">+</span></div>
+          <div class="stat-label">ユーザー<br>の国数</div>
+        </div>
+      </div>
+
+      <!-- Instagram growth chart card (second) -->
       <div class="ig-growth-card">
         <div class="ig-growth-left">
-          <div class="ig-growth-header">
-            <div class="ig-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="igGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#fdf497"/>
-                    <stop offset="5%" stop-color="#fdf497"/>
-                    <stop offset="45%" stop-color="#fd5949"/>
-                    <stop offset="60%" stop-color="#d6249f"/>
-                    <stop offset="90%" stop-color="#285AEB"/>
-                  </linearGradient>
-                </defs>
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#igGrad)"/>
-                <circle cx="12" cy="12" r="4" fill="none" stroke="white" stroke-width="2"/>
-                <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
-              </svg>
+          <a href="https://www.instagram.com/import.boo/" target="_blank" rel="noopener" class="ig-growth-header">
+            <div class="ig-avatar">
+              <img src="images/boo-avatar.png" alt="Boo - @import.boo" />
+              <div class="ig-avatar-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="igGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#fdf497"/>
+                      <stop offset="5%" stop-color="#fdf497"/>
+                      <stop offset="45%" stop-color="#fd5949"/>
+                      <stop offset="60%" stop-color="#d6249f"/>
+                      <stop offset="90%" stop-color="#285AEB"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#igGrad)"/>
+                  <circle cx="12" cy="12" r="4" fill="none" stroke="white" stroke-width="2"/>
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+                </svg>
+              </div>
             </div>
             <div class="ig-handle">
-              <div class="ig-label">Instagram</div>
-              <a href="https://www.instagram.com/import.boo/" target="_blank" rel="noopener" class="ig-username">@import.boo</a>
+              <div class="ig-username-row">
+                <span class="ig-username">import.boo</span>
+                <svg class="ig-verified" width="14" height="14" viewBox="0 0 24 24" fill="#0095f6"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg>
+              </div>
+              <div class="ig-followers">1,000,000 フォロワー</div>
             </div>
-          </div>
+            <div class="ig-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </div>
+          </a>
           <h3 class="ig-headline">
             開設から半年で<br>
             <span class="ig-highlight">100万フォロワー突破！</span>
@@ -2754,22 +2839,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
               <text x="320" y="23" text-anchor="middle" font-size="11" font-weight="700" fill="white" font-family="-apple-system, system-ui, sans-serif">100万突破！</text>
             </g>
           </svg>
-        </div>
-      </div>
-
-      <!-- Stats card (placed under body text) -->
-      <div class="authority-stats-new">
-        <div class="stat-item">
-          <div class="stat-num">200万<span class="plus">+</span></div>
-          <div class="stat-label">SNS総<br>フォロワー</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">4億<span class="plus">+</span></div>
-          <div class="stat-label">総再生<br>回数</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">190<span class="plus">+</span></div>
-          <div class="stat-label">ユーザー<br>の国数</div>
         </div>
       </div>
 
