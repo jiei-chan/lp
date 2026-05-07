@@ -266,9 +266,9 @@ body{
         180deg,
         rgba(5, 8, 16, 0.5) 0%,
         rgba(5, 8, 16, 0.15) 25%,
-        rgba(5, 8, 16, 0) 50%,
-        rgba(5, 8, 16, 0.4) 90%,
-        rgba(5, 8, 16, 0.7) 100%
+        rgba(5, 8, 16, 0) 55%,
+        rgba(5, 8, 16, 0.15) 85%,
+        rgba(15, 20, 36, 0.45) 100%
       );
   }
   .hero-grid{
@@ -304,9 +304,27 @@ body{
 
 /* ========== HERO BELOW (mobile only section) ========== */
 .hero-below{
-  background: var(--ink);
+  background: linear-gradient(180deg,
+    #0f1424 0%,
+    #0a0e1c 30%,
+    var(--ink) 100%
+  );
   color: white;
-  padding: 32px 20px 48px;
+  padding: 36px 20px 48px;
+  position: relative;
+}
+.hero-below::before{
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(15, 20, 36, 0.4) 50%,
+    #0f1424 100%
+  );
+  pointer-events: none;
 }
 .hero-tagline-m{
   font-size: 18px;
@@ -1953,23 +1971,30 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   /* ─── Sticky CTA on ─── */
   .sticky-cta{display: flex}
 
-  /* ─── Announcement bar: slim single line ─── */
-  .announce{padding: 8px 12px; font-size: 10px; text-align: center}
+  /* ─── Announcement bar: 2-line readable layout ─── */
+  .announce{padding: 10px 16px; font-size: 11px; text-align: center}
   .announce-inner{
-    gap: 6px;
+    gap: 4px 8px;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
-  .announce .pill{padding: 2px 8px; font-size: 8px; flex-shrink: 0; letter-spacing: 0.08em}
+  .announce .pill{padding: 3px 10px; font-size: 9px; flex-shrink: 0; letter-spacing: 0.08em}
   .announce-inner > span:not(.pill):not(.period){
-    font-size: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 11px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.5;
   }
-  .announce .period{font-size: 9px; flex-shrink: 0; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; width: auto; margin-top: 0; padding-left: 0}
+  .announce .period{
+    font-size: 10px;
+    width: 100%;
+    margin-top: 2px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+    padding-left: 0;
+  }
 
   /* ─── Nav: hidden on mobile (cleaner hero) ─── */
   .nav{display: none}
@@ -1977,12 +2002,13 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   /* ─── HERO: image top, text bottom ─── */
   .hero{padding: 0; min-height: auto; display: block}
   .hero h1{
-    font-size: 30px;
-    line-height: 1.3;
+    font-size: 27px;
+    line-height: 1.4;
     letter-spacing: -0.02em;
     margin-bottom: 0;
   }
-  .hero h1 br{display: none}
+  /* keep <br> on mobile to control line break */
+  .hero h1 br{display: inline}
   .hero-eyebrow{
     font-size: 10px;
     padding: 5px 12px;
