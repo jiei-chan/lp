@@ -236,7 +236,7 @@ body{
   max-width: 720px;
 }
 
-/* MOBILE: text overlaid on image with bottom gradient */
+/* MOBILE: hero shows image + GW pill + h1 only; rest goes below */
 @media (max-width: 768px){
   .hero{
     min-height: auto;
@@ -256,7 +256,6 @@ body{
     object-fit: cover;
     object-position: center top;
   }
-  /* Bottom-heavy gradient for text readability */
   .hero-overlay{
     display: block;
     position: absolute;
@@ -265,32 +264,93 @@ body{
     background:
       linear-gradient(
         180deg,
-        rgba(5, 8, 16, 0) 0%,
-        rgba(5, 8, 16, 0) 35%,
-        rgba(5, 8, 16, 0.5) 55%,
-        rgba(5, 8, 16, 0.85) 75%,
-        rgba(5, 8, 16, 0.96) 100%
+        rgba(5, 8, 16, 0.5) 0%,
+        rgba(5, 8, 16, 0.15) 25%,
+        rgba(5, 8, 16, 0) 50%,
+        rgba(5, 8, 16, 0.4) 90%,
+        rgba(5, 8, 16, 0.7) 100%
       );
   }
   .hero-grid{
     position: relative;
     z-index: 2;
-    padding: 0 20px 32px;
+    padding: 28px 20px 40px;
     background: transparent;
-    min-height: 130vw;
+    min-height: 110vw;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
   }
   .hero-text{
     max-width: 100%;
   }
   .hero-eyebrow{
     margin-bottom: 16px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.35);
     border-color: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
+  .hero h1{
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  /* Hide desktop-only elements on mobile */
+  .desktop-only{display: none !important}
 }
+/* Hide mobile-only elements on desktop */
+@media (min-width: 769px){
+  .mobile-only{display: none !important}
+}
+
+/* ========== HERO BELOW (mobile only section) ========== */
+.hero-below{
+  background: var(--ink);
+  color: white;
+  padding: 32px 20px 48px;
+}
+.hero-tagline-m{
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 600;
+  color: white;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+.hero-sub-m{
+  font-size: 14px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 28px;
+}
+.cta-row-m{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.cta-row-m .btn{
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 14px;
+}
+.hero-trust-m{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.hero-trust-m .trust-badge{
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 10px;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+.hero-trust-m .trust-icon{width: 32px; height: 32px}
+.hero-trust-m .trust-icon svg{width: 18px; height: 18px}
+.hero-trust-m .trust-text strong{font-size: 12px}
+.hero-trust-m .trust-text span{font-size: 10px}
 
 .hero-eyebrow{
   display: inline-flex;
@@ -1920,45 +1980,14 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     font-size: 30px;
     line-height: 1.3;
     letter-spacing: -0.02em;
-    margin-bottom: 16px;
+    margin-bottom: 0;
   }
   .hero h1 br{display: none}
-  .hero-tagline{
-    font-size: 16px;
-    line-height: 1.55;
-    margin-bottom: 16px;
-  }
-  .hero-tagline br{display: none}
-  .hero-sub{
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 28px;
-    color: rgba(255,255,255,0.78);
-  }
-  .hero-sub br{display: none}
   .hero-eyebrow{
     font-size: 10px;
     padding: 5px 12px;
     margin-bottom: 20px;
   }
-  .cta-row{gap: 10px; margin-bottom: 24px; flex-direction: column}
-  .cta-row .btn{width: 100%; padding: 16px 24px; font-size: 14px}
-  .hero-trust{
-    gap: 8px;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .trust-badge{
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px 10px;
-    gap: 8px;
-    background: rgba(0, 0, 0, 0.35);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-  .trust-icon{width: 32px; height: 32px}
-  .trust-icon svg{width: 18px; height: 18px}
-  .trust-text strong{font-size: 12px}
-  .trust-text span{font-size: 10px}
 
   /* ─── WHAT IS INSIDE ─── */
   .inside{padding: 40px 20px}
@@ -2160,16 +2189,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         英単語は<span class="highlight">忘れない。</span>
       </h1>
 
-      <p class="hero-tagline">
+      <p class="hero-tagline desktop-only">
         生きた3D映像で、英語が「使える」に変わる。
       </p>
 
-      <p class="hero-sub">
+      <p class="hero-sub desktop-only">
         脳科学に基づいた「映像×感覚」の記憶設計で、言いたいことが止まらない自分へ。<br>
         1日10分、スマホだけで完結する英単語学習。
       </p>
 
-      <div class="cta-row">
+      <div class="cta-row desktop-only">
         <a href="#bundle" class="btn btn-primary">
           GWバンドルを見る
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -2180,7 +2209,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </a>
       </div>
 
-      <div class="hero-trust">
+      <div class="hero-trust desktop-only">
         <div class="trust-badge">
           <div class="trust-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -2208,6 +2237,58 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <span>いつでも学習</span>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HERO BELOW (MOBILE ONLY) ========== -->
+<section class="hero-below mobile-only">
+  <p class="hero-tagline-m">
+    生きた3D映像で、<br>英語が「使える」に変わる。
+  </p>
+
+  <p class="hero-sub-m">
+    脳科学に基づいた「映像×感覚」の記憶設計で、言いたいことが止まらない自分へ。1日10分、スマホだけで完結する英単語学習。
+  </p>
+
+  <div class="cta-row-m">
+    <a href="#bundle" class="btn btn-primary">
+      GWバンドルを見る
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#what" class="btn btn-ghost">
+      中身を10秒で見る
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-trust-m">
+    <div class="trust-badge">
+      <div class="trust-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="trust-text">
+        <strong>30日間</strong>
+        <span>返金保証</span>
+      </div>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+      <div class="trust-text">
+        <strong>買い切り型</strong>
+        <span>追加費用なし</span>
+      </div>
+    </div>
+    <div class="trust-badge">
+      <div class="trust-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <div class="trust-text">
+        <strong>スマホで完結</strong>
+        <span>いつでも学習</span>
       </div>
     </div>
   </div>
