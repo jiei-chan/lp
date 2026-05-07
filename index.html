@@ -803,6 +803,54 @@ body{
   .authority-visual{margin: 8px -20px 0}
 }
 
+/* ========== AUTHORITY STATS NEW (3-stat card) ========== */
+.authority-stats-new{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 40px rgba(10, 22, 40, 0.06);
+}
+.stat-item{text-align: left}
+.stat-num{
+  font-family: var(--en);
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--ink);
+}
+.stat-num .plus{
+  color: var(--blue);
+  font-size: 0.7em;
+}
+.stat-label{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: 0.02em;
+  margin-top: 8px;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px){
+  .authority-stats-new{
+    margin-top: 16px;
+    padding: 16px 14px;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 102, 255, 0.1);
+  }
+  .stat-num{font-size: 22px}
+  .stat-label{font-size: 10px; margin-top: 6px}
+}
+
 /* ========== SECTION COMMON ========== */
 section{padding: 100px 24px}
 .section-eyebrow{
@@ -2419,6 +2467,22 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <picture class="about-img">
           <img src="images/about-mobile.png" alt="Boo on Instagram @import.boo - watched in 30+ countries" />
         </picture>
+      </div>
+
+      <!-- Stats card (mobile: below image / PC: below body text, left side bottom) -->
+      <div class="authority-stats-new">
+        <div class="stat-item">
+          <div class="stat-num">200万<span class="plus">+</span></div>
+          <div class="stat-label">SNS総<br>フォロワー</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4億<span class="plus">+</span></div>
+          <div class="stat-label">総再生<br>回数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">190<span class="plus">+</span></div>
+          <div class="stat-label">ユーザー<br>の国数</div>
+        </div>
       </div>
 
       <p style="font-size: 15px; line-height: 1.95; margin-top: 20px">
