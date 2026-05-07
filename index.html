@@ -1192,58 +1192,256 @@ section{padding: 100px 24px}
 .p3-intro{
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 56px;
+  margin: 0 auto 64px;
 }
 .p3-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 1120px;
+  max-width: 1240px;
   margin: 0 auto;
 }
-@media (max-width: 900px){.p3-grid{grid-template-columns: 1fr}}
+@media (max-width: 900px){.p3-grid{grid-template-columns: 1fr; gap: 20px}}
 
+/* Card base with gradient backgrounds per color theme */
 .p3-card{
-  background: var(--bg-soft);
-  padding: 36px 32px;
-  border-radius: 20px;
-  border: 1px solid var(--line);
   position: relative;
-  transition: all 0.3s;
+  padding: 32px 28px;
+  border-radius: 24px;
+  transition: all 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.p3-card-blue{
+  background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+  border: 1px solid #dce8fa;
+}
+.p3-card-purple{
+  background: linear-gradient(180deg, #f5f0ff 0%, #ffffff 100%);
+  border: 1px solid #e6dcfa;
+}
+.p3-card-green{
+  background: linear-gradient(180deg, #effbf4 0%, #ffffff 100%);
+  border: 1px solid #cdeedb;
 }
 .p3-card:hover{
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--blue-light);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(10, 22, 40, 0.08);
 }
-.p3-num{
+
+/* Header: number badge + label */
+.p3-card-header{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.p3-num-badge{
   font-family: var(--en);
   font-size: 14px;
   font-weight: 800;
-  color: var(--blue);
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-  display: inline-flex;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  color: white;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
-.p3-num::before{
-  content: '';
-  width: 24px; height: 1px;
-  background: var(--blue);
+.p3-card-blue .p3-num-badge{background: linear-gradient(135deg, #0066ff 0%, #3b82f6 100%)}
+.p3-card-purple .p3-num-badge{background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)}
+.p3-card-green .p3-num-badge{background: linear-gradient(135deg, #059669 0%, #10b981 100%)}
+
+.p3-num-label{
+  font-family: var(--en);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
-.p3-card h3{
-  font-size: 18px;
+.p3-card-blue .p3-num-label{color: #0066ff}
+.p3-card-purple .p3-num-label{color: #7c3aed}
+.p3-card-green .p3-num-label{color: #059669}
+
+/* Title */
+.p3-card-title{
+  font-size: 21px;
   font-weight: 800;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
   line-height: 1.5;
   color: var(--ink);
   letter-spacing: -0.015em;
 }
-.p3-card p{
+.p3-accent-blue{color: #0066ff}
+.p3-accent-purple{color: #7c3aed}
+.p3-accent-green{color: #059669}
+
+/* Image area (with placeholder fallback) */
+.p3-card-image{
+  position: relative;
+  width: calc(100% + 56px);
+  margin: 0 -28px 20px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.p3-card-image picture,
+.p3-card-image img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+.p3-card-image.no-image picture{
+  display: none;
+}
+.p3-card-image .p3-image-fallback{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(15, 23, 42, 0.18);
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+.p3-card-image picture img{
+  /* When image loads successfully, hide fallback */
+}
+.p3-card-blue .p3-image-fallback{
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, rgba(59, 130, 246, 0.08) 100%);
+}
+.p3-card-purple .p3-image-fallback{
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(168, 85, 247, 0.08) 100%);
+}
+.p3-card-green .p3-image-fallback{
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.08) 100%);
+}
+
+/* Body text */
+.p3-card-body{
   font-size: 14px;
-  color: var(--text-soft);
+  color: var(--text);
   line-height: 1.85;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+/* Metric bar at bottom */
+.p3-card-metric{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+.p3-metric-icon{
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.p3-metric-blue{
+  background: rgba(0, 102, 255, 0.1);
+  color: #0066ff;
+}
+.p3-metric-purple{
+  background: rgba(124, 58, 237, 0.1);
+  color: #7c3aed;
+}
+.p3-metric-green{
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669;
+}
+.p3-metric-text{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.p3-metric-label{
+  font-size: 11px;
+  color: var(--text-soft);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.p3-metric-value{
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-family: var(--en);
+}
+
+/* Conclusion banner */
+.p3-conclusion{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1120px;
+  margin: 56px auto 0;
+  padding: 24px 32px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+  border: 1px solid #dce8fa;
+  border-radius: 16px;
+}
+.p3-conclusion-icon{
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.p3-conclusion p{
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0;
+}
+.p3-conclusion strong{
+  color: var(--blue);
+  font-weight: 800;
+}
+
+@media (max-width: 768px){
+  .p3-card{padding: 24px 20px}
+  .p3-card-image{
+    width: calc(100% + 40px);
+    margin: 0 -20px 16px;
+  }
+  .p3-card-title{font-size: 18px; margin-bottom: 16px}
+  .p3-card-title br{display: none}
+  .p3-card-body{font-size: 13px; margin-bottom: 18px}
+  .p3-num-badge{width: 28px; height: 28px; font-size: 12px}
+  .p3-num-label{font-size: 11px}
+  .p3-metric-icon{width: 38px; height: 38px}
+  .p3-metric-icon svg{width: 18px; height: 18px}
+  .p3-metric-value{font-size: 16px}
+  .p3-conclusion{
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    margin-top: 32px;
+  }
+  .p3-conclusion p{font-size: 14px}
+  .p3-conclusion p br{display: none}
 }
 
 /* ========== REAL PROBLEM (Black) ========== */
@@ -2921,21 +3119,125 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </div>
 
     <div class="p3-grid">
-      <div class="p3-card">
-        <div class="p3-num">PROBLEM 01</div>
-        <h3>文字だけの暗記は、<br>すぐ消える</h3>
-        <p>単語帳で覚えた単語は、視覚情報のみで記憶される脆い知識。1週間後には大半が消失することが、認知心理学の研究で明らかになっています。</p>
+      <!-- Problem 01 -->
+      <article class="p3-card p3-card-blue">
+        <div class="p3-card-header">
+          <span class="p3-num-badge">01</span>
+          <span class="p3-num-label">PROBLEM 01</span>
+        </div>
+        <h3 class="p3-card-title">
+          文字だけの暗記は、<br>
+          <span class="p3-accent-blue">すぐ消える</span>
+        </h3>
+        <div class="p3-card-image">
+          <picture>
+            <img src="images/problem-01.png" alt="文字暗記の問題" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          </picture>
+          <div class="p3-image-fallback">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+            <span>image</span>
+          </div>
+        </div>
+        <p class="p3-card-body">
+          単語帳で覚えた単語は、視覚情報のみで記憶される脆い知識。1週間後には大半が消失することが、認知心理学の研究で明らかになっています。
+        </p>
+        <div class="p3-card-metric">
+          <div class="p3-metric-icon p3-metric-blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+          </div>
+          <div class="p3-metric-text">
+            <div class="p3-metric-label">記憶の定着率</div>
+            <div class="p3-metric-value p3-accent-blue">約10-20%</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 02 -->
+      <article class="p3-card p3-card-purple">
+        <div class="p3-card-header">
+          <span class="p3-num-badge">02</span>
+          <span class="p3-num-label">PROBLEM 02</span>
+        </div>
+        <h3 class="p3-card-title">
+          「日本語訳」では<br>
+          本当の<span class="p3-accent-purple">意味が分からない</span>
+        </h3>
+        <div class="p3-card-image">
+          <picture>
+            <img src="images/problem-02.png" alt="日本語訳の限界" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          </picture>
+          <div class="p3-image-fallback">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span>image</span>
+          </div>
+        </div>
+        <p class="p3-card-body">
+          "take off" を「離陸する」とだけ覚えても、ネイティブの会話では追いつかない。多義語・句動詞は文脈と感覚で覚えるべきものです。
+        </p>
+        <div class="p3-card-metric">
+          <div class="p3-metric-icon p3-metric-purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.402 2.402 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.23 8.77c.24-.24.581-.353.917-.303.515.077.877.528 1.073 1.01a2.5 2.5 0 1 0 3.259-3.259c-.482-.196-.933-.558-1.01-1.073-.05-.336.062-.676.303-.917l1.525-1.525A2.402 2.402 0 0 1 12 1.998c.617 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.18-.894.527-.967 1.02Z"/></svg>
+          </div>
+          <div class="p3-metric-text">
+            <div class="p3-metric-label">文脈理解の欠如</div>
+            <div class="p3-metric-value p3-accent-purple">使えない知識に</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 03 -->
+      <article class="p3-card p3-card-green">
+        <div class="p3-card-header">
+          <span class="p3-num-badge">03</span>
+          <span class="p3-num-label">PROBLEM 03</span>
+        </div>
+        <h3 class="p3-card-title">
+          教科書の英語は、<br>
+          現実で<span class="p3-accent-green">使われていない</span>
+        </h3>
+        <div class="p3-card-image">
+          <picture>
+            <img src="images/problem-03.png" alt="教科書英語のギャップ" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          </picture>
+          <div class="p3-image-fallback">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 6.1H3"/>
+              <path d="M21 12.1H3"/>
+              <path d="M15.1 18H3"/>
+            </svg>
+            <span>image</span>
+          </div>
+        </div>
+        <p class="p3-card-body">
+          "How are you?" — "I'm fine, thank you." は、ネイティブはほぼ使わない表現。実際の会話で頻出するイディオムやスラングは、教科書には載っていません。
+        </p>
+        <div class="p3-card-metric">
+          <div class="p3-metric-icon p3-metric-green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="p3-metric-text">
+            <div class="p3-metric-label">実用表現のギャップ</div>
+            <div class="p3-metric-value p3-accent-green">会話で通じない</div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="p3-conclusion">
+      <div class="p3-conclusion-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       </div>
-      <div class="p3-card">
-        <div class="p3-num">PROBLEM 02</div>
-        <h3>「日本語訳」では<br>本当の意味が分からない</h3>
-        <p>"take off" を「離陸する」とだけ覚えても、ネイティブの会話では追いつかない。多義語・句動詞は文脈と感覚で覚えるべきものです。</p>
-      </div>
-      <div class="p3-card">
-        <div class="p3-num">PROBLEM 03</div>
-        <h3>教科書の英語は、<br>現実で使われていない</h3>
-        <p>"How are you?" — "I'm fine, thank you." は、ネイティブはほぼ使わない表現。実際の会話で頻出するイディオムやスラングは、教科書には載っていません。</p>
-      </div>
+      <p>
+        これらの問題は、あなたの努力不足ではなく、<br>
+        <strong>学習方法そのもの</strong>が、<strong>脳の仕組みに合っていない</strong>ことが原因です。
+      </p>
     </div>
   </div>
 </section>
