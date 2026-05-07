@@ -1669,66 +1669,250 @@ section{padding: 100px 24px}
 
 /* ========== SOLUTION ========== */
 .solution{background: white; padding-top: 120px}
+
+/* Header section */
+.solution-header{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto 64px;
+}
+@media (max-width: 900px){
+  .solution-header{
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+}
+.solution-header-image{
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+}
+.solution-header-image picture,
+.solution-header-image img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+.solution-header-image.no-image picture{display: none}
+.solution-image-fallback{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 1;
+}
+.fb-orbs{
+  display: grid;
+  grid-template-columns: repeat(2, 64px);
+  gap: 12px;
+}
+.fb-orb{
+  width: 64px; height: 64px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.05em;
+}
+.fb-orb-1{background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)}
+.fb-orb-2{background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%)}
+.fb-orb-3{background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%)}
+.fb-orb-4{background: linear-gradient(135deg, #fda4af 0%, #fb7185 100%)}
+.fb-label{
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.18);
+}
+
+/* Solution grid: comparison + points */
 .solution-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  margin-top: 64px;
+  gap: 32px;
+  align-items: start;
+  max-width: 1280px;
+  margin: 0 auto;
 }
-@media (max-width: 900px){
+@media (max-width: 1024px){
   .solution-grid{grid-template-columns: 1fr; gap: 40px}
 }
 
+/* LEFT: Comparison card container */
 .compare-visual{
   background: white;
   border: 1px solid var(--line);
   border-radius: 24px;
-  padding: 28px;
+  padding: 24px;
   box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
+
+/* Each comparison row */
 .compare-row{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 14px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--line-soft);
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: stretch;
 }
-.compare-row:last-child{border-bottom: none; margin-bottom: 0; padding-bottom: 0}
 .compare-row .col{
-  padding: 18px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
 }
 .compare-row .col.bad{
   background: #fff5f0;
   border: 1px solid #ffe0d0;
 }
 .compare-row .col.good{
-  background: var(--blue-tint);
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
   border: 1px solid #d4e6ff;
 }
+
 .compare-row .col-label{
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  color: #d04020;
 }
-.compare-row .col.bad .col-label{color: #d04020}
-.compare-row .col.good .col-label{color: var(--blue)}
-.compare-row .col-content{
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--ink);
+.compare-row .col-label-good{
+  font-family: var(--en);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--blue);
+  margin-bottom: 4px;
 }
-.compare-row .col-content strong{font-weight: 700; display: block; margin-top: 4px}
 
-.solution-points{display: flex; flex-direction: column; gap: 28px}
-.solution-point{display: flex; gap: 20px}
-.solution-point .num{
+.compare-row .word{
+  font-family: var(--en);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.compare-row .meaning{
+  font-size: 13px;
+  color: #d04020;
+  font-weight: 600;
+}
+.compare-row .meaning-text{
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.compare-row .feeling{
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-top: auto;
+}
+
+/* Image inside compare card */
+.compare-img{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+}
+.compare-img picture,
+.compare-img img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+.compare-img.no-image picture{display: none}
+.compare-img-fallback{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--en);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.2);
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+.col.bad .compare-img-fallback{
+  background: linear-gradient(135deg, rgba(208, 64, 32, 0.04) 0%, rgba(208, 64, 32, 0.08) 100%);
+}
+.col.good .compare-img-fallback{
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.04) 0%, rgba(0, 102, 255, 0.08) 100%);
+}
+
+/* Arrow between bad/good */
+.compare-arrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--line);
+  color: var(--blue);
+  align-self: center;
   flex-shrink: 0;
-  width: 40px; height: 40px;
+}
+
+/* RIGHT: Solution points (3 cards) */
+.solution-points{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.solution-point{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  transition: all 0.3s;
+}
+.solution-point:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(10, 22, 40, 0.06);
+  border-color: var(--blue-light);
+}
+.sp-num{
+  flex-shrink: 0;
+  width: 36px; height: 36px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
   color: white;
@@ -1737,21 +1921,88 @@ section{padding: 100px 24px}
   justify-content: center;
   font-family: var(--en);
   font-weight: 800;
-  font-size: 15px;
+  font-size: 14px;
   box-shadow: var(--shadow-blue);
+  align-self: flex-start;
 }
-.solution-point h3{
-  font-size: 18px;
+.sp-body{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.sp-title{
+  font-size: 17px;
   font-weight: 800;
-  margin-bottom: 8px;
-  line-height: 1.5;
+  line-height: 1.4;
   color: var(--ink);
   letter-spacing: -0.015em;
+  margin: 0;
 }
-.solution-point p{
-  font-size: 14px;
+.sp-desc{
+  font-size: 13px;
   color: var(--text);
-  line-height: 1.85;
+  line-height: 1.8;
+  margin: 0;
+}
+.sp-image{
+  position: relative;
+  flex-shrink: 0;
+  width: 100px; height: 100px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+}
+.sp-image picture,
+.sp-image img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+.sp-image.no-image picture{display: none}
+.sp-image-fallback{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--en);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.2);
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, rgba(0, 212, 255, 0.08) 100%);
+}
+
+@media (max-width: 768px){
+  .compare-visual{padding: 16px}
+  .compare-row{
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .compare-arrow{
+    transform: rotate(90deg);
+    margin: 0 auto;
+  }
+  .solution-point{
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px 14px;
+    padding: 16px;
+  }
+  .sp-image{
+    grid-column: 1 / -1;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+  .sp-title{font-size: 15px}
+  .sp-desc{font-size: 12.5px}
 }
 
 /* ========== TEXTBOOK COMPARISON (NEW SECTION) ========== */
@@ -2770,13 +3021,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .real-problem h2{font-size: 22px; line-height: 1.5}
   .real-problem h2 br{display: none}
 
-  /* ─── Solution ─── */
-  .compare-visual{padding: 20px}
-  .compare-row{grid-template-columns: 1fr; gap: 10px}
-  .compare-row .col{padding: 14px}
-  .compare-row .col-content{font-size: 13px}
-  .solution-point h3{font-size: 16px}
-  .solution-point p{font-size: 13px}
+  /* Solution mobile is handled in dedicated section above */
 
   /* ─── Textbook comparison: scroll horizontally ─── */
   .textbook{padding: 64px 0}
@@ -3493,71 +3738,176 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== SOLUTION ========== -->
 <section class="solution">
   <div class="wrap">
-    <div class="section-eyebrow">— Solution</div>
-    <h2 class="section-title">
-      <span class="blue">import</span> のアプローチは、<br>
-      徹底的に異なります。
-    </h2>
-    <p class="section-lead">
-      従来の「文字 × 訳語」の組み合わせから脱却し、映像・音・文脈・感覚を統合した記憶設計で、本当に「使える」英語を身につけます。
-    </p>
-
-    <div class="solution-grid">
-      <div class="compare-visual">
-        <div class="compare-row">
-          <div class="col bad">
-            <div class="col-label">従来の単語帳</div>
-            <div class="col-content">take off<strong>→ 離陸する</strong></div>
+    <div class="solution-header">
+      <div class="solution-header-text">
+        <div class="section-eyebrow">— Solution</div>
+        <h2 class="section-title">
+          <span class="blue">import</span> のアプローチは、<br>
+          徹底的に異なります。
+        </h2>
+        <p class="section-lead">
+          従来の「文字 × 訳語」の組み合わせから脱却し、映像・音・文脈・感覚を統合した記憶設計で、本当に「使える」英語を身につけます。
+        </p>
+      </div>
+      <div class="solution-header-image">
+        <picture>
+          <img src="images/solution-hero.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="solution-image-fallback">
+          <div class="fb-orbs">
+            <span class="fb-orb fb-orb-1">映像</span>
+            <span class="fb-orb fb-orb-2">音</span>
+            <span class="fb-orb fb-orb-3">文脈</span>
+            <span class="fb-orb fb-orb-4">感覚</span>
           </div>
-          <div class="col good">
-            <div class="col-label">import</div>
-            <div class="col-content">飛行機が地を離れる映像 + シャツを脱ぐシーン<strong>「何かが離れる」感覚</strong></div>
-          </div>
-        </div>
-        <div class="compare-row">
-          <div class="col bad">
-            <div class="col-label">従来の単語帳</div>
-            <div class="col-content">break the ice<strong>→ 氷を砕く</strong></div>
-          </div>
-          <div class="col good">
-            <div class="col-label">import</div>
-            <div class="col-content">緊張した部屋で誰かが冗談を言う映像<strong>「場を和ませる」体感</strong></div>
-          </div>
-        </div>
-        <div class="compare-row">
-          <div class="col bad">
-            <div class="col-label">従来の単語帳</div>
-            <div class="col-content">leverage<strong>→ てこの作用</strong></div>
-          </div>
-          <div class="col good">
-            <div class="col-label">import</div>
-            <div class="col-content">少ない予算で大きな効果を出す会議シーン<strong>「活かす」の実感</strong></div>
-          </div>
+          <span class="fb-label">hero image</span>
         </div>
       </div>
+    </div>
 
+    <div class="solution-grid">
+      <!-- LEFT: Comparison cards -->
+      <div class="compare-visual">
+        <article class="compare-row">
+          <div class="col bad">
+            <div class="compare-img">
+              <picture>
+                <img src="images/solution-take-off-old.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+              </picture>
+              <div class="compare-img-fallback"><span>image</span></div>
+            </div>
+            <div class="col-content">
+              <div class="col-label">従来の単語帳</div>
+              <div class="word">take off</div>
+              <div class="meaning">→ 離陸する</div>
+            </div>
+          </div>
+          <div class="compare-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="col good">
+            <div class="col-label-good">IMPORT</div>
+            <div class="compare-img">
+              <picture>
+                <img src="images/solution-take-off-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+              </picture>
+              <div class="compare-img-fallback"><span>image</span></div>
+            </div>
+            <div class="col-content">
+              <div class="meaning-text">飛行機が地を離れる映像 + シャツを脱ぐシーン</div>
+              <div class="feeling">「何かが離れる」感覚</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="compare-row">
+          <div class="col bad">
+            <div class="compare-img">
+              <picture>
+                <img src="images/solution-shoot-old.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+              </picture>
+              <div class="compare-img-fallback"><span>image</span></div>
+            </div>
+            <div class="col-content">
+              <div class="col-label">従来の単語帳</div>
+              <div class="word">shoot oneself<br>in the foot</div>
+              <div class="meaning">→ 墓穴を掘る</div>
+            </div>
+          </div>
+          <div class="compare-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="col good">
+            <div class="col-label-good">IMPORT</div>
+            <div class="compare-img">
+              <picture>
+                <img src="images/solution-shoot-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+              </picture>
+              <div class="compare-img-fallback"><span>image</span></div>
+            </div>
+            <div class="col-content">
+              <div class="meaning-text">自分の足に銃を撃つ映像</div>
+              <div class="feeling">自分の行動で<br>状況を悪化させるイメージ</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="compare-row">
+          <div class="col bad">
+            <div class="compare-img">
+              <picture>
+                <img src="images/solution-leverage-old.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+              </picture>
+              <div class="compare-img-fallback"><span>image</span></div>
+            </div>
+            <div class="col-content">
+              <div class="col-label">従来の単語帳</div>
+              <div class="word">leverage</div>
+              <div class="meaning">→ てこの作用</div>
+            </div>
+          </div>
+          <div class="compare-arrow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="col good">
+            <div class="col-label-good">IMPORT</div>
+            <div class="compare-img">
+              <picture>
+                <img src="images/solution-leverage-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+              </picture>
+              <div class="compare-img-fallback"><span>image</span></div>
+            </div>
+            <div class="col-content">
+              <div class="meaning-text">少ない力で大きな力を出す映像</div>
+              <div class="feeling">てこを活かして<br>活用するイメージ</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- RIGHT: 3 solution points with images -->
       <div class="solution-points">
-        <div class="solution-point">
-          <div class="num">1</div>
-          <div>
-            <h3>映像が記憶を強化する</h3>
-            <p>映像と音が同時に脳に入ると、文字単独の記憶より<strong>4.7倍定着しやすい</strong>ことが分かっています(デュアルコーディング理論)。1度観ただけで、頭に残る感覚を体験してください。</p>
+        <article class="solution-point">
+          <div class="sp-num">1</div>
+          <div class="sp-body">
+            <h3 class="sp-title">映像が<span class="blue">記憶を強化</span>する</h3>
+            <p class="sp-desc">映像と音が同時に脳に入ると、文字単独の記憶より<strong>4.7倍定着しやすい</strong>ことが分かっています(デュアルコーディング理論)。1度観ただけで、頭に残る感覚を体験してください。</p>
           </div>
-        </div>
-        <div class="solution-point">
-          <div class="num">2</div>
-          <div>
-            <h3>「感覚」で意味を掴む</h3>
-            <p>日本語訳を介さず、英語のニュアンスを直接体感する設計。多義語・句動詞・イディオムも、コアイメージを掴むことで応用が利くようになります。</p>
+          <div class="sp-image">
+            <picture>
+              <img src="images/solution-point-01.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+            </picture>
+            <div class="sp-image-fallback"><span>image</span></div>
           </div>
-        </div>
-        <div class="solution-point">
-          <div class="num">3</div>
-          <div>
-            <h3>本当に使われている表現だけ</h3>
-            <p>映画・ビジネス・SNS — ネイティブの実際の発話頻度データに基づいて、<strong>使用頻度の高い表現だけ</strong>を厳選。学んだ瞬間から、現実で出会えます。</p>
+        </article>
+
+        <article class="solution-point">
+          <div class="sp-num">2</div>
+          <div class="sp-body">
+            <h3 class="sp-title"><span class="blue">「感覚」</span>で意味を掴む</h3>
+            <p class="sp-desc">日本語訳を介さず、英語のニュアンスを直接体感する設計。多義語・句動詞・イディオムも、コアイメージを掴むことで応用が利くようになります。</p>
           </div>
-        </div>
+          <div class="sp-image">
+            <picture>
+              <img src="images/solution-point-02.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+            </picture>
+            <div class="sp-image-fallback"><span>image</span></div>
+          </div>
+        </article>
+
+        <article class="solution-point">
+          <div class="sp-num">3</div>
+          <div class="sp-body">
+            <h3 class="sp-title">本当に<span class="blue">使われている表現</span>だけ</h3>
+            <p class="sp-desc">映画・ビジネス・SNS — ネイティブの実際の発話頻度データに基づいて、<strong>使用頻度の高い表現だけ</strong>を厳選。学んだ瞬間から、現実で出会えます。</p>
+          </div>
+          <div class="sp-image">
+            <picture>
+              <img src="images/solution-point-03.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+            </picture>
+            <div class="sp-image-fallback"><span>image</span></div>
+          </div>
+        </article>
       </div>
     </div>
   </div>
