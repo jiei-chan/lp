@@ -638,7 +638,7 @@ body{
 .authority-bg img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: right center;
   display: block;
 }
@@ -865,18 +865,24 @@ body{
 .ig-avatar{
   position: relative;
   width: 52px; height: 52px;
-  border-radius: 50%;
   flex-shrink: 0;
-  overflow: visible;
 }
-.ig-avatar img{
-  display: block;
+.ig-avatar-img-wrap{
   width: 100%; height: 100%;
   border-radius: 50%;
-  object-fit: cover;
-  background: #050810;
+  overflow: hidden;
+  background: white;
   border: 2px solid white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+.ig-avatar-img-wrap img{
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* Scale up to crop black padding from PNG */
+  transform: scale(1.6);
+  transform-origin: center center;
 }
 .ig-avatar-badge{
   position: absolute;
@@ -2742,7 +2748,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <div class="ig-growth-left">
           <a href="https://www.instagram.com/import.boo/" target="_blank" rel="noopener" class="ig-growth-header">
             <div class="ig-avatar">
-              <img src="images/boo-avatar.png" alt="Boo - @import.boo" />
+              <div class="ig-avatar-img-wrap">
+                <img src="images/boo-avatar.png" alt="Boo - @import.boo" />
+              </div>
               <div class="ig-avatar-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <defs>
