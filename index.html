@@ -2546,9 +2546,22 @@ section{padding: 100px 24px}
 }
 .pcard-price-bundle{
   background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(20, 184, 166, 0.12) 100%);
-  border: 1px dashed rgba(13, 148, 136, 0.3);
+  border: 1px dashed rgba(13, 148, 136, 0.35);
 }
-.pcard-price-bundle .label{color: #0d9488}
+.pcard-price-bundle .label-bundle{
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+}
+.pcard-price-bundle .amount{color: #0d9488}
 
 @media (max-width: 768px){
   .pcard-top{padding: 24px 22px 0}
@@ -2607,22 +2620,58 @@ section{padding: 100px 24px}
   margin-bottom: 32px;
   flex-wrap: wrap;
 }
-.bundle-icon{
-  width: 64px; height: 64px;
-  border-radius: 16px;
+.bundle-product-img{
+  position: relative;
+  width: 88px; height: 88px;
+  border-radius: 18px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--en);
   font-weight: 800;
-  font-size: 20px;
+  font-size: 22px;
   color: white;
   box-shadow: var(--shadow-md);
 }
-.bundle-icon.p1{background: linear-gradient(135deg, #0066ff, #4d94ff)}
-.bundle-icon.p2{background: linear-gradient(135deg, #7c5cff, #a78bfa)}
-.bundle-icon.p3{background: linear-gradient(135deg, #00b8d4, #00d4ff)}
-.bundle-plus{font-family: var(--en); font-size: 24px; font-weight: 300; color: var(--muted)}
+.bundle-product-img picture,
+.bundle-product-img img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+.bundle-product-img.no-image picture{display: none}
+.bundle-product-fallback{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.bundle-img-blue{background: linear-gradient(135deg, #1e5fff 0%, #0066ff 100%)}
+.bundle-img-purple{background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)}
+.bundle-img-teal{background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)}
+
+.bundle-plus{font-family: var(--en); font-size: 28px; font-weight: 300; color: var(--muted)}
+
+/* Bundle-only pill in breakdown row */
+.bundle-only-pill{
+  display: inline-block;
+  padding: 2px 8px;
+  margin-left: 6px;
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+  color: white;
+  font-family: var(--en);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  vertical-align: middle;
+}
 
 .bundle-title{
   text-align: center;
@@ -2732,7 +2781,107 @@ section{padding: 100px 24px}
   margin-top: 4px;
 }
 
-.bundle-cta-row{display: flex; flex-direction: column; gap: 16px; align-items: center}
+.bundle-cta-row{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* ─── Price Anchoring CTA card ─── */
+.anchor-card{
+  background: white;
+  border: 2px solid #ff6b3d;
+  border-radius: 28px;
+  padding: 36px 40px;
+  margin-top: 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.anchor-card::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b3d 0%, #ff8a5b 50%, #ff6b3d 100%);
+}
+.anchor-eyebrow{
+  font-family: var(--en);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+.anchor-headline{
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.anchor-strike{
+  font-family: var(--en);
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: 800;
+  color: #6b7280;
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  letter-spacing: -0.02em;
+}
+.anchor-pct{
+  font-family: var(--en);
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 700;
+  color: #ff6b3d;
+  letter-spacing: -0.01em;
+}
+.anchor-pct strong{
+  font-weight: 800;
+  font-size: 1.15em;
+}
+.anchor-desc{
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.btn-anchor-cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+  padding: 22px 36px;
+  background: linear-gradient(135deg, #ff6b3d 0%, #ff8a5b 100%);
+  color: white;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+  box-shadow:
+    0 12px 32px rgba(255, 107, 61, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn-anchor-cta:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 42px rgba(255, 107, 61, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+@media (max-width: 600px){
+  .anchor-card{padding: 28px 22px}
+  .anchor-headline{gap: 12px}
+  .btn-anchor-cta{font-size: 15px; padding: 18px 28px}
+}
+
+
 .bundle-cta-row .btn{width: 100%; max-width: 480px; padding: 22px 32px; font-size: 16px}
 .bundle-cta-row .meta{
   display: flex;
@@ -3322,7 +3471,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <div class="announce">
   <div class="announce-inner">
     <span class="pill"><span class="dot"></span>GW LIMITED</span>
-    <span>期間限定 import 完全版 <strong>29% OFF</strong> ／ <strong>3,195円OFF</strong> 実施中</span>
+    <span>期間限定 import 完全版 <strong>29% OFF</strong> ／ <strong>3,150円OFF</strong> 実施中</span>
     <span class="period">5/2 → 5/10</span>
   </div>
 </div>
@@ -4155,7 +4304,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <td class="row-label">料金</td>
             <td><span class="partial">△</span>1冊 ¥1,500〜2,500</td>
             <td><span class="cross">×</span>月額 ¥1,500〜3,000</td>
-            <td class="import-cell"><span class="check">✓</span>買い切り ¥7,500</td>
+            <td class="import-cell"><span class="check">✓</span>買い切り ¥7,700</td>
           </tr>
         </tbody>
       </table>
@@ -4412,8 +4561,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </ul>
 
         <div class="pcard-price pcard-price-bundle">
-          <span class="label">バンドル限定</span>
-          <span class="amount-text">単品販売なし</span>
+          <span class="label-bundle">バンドル限定商品</span>
+          <span class="amount"><span class="yen">¥</span>2,170</span>
         </div>
       </div>
     </article>
@@ -4435,14 +4584,30 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 
   <div class="bundle-card">
-    <div class="bundle-ribbon">期間限定 BUNDLE OFFER</div>
+    <div class="bundle-ribbon">★ 期間限定 BUNDLE OFFER</div>
 
+    <!-- Product images row (replaces simple icons) -->
     <div class="bundle-products">
-      <div class="bundle-icon p1">EV</div>
+      <div class="bundle-product-img bundle-img-blue">
+        <picture>
+          <img src="images/product-essential.png" alt="Essential Verbs" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="bundle-product-fallback">EV</div>
+      </div>
       <span class="bundle-plus">+</span>
-      <div class="bundle-icon p2">ND</div>
+      <div class="bundle-product-img bundle-img-purple">
+        <picture>
+          <img src="images/product-nativedose.png" alt="NativeDose" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="bundle-product-fallback">ND</div>
+      </div>
       <span class="bundle-plus">+</span>
-      <div class="bundle-icon p3">SE</div>
+      <div class="bundle-product-img bundle-img-teal">
+        <picture>
+          <img src="images/product-silver.png" alt="Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="bundle-product-fallback">SE</div>
+      </div>
     </div>
 
     <h3 class="bundle-title">
@@ -4451,38 +4616,38 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </h3>
 
     <p class="bundle-sub">
-      Essential Verbs、NativeDose、Silver Express、3つすべての映像教材＋限定PDF教材＋永久アクセス権が一括で手に入ります。
+      Essential Verbs、NativeDose、Silver Express、3つすべての映像教材＋限定特典＋永久アクセス権が一括で手に入ります。
     </p>
 
     <div class="bundle-price-block">
       <div class="bundle-breakdown">
         <div class="bundle-row">
           <div class="item"><span class="dot p1"></span>Essential Verbs（句動詞400）</div>
-          <div class="num price">¥4,000</div>
+          <div class="num price">¥4,190</div>
         </div>
         <div class="bundle-row">
-          <div class="item"><span class="dot p2"></span>NativeDose（イディオム300）</div>
-          <div class="num price">¥4,000</div>
+          <div class="item"><span class="dot p2"></span>NativeDose（イディオム200）</div>
+          <div class="num price">¥4,490</div>
         </div>
         <div class="bundle-row">
-          <div class="item"><span class="dot p3"></span>Silver Express(ビジネス語彙500)</div>
-          <div class="num price">¥4,000</div>
+          <div class="item"><span class="dot p3"></span>Silver Express（ビジネス268単語）<span class="bundle-only-pill">バンドル限定</span></div>
+          <div class="num price">¥2,170</div>
         </div>
         <div class="bundle-row total">
           <div class="item">単品で買うと合計</div>
-          <div class="num price">¥12,000</div>
+          <div class="num price">¥10,850</div>
         </div>
       </div>
 
       <div class="bundle-final">
         <div class="bundle-final-left">
-          <div class="num strike">¥12,000</div>
+          <div class="num strike">¥10,850</div>
           <div class="now-label">今だけバンドル価格</div>
-          <div class="num now-price"><span class="yen">¥</span>7,500</div>
+          <div class="num now-price"><span class="yen">¥</span>7,700</div>
           <div class="tax">税込・買い切り型</div>
         </div>
         <div class="bundle-savings">
-          <div class="num pct">38%</div>
+          <div class="num pct">29%</div>
           <div class="label">OFF</div>
         </div>
       </div>
@@ -4494,11 +4659,24 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       </div>
     </div>
 
-    <div class="bundle-cta-row">
-      <a href="#" class="btn btn-primary-blue">
-        今すぐバンドルで始める
+    <!-- Price anchoring CTA card -->
+    <div class="anchor-card">
+      <div class="anchor-eyebrow">— PREMIUM COMPLETE EDITION</div>
+      <div class="anchor-headline">
+        <span class="anchor-strike">¥10,850</span>
+        <span class="anchor-pct">最大<strong>29% OFF</strong></span>
+      </div>
+      <p class="anchor-desc">
+        セール価格が自動適用 + クーポンコード入力でさらに割引。<br>
+        合わせて最大 29% OFF。
+      </p>
+      <a href="#" class="btn btn-anchor-cta">
+        セット内容を確認して購入へ
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+    </div>
+
+    <div class="bundle-cta-row">
       <div class="meta">
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success)"><polyline points="20 6 9 17 4 12"/></svg>30日間返金保証付き</span>
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success)"><polyline points="20 6 9 17 4 12"/></svg>クレジットカード／PayPay対応</span>
@@ -4587,7 +4765,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       </div>
       <div class="faq-item">
         <div class="faq-q">単品で買うのとバンドル、どちらがおすすめ？<span class="marker">+</span></div>
-        <div class="faq-a">3つすべてを学びたい方は、迷わずバンドルがおすすめです。単品3つで¥12,000のところ、バンドルだと¥7,500なので¥4,500お得です。1つだけ気になる場合は単品も用意しています。</div>
+        <div class="faq-a">3つすべてを学びたい方は、迷わずバンドルがおすすめです。単品3つで¥10,850のところ、バンドルだと¥7,700なので¥3,150お得です。1つだけ気になる場合は単品も用意しています。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">既存の単語帳（DUO・キクタン等）と何が違いますか？<span class="marker">+</span></div>
@@ -4623,7 +4801,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
     <div class="final-price-card">
       <div class="label">3 PRODUCTS BUNDLE</div>
-      <div class="num strike">¥12,000</div>
+      <div class="num strike">¥10,850</div>
       <div class="num price"><span class="yen">¥</span>7,500</div>
     </div>
 
@@ -4667,7 +4845,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <div class="sticky-cta">
   <div class="info">
     <div class="label">3教材バンドル</div>
-    <div class="price"><span class="strike">¥12,000</span>¥7,500</div>
+    <div class="price"><span class="strike">¥10,850</span>¥7,700</div>
   </div>
   <a href="#bundle" class="btn btn-primary-blue">購入する</a>
 </div>
