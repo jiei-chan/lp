@@ -2983,89 +2983,81 @@ section{padding: 100px 24px}
 }
 .bundle-cta-row .meta span{display: flex; align-items: center; gap: 6px}
 
-/* ─── Countdown card (4 blocks) ─── */
+/* ─── Countdown card (light peach style) ─── */
 .countdown-card{
-  background: linear-gradient(135deg, #0a1628 0%, #1a3a5e 50%, #0d1b2a 100%);
+  background: linear-gradient(135deg, #fde4d3 0%, #fdd8c1 100%);
   border-radius: 18px;
-  padding: 22px 24px 24px;
+  padding: 28px 24px 22px;
   margin-top: 20px;
   text-align: center;
   position: relative;
-  overflow: hidden;
 }
-.countdown-card::before{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0, 212, 255, 0.12) 0%, transparent 50%);
-  pointer-events: none;
-}
-.countdown-header{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12.5px;
-  font-weight: 500;
-  margin-bottom: 18px;
-  position: relative;
-  z-index: 1;
-}
-.countdown-header strong{
-  color: white;
-  font-weight: 700;
-}
-.countdown-header svg{color: var(--accent); flex-shrink: 0}
 
 .countdown-grid{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
-  position: relative;
-  z-index: 1;
 }
 .countdown-block{
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 16px 8px 12px;
-  position: relative;
-  overflow: hidden;
-}
-.countdown-block::before{
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 56px;
 }
 .countdown-num{
   font-family: var(--en);
-  font-size: clamp(28px, 5vw, 38px);
+  font-size: clamp(36px, 6vw, 48px);
   font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -0.02em;
+  color: #1a1a1a;
+  letter-spacing: -0.025em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 .countdown-label{
   font-family: var(--en);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
+  color: #4a3328;
   letter-spacing: 0.18em;
-  margin-top: 6px;
+  margin-top: 8px;
+}
+.countdown-sep{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.countdown-sep span{
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ea5d2a;
+}
+
+.countdown-footer{
+  margin-top: 18px;
+  font-size: 12.5px;
+  color: #6b4530;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.countdown-date{
+  font-family: var(--en);
+  font-weight: 700;
+  color: #4a2e1f;
 }
 
 @media (max-width: 600px){
-  .countdown-card{padding: 18px 16px 20px}
-  .countdown-header{font-size: 11.5px; margin-bottom: 14px}
-  .countdown-grid{gap: 8px}
-  .countdown-block{padding: 12px 4px 10px; border-radius: 12px}
-  .countdown-num{font-size: 26px}
-  .countdown-label{font-size: 9px; letter-spacing: 0.15em}
+  .countdown-card{padding: 22px 16px 18px}
+  .countdown-grid{gap: 6px}
+  .countdown-block{min-width: 48px}
+  .countdown-num{font-size: 32px}
+  .countdown-label{font-size: 10px; letter-spacing: 0.14em; margin-top: 6px}
+  .countdown-sep{gap: 6px; margin-bottom: 14px}
+  .countdown-sep span{width: 4px; height: 4px}
+  .countdown-footer{font-size: 11.5px; margin-top: 14px}
 }
 
 /* ========== COMMUNITY ========== */
@@ -4999,27 +4991,29 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       </div>
 
       <div class="countdown-card">
-        <div class="countdown-header">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>このバンドル価格は <strong>GW 期間限定（5/2 → 5/10）</strong></span>
-        </div>
         <div class="countdown-grid">
           <div class="countdown-block">
             <div class="countdown-num" id="cd-days">--</div>
             <div class="countdown-label">DAYS</div>
           </div>
+          <div class="countdown-sep"><span></span><span></span></div>
           <div class="countdown-block">
             <div class="countdown-num" id="cd-hours">--</div>
-            <div class="countdown-label">HOURS</div>
+            <div class="countdown-label">HRS</div>
           </div>
+          <div class="countdown-sep"><span></span><span></span></div>
           <div class="countdown-block">
             <div class="countdown-num" id="cd-min">--</div>
             <div class="countdown-label">MIN</div>
           </div>
+          <div class="countdown-sep"><span></span><span></span></div>
           <div class="countdown-block">
             <div class="countdown-num" id="cd-sec">--</div>
             <div class="countdown-label">SEC</div>
           </div>
+        </div>
+        <div class="countdown-footer">
+          セール終了まで・<span class="countdown-date">2026/05/10 23:59</span>
         </div>
       </div>
     </div>
