@@ -1198,13 +1198,9 @@ section{padding: 100px 24px}
   justify-content: center;
   gap: 8px;
   color: rgba(15, 23, 42, 0.18);
-  font-family: var(--en);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   z-index: 1;
 }
+.empathy-image-fallback span{display: none}
 
 /* Bubbles grid */
 .bubbles-grid{
@@ -1237,68 +1233,67 @@ section{padding: 100px 24px}
 
 /* Color themes */
 .bubble-blue{
-  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+  background: white;
   border-color: #dce8fa;
 }
 .bubble-blue .who{color: #2563eb}
-.bubble-blue .bubble-image{background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.18) 100%)}
-.bubble-blue .bubble-image-fallback{color: rgba(37, 99, 235, 0.3)}
+.bubble-blue .bubble-image{background: linear-gradient(135deg, #e0edff 0%, #cfe1ff 100%)}
 
 .bubble-cyan{
-  background: linear-gradient(135deg, #eff8ff 0%, #ffffff 100%);
+  background: white;
   border-color: #c9e3fa;
 }
 .bubble-cyan .who{color: #0284c7}
-.bubble-cyan .bubble-image{background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(2, 132, 199, 0.18) 100%)}
-.bubble-cyan .bubble-image-fallback{color: rgba(2, 132, 199, 0.3)}
+.bubble-cyan .bubble-image{background: linear-gradient(135deg, #e0f1ff 0%, #c9e3fa 100%)}
 
 .bubble-green{
-  background: linear-gradient(135deg, #effbf4 0%, #ffffff 100%);
+  background: white;
   border-color: #cdeedb;
 }
 .bubble-green .who{color: #059669}
-.bubble-green .bubble-image{background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.18) 100%)}
-.bubble-green .bubble-image-fallback{color: rgba(5, 150, 105, 0.3)}
+.bubble-green .bubble-image{background: linear-gradient(135deg, #dff5e8 0%, #c9efd9 100%)}
 
 .bubble-orange{
-  background: linear-gradient(135deg, #fff7ee 0%, #ffffff 100%);
+  background: white;
   border-color: #fbe2c8;
 }
 .bubble-orange .who{color: #ea580c}
-.bubble-orange .bubble-image{background: linear-gradient(135deg, rgba(251, 146, 60, 0.12) 0%, rgba(234, 88, 12, 0.18) 100%)}
-.bubble-orange .bubble-image-fallback{color: rgba(234, 88, 12, 0.3)}
+.bubble-orange .bubble-image{background: linear-gradient(135deg, #ffeed9 0%, #ffdcb4 100%)}
 
 .bubble-pink{
-  background: linear-gradient(135deg, #fff0f5 0%, #ffffff 100%);
+  background: white;
   border-color: #fbd0dc;
 }
 .bubble-pink .who{color: #db2777}
-.bubble-pink .bubble-image{background: linear-gradient(135deg, rgba(244, 114, 182, 0.12) 0%, rgba(219, 39, 119, 0.18) 100%)}
-.bubble-pink .bubble-image-fallback{color: rgba(219, 39, 119, 0.3)}
+.bubble-pink .bubble-image{background: linear-gradient(135deg, #ffe4ed 0%, #ffd1de 100%)}
 
 .bubble-skyblue{
-  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  background: white;
   border-color: #d0e8fa;
 }
 .bubble-skyblue .who{color: #0369a1}
-.bubble-skyblue .bubble-image{background: linear-gradient(135deg, rgba(125, 211, 252, 0.12) 0%, rgba(3, 105, 161, 0.18) 100%)}
-.bubble-skyblue .bubble-image-fallback{color: rgba(3, 105, 161, 0.3)}
+.bubble-skyblue .bubble-image{background: linear-gradient(135deg, #e0f2ff 0%, #c9e3fa 100%)}
 
 /* Image area inside bubble (left side, 40%) */
 .bubble-image{
   position: relative;
-  flex: 0 0 40%;
+  flex: 0 0 42%;
   min-height: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bubble-image picture,
 .bubble-image img{
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   position: relative;
   z-index: 2;
+  padding: 8px;
 }
 .bubble-image.no-image picture{display: none}
 .bubble-image-fallback{
@@ -1307,31 +1302,29 @@ section{padding: 100px 24px}
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--en);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   z-index: 1;
 }
+.bubble-image-fallback span{display: none}
 
 /* Text content */
 .bubble-content{
   flex: 1;
-  padding: 20px 22px;
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: 0;
+  background: white;
 }
 .bubble-text{
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.85;
-  color: var(--text);
-  margin-bottom: 14px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  font-weight: 500;
 }
 .bubble .who{
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.03em;
   display: inline-flex;
