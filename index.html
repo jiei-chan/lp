@@ -1218,71 +1218,67 @@ section{padding: 100px 24px}
 }
 
 .bubble{
-  display: flex;
-  align-items: stretch;
+  position: relative;
+  display: block;
   padding: 0;
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
   border: 1px solid;
+  aspect-ratio: 4 / 3;
+  min-height: 280px;
 }
 .bubble:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(10, 22, 40, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(10, 22, 40, 0.1);
 }
 
-/* Color themes */
+/* Color themes - whole card is colored gradient */
 .bubble-blue{
-  background: white;
-  border-color: #dce8fa;
+  background: linear-gradient(135deg, #e0edff 0%, #c5dcff 100%);
+  border-color: #c5dcff;
 }
-.bubble-blue .who{color: #2563eb}
-.bubble-blue .bubble-image{background: linear-gradient(135deg, #e0edff 0%, #cfe1ff 100%)}
+.bubble-blue .who{color: #1e40af}
 
 .bubble-cyan{
-  background: white;
-  border-color: #c9e3fa;
+  background: linear-gradient(135deg, #e0f1ff 0%, #c0dffa 100%);
+  border-color: #c0dffa;
 }
-.bubble-cyan .who{color: #0284c7}
-.bubble-cyan .bubble-image{background: linear-gradient(135deg, #e0f1ff 0%, #c9e3fa 100%)}
+.bubble-cyan .who{color: #075985}
 
 .bubble-green{
-  background: white;
-  border-color: #cdeedb;
+  background: linear-gradient(135deg, #dff5e8 0%, #bce8d2 100%);
+  border-color: #bce8d2;
 }
-.bubble-green .who{color: #059669}
-.bubble-green .bubble-image{background: linear-gradient(135deg, #dff5e8 0%, #c9efd9 100%)}
+.bubble-green .who{color: #047857}
 
 .bubble-orange{
-  background: white;
-  border-color: #fbe2c8;
+  background: linear-gradient(135deg, #ffeed9 0%, #ffd6ad 100%);
+  border-color: #ffd6ad;
 }
-.bubble-orange .who{color: #ea580c}
-.bubble-orange .bubble-image{background: linear-gradient(135deg, #ffeed9 0%, #ffdcb4 100%)}
+.bubble-orange .who{color: #c2410c}
 
 .bubble-pink{
-  background: white;
-  border-color: #fbd0dc;
+  background: linear-gradient(135deg, #ffe4ed 0%, #ffc8d8 100%);
+  border-color: #ffc8d8;
 }
-.bubble-pink .who{color: #db2777}
-.bubble-pink .bubble-image{background: linear-gradient(135deg, #ffe4ed 0%, #ffd1de 100%)}
+.bubble-pink .who{color: #be185d}
 
 .bubble-skyblue{
-  background: white;
-  border-color: #d0e8fa;
+  background: linear-gradient(135deg, #e0f2ff 0%, #c2dff5 100%);
+  border-color: #c2dff5;
 }
-.bubble-skyblue .who{color: #0369a1}
-.bubble-skyblue .bubble-image{background: linear-gradient(135deg, #e0f2ff 0%, #c9e3fa 100%)}
+.bubble-skyblue .who{color: #0c4a6e}
 
-/* Image area inside bubble (left side, 40%) */
+/* Image positioned bottom-left, large */
 .bubble-image{
-  position: relative;
-  flex: 0 0 42%;
-  min-height: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 65%;
+  height: 70%;
+  pointer-events: none;
+  z-index: 1;
 }
 .bubble-image picture,
 .bubble-image img{
@@ -1290,60 +1286,58 @@ section{padding: 100px 24px}
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center;
-  position: relative;
-  z-index: 2;
-  padding: 8px;
+  object-position: bottom left;
 }
 .bubble-image.no-image picture{display: none}
-.bubble-image-fallback{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-.bubble-image-fallback span{display: none}
+.bubble-image-fallback{display: none}
 
-/* Text content */
+/* Text content overlaid on top-right of the card */
 .bubble-content{
-  flex: 1;
-  padding: 22px 24px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%;
+  padding: 24px 22px 22px 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-width: 0;
-  background: white;
+  height: 100%;
 }
 .bubble-text{
   font-size: 14px;
   line-height: 1.85;
-  color: var(--ink);
-  margin-bottom: 16px;
+  color: #0f172a;
+  margin-bottom: 12px;
   font-weight: 500;
 }
 .bubble .who{
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.03em;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  margin-top: auto;
 }
 
 @media (max-width: 768px){
   .bubble{
-    flex-direction: row;
+    aspect-ratio: 16 / 10;
+    min-height: 220px;
   }
-  .bubble-image{flex: 0 0 35%}
-  .bubble-content{padding: 16px 18px}
-  .bubble-text{font-size: 13px; line-height: 1.7; margin-bottom: 10px}
-  .bubble .who{font-size: 11px}
+  .bubble-image{width: 50%; height: 80%}
+  .bubble-content{
+    width: 60%;
+    padding: 18px 16px 16px 0;
+  }
+  .bubble-text{font-size: 13px; line-height: 1.7; margin-bottom: 8px}
+  .bubble .who{font-size: 12px}
 }
 
 @media (max-width: 600px){
-  .bubble-image{flex: 0 0 40%}
+  .bubble{
+    aspect-ratio: auto;
+    min-height: 200px;
+  }
+  .bubble-image{width: 42%; height: 75%}
+  .bubble-content{width: 60%}
 }
 
 /* ========== PROBLEM 3 ========== */
