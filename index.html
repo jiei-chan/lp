@@ -2566,16 +2566,22 @@ section{padding: 100px 24px}
 .bundle-header .section-eyebrow{justify-content: center}
 
 .bundle-card{
-  max-width: 880px;
+  max-width: 1180px;
   margin: 0 auto;
   background: linear-gradient(135deg, white 0%, var(--blue-tint) 100%);
   border: 2px solid var(--blue);
   border-radius: 28px;
-  padding: 56px 48px;
+  padding: 0;
   position: relative;
   box-shadow: 0 24px 60px rgba(0, 102, 255, 0.12);
+  overflow: hidden;
 }
-@media (max-width: 600px){.bundle-card{padding: 40px 24px}}
+.bundle-card-inner{
+  padding: 56px 56px 56px;
+}
+@media (max-width: 768px){
+  .bundle-card-inner{padding: 40px 24px}
+}
 
 .bundle-ribbon{
   position: absolute;
@@ -2591,32 +2597,27 @@ section{padding: 100px 24px}
   letter-spacing: 0.15em;
   text-transform: uppercase;
   white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 .bundle-ribbon::before{content: '★ '; color: var(--accent)}
 
-.bundle-products{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-}
-
-/* Complete Bundle hero image */
+/* Complete Bundle hero image - full bleed */
 .bundle-hero{
   position: relative;
   width: 100%;
-  max-width: 720px;
-  margin: 0 auto 24px;
+  margin: 0;
   aspect-ratio: 16 / 9;
+  background: #1a1d26;
+  overflow: hidden;
+  border-radius: 26px 26px 0 0;
 }
 .bundle-hero picture,
 .bundle-hero img{
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   position: relative;
   z-index: 2;
@@ -2628,10 +2629,21 @@ section{padding: 100px 24px}
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 40px;
   z-index: 1;
 }
 .bundle-hero:not(.no-image) .bundle-hero-fallback{display: none}
+
+.bundle-products{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
 
 .bundle-product-img{
   position: relative;
@@ -4779,9 +4791,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 
   <div class="bundle-card">
-    <div class="bundle-ribbon">★ 期間限定 BUNDLE OFFER</div>
+    <div class="bundle-ribbon">期間限定 BUNDLE OFFER</div>
 
-    <!-- Complete Bundle hero image -->
+    <!-- Complete Bundle hero image (full bleed) -->
     <div class="bundle-hero">
       <picture>
         <img src="images/CompleteBundle.png" alt="Complete Bundle - Essential Verbs + NativeDose + Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
@@ -4800,6 +4812,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
     </div>
+
+    <div class="bundle-card-inner">
 
     <h3 class="bundle-title">
       3 in 1 完全バンドル<br>
@@ -4874,7 +4888,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success)"><polyline points="20 6 9 17 4 12"/></svg>追加課金なし</span>
       </div>
     </div>
-  </div>
+    </div><!-- /.bundle-card-inner -->
+  </div><!-- /.bundle-card -->
 </section>
 
 <!-- ========== COMMUNITY (Influencer Showcase) ========== -->
