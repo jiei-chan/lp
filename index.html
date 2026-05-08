@@ -2250,147 +2250,317 @@ section{padding: 100px 24px}
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 1120px;
+  max-width: 1280px;
   margin: 0 auto;
+  align-items: stretch;
 }
-@media (max-width: 900px){
-  .product-cards{grid-template-columns: 1fr; max-width: 480px}
+@media (max-width: 1024px){
+  .product-cards{grid-template-columns: 1fr; max-width: 480px; gap: 20px}
 }
 
+/* Card base */
 .pcard{
-  background: white;
+  position: relative;
   border-radius: 24px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  border: 1px solid;
 }
 .pcard:hover{
   transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 24px 60px rgba(10, 22, 40, 0.1);
 }
-.pcard-header{
-  padding: 32px 28px 24px;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-.pcard-header::after{
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
-}
-.pcard.p1 .pcard-header{background: linear-gradient(135deg, #0066ff 0%, #4d94ff 100%)}
-.pcard.p2 .pcard-header{background: linear-gradient(135deg, #7c5cff 0%, #a78bfa 100%)}
-.pcard.p3 .pcard-header{background: linear-gradient(135deg, #00b8d4 0%, #00d4ff 100%)}
 
-.pcard-num{
+/* Color themes (light gradient backgrounds matching the screenshot) */
+.pcard-blue{
+  background: linear-gradient(180deg, #eef5ff 0%, #ffffff 60%);
+  border-color: #d4e6ff;
+}
+.pcard-blue .pcard-label,
+.pcard-blue .pcard-name,
+.pcard-blue .stat-num{color: #0066ff}
+.pcard-blue .pcard-features li::before{background: rgba(0, 102, 255, 0.12)}
+.pcard-blue .pcard-features li::after{border-color: #0066ff}
+
+.pcard-purple{
+  background: linear-gradient(180deg, #f3eeff 0%, #ffffff 60%);
+  border-color: #e0d4ff;
+}
+.pcard-purple .pcard-label,
+.pcard-purple .pcard-name,
+.pcard-purple .stat-num{color: #7c3aed}
+.pcard-purple .pcard-features li::before{background: rgba(124, 58, 237, 0.12)}
+.pcard-purple .pcard-features li::after{border-color: #7c3aed}
+
+.pcard-teal{
+  background: linear-gradient(180deg, #e6f7f5 0%, #ffffff 60%);
+  border-color: #c5e8e2;
+}
+.pcard-teal .pcard-label,
+.pcard-teal .pcard-name,
+.pcard-teal .stat-num{color: #0d9488}
+.pcard-teal .pcard-features li::before{background: rgba(13, 148, 136, 0.12)}
+.pcard-teal .pcard-features li::after{border-color: #0d9488}
+
+/* Bundle-only badge (top-right of card) */
+.pcard-bundle-badge{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  color: white;
   font-family: var(--en);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  opacity: 0.9;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.3);
+}
+
+/* Top section: label + name + tagline + image */
+.pcard-top{
+  padding: 32px 28px 0;
+  position: relative;
+}
+.pcard-label{
+  font-family: var(--en);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin-bottom: 16px;
 }
 .pcard-name{
   font-family: var(--en);
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 6px;
-  position: relative;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 12px;
 }
 .pcard-tagline{
-  font-size: 13px;
-  opacity: 0.95;
-  font-weight: 500;
-  position: relative;
-}
-
-.pcard-body{padding: 28px}
-.pcard-desc{
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--text);
-  line-height: 1.85;
-  margin-bottom: 24px;
-}
-.pcard-stats{
-  display: flex;
-  gap: 12px;
-  padding: 14px;
-  background: var(--bg-soft);
-  border-radius: 12px;
+  font-weight: 500;
+  line-height: 1.6;
   margin-bottom: 20px;
 }
-.pcard-stats .stat{flex: 1; text-align: center}
-.pcard-stats .stat-num{
-  font-family: var(--en);
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--ink);
-  display: block;
-  letter-spacing: -0.02em;
+
+/* Hero image area */
+.pcard-image{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-top: 8px;
+  border-radius: 12px;
+  overflow: hidden;
 }
-.pcard-stats .stat-label{
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.pcard-image picture,
+.pcard-image img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+.pcard-image.no-image picture{display: none}
+.pcard-image-fallback{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 16px;
+  z-index: 1;
 }
 
-.pcard-features{list-style: none; margin-bottom: 24px}
+/* Package box (3D-ish placeholder for product packaging) */
+.pkg{
+  width: 60%;
+  aspect-ratio: 5 / 8;
+  border-radius: 4px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  position: relative;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.18),
+    inset -8px 0 12px rgba(0, 0, 0, 0.18);
+  transform: perspective(800px) rotateY(-12deg);
+}
+.pkg::after{
+  content: '';
+  position: absolute;
+  top: 0; right: -1px; bottom: 0;
+  width: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 0 4px 4px 0;
+}
+.pkg-blue{background: linear-gradient(135deg, #1e5fff 0%, #0066ff 100%)}
+.pkg-purple{background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)}
+.pkg-teal{background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)}
+
+.pkg-name{
+  font-family: var(--en);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.pkg-num{
+  font-family: var(--en);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: auto;
+}
+.pkg-tag{
+  font-family: var(--en);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  line-height: 1.3;
+  margin-top: 6px;
+}
+.pkg-brand{
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: auto;
+  align-self: flex-end;
+  opacity: 0.85;
+}
+
+/* Bottom section (white background) */
+.pcard-bottom{
+  background: white;
+  padding: 28px;
+  margin-top: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px 24px 0 0;
+}
+
+.pcard-stats{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.pcard-stats .stat{
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pcard-stats .stat-num{
+  font-family: var(--en);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.pcard-stats .stat-label{
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+/* Numbers that are Japanese characters (e.g. 初・中級) need to be smaller */
+.pcard-stats .stat-num{
+  font-size: 22px;
+}
+
+.pcard-features{
+  list-style: none;
+  margin: 0 0 24px 0;
+  padding: 0;
+  flex: 1;
+}
 .pcard-features li{
   padding: 8px 0;
-  padding-left: 24px;
+  padding-left: 28px;
   font-size: 13px;
   color: var(--text);
   position: relative;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 .pcard-features li::before{
   content: '';
   position: absolute;
-  left: 0; top: 14px;
-  width: 14px; height: 14px;
-  background: var(--blue-soft);
+  left: 0; top: 12px;
+  width: 18px; height: 18px;
   border-radius: 50%;
 }
 .pcard-features li::after{
   content: '';
   position: absolute;
-  left: 4px; top: 18px;
-  width: 6px; height: 3px;
-  border-left: 1.5px solid var(--blue);
-  border-bottom: 1.5px solid var(--blue);
+  left: 5px; top: 17px;
+  width: 7px; height: 4px;
+  border-left: 2px solid;
+  border-bottom: 2px solid;
   transform: rotate(-45deg);
 }
 
+/* Price row at bottom */
 .pcard-price{
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding: 14px 18px;
+  padding: 16px 20px;
   background: var(--bg-soft);
-  border-radius: 12px;
+  border-radius: 14px;
+  margin-top: auto;
 }
 .pcard-price .label{
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 .pcard-price .amount{
   font-family: var(--en);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--ink);
   letter-spacing: -0.02em;
 }
-.pcard-price .yen{font-size: 14px; margin-right: 1px}
+.pcard-price .yen{font-size: 16px; margin-right: 1px}
+.pcard-price .amount-text{
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d9488;
+  letter-spacing: -0.01em;
+}
+.pcard-price-bundle{
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(20, 184, 166, 0.12) 100%);
+  border: 1px dashed rgba(13, 148, 136, 0.3);
+}
+.pcard-price-bundle .label{color: #0d9488}
+
+@media (max-width: 768px){
+  .pcard-top{padding: 24px 22px 0}
+  .pcard-bottom{padding: 22px}
+  .pcard-name{font-size: 26px}
+  .pcard-tagline{font-size: 13px}
+  .pcard-stats{gap: 6px}
+  .pcard-stats .stat-num{font-size: 18px}
+  .pcard-stats .stat-label{font-size: 9px; letter-spacing: 0.08em}
+  .pcard-features li{font-size: 12.5px}
+  .pcard-price .amount{font-size: 22px}
+}
 
 /* ========== BUNDLE OFFER ========== */
 .bundle{
@@ -4086,91 +4256,168 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== PRODUCTS ========== -->
 <section class="products">
   <div class="products-header">
-    <div class="section-eyebrow">3 Products</div>
-    <h2 class="section-title">
+    <div class="section-eyebrow" style="justify-content: center; display: inline-flex">— SECTION 03 / Products</div>
+    <h2 class="section-title" style="text-align: center">
       バンドルに含まれる<br>
       <span class="gradient">3つの映像教材</span>
     </h2>
-    <p class="section-lead" style="margin: 0 auto">
+    <p class="section-lead" style="margin: 0 auto; text-align: center">
       それぞれ異なる領域をカバー。3つ揃って初めて、英語の語彙力が「使える」レベルに到達します。
     </p>
   </div>
 
   <div class="product-cards">
-    <div class="pcard p1">
-      <div class="pcard-header">
-        <div class="pcard-num">Product 01</div>
-        <div class="pcard-name">Essential Verbs</div>
-        <div class="pcard-tagline">頻出400句動詞を、映像で完全マスター</div>
-      </div>
-      <div class="pcard-body">
-        <p class="pcard-desc">日常会話・映画・ビジネスで圧倒的に使われる句動詞400個を、シーンと一緒に体感的に習得。文字暗記では絶対に身につかない感覚的理解が手に入ります。</p>
-        <div class="pcard-stats">
-          <div class="stat"><span class="stat-num">400</span><span class="stat-label">Phrases</span></div>
-          <div class="stat"><span class="stat-num">120+</span><span class="stat-label">Videos</span></div>
-          <div class="stat"><span class="stat-num">7日</span><span class="stat-label">Schedule</span></div>
+
+    <!-- Product 01: Essential Verbs -->
+    <article class="pcard pcard-blue">
+      <div class="pcard-top">
+        <div class="pcard-label">PRODUCT 01</div>
+        <h3 class="pcard-name">Essential<br>Verbs</h3>
+        <p class="pcard-tagline">頻出400句動詞を、<br>映像で完全マスター</p>
+        <div class="pcard-image">
+          <picture>
+            <img src="images/product-essential.png" alt="Essential Verbs" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          </picture>
+          <div class="pcard-image-fallback">
+            <div class="pkg pkg-blue">
+              <div class="pkg-name">Essential<br>Verbs</div>
+              <div class="pkg-num">400</div>
+              <div class="pkg-tag">Remastered</div>
+              <div class="pkg-brand">import</div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="pcard-bottom">
+        <div class="pcard-stats">
+          <div class="stat">
+            <div class="stat-num">400</div>
+            <div class="stat-label">PHRASES</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">初・中級</div>
+            <div class="stat-label">LEVEL</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2ヶ月</div>
+            <div class="stat-label">DURATION</div>
+          </div>
+        </div>
+
         <ul class="pcard-features">
-          <li>get up / take off / put up with など重要句動詞を網羅</li>
+          <li>日常会話・映画・ビジネスで圧倒的に使われる句動詞400個を、シーンと一緒に体感的に習得</li>
           <li>1動詞ずつ短尺映像でコアイメージを掴む</li>
-          <li>復習スケジュール付きPDF教材</li>
+          <li>全英語版 Global Edition</li>
         </ul>
+
         <div class="pcard-price">
           <span class="label">単品価格</span>
-          <span class="amount"><span class="yen">¥</span>4,000</span>
+          <span class="amount"><span class="yen">¥</span>4,190</span>
         </div>
       </div>
-    </div>
+    </article>
 
-    <div class="pcard p2">
-      <div class="pcard-header">
-        <div class="pcard-num">Product 02</div>
-        <div class="pcard-name">NativeDose</div>
-        <div class="pcard-tagline">ネイティブの「口癖」を、感覚で身につける</div>
-      </div>
-      <div class="pcard-body">
-        <p class="pcard-desc">教科書には載らない、ネイティブが日常的に口にするイディオム・スラング・口癖を厳選。「これが分からないと会話に追いつけない」表現を、実際のシーンで学びます。</p>
-        <div class="pcard-stats">
-          <div class="stat"><span class="stat-num">300</span><span class="stat-label">Idioms</span></div>
-          <div class="stat"><span class="stat-num">90+</span><span class="stat-label">Videos</span></div>
-          <div class="stat"><span class="stat-num">SNS</span><span class="stat-label">Real Use</span></div>
+    <!-- Product 02: NativeDose -->
+    <article class="pcard pcard-purple">
+      <div class="pcard-top">
+        <div class="pcard-label">PRODUCT 02</div>
+        <h3 class="pcard-name">NativeDose</h3>
+        <p class="pcard-tagline">ネイティブの「口癖」を、<br>感覚で身につける</p>
+        <div class="pcard-image">
+          <picture>
+            <img src="images/product-nativedose.png" alt="NativeDose" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          </picture>
+          <div class="pcard-image-fallback">
+            <div class="pkg pkg-purple">
+              <div class="pkg-name">NativeDose<br>Dose Up!</div>
+              <div class="pkg-tag">Native Expression<br>Booster</div>
+              <div class="pkg-brand">import</div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="pcard-bottom">
+        <div class="pcard-stats">
+          <div class="stat">
+            <div class="stat-num">200</div>
+            <div class="stat-label">PHRASES</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">中・上級</div>
+            <div class="stat-label">LEVEL</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3ヶ月</div>
+            <div class="stat-label">DURATION</div>
+          </div>
+        </div>
+
         <ul class="pcard-features">
-          <li>break the ice / spill the beans など重要表現</li>
+          <li>教科書には載らない、ネイティブが日常的に使うイディオム・スラング・口癖を厳選</li>
           <li>映画・SNSの実例から逆算した実用主義</li>
           <li>シーン別に分類された検索しやすい構成</li>
         </ul>
-        <div class="pcard-price">
-          <span class="label">単品価格</span>
-          <span class="amount"><span class="yen">¥</span>4,000</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="pcard p3">
-      <div class="pcard-header">
-        <div class="pcard-num">Product 03</div>
-        <div class="pcard-name">Silver Express</div>
-        <div class="pcard-tagline">ビジネス基礎単語と、多義語の本当の意味</div>
-      </div>
-      <div class="pcard-body">
-        <p class="pcard-desc">"address" は「住所」だけじゃない。"run a meeting" の "run" の本当の意味。日本人が誤解しがちな多義語と、ビジネスで必須の基礎単語を映像で再構築します。</p>
-        <div class="pcard-stats">
-          <div class="stat"><span class="stat-num">500</span><span class="stat-label">Words</span></div>
-          <div class="stat"><span class="stat-num">150+</span><span class="stat-label">Videos</span></div>
-          <div class="stat"><span class="stat-num">B2</span><span class="stat-label">CEFR Goal</span></div>
-        </div>
-        <ul class="pcard-features">
-          <li>多義語のコアイメージを映像で図解</li>
-          <li>ビジネスメール・会議で頻出する基礎語彙</li>
-          <li>知ったつもり単語の「本当の意味」が分かる</li>
-        </ul>
         <div class="pcard-price">
           <span class="label">単品価格</span>
-          <span class="amount"><span class="yen">¥</span>4,000</span>
+          <span class="amount"><span class="yen">¥</span>4,490</span>
         </div>
       </div>
-    </div>
+    </article>
+
+    <!-- Product 03: Silver Express -->
+    <article class="pcard pcard-teal">
+      <div class="pcard-bundle-badge">BUNDLE限定</div>
+      <div class="pcard-top">
+        <div class="pcard-label">PRODUCT 03</div>
+        <h3 class="pcard-name">Silver<br>Express</h3>
+        <p class="pcard-tagline">ビジネス基礎単語と、<br>多義語の本当の意味</p>
+        <div class="pcard-image">
+          <picture>
+            <img src="images/product-silver.png" alt="Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          </picture>
+          <div class="pcard-image-fallback">
+            <div class="pkg pkg-teal">
+              <div class="pkg-name">Silver<br>Express</div>
+              <div class="pkg-tag">Business Words<br>Master Pack</div>
+              <div class="pkg-num">268+</div>
+              <div class="pkg-brand">import</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard-bottom">
+        <div class="pcard-stats">
+          <div class="stat">
+            <div class="stat-num">268</div>
+            <div class="stat-label">WORDS</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">初級</div>
+            <div class="stat-label">LEVEL</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1ヶ月</div>
+            <div class="stat-label">DURATION</div>
+          </div>
+        </div>
+
+        <ul class="pcard-features">
+          <li>"address" は「住所」だけじゃない。"run a meeting" の "run" の本当の意味を、映像で図解</li>
+          <li>ビジネスメール・会議で頻出する基礎語彙</li>
+          <li>TOEICテストの基礎固めに</li>
+        </ul>
+
+        <div class="pcard-price pcard-price-bundle">
+          <span class="label">バンドル限定</span>
+          <span class="amount-text">単品販売なし</span>
+        </div>
+      </div>
+    </article>
+
   </div>
 </section>
 
