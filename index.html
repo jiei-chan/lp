@@ -3473,7 +3473,26 @@ section{padding: 100px 24px}
   line-height: 1.9;
   color: var(--text);
 }
-.faq-item.open .faq-a{max-height: 400px; padding: 0 26px 22px}
+.faq-item.open .faq-a{max-height: 800px; padding: 0 26px 22px}
+
+.faq-link{
+  display: inline-flex;
+  align-items: center;
+  margin-top: 4px;
+  padding: 8px 16px;
+  background: var(--blue-tint);
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.faq-link:hover{
+  background: var(--blue);
+  color: white;
+  transform: translateY(-1px);
+}
 
 /* ========== FINAL CTA (BLACK) ========== */
 .final{
@@ -5352,40 +5371,48 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <section class="faq">
   <div class="wrap-narrow">
     <div class="section-eyebrow">— FAQ</div>
-    <h2 class="section-title">よくあるご質問</h2>
+    <h2 class="section-title">よくある質問</h2>
 
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q">英語が苦手でも、ついていけますか？<span class="marker">+</span></div>
-        <div class="faq-a">はい、むしろ苦手な方のために設計された教材です。中学英語レベルの単語からスタートし、映像と感覚で理解する設計なので、文法知識ゼロでも問題ありません。実際、購入された方の多くは「これまでの英語学習で挫折してきた」という大人の学習者です。</div>
+        <div class="faq-q">これを使ってどう勉強したらいいですか?<span class="marker">+</span></div>
+        <div class="faq-a">まずは、動画をなんとなく眺めるだけで大丈夫です。importの教材は、単語を文字で丸暗記するのではなく、映像・音・シーンを通して「単語のイメージ」を身体に残すことを目的にしています。<br><br>慣れてきたら、動画に合わせて声に出してみてください。英語が自然に口から出てくる感覚を少しずつ育てていきましょう。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">スマホだけで完結しますか？<span class="marker">+</span></div>
-        <div class="faq-a">完全にスマホで完結します。iOS・Android両対応、PC・タブレットも追加料金なしで視聴可能。すべて買い切り型なので、購入後の追加課金もありません。</div>
+        <div class="faq-q">どのくらいの英語レベルから使えますか?初心者でも大丈夫ですか?<span class="marker">+</span></div>
+        <div class="faq-a">初心者の方でも大丈夫です。最初からすべてを完璧に理解しようとしなくても、映像を見るだけで単語のイメージを掴みやすい設計になっています。<br><br>大切なのは、無理に覚えようとすることよりも、楽しく続けることです。英語に苦手意識がある方でも、気軽に始められます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">3つの教材は、どんな順番で観るべきですか？<span class="marker">+</span></div>
-        <div class="faq-a">推奨は Essential Verbs → NativeDose → Silver Express の順ですが、興味のある順に観ていただいてOKです。それぞれ独立した教材なので、好きなタイミングで好きな順序でアクセスできます。</div>
+        <div class="faq-q">購入後、どうやって教材を受け取りますか?<span class="marker">+</span></div>
+        <div class="faq-a">購入完了後、ご購入時に入力いただいたメールアドレス宛に、教材のアクセスリンクをお送りします。<br><br>メール内のリンクから、すぐに動画教材をご覧いただけます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">単品で買うのとバンドル、どちらがおすすめ？<span class="marker">+</span></div>
-        <div class="faq-a">3つすべてを学びたい方は、迷わずバンドルがおすすめです。単品3つで¥10,850のところ、バンドルだと¥7,700なので¥3,150お得です。1つだけ気になる場合は単品も用意しています。</div>
+        <div class="faq-q">注文確認メールが届きません。メールが見つからないときはどうすればいいですか?<span class="marker">+</span></div>
+        <div class="faq-a">まずは、迷惑メールフォルダやプロモーションフォルダをご確認ください。<br><br>また、入力されたメールアドレスに誤りがある場合や、携帯キャリアメールをご利用の場合、メールが届かないことがあります。できるだけ Gmail などのメールアドレスのご利用をおすすめしています。<br><br>メールが見つからない場合は、お問い合わせください。購入状況を確認のうえ、再送いたします。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">既存の単語帳（DUO・キクタン等）と何が違いますか？<span class="marker">+</span></div>
-        <div class="faq-a">既存の単語帳は「文字 × 訳語」での暗記が中心ですが、import は「3D映像 × 音声 × 感覚」で学びます。多義語・句動詞・イディオムのように、訳語だけでは本当の意味が掴めない英語を、コアイメージで理解できるのが最大の違いです。</div>
+        <div class="faq-q">以前購入した教材を再ダウンロードしたいです<span class="marker">+</span></div>
+        <div class="faq-a">お問い合わせください。購入履歴を確認のうえ、無料で再送いたします。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">どのくらいで効果を実感できますか？<span class="marker">+</span></div>
-        <div class="faq-a">早い方で2週間、平均して4-6週間で「映像で覚えた単語が映画やSNSで認識できる」感覚を実感されます。3ヶ月続けることで、語彙力が1段階上がる体感を得られます。</div>
+        <div class="faq-q">視聴期限はありますか?何回でも見られますか?<span class="marker">+</span></div>
+        <div class="faq-a">視聴期限はありません。購入後は、何度でも繰り返しご覧いただけます。<br><br>復習したいときや、忘れかけたときにも、いつでも見返していただけます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">買い切りですか？月額課金ですか？<span class="marker">+</span></div>
-        <div class="faq-a">完全な買い切り型です。一度購入すれば、永久アクセス可能。サブスク疲れの心配はありません。</div>
+        <div class="faq-q">オフラインでも使えますか?ダウンロードできますか?<span class="marker">+</span></div>
+        <div class="faq-a">教材には、ストリーミング版とダウンロード版があります。<br><br>動画をデバイスにダウンロードしていただければ、オフラインでも視聴できます。通勤中や移動中など、インターネット環境がない場所でも学習できます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">返金保証の条件は？<span class="marker">+</span></div>
-        <div class="faq-a">購入後30日以内であれば、理由を問わず全額返金いたします。「合わない」と感じたら、フォームから1分で申請可能です。リスクなくお試しください。</div>
+        <div class="faq-q">返金保証はありますか?返金条件を教えてください<span class="marker">+</span></div>
+        <div class="faq-a">はい。購入後30日以内であれば、理由を問わず全額返金いたします。<br><br>「自分には合わない」と感じた場合は、フォームから簡単に申請できます。リスクなくお試しいただけるよう、30日間の返金保証をご用意しています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">塾や学校の授業で使ってもいいですか?商用利用はできますか?<span class="marker">+</span></div>
+        <div class="faq-a">個人利用以外でのご利用には、教育者・法人向けのライセンスをご用意しています。<br><br>塾、学校、英語教室、社内研修などでの利用をご希望の場合は、お問い合わせください。利用内容に合わせてご案内いたします。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">サンプルは見られますか?視聴できますか?<span class="marker">+</span></div>
+        <div class="faq-a">はい、サンプルをご覧いただけます。<br><br>以下のリンクから、実際の教材の雰囲気をお試しください。<br><br><a href="#" class="faq-link">▸ サンプルを見る</a></div>
       </div>
     </div>
   </div>
