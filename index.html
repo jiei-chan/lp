@@ -1794,6 +1794,14 @@ section{padding: 100px 24px}
   border: 1px solid #d4e6ff;
 }
 
+/* Good card inner: image left + text right */
+.good-row{
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 16px;
+  align-items: center;
+}
+
 .compare-row .col-label{
   font-size: 11px;
   font-weight: 700;
@@ -1820,25 +1828,18 @@ section{padding: 100px 24px}
   line-height: 1.25;
   margin-bottom: 6px;
 }
-.compare-row .word-good{
-  font-family: var(--en);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-  margin-bottom: 4px;
-}
 .compare-row .meaning{
   font-size: 14px;
   color: #ef4444;
   font-weight: 700;
 }
 .compare-row .meaning-text{
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--text-soft);
-  line-height: 1.55;
-  margin-top: 2px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(0, 102, 255, 0.2);
 }
 .compare-row .feeling{
   font-size: 15px;
@@ -1852,8 +1853,8 @@ section{padding: 100px 24px}
 .compare-img{
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 10px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.5);
 }
@@ -1903,31 +1904,28 @@ section{padding: 100px 24px}
   flex-shrink: 0;
 }
 
-/* RIGHT: Solution points (3 cards) */
+/* RIGHT: Solution points - list with horizontal dividers */
 .solution-points{
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 8px 32px;
+  box-shadow: var(--shadow-md);
 }
 .solution-point{
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 16px;
+  gap: 24px;
   align-items: center;
-  padding: 20px;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  transition: all 0.3s;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line-soft);
 }
-.solution-point:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(10, 22, 40, 0.06);
-  border-color: var(--blue-light);
+.solution-point:last-child{
+  border-bottom: none;
 }
 .sp-num{
   flex-shrink: 0;
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
   color: white;
@@ -1936,18 +1934,19 @@ section{padding: 100px 24px}
   justify-content: center;
   font-family: var(--en);
   font-weight: 800;
-  font-size: 14px;
+  font-size: 16px;
   box-shadow: var(--shadow-blue);
   align-self: flex-start;
+  margin-top: 4px;
 }
 .sp-body{
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
 }
 .sp-title{
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 800;
   line-height: 1.4;
   color: var(--ink);
@@ -1955,15 +1954,15 @@ section{padding: 100px 24px}
   margin: 0;
 }
 .sp-desc{
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text);
-  line-height: 1.8;
+  line-height: 1.85;
   margin: 0;
 }
 .sp-image{
   position: relative;
   flex-shrink: 0;
-  width: 100px; height: 100px;
+  width: 140px; height: 140px;
   border-radius: 14px;
   overflow: hidden;
   background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
@@ -2004,11 +2003,16 @@ section{padding: 100px 24px}
     transform: rotate(90deg);
     margin: 0 auto;
   }
+  .good-row{
+    grid-template-columns: 1fr 1.1fr;
+    gap: 12px;
+  }
+  .solution-points{padding: 0 20px}
   .solution-point{
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
     gap: 12px 14px;
-    padding: 16px;
+    padding: 20px 0;
   }
   .sp-image{
     grid-column: 1 / -1;
@@ -2016,7 +2020,7 @@ section{padding: 100px 24px}
     aspect-ratio: 16 / 9;
     height: auto;
   }
-  .sp-title{font-size: 15px}
+  .sp-title{font-size: 17px}
   .sp-desc{font-size: 12.5px}
 }
 
@@ -3796,16 +3800,17 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           </div>
           <div class="col good">
             <div class="col-label-good">IMPORT</div>
-            <div class="word-good">take off</div>
-            <div class="compare-img">
-              <picture>
-                <img src="images/solution-take-off-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
-              </picture>
-              <div class="compare-img-fallback"><span>image</span></div>
-            </div>
-            <div class="col-content">
-              <div class="meaning-text">飛行機が地を離れる映像 + シャツを脱ぐシーン</div>
-              <div class="feeling">「何かが離れる」感覚</div>
+            <div class="good-row">
+              <div class="compare-img">
+                <picture>
+                  <img src="images/solution-take-off-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+                </picture>
+                <div class="compare-img-fallback"><span>image</span></div>
+              </div>
+              <div class="col-content">
+                <div class="meaning-text">飛行機が地を離れる映像<br>+ シャツを脱ぐシーン</div>
+                <div class="feeling">「何かが離れる」感覚</div>
+              </div>
             </div>
           </div>
         </article>
@@ -3823,16 +3828,17 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           </div>
           <div class="col good">
             <div class="col-label-good">IMPORT</div>
-            <div class="word-good">shoot oneself<br>in the foot</div>
-            <div class="compare-img">
-              <picture>
-                <img src="images/solution-shoot-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
-              </picture>
-              <div class="compare-img-fallback"><span>image</span></div>
-            </div>
-            <div class="col-content">
-              <div class="meaning-text">自分の足に銃を撃つ映像</div>
-              <div class="feeling">自分の行動で<br>状況を悪化させるイメージ</div>
+            <div class="good-row">
+              <div class="compare-img">
+                <picture>
+                  <img src="images/solution-shoot-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+                </picture>
+                <div class="compare-img-fallback"><span>image</span></div>
+              </div>
+              <div class="col-content">
+                <div class="meaning-text">自分の足に銃を撃つ映像</div>
+                <div class="feeling">自分の行動で<br>状況を悪化させるイメージ</div>
+              </div>
             </div>
           </div>
         </article>
@@ -3850,22 +3856,23 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           </div>
           <div class="col good">
             <div class="col-label-good">IMPORT</div>
-            <div class="word-good">leverage</div>
-            <div class="compare-img">
-              <picture>
-                <img src="images/solution-leverage-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
-              </picture>
-              <div class="compare-img-fallback"><span>image</span></div>
-            </div>
-            <div class="col-content">
-              <div class="meaning-text">少ない力で大きな力を出す映像</div>
-              <div class="feeling">てこを活かして<br>活用するイメージ</div>
+            <div class="good-row">
+              <div class="compare-img">
+                <picture>
+                  <img src="images/solution-leverage-new.png" alt="" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+                </picture>
+                <div class="compare-img-fallback"><span>image</span></div>
+              </div>
+              <div class="col-content">
+                <div class="meaning-text">少ない力で大きな力を出す映像</div>
+                <div class="feeling">てこを活かして<br>活用するイメージ</div>
+              </div>
             </div>
           </div>
         </article>
       </div>
 
-      <!-- RIGHT: 3 solution points with images -->
+      <!-- RIGHT: 3 solution points (list with dividers) -->
       <div class="solution-points">
         <article class="solution-point">
           <div class="sp-num">1</div>
