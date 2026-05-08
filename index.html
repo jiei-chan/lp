@@ -2614,10 +2614,14 @@ section{padding: 100px 24px}
 }
 @media (max-width: 768px){
   .bundle-hero{
-    margin: 12px 12px 0;
-    width: calc(100% - 24px);
+    margin: 8px 8px 0;
+    width: calc(100% - 16px);
     border-radius: 18px;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 9;
+  }
+  .bundle-hero img{
+    transform: scale(1.15);
+    transform-origin: center;
   }
 }
 .bundle-hero picture,
