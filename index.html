@@ -2820,55 +2820,151 @@ section{padding: 100px 24px}
   grid-template-columns: 1fr auto;
   gap: 24px;
   align-items: center;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 60%, #e0f2fe 100%);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 22px;
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 12px;
 }
-@media (max-width: 600px){.bundle-final{grid-template-columns: 1fr; text-align: center}}
+.bundle-final::before{
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -15%;
+  width: 60%;
+  height: 180%;
+  background: radial-gradient(ellipse, rgba(0, 212, 255, 0.18), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.bundle-final-left{position: relative; z-index: 1}
+@media (max-width: 600px){
+  .bundle-final{grid-template-columns: 1fr; text-align: center; padding: 28px 22px; gap: 20px}
+}
+
+.strike-line{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.strike-label{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+}
 .bundle-final-left .strike{
   font-family: var(--en);
-  font-size: 16px;
+  font-size: 18px;
   color: var(--muted);
   text-decoration: line-through;
-  margin-bottom: 4px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(100, 116, 139, 0.6);
 }
+
 .bundle-final-left .now-label{
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   color: var(--blue);
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
+
 .bundle-final-left .now-price{
   font-family: var(--en);
-  font-size: clamp(40px, 6vw, 56px);
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.03em;
-  line-height: 1;
+  font-size: clamp(48px, 8vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 70%, #0066ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
-.bundle-final-left .now-price .yen{font-size: 0.5em; vertical-align: top; font-weight: 700}
-.bundle-final-left .tax{font-size: 11px; color: var(--muted); margin-top: 4px}
+.bundle-final-left .now-price .yen{font-size: 0.5em; vertical-align: top; font-weight: 800; line-height: 1.2}
+.bundle-final-left .tax{
+  font-size: 12px;
+  color: var(--text-soft);
+  margin-top: 10px;
+  font-weight: 500;
+}
 
 .bundle-savings{
-  background: var(--blue);
+  background: linear-gradient(135deg, #ff6b3d 0%, #ff4d20 50%, #e63b13 100%);
   color: white;
-  padding: 16px 24px;
-  border-radius: 16px;
+  padding: 18px 24px;
+  border-radius: 18px;
   text-align: center;
-  box-shadow: var(--shadow-blue);
+  box-shadow: 0 12px 32px rgba(255, 107, 61, 0.35);
+  position: relative;
+  z-index: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bundle-savings::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+.savings-amount{
+  font-family: var(--en);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+.savings-amount .yen-sm{
+  font-size: 0.6em;
+  font-weight: 700;
+}
+.savings-amount .off-sm{
+  font-size: 0.45em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-left: 4px;
+  align-self: center;
+}
+.savings-divider{
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.savings-pct-row{
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
 }
 .bundle-savings .pct{
   font-family: var(--en);
   font-size: 32px;
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+}
+.bundle-savings .pct-sym{
+  font-family: var(--en);
+  font-size: 22px;
+  font-weight: 800;
+  margin-right: 6px;
 }
 .bundle-savings .label{
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-top: 4px;
+  letter-spacing: 0.12em;
+  align-self: center;
 }
 
 .bundle-cta-row{
@@ -3729,9 +3825,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .bundle-plus{font-size: 18px}
   .bundle-price-block{padding: 22px}
   .bundle-row{font-size: 13px}
-  .bundle-final-left .now-price{font-size: 44px}
-  .bundle-savings{padding: 12px 18px}
-  .bundle-savings .pct{font-size: 26px}
+  .bundle-final-left .now-price{font-size: 52px}
+  .bundle-savings{padding: 16px 22px; min-width: auto}
+  .bundle-savings .pct{font-size: 28px}
+  .savings-amount{font-size: 22px}
 
   /* ─── Community ─── */
   .community{padding: 40px 20px}
@@ -3775,7 +3872,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 @media (max-width: 400px){
   .hero h1{font-size: 26px}
   .section-title{font-size: 22px}
-  .bundle-final-left .now-price{font-size: 38px}
+  .bundle-final-left .now-price{font-size: 46px}
   .achievement .big{font-size: 48px}
   .final h2{font-size: 26px}
   .final-price-card .price{font-size: 48px}
@@ -4979,14 +5076,21 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
       <div class="bundle-final">
         <div class="bundle-final-left">
-          <div class="num strike">¥10,850</div>
-          <div class="now-label">今だけバンドル価格</div>
+          <div class="strike-line">
+            <span class="strike-label">通常価格</span>
+            <span class="num strike">¥10,850</span>
+          </div>
+          <div class="now-label">▸ 今だけ特別価格</div>
           <div class="num now-price"><span class="yen">¥</span>7,700</div>
-          <div class="tax">税込・買い切り型</div>
+          <div class="tax">税込・買い切り型・追加課金なし</div>
         </div>
         <div class="bundle-savings">
-          <div class="num pct">29%</div>
-          <div class="label">OFF</div>
+          <div class="savings-amount"><span class="yen-sm">¥</span>3,150<span class="off-sm">OFF</span></div>
+          <div class="savings-divider"></div>
+          <div class="savings-pct-row">
+            <span class="num pct">29</span><span class="pct-sym">%</span>
+            <span class="label">OFF</span>
+          </div>
         </div>
       </div>
 
