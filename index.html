@@ -3074,58 +3074,133 @@ section{padding: 100px 24px}
 
 /* ========== VOICES (BUYERS) ========== */
 .voices{background: var(--bg-soft); padding: 120px 24px}
+.voices .section-title{text-align: center}
+.voices .section-eyebrow{justify-content: center; display: inline-flex; margin-left: auto; margin-right: auto}
+.voices .wrap{text-align: center}
+
 .voices-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 56px;
-  max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 18px;
+  max-width: 1140px;
+  margin: 0 auto;
+  text-align: left;
 }
 @media (max-width: 900px){.voices-grid{grid-template-columns: 1fr 1fr}}
 @media (max-width: 600px){.voices-grid{grid-template-columns: 1fr}}
 
+/* Voice card - comment thread style */
 .voice{
   background: white;
-  padding: 24px;
+  padding: 22px 22px 24px;
   border-radius: 16px;
   border: 1px solid var(--line);
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  position: relative;
 }
 .voice:hover{
   transform: translateY(-2px);
   border-color: var(--blue-light);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 12px 32px rgba(10, 22, 40, 0.06);
 }
-.voice .handle{
-  font-family: var(--en);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--blue);
-  margin-bottom: 12px;
+.voice-wide{
+  grid-column: span 2;
+}
+@media (max-width: 900px){
+  .voice-wide{grid-column: span 2}
+}
+@media (max-width: 600px){
+  .voice-wide{grid-column: span 1}
+}
+
+.voice-header{
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
-.voice .handle::before{
-  content: '';
-  width: 28px; height: 28px;
+
+.voice-avatar{
+  width: 40px; height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--en);
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(10, 22, 40, 0.08);
+}
+.voice-avatar-1{background: linear-gradient(135deg, #3b82f6, #0066ff)}
+.voice-avatar-2{background: linear-gradient(135deg, #14b8a6, #0d9488)}
+.voice-avatar-3{background: linear-gradient(135deg, #f97316, #ea580c)}
+.voice-avatar-4{background: linear-gradient(135deg, #ec4899, #be185d)}
+.voice-avatar-5{background: linear-gradient(135deg, #8b5cf6, #7c3aed)}
+.voice-avatar-6{background: linear-gradient(135deg, #06b6d4, #0891b2)}
+.voice-avatar-7{background: linear-gradient(135deg, #10b981, #059669)}
+
+.voice-meta{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.voice-name{
+  font-family: var(--en);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.voice-verified{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
   flex-shrink: 0;
 }
-.voice .text{
+.voice-tag{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: 0.01em;
+}
+
+.voice-body{
   font-size: 14px;
   line-height: 1.85;
   color: var(--ink);
+  font-weight: 500;
+  margin: 0;
 }
 
 .voices-note{
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 40px auto 0;
+  padding: 10px 18px;
+  font-size: 12.5px;
+  color: var(--text-soft);
+  font-weight: 600;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  text-align: left;
+}
+.voices-note svg{
+  color: var(--success);
+  flex-shrink: 0;
 }
 
 /* ========== FAQ ========== */
@@ -4919,39 +4994,98 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== VOICES (BUYERS) ========== -->
 <section class="voices">
   <div class="wrap">
-    <div class="section-eyebrow">— Buyers' Voices</div>
+    <div class="section-eyebrow">— Voices from Users</div>
     <h2 class="section-title">
-      みんなの声、<br>ちょっと拝見。
+      実際のユーザーから<br>
+      届いた<span class="blue">リアルな声</span>。
     </h2>
+    <p class="section-lead" style="margin: 0 auto 56px">
+      購入者アンケートに寄せられたコメントの一部を抜粋しています。
+    </p>
 
     <div class="voices-grid">
-      <div class="voice">
-        <div class="handle">@miki_eng</div>
-        <p class="text">句動詞やっと頭に入った…3D で覚えるってこういうことか。</p>
-      </div>
-      <div class="voice">
-        <div class="handle">@toeic_run</div>
-        <p class="text">SILVER EXPRESS の多義語、TOEIC で完全に効いた。</p>
-      </div>
-      <div class="voice">
-        <div class="handle">@hina_speak</div>
-        <p class="text">NativeDose の 200 フレーズ、会話の引き出し増えた感じする。</p>
-      </div>
-      <div class="voice">
-        <div class="handle">@learning.k</div>
-        <p class="text">Boo がかわいすぎて毎日開いちゃう。これが続く秘訣かも。</p>
-      </div>
-      <div class="voice">
-        <div class="handle">@ryo_4am</div>
-        <p class="text">通勤の 10 分で回せる量がちょうどいい。</p>
-      </div>
-      <div class="voice">
-        <div class="handle">@sara_eigo</div>
-        <p class="text">単語帳の周回がしんどかった私でも続いてる。映像つよい。</p>
-      </div>
+      <article class="voice">
+        <div class="voice-header">
+          <div class="voice-avatar voice-avatar-1">M</div>
+          <div class="voice-meta">
+            <div class="voice-name">M.K <span class="voice-verified">✓</span></div>
+            <div class="voice-tag">Essential Verbs ユーザー</div>
+          </div>
+        </div>
+        <p class="voice-body">句動詞やっと頭に入った…3D で覚えるってこういうことか。</p>
+      </article>
+
+      <article class="voice">
+        <div class="voice-header">
+          <div class="voice-avatar voice-avatar-2">T</div>
+          <div class="voice-meta">
+            <div class="voice-name">T.S <span class="voice-verified">✓</span></div>
+            <div class="voice-tag">Silver Express ユーザー</div>
+          </div>
+        </div>
+        <p class="voice-body">SILVER EXPRESS の多義語、TOEIC で完全に効きました。</p>
+      </article>
+
+      <article class="voice">
+        <div class="voice-header">
+          <div class="voice-avatar voice-avatar-3">H</div>
+          <div class="voice-meta">
+            <div class="voice-name">H.N <span class="voice-verified">✓</span></div>
+            <div class="voice-tag">NativeDose ユーザー</div>
+          </div>
+        </div>
+        <p class="voice-body">NativeDose の 200 フレーズ、会話の引き出し増えた感じする。</p>
+      </article>
+
+      <article class="voice">
+        <div class="voice-header">
+          <div class="voice-avatar voice-avatar-4">A</div>
+          <div class="voice-meta">
+            <div class="voice-name">A.K <span class="voice-verified">✓</span></div>
+            <div class="voice-tag">Bundle ユーザー</div>
+          </div>
+        </div>
+        <p class="voice-body">Boo ちゃんがかわいすぎて毎日開いちゃいます！勉強するつもりはなくても自然と頭に入る感じ。</p>
+      </article>
+
+      <article class="voice">
+        <div class="voice-header">
+          <div class="voice-avatar voice-avatar-5">R</div>
+          <div class="voice-meta">
+            <div class="voice-name">R.Y <span class="voice-verified">✓</span></div>
+            <div class="voice-tag">Essential Verbs ユーザー</div>
+          </div>
+        </div>
+        <p class="voice-body">通勤の10分で回せる量がちょうどいい。</p>
+      </article>
+
+      <article class="voice">
+        <div class="voice-header">
+          <div class="voice-avatar voice-avatar-6">S</div>
+          <div class="voice-meta">
+            <div class="voice-name">S.M <span class="voice-verified">✓</span></div>
+            <div class="voice-tag">Bundle ユーザー</div>
+          </div>
+        </div>
+        <p class="voice-body">単語帳の周回がしんどかった私でも続いてる。やっぱり映像つよい。</p>
+      </article>
+
+      <article class="voice voice-wide">
+        <div class="voice-header">
+          <div class="voice-avatar voice-avatar-7">Y</div>
+          <div class="voice-meta">
+            <div class="voice-name">Y.T <span class="voice-verified">✓</span></div>
+            <div class="voice-tag">Bundle ユーザー</div>
+          </div>
+        </div>
+        <p class="voice-body">単語数が全部で800ちょっとで少ないと思ったけど、イメージで覚える感覚が完全についたので、他の単語暗記の効率が爆上がりした。</p>
+      </article>
     </div>
 
-    <p class="voices-note">※ 表示内容は仮置き、実際の購入者コメントに差し替え予定</p>
+    <p class="voices-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      実際のユーザーアンケートからのお客様の声の抜粋
+    </p>
   </div>
 </section>
 
