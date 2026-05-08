@@ -3048,31 +3048,45 @@ section{padding: 100px 24px}
   padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
   flex: 1;
 }
 .inf-title{
   font-size: 15px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--ink);
   letter-spacing: -0.01em;
   margin: 0;
+  /* Clamp to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-.inf-url{
-  font-family: var(--en);
-  font-size: 11px;
-  color: var(--muted);
+.inf-channel{
+  font-size: 12px;
+  color: var(--text-soft);
+  font-weight: 600;
   letter-spacing: 0.01em;
-  word-break: break-all;
-  line-height: 1.4;
   margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.inf-channel::before{
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--accent));
+  flex-shrink: 0;
 }
 
 @media (max-width: 600px){
-  .inf-info{padding: 14px 16px; gap: 12px}
+  .inf-info{padding: 14px 16px; gap: 8px}
   .inf-title{font-size: 14px}
-  .inf-url{font-size: 10px}
+  .inf-channel{font-size: 11px}
   .inf-play{width: 48px; height: 48px}
 }
 
@@ -4794,12 +4808,11 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 
   <div class="influencer-grid">
-    <!-- YouTube #1 -->
+    <!-- YouTube #1 - Kei Vlog -->
     <a href="https://www.youtube.com/watch?v=Xn9cJuaPBCo" target="_blank" rel="noopener" class="inf-card">
       <div class="inf-thumb">
-        <img src="https://img.youtube.com/vi/Xn9cJuaPBCo/maxresdefault.jpg"
-             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/Xn9cJuaPBCo/hqdefault.jpg';"
-             alt="YouTube動画 #1" loading="lazy" />
+        <img src="https://img.youtube.com/vi/Xn9cJuaPBCo/hqdefault.jpg"
+             alt="最先端「動く単語帳」が革命的に凄い" loading="lazy" />
         <span class="inf-platform inf-platform-yt">
           <svg width="14" height="10" viewBox="0 0 24 17" fill="white"><path d="M23.498 2.65a3.005 3.005 0 0 0-2.119-2.119C19.505 0 12 0 12 0S4.495 0 2.621.531A3.005 3.005 0 0 0 .502 2.65 31.318 31.318 0 0 0 0 8.5a31.318 31.318 0 0 0 .502 5.85 3.005 3.005 0 0 0 2.119 2.119C4.495 17 12 17 12 17s7.505 0 9.379-.531a3.005 3.005 0 0 0 2.119-2.119A31.318 31.318 0 0 0 24 8.5a31.318 31.318 0 0 0-.502-5.85zM9.545 12.07V4.93l6.273 3.57-6.273 3.57z"/></svg>
           YouTube
@@ -4809,17 +4822,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
       <div class="inf-info">
-        <h3 class="inf-title">Boo を紹介してくださった動画 #1</h3>
-        <span class="inf-url">www.youtube.com/watch?v=Xn9cJuaPBCo</span>
+        <h3 class="inf-title">最先端「動く単語帳」が革命的に凄い！話題の没入型英単語帳・importをやってみた🔥</h3>
+        <span class="inf-channel">Kei Vlog</span>
       </div>
     </a>
 
-    <!-- YouTube #2 -->
+    <!-- YouTube #2 - りゅうの留学英語チャンネル -->
     <a href="https://www.youtube.com/watch?v=jQqkioKJnmA" target="_blank" rel="noopener" class="inf-card">
       <div class="inf-thumb">
-        <img src="https://img.youtube.com/vi/jQqkioKJnmA/maxresdefault.jpg"
-             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/jQqkioKJnmA/hqdefault.jpg';"
-             alt="YouTube動画 #2" loading="lazy" />
+        <img src="https://img.youtube.com/vi/jQqkioKJnmA/hqdefault.jpg"
+             alt="「動く」英単語帳が衝撃すぎた" loading="lazy" />
         <span class="inf-platform inf-platform-yt">
           <svg width="14" height="10" viewBox="0 0 24 17" fill="white"><path d="M23.498 2.65a3.005 3.005 0 0 0-2.119-2.119C19.505 0 12 0 12 0S4.495 0 2.621.531A3.005 3.005 0 0 0 .502 2.65 31.318 31.318 0 0 0 0 8.5a31.318 31.318 0 0 0 .502 5.85 3.005 3.005 0 0 0 2.119 2.119C4.495 17 12 17 12 17s7.505 0 9.379-.531a3.005 3.005 0 0 0 2.119-2.119A31.318 31.318 0 0 0 24 8.5a31.318 31.318 0 0 0-.502-5.85zM9.545 12.07V4.93l6.273 3.57-6.273 3.57z"/></svg>
           YouTube
@@ -4829,17 +4841,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
       <div class="inf-info">
-        <h3 class="inf-title">Boo を紹介してくださった動画 #2</h3>
-        <span class="inf-url">www.youtube.com/watch?v=jQqkioKJnmA</span>
+        <h3 class="inf-title">「動く」英単語帳が衝撃すぎたので、新時代の英単語勉強法を紹介します</h3>
+        <span class="inf-channel">りゅうの留学英語チャンネル</span>
       </div>
     </a>
 
-    <!-- YouTube #3 -->
+    <!-- YouTube #3 - しのちゃんぴ。 -->
     <a href="https://www.youtube.com/watch?v=m7qsOKuUzoY" target="_blank" rel="noopener" class="inf-card">
       <div class="inf-thumb">
-        <img src="https://img.youtube.com/vi/m7qsOKuUzoY/maxresdefault.jpg"
-             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/m7qsOKuUzoY/hqdefault.jpg';"
-             alt="YouTube動画 #3" loading="lazy" />
+        <img src="https://img.youtube.com/vi/m7qsOKuUzoY/hqdefault.jpg"
+             alt="単語帳に没頭する。英語脳を作る新しい学習法" loading="lazy" />
         <span class="inf-platform inf-platform-yt">
           <svg width="14" height="10" viewBox="0 0 24 17" fill="white"><path d="M23.498 2.65a3.005 3.005 0 0 0-2.119-2.119C19.505 0 12 0 12 0S4.495 0 2.621.531A3.005 3.005 0 0 0 .502 2.65 31.318 31.318 0 0 0 0 8.5a31.318 31.318 0 0 0 .502 5.85 3.005 3.005 0 0 0 2.119 2.119C4.495 17 12 17 12 17s7.505 0 9.379-.531a3.005 3.005 0 0 0 2.119-2.119A31.318 31.318 0 0 0 24 8.5a31.318 31.318 0 0 0-.502-5.85zM9.545 12.07V4.93l6.273 3.57-6.273 3.57z"/></svg>
           YouTube
@@ -4849,17 +4860,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
       <div class="inf-info">
-        <h3 class="inf-title">Boo を紹介してくださった動画 #3</h3>
-        <span class="inf-url">www.youtube.com/watch?v=m7qsOKuUzoY</span>
+        <h3 class="inf-title">単語帳に没頭する。英語脳を作る新しい学習法</h3>
+        <span class="inf-channel">しのちゃんぴ。</span>
       </div>
     </a>
 
     <!-- YouTube #4 -->
     <a href="https://www.youtube.com/watch?v=mTGyhyBE-hA" target="_blank" rel="noopener" class="inf-card">
       <div class="inf-thumb">
-        <img src="https://img.youtube.com/vi/mTGyhyBE-hA/maxresdefault.jpg"
-             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/mTGyhyBE-hA/hqdefault.jpg';"
-             alt="YouTube動画 #4" loading="lazy" />
+        <img src="https://img.youtube.com/vi/mTGyhyBE-hA/hqdefault.jpg"
+             alt="【必見】英語ペラペラな人はこうやってイメージ化してます" loading="lazy" />
         <span class="inf-platform inf-platform-yt">
           <svg width="14" height="10" viewBox="0 0 24 17" fill="white"><path d="M23.498 2.65a3.005 3.005 0 0 0-2.119-2.119C19.505 0 12 0 12 0S4.495 0 2.621.531A3.005 3.005 0 0 0 .502 2.65 31.318 31.318 0 0 0 0 8.5a31.318 31.318 0 0 0 .502 5.85 3.005 3.005 0 0 0 2.119 2.119C4.495 17 12 17 12 17s7.505 0 9.379-.531a3.005 3.005 0 0 0 2.119-2.119A31.318 31.318 0 0 0 24 8.5a31.318 31.318 0 0 0-.502-5.85zM9.545 12.07V4.93l6.273 3.57-6.273 3.57z"/></svg>
           YouTube
@@ -4869,8 +4879,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
       <div class="inf-info">
-        <h3 class="inf-title">Boo を紹介してくださった動画 #4</h3>
-        <span class="inf-url">www.youtube.com/watch?v=mTGyhyBE-hA</span>
+        <h3 class="inf-title">【必見】英語ペラペラな人はこうやってイメージ化してます</h3>
+        <span class="inf-channel">英語コラボ動画</span>
       </div>
     </a>
 
@@ -4893,8 +4903,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
       <div class="inf-info">
-        <h3 class="inf-title">@cocolog_03 さんの紹介動画</h3>
-        <span class="inf-url">tiktok.com/@cocolog_03/video/7606607880690683143</span>
+        <h3 class="inf-title">話題の3D英単語帳「import」を試してみた</h3>
+        <span class="inf-channel">@cocolog_03</span>
       </div>
     </a>
 
@@ -4917,8 +4927,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
       <div class="inf-info">
-        <h3 class="inf-title">Instagram Reel での紹介</h3>
-        <span class="inf-url">instagram.com/reel/DX1JpgVRJ7x</span>
+        <h3 class="inf-title">3D映像で覚える英単語、これは新感覚</h3>
+        <span class="inf-channel">Instagram Reel</span>
       </div>
     </a>
   </div>
