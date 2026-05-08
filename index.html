@@ -1218,126 +1218,121 @@ section{padding: 100px 24px}
 }
 
 .bubble{
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: stretch;
   padding: 0;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
   border: 1px solid;
-  aspect-ratio: 4 / 3;
-  min-height: 280px;
 }
 .bubble:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(10, 22, 40, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(10, 22, 40, 0.08);
 }
 
-/* Color themes - whole card is colored gradient */
+/* Color themes */
 .bubble-blue{
-  background: linear-gradient(135deg, #e0edff 0%, #c5dcff 100%);
-  border-color: #c5dcff;
+  background: white;
+  border-color: #dce8fa;
 }
-.bubble-blue .who{color: #1e40af}
+.bubble-blue .who{color: #2563eb}
+.bubble-blue .bubble-image{background: linear-gradient(135deg, #e0edff 0%, #cfe1ff 100%)}
 
 .bubble-cyan{
-  background: linear-gradient(135deg, #e0f1ff 0%, #c0dffa 100%);
-  border-color: #c0dffa;
+  background: white;
+  border-color: #c9e3fa;
 }
-.bubble-cyan .who{color: #075985}
+.bubble-cyan .who{color: #0284c7}
+.bubble-cyan .bubble-image{background: linear-gradient(135deg, #e0f1ff 0%, #c9e3fa 100%)}
 
 .bubble-green{
-  background: linear-gradient(135deg, #dff5e8 0%, #bce8d2 100%);
-  border-color: #bce8d2;
+  background: white;
+  border-color: #cdeedb;
 }
-.bubble-green .who{color: #047857}
+.bubble-green .who{color: #059669}
+.bubble-green .bubble-image{background: linear-gradient(135deg, #dff5e8 0%, #c9efd9 100%)}
 
 .bubble-orange{
-  background: linear-gradient(135deg, #ffeed9 0%, #ffd6ad 100%);
-  border-color: #ffd6ad;
+  background: white;
+  border-color: #fbe2c8;
 }
-.bubble-orange .who{color: #c2410c}
+.bubble-orange .who{color: #ea580c}
+.bubble-orange .bubble-image{background: linear-gradient(135deg, #ffeed9 0%, #ffdcb4 100%)}
 
 .bubble-pink{
-  background: linear-gradient(135deg, #ffe4ed 0%, #ffc8d8 100%);
-  border-color: #ffc8d8;
+  background: white;
+  border-color: #fbd0dc;
 }
-.bubble-pink .who{color: #be185d}
+.bubble-pink .who{color: #db2777}
+.bubble-pink .bubble-image{background: linear-gradient(135deg, #ffe4ed 0%, #ffd1de 100%)}
 
 .bubble-skyblue{
-  background: linear-gradient(135deg, #e0f2ff 0%, #c2dff5 100%);
-  border-color: #c2dff5;
+  background: white;
+  border-color: #d0e8fa;
 }
-.bubble-skyblue .who{color: #0c4a6e}
+.bubble-skyblue .who{color: #0369a1}
+.bubble-skyblue .bubble-image{background: linear-gradient(135deg, #e0f2ff 0%, #c9e3fa 100%)}
 
-/* Image positioned bottom-left, large */
+/* Image area inside bubble (left side, square) */
 .bubble-image{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 65%;
-  height: 70%;
-  pointer-events: none;
-  z-index: 1;
+  position: relative;
+  flex: 0 0 45%;
+  align-self: stretch;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bubble-image picture,
 .bubble-image img{
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: bottom left;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+  z-index: 2;
 }
 .bubble-image.no-image picture{display: none}
 .bubble-image-fallback{display: none}
 
-/* Text content overlaid on top-right of the card */
+/* Text content */
 .bubble-content{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 58%;
-  padding: 24px 22px 22px 0;
-  z-index: 2;
+  flex: 1;
+  padding: 24px 26px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between;
+  min-width: 0;
+  background: white;
 }
 .bubble-text{
   font-size: 14px;
   line-height: 1.85;
-  color: #0f172a;
-  margin-bottom: 12px;
+  color: var(--ink);
+  margin-bottom: 16px;
   font-weight: 500;
 }
 .bubble .who{
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.03em;
-  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 @media (max-width: 768px){
-  .bubble{
-    aspect-ratio: 16 / 10;
-    min-height: 220px;
-  }
-  .bubble-image{width: 50%; height: 80%}
-  .bubble-content{
-    width: 60%;
-    padding: 18px 16px 16px 0;
-  }
-  .bubble-text{font-size: 13px; line-height: 1.7; margin-bottom: 8px}
+  .bubble-image{flex: 0 0 38%}
+  .bubble-content{padding: 18px 20px}
+  .bubble-text{font-size: 13px; line-height: 1.75; margin-bottom: 12px}
   .bubble .who{font-size: 12px}
 }
 
 @media (max-width: 600px){
-  .bubble{
-    aspect-ratio: auto;
-    min-height: 200px;
-  }
-  .bubble-image{width: 42%; height: 75%}
-  .bubble-content{width: 60%}
+  .bubble-image{flex: 0 0 42%}
+  .bubble-content{padding: 16px 18px}
 }
 
 /* ========== PROBLEM 3 ========== */
