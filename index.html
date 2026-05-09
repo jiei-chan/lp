@@ -2986,12 +2986,12 @@ section{padding: 100px 24px}
 
   /* Countdown: fit fully */
   .offer-urgency{padding: 16px 12px 18px}
-  .urgency-header{font-size: 11.5px; margin-bottom: 12px; gap: 6px}
-  .urgency-grid{gap: 2px}
-  .urgency-block{min-width: 40px}
-  .urgency-num{font-size: 28px}
-  .urgency-lbl{font-size: 9px; letter-spacing: 0.12em; margin-top: 4px}
-  .urgency-sep{font-size: 22px; margin-bottom: 14px; margin: 0 -2px 14px}
+  .urgency-header{font-size: 11.5px; margin-bottom: 12px; gap: 6px; max-width: 100%; flex-wrap: wrap}
+  .urgency-header strong{white-space: nowrap}
+  .urgency-grid{column-gap: 4px}
+  .urgency-num{font-size: 28px; min-width: 40px}
+  .urgency-lbl{font-size: 9px; letter-spacing: 0.12em}
+  .urgency-sep{font-size: 22px}
 }
 
 /* ─── Urgency / Countdown ─── */
@@ -3018,18 +3018,20 @@ section{padding: 100px 24px}
 .urgency-header svg{color: #dc2626; flex-shrink: 0}
 
 .urgency-grid{
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  column-gap: 6px;
+  row-gap: 6px;
 }
 .urgency-block{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 56px;
+  display: contents;
 }
 .urgency-num{
+  grid-row: 1;
+  text-align: center;
   font-family: var(--en);
   font-size: clamp(32px, 5.5vw, 42px);
   font-weight: 800;
@@ -3037,22 +3039,25 @@ section{padding: 100px 24px}
   letter-spacing: -0.025em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  min-width: 56px;
 }
 .urgency-lbl{
+  grid-row: 2;
+  text-align: center;
   font-family: var(--en);
   font-size: 10px;
   font-weight: 700;
   color: #94a3b8;
   letter-spacing: 0.18em;
-  margin-top: 6px;
 }
 .urgency-sep{
+  grid-row: 1;
+  align-self: center;
   font-family: var(--en);
   font-size: clamp(28px, 5vw, 36px);
   font-weight: 700;
   color: #cbd5e1;
   line-height: 1;
-  margin-bottom: 18px;
   letter-spacing: -0.05em;
 }
 
@@ -5130,23 +5135,23 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           </div>
           <div class="urgency-grid">
             <div class="urgency-block">
-              <div class="urgency-num" id="cd-days">--</div>
-              <div class="urgency-lbl">DAYS</div>
+              <span class="urgency-num" id="cd-days">--</span>
+              <span class="urgency-lbl">DAYS</span>
             </div>
             <span class="urgency-sep">:</span>
             <div class="urgency-block">
-              <div class="urgency-num" id="cd-hours">--</div>
-              <div class="urgency-lbl">HRS</div>
+              <span class="urgency-num" id="cd-hours">--</span>
+              <span class="urgency-lbl">HRS</span>
             </div>
             <span class="urgency-sep">:</span>
             <div class="urgency-block">
-              <div class="urgency-num" id="cd-min">--</div>
-              <div class="urgency-lbl">MIN</div>
+              <span class="urgency-num" id="cd-min">--</span>
+              <span class="urgency-lbl">MIN</span>
             </div>
             <span class="urgency-sep">:</span>
             <div class="urgency-block">
-              <div class="urgency-num" id="cd-sec">--</div>
-              <div class="urgency-lbl">SEC</div>
+              <span class="urgency-num" id="cd-sec">--</span>
+              <span class="urgency-lbl">SEC</span>
             </div>
           </div>
         </div>
