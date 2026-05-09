@@ -3472,16 +3472,46 @@ section{padding: 100px 24px}
 /* ========== FAQ ========== */
 .faq{background: white; padding: 120px 24px}
 .faq-mascot{
+  position: relative;
   display: flex;
   justify-content: center;
-  margin-bottom: 28px;
+  align-items: center;
+  margin-bottom: 32px;
+  padding: 24px 0 8px;
+}
+.faq-mascot::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(0, 102, 255, 0.20) 0%,
+    rgba(0, 212, 255, 0.14) 30%,
+    rgba(124, 58, 237, 0.08) 55%,
+    transparent 78%
+  );
+  transform: translate(-50%, -50%);
+  filter: blur(24px);
+  z-index: 0;
+  pointer-events: none;
 }
 .faq-mascot img{
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
   display: block;
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 22px 36px rgba(15, 23, 42, 0.18))
+          drop-shadow(0 8px 16px rgba(0, 102, 255, 0.12));
+  animation: faq-mascot-float 4.2s ease-in-out infinite;
+}
+@keyframes faq-mascot-float{
+  0%, 100%{transform: translateY(0)}
+  50%{transform: translateY(-6px)}
 }
 .faq-list{
   max-width: 760px;
@@ -3898,8 +3928,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
   /* ─── FAQ ─── */
   .faq{padding: 40px 20px}
-  .faq-mascot{margin-bottom: 22px}
-  .faq-mascot img{width: 130px; height: 130px}
+  .faq-mascot{margin-bottom: 24px; padding: 16px 0 4px}
+  .faq-mascot::before{width: 220px; height: 220px}
+  .faq-mascot img{width: 160px; height: 160px}
   .faq-q{padding: 18px 20px; font-size: 14px}
   .faq-q .marker{width: 26px; height: 26px}
   .faq-q .marker::before{width: 11px}
