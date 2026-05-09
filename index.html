@@ -3471,6 +3471,18 @@ section{padding: 100px 24px}
 
 /* ========== FAQ ========== */
 .faq{background: white; padding: 120px 24px}
+.faq-mascot{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.faq-mascot img{
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+}
 .faq-list{
   max-width: 760px;
   margin: 56px auto 0;
@@ -3500,19 +3512,37 @@ section{padding: 100px 24px}
 }
 .faq-q .marker{
   flex-shrink: 0;
-  width: 24px; height: 24px;
+  width: 28px; height: 28px;
   border-radius: 50%;
   background: var(--blue-soft);
-  color: var(--blue);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
+  position: relative;
   margin-left: auto;
-  transition: transform 0.3s;
+  transition: transform 0.3s, background 0.3s;
+  font-size: 0;
 }
-.faq-item.open .faq-q .marker{transform: rotate(45deg); background: var(--blue); color: white}
+.faq-q .marker::before,
+.faq-q .marker::after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--blue);
+  border-radius: 1px;
+  transition: background 0.3s;
+}
+.faq-q .marker::before{
+  width: 12px;
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+.faq-q .marker::after{
+  width: 2px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+}
+.faq-item.open .faq-q .marker{transform: rotate(45deg); background: var(--blue)}
+.faq-item.open .faq-q .marker::before,
+.faq-item.open .faq-q .marker::after{background: white}
 .faq-a{
   max-height: 0;
   overflow: hidden;
@@ -3868,8 +3898,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
   /* ─── FAQ ─── */
   .faq{padding: 40px 20px}
+  .faq-mascot{margin-bottom: 22px}
+  .faq-mascot img{width: 130px; height: 130px}
   .faq-q{padding: 18px 20px; font-size: 14px}
-  .faq-q .marker{width: 22px; height: 22px}
+  .faq-q .marker{width: 26px; height: 26px}
+  .faq-q .marker::before{width: 11px}
+  .faq-q .marker::after{height: 11px}
   .faq-a{font-size: 13px}
   .faq-item.open .faq-a{padding: 0 20px 18px}
 
@@ -5388,6 +5422,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== FAQ ========== -->
 <section class="faq">
   <div class="wrap-narrow">
+    <div class="faq-mascot">
+      <img src="images/faq-boo.png" alt="疑問を持つBoo" />
+    </div>
     <div class="section-eyebrow">— FAQ</div>
     <h2 class="section-title">よくある質問</h2>
 
