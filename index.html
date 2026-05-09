@@ -2142,6 +2142,7 @@ section{padding: 100px 24px}
 
 /* ========== ACHIEVEMENT BAND ========== */
 .achievement{
+  --gold: #f0c419;
   background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
   color: white;
   padding: 64px 24px;
@@ -2153,31 +2154,56 @@ section{padding: 100px 24px}
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(240, 196, 25, 0.18) 0%, transparent 60%);
 }
 .achievement-inner{position: relative}
 .achievement .label{
-  font-family: var(--en);
-  font-size: 12px;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.25em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 16px;
+  text-shadow:
+    0 0 10px rgba(240, 196, 25, 0.45),
+    0 0 22px rgba(240, 196, 25, 0.20);
 }
 .achievement .big{
   font-family: var(--en);
   font-size: clamp(48px, 7vw, 80px);
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 1;
   color: white;
   display: inline-flex;
   align-items: baseline;
+  gap: 4px;
+}
+.achievement .big .num{
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.22),
+    0 0 40px rgba(255, 255, 255, 0.12),
+    0 0 60px rgba(240, 196, 25, 0.18);
 }
 .achievement .big .plus{
-  color: var(--accent);
+  color: var(--gold);
   font-size: 0.7em;
+  font-family: var(--en);
+  text-shadow:
+    0 0 14px rgba(240, 196, 25, 0.6),
+    0 0 28px rgba(240, 196, 25, 0.32),
+    0 0 44px rgba(240, 196, 25, 0.15);
+}
+.achievement .big .suffix{
+  color: var(--gold);
+  font-size: 0.55em;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-left: 4px;
+  text-shadow:
+    0 0 12px rgba(240, 196, 25, 0.55),
+    0 0 24px rgba(240, 196, 25, 0.25);
 }
 .achievement .desc{
   margin-top: 16px;
@@ -4868,12 +4894,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== ACHIEVEMENT BAND ========== -->
 <section class="achievement">
   <div class="achievement-inner">
-    <div class="label">— Track Record</div>
+    <div class="label">— 累計受講者数</div>
     <div class="big">
       <span class="num">20,000</span>
       <span class="num plus">+</span>
+      <span class="num suffix">人突破！</span>
     </div>
-    <div class="desc">累計受講者数（無料体験版を含む延べ視聴者数）</div>
   </div>
 </section>
 
