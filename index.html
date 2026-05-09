@@ -2377,28 +2377,28 @@ section{padding: 100px 24px}
 }
 .pcard-name{
   font-family: var(--en);
-  font-size: 32px;
+  font-size: clamp(40px, 3.6vw, 52px);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin-bottom: 14px;
 }
 .pcard-tagline{
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text);
   font-weight: 500;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
-/* Hero image area */
+/* Hero image area - full-bleed, square */
 .pcard-image{
   position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  margin-top: 8px;
-  border-radius: 12px;
+  width: calc(100% + 56px);
+  margin: 28px -28px 0;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
+  border-radius: 0;
 }
 .pcard-image picture,
 .pcard-image img{
@@ -2606,10 +2606,11 @@ section{padding: 100px 24px}
 .pcard-price-bundle .amount{color: #0d9488}
 
 @media (max-width: 768px){
-  .pcard-top{padding: 24px 22px 0}
+  .pcard-top{padding: 28px 24px 0}
   .pcard-bottom{padding: 22px}
-  .pcard-name{font-size: 26px}
-  .pcard-tagline{font-size: 13px}
+  .pcard-name{font-size: 40px}
+  .pcard-tagline{font-size: 14px}
+  .pcard-image{width: calc(100% + 48px); margin: 24px -24px 0}
   .pcard-stats{gap: 6px}
   .pcard-stats .stat-num{font-size: 18px}
   .pcard-stats .stat-label{font-size: 9px; letter-spacing: 0.08em}
@@ -4050,8 +4051,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
   /* ─── Products ─── */
   .pcard-header{padding: 24px 22px 20px}
-  .pcard-name{font-size: 22px}
-  .pcard-tagline{font-size: 12px}
+  .pcard-name{font-size: 36px}
+  .pcard-tagline{font-size: 13px}
   .pcard-body{padding: 22px}
   .pcard-desc{font-size: 13px}
   .pcard-stats{gap: 10px; padding: 12px}
