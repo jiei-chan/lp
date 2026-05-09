@@ -1143,6 +1143,12 @@ section{padding: 100px 24px}
   background-clip: text;
   color: transparent;
 }
+
+/* Mobile-only line break utility (used in section titles to break at 句読点) */
+.mb-br{display: none}
+@media (max-width: 600px){
+  .mb-br{display: inline}
+}
 .section-lead{
   font-size: 17px;
   line-height: 1.9;
@@ -3059,6 +3065,7 @@ section{padding: 100px 24px}
   color: #cbd5e1;
   line-height: 1;
   letter-spacing: -0.05em;
+  transform: translateY(-0.08em);
 }
 
 .bundle-cta-row{
@@ -4373,7 +4380,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     <div class="p3-intro">
       <div class="section-eyebrow" style="justify-content: center; display: inline-flex">— SECTION 02 / Root Cause</div>
       <h2 class="section-title" style="text-align: center">
-        英語学習における、<br><span class="gradient">3つの構造的な問題</span>
+        英語学習における、<br class="mb-br"><span class="gradient">3つの構造的な問題</span>
       </h2>
       <p class="section-lead" style="margin: 0 auto; text-align: center">
         多くの人が見落としている、英語学習における3つの構造的な問題があります。
@@ -4509,7 +4516,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="real-problem-inner">
     <div class="label">— The Real Problem</div>
     <h2>
-      その悩みは <em>勉強法</em> ではなく、<br>
+      その悩みは <em>勉強法</em> ではなく、<br class="mb-br">
       <em>「記憶の入れ方」</em>の問題です。
     </h2>
   </div>
@@ -4522,7 +4529,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="solution-header-text">
         <div class="section-eyebrow">— Solution</div>
         <h2 class="section-title">
-          <span class="blue">import</span> のアプローチは、<br>
+          <span class="blue">import</span> のアプローチは、<br class="mb-br">
           徹底的に異なります。
         </h2>
         <p class="section-lead">
@@ -4687,7 +4694,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     <div class="tb-header">
       <div class="section-eyebrow" style="justify-content: center; display: inline-flex">— Textbook Alternative</div>
       <h2 class="section-title">
-        定番の英単語帳の、<br>
+        定番の英単語帳の、<br class="mb-br">
         <span class="blue">新しい代替案として。</span>
       </h2>
       <p class="section-lead" style="margin: 0 auto">
@@ -5191,7 +5198,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="community-header">
     <div class="section-eyebrow">— Featured by</div>
     <h2 class="section-title">
-      著名なインフルエンサーが、<br>
+      著名なインフルエンサーが、<br class="mb-br">
       <span class="blue">import を紹介。</span>
     </h2>
     <p class="section-lead" style="margin: 0 auto">
