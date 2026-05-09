@@ -1256,6 +1256,28 @@ section{padding: 100px 24px}
   .bubbles-grid{grid-template-columns: 1fr}
 }
 
+/* Pop-in entrance animation for empathy bubbles */
+@keyframes bubble-pop-in{
+  from{
+    opacity: 0;
+    transform: scale(0.92) translateY(14px);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.bubbles-grid .bubble{opacity: 0}
+.bubbles-grid.animate .bubble{
+  animation: bubble-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.bubbles-grid.animate .bubble:nth-child(1){animation-delay: 0s}
+.bubbles-grid.animate .bubble:nth-child(2){animation-delay: 0.10s}
+.bubbles-grid.animate .bubble:nth-child(3){animation-delay: 0.20s}
+.bubbles-grid.animate .bubble:nth-child(4){animation-delay: 0.30s}
+.bubbles-grid.animate .bubble:nth-child(5){animation-delay: 0.40s}
+.bubbles-grid.animate .bubble:nth-child(6){animation-delay: 0.50s}
+
 .bubble{
   display: flex;
   align-items: stretch;
@@ -5849,6 +5871,26 @@ setInterval(updateUrgencyTimer, 1000);
     io.observe(stats);
   } else {
     stats.classList.add('animate');
+  }
+})();
+
+/* Empathy bubbles pop-in animation */
+(function(){
+  const grid = document.querySelector('.bubbles-grid');
+  if (!grid) return;
+
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          grid.classList.add('animate');
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    io.observe(grid);
+  } else {
+    grid.classList.add('animate');
   }
 })();
 </script>
