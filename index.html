@@ -2715,34 +2715,34 @@ section{padding: 100px 24px}
 
 .bundle-title{
   text-align: center;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  line-height: 1.3;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.2;
 }
 .bundle-title-jp{
-  font-size: clamp(13px, 1.5vw, 15px);
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.22em;
   color: var(--text-soft);
   text-transform: none;
 }
 .bundle-title-en{
   font-family: var(--en);
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: clamp(40px, 7vw, 64px);
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   color: var(--ink);
-  line-height: 1.1;
-  margin-top: 2px;
-  margin-bottom: 4px;
+  line-height: 1;
 }
 .bundle-title .blue{
   color: var(--blue);
-  font-size: clamp(18px, 2.6vw, 26px);
-  font-weight: 800;
-  letter-spacing: -0.015em;
+  font-size: clamp(16px, 2.2vw, 22px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2px;
 }
 
 .bundle-sub{
@@ -2804,10 +2804,8 @@ section{padding: 100px 24px}
 
 /* ========================================================
    OFFER CARD (unified pricing + urgency)
-   Color semantics:
-   - Blue (#0066ff)  = trust / value / final price
-   - Red  (#dc2626)  = limited time / savings / urgency
-   - One card, one decision moment
+   - Direct price comparison: ¥10,850 → ¥7,656
+   - Red/orange theme for sale energy on the new price
    ======================================================== */
 .offer-card{
   background: white;
@@ -2818,66 +2816,7 @@ section{padding: 100px 24px}
   box-shadow: 0 8px 32px rgba(15, 23, 42, 0.04);
 }
 
-/* ─── Top strip: context ─── */
-.offer-header{
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 16px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.offer-original{
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-}
-.offer-original-label{
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-soft);
-  letter-spacing: 0.05em;
-}
-.offer-original-price{
-  font-family: var(--en);
-  font-size: 17px;
-  color: var(--muted);
-  text-decoration: line-through;
-  text-decoration-thickness: 1.5px;
-  font-weight: 600;
-}
-
-.offer-savings-pill{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 14px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 100px;
-  font-family: var(--en);
-}
-.savings-amt{
-  font-size: 14px;
-  font-weight: 800;
-  color: #dc2626;
-  letter-spacing: -0.01em;
-}
-.savings-divider{
-  width: 1px;
-  height: 12px;
-  background: #fecaca;
-}
-.savings-pct{
-  font-size: 12px;
-  font-weight: 800;
-  color: #dc2626;
-  letter-spacing: 0.02em;
-}
-
-/* ─── Hero price ─── */
+/* ─── Hero zone ─── */
 .offer-hero{
   padding: 36px 32px 32px;
   text-align: center;
@@ -2885,30 +2824,153 @@ section{padding: 100px 24px}
 .offer-eyebrow{
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.14em;
-  color: var(--blue);
-  margin-bottom: 8px;
+  letter-spacing: 0.16em;
+  color: #dc2626;
+  margin-bottom: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
-.offer-price{
+.offer-eyebrow::before{
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #dc2626;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+}
+
+/* Direct comparison: ¥10,850 → ¥7,656 */
+.offer-compare{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+.compare-from,
+.compare-to{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.compare-label{
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-soft);
+  letter-spacing: 0.06em;
+}
+.compare-label-now{
+  font-size: 11px;
+  font-weight: 800;
+  color: #dc2626;
+  letter-spacing: 0.08em;
+}
+.compare-strike{
+  font-family: var(--en);
+  font-size: clamp(22px, 3.5vw, 28px);
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(100, 116, 139, 0.6);
+  font-weight: 700;
+  line-height: 1;
+}
+.compare-now{
   font-family: var(--en);
   font-size: clamp(56px, 9vw, 84px);
   font-weight: 900;
   letter-spacing: -0.045em;
   line-height: 0.95;
-  color: var(--blue);
-  margin-bottom: 12px;
+  color: #e11d48;
 }
-.offer-price .yen{
+.compare-now .yen{
   font-size: 0.5em;
   vertical-align: top;
   font-weight: 800;
   line-height: 1.2;
   margin-right: 2px;
+  color: #be123c;
 }
+.compare-arrow{
+  color: #e11d48;
+  align-self: center;
+  margin-top: 14px;
+  flex-shrink: 0;
+}
+
+/* Savings bar */
+.offer-savings-bar{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 1px solid #fecaca;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+.savings-big{
+  font-family: var(--en);
+  font-size: 16px;
+  font-weight: 900;
+  color: #dc2626;
+  letter-spacing: -0.015em;
+}
+.savings-bar-divider{
+  width: 1px;
+  height: 14px;
+  background: #fecaca;
+}
+.savings-pct-big{
+  font-family: var(--en);
+  font-size: 16px;
+  font-weight: 900;
+  color: #dc2626;
+  letter-spacing: -0.005em;
+}
+.savings-pct-big .pct-sym{
+  font-size: 0.85em;
+  margin: 0 1px;
+}
+
 .offer-tax{
   font-size: 12px;
   color: var(--text-soft);
   font-weight: 500;
+}
+
+/* Mobile: stack comparison vertically, arrow rotates */
+@media (max-width: 600px){
+  .offer-hero{padding: 28px 20px 24px}
+  .offer-eyebrow{margin-bottom: 18px}
+  .offer-compare{
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 18px;
+  }
+  .compare-arrow{
+    transform: rotate(90deg);
+    margin: 4px 0;
+  }
+  .compare-arrow svg{width: 24px; height: 24px}
+  .compare-strike{font-size: 22px}
+  .compare-now{font-size: 56px}
+  .offer-savings-bar{
+    padding: 9px 16px;
+    gap: 10px;
+  }
+  .savings-big,
+  .savings-pct-big{font-size: 14px}
+  .offer-urgency{padding: 18px 16px 20px}
+  .urgency-grid{gap: 3px}
+  .urgency-block{min-width: 44px}
+  .urgency-num{font-size: 30px}
+  .urgency-lbl{font-size: 9px; letter-spacing: 0.14em}
+  .urgency-sep{font-size: 24px; margin-bottom: 14px}
+  .urgency-header{font-size: 11.5px}
 }
 
 /* ─── Urgency / Countdown ─── */
@@ -2971,23 +3033,6 @@ section{padding: 100px 24px}
   line-height: 1;
   margin-bottom: 18px;
   letter-spacing: -0.05em;
-}
-
-@media (max-width: 600px){
-  .offer-header{padding: 14px 20px; gap: 10px}
-  .offer-original-price{font-size: 15px}
-  .offer-savings-pill{padding: 5px 11px; gap: 8px}
-  .savings-amt{font-size: 13px}
-  .savings-pct{font-size: 11px}
-  .offer-hero{padding: 28px 20px 24px}
-  .offer-price{font-size: 56px}
-  .offer-urgency{padding: 18px 16px 20px}
-  .urgency-grid{gap: 3px}
-  .urgency-block{min-width: 44px}
-  .urgency-num{font-size: 30px}
-  .urgency-lbl{font-size: 9px; letter-spacing: 0.14em}
-  .urgency-sep{font-size: 24px; margin-bottom: 14px}
-  .urgency-header{font-size: 11.5px}
 }
 
 .bundle-cta-row{
@@ -3850,7 +3895,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <div class="announce">
   <div class="announce-inner">
     <span class="pill"><span class="dot"></span>GW LIMITED</span>
-    <span>期間限定 import 完全版 <strong>29% OFF</strong> ／ <strong>3,150円OFF</strong> 実施中</span>
+    <span>期間限定 import 完全版 <strong>29% OFF</strong> ／ <strong>3,194円OFF</strong> 実施中</span>
     <span class="period">5/2 → 5/10</span>
   </div>
 </div>
@@ -4675,7 +4720,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <td class="row-label">料金</td>
             <td><span class="partial">△</span>1冊 ¥1,500〜2,500</td>
             <td><span class="cross">×</span>月額 ¥1,500〜3,000</td>
-            <td class="import-cell"><span class="check">✓</span>買い切り ¥7,700</td>
+            <td class="import-cell"><span class="check">✓</span>買い切り ¥7,656</td>
           </tr>
         </tbody>
       </table>
@@ -5028,23 +5073,31 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       </div>
 
       <div class="offer-card">
-        <!-- Top strip: context (original price + savings) -->
-        <div class="offer-header">
-          <div class="offer-original">
-            <span class="offer-original-label">通常価格</span>
-            <span class="num offer-original-price">¥10,850</span>
-          </div>
-          <div class="offer-savings-pill">
-            <span class="num savings-amt">−¥3,150</span>
-            <span class="savings-divider"></span>
-            <span class="num savings-pct">29% OFF</span>
-          </div>
-        </div>
-
-        <!-- Hero price -->
         <div class="offer-hero">
-          <div class="offer-eyebrow">▸ 今だけ特別価格</div>
-          <div class="num offer-price"><span class="yen">¥</span>7,700</div>
+          <div class="offer-eyebrow">今だけ特別価格</div>
+
+          <!-- Direct price comparison -->
+          <div class="offer-compare">
+            <div class="compare-from">
+              <div class="compare-label">通常価格</div>
+              <div class="num compare-strike">¥10,850</div>
+            </div>
+            <div class="compare-arrow" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="compare-to">
+              <div class="compare-label-now">バンドル価格</div>
+              <div class="num compare-now"><span class="yen">¥</span>7,656</div>
+            </div>
+          </div>
+
+          <!-- Savings bar -->
+          <div class="offer-savings-bar">
+            <span class="num savings-big">−¥3,194</span>
+            <span class="savings-bar-divider"></span>
+            <span class="num savings-pct-big">29<span class="pct-sym">%</span> OFF</span>
+          </div>
+
           <div class="offer-tax">税込・買い切り型・追加課金なし</div>
         </div>
 
@@ -5455,7 +5508,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <div class="sticky-cta">
   <div class="info">
     <div class="label">3教材バンドル</div>
-    <div class="price"><span class="strike">¥10,850</span>¥7,700</div>
+    <div class="price"><span class="strike">¥10,850</span>¥7,656</div>
   </div>
   <a href="#bundle" class="btn btn-primary-blue">購入する</a>
 </div>
