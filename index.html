@@ -1105,6 +1105,22 @@ body{
   );
 }
 .stat-item{text-align: left}
+
+/* Stagger fade-in animation */
+.authority-stats-new .stat-item{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1),
+              transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.authority-stats-new.animate .stat-item{
+  opacity: 1;
+  transform: translateY(0);
+}
+.authority-stats-new.animate .stat-item:nth-child(1){transition-delay: 0s}
+.authority-stats-new.animate .stat-item:nth-child(2){transition-delay: 0.15s}
+.authority-stats-new.animate .stat-item:nth-child(3){transition-delay: 0.30s}
+
 .stat-num{
   font-family: var(--en);
   font-size: clamp(20px, 2.6vw, 28px);
@@ -5813,6 +5829,26 @@ setInterval(updateUrgencyTimer, 1000);
     io.observe(card);
   } else {
     card.classList.add('animate');
+  }
+})();
+
+/* Authority stats card stagger animation */
+(function(){
+  const stats = document.querySelector('.authority-stats-new');
+  if (!stats) return;
+
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          stats.classList.add('animate');
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(stats);
+  } else {
+    stats.classList.add('animate');
   }
 })();
 </script>
