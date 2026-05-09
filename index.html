@@ -2363,9 +2363,9 @@ section{padding: 100px 24px}
   box-shadow: 0 4px 14px rgba(0, 102, 255, 0.3);
 }
 
-/* Top section: label + name + tagline + image */
+/* Top section: label + name + tagline (image is now sibling, above this) */
 .pcard-top{
-  padding: 32px 28px 0;
+  padding: 28px 28px 0;
   position: relative;
 }
 .pcard-label{
@@ -2373,32 +2373,30 @@ section{padding: 100px 24px}
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.18em;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .pcard-name{
   font-family: var(--en);
-  font-size: clamp(40px, 3.6vw, 52px);
+  font-size: clamp(34px, 3vw, 42px);
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.04;
-  margin-bottom: 14px;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 10px;
 }
 .pcard-tagline{
   font-size: 14px;
   color: var(--text);
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.55;
   margin-bottom: 0;
 }
 
-/* Hero image area - full-bleed, square */
+/* Hero image area - top of card, full bleed */
 .pcard-image{
   position: relative;
-  width: calc(100% + 56px);
-  margin: 28px -28px 0;
+  width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 0;
 }
 .pcard-image picture,
 .pcard-image img{
@@ -2606,11 +2604,10 @@ section{padding: 100px 24px}
 .pcard-price-bundle .amount{color: #0d9488}
 
 @media (max-width: 768px){
-  .pcard-top{padding: 28px 24px 0}
+  .pcard-top{padding: 22px 22px 0}
   .pcard-bottom{padding: 22px}
-  .pcard-name{font-size: 40px}
-  .pcard-tagline{font-size: 14px}
-  .pcard-image{width: calc(100% + 48px); margin: 24px -24px 0}
+  .pcard-name{font-size: 32px}
+  .pcard-tagline{font-size: 13.5px}
   .pcard-stats{gap: 6px}
   .pcard-stats .stat-num{font-size: 18px}
   .pcard-stats .stat-label{font-size: 9px; letter-spacing: 0.08em}
@@ -4051,7 +4048,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
   /* ─── Products ─── */
   .pcard-header{padding: 24px 22px 20px}
-  .pcard-name{font-size: 36px}
+  .pcard-name{font-size: 30px}
   .pcard-tagline{font-size: 13px}
   .pcard-body{padding: 22px}
   .pcard-desc{font-size: 13px}
@@ -5059,23 +5056,23 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
     <!-- Product 01: Essential Verbs -->
     <article class="pcard pcard-blue">
+      <div class="pcard-image">
+        <picture>
+          <img src="images/product-essential.png" alt="Essential Verbs" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="pcard-image-fallback">
+          <div class="pkg pkg-blue">
+            <div class="pkg-name">Essential<br>Verbs</div>
+            <div class="pkg-num">400</div>
+            <div class="pkg-tag">Remastered</div>
+            <div class="pkg-brand">import</div>
+          </div>
+        </div>
+      </div>
       <div class="pcard-top">
         <div class="pcard-label">PRODUCT 01</div>
         <h3 class="pcard-name">Essential<br>Verbs</h3>
         <p class="pcard-tagline">頻出400句動詞を、<br>映像で完全マスター</p>
-        <div class="pcard-image">
-          <picture>
-            <img src="images/product-essential.png" alt="Essential Verbs" onerror="this.parentElement.parentElement.classList.add('no-image')" />
-          </picture>
-          <div class="pcard-image-fallback">
-            <div class="pkg pkg-blue">
-              <div class="pkg-name">Essential<br>Verbs</div>
-              <div class="pkg-num">400</div>
-              <div class="pkg-tag">Remastered</div>
-              <div class="pkg-brand">import</div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="pcard-bottom">
@@ -5109,22 +5106,22 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
     <!-- Product 02: NativeDose -->
     <article class="pcard pcard-purple">
+      <div class="pcard-image">
+        <picture>
+          <img src="images/product-nativedose.png" alt="NativeDose" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="pcard-image-fallback">
+          <div class="pkg pkg-purple">
+            <div class="pkg-name">NativeDose<br>Dose Up!</div>
+            <div class="pkg-tag">Native Expression<br>Booster</div>
+            <div class="pkg-brand">import</div>
+          </div>
+        </div>
+      </div>
       <div class="pcard-top">
         <div class="pcard-label">PRODUCT 02</div>
         <h3 class="pcard-name">NativeDose</h3>
         <p class="pcard-tagline">ネイティブの「口癖」を、<br>感覚で身につける</p>
-        <div class="pcard-image">
-          <picture>
-            <img src="images/product-nativedose.png" alt="NativeDose" onerror="this.parentElement.parentElement.classList.add('no-image')" />
-          </picture>
-          <div class="pcard-image-fallback">
-            <div class="pkg pkg-purple">
-              <div class="pkg-name">NativeDose<br>Dose Up!</div>
-              <div class="pkg-tag">Native Expression<br>Booster</div>
-              <div class="pkg-brand">import</div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="pcard-bottom">
@@ -5159,23 +5156,23 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     <!-- Product 03: Silver Express -->
     <article class="pcard pcard-teal">
       <div class="pcard-bundle-badge">BUNDLE限定</div>
+      <div class="pcard-image">
+        <picture>
+          <img src="images/product-silver.png" alt="Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="pcard-image-fallback">
+          <div class="pkg pkg-teal">
+            <div class="pkg-name">Silver<br>Express</div>
+            <div class="pkg-tag">Business Words<br>Master Pack</div>
+            <div class="pkg-num">268+</div>
+            <div class="pkg-brand">import</div>
+          </div>
+        </div>
+      </div>
       <div class="pcard-top">
         <div class="pcard-label">PRODUCT 03</div>
         <h3 class="pcard-name">Silver<br>Express</h3>
         <p class="pcard-tagline">ビジネス基礎単語と、<br>多義語の本当の意味</p>
-        <div class="pcard-image">
-          <picture>
-            <img src="images/product-silver.png" alt="Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
-          </picture>
-          <div class="pcard-image-fallback">
-            <div class="pkg pkg-teal">
-              <div class="pkg-name">Silver<br>Express</div>
-              <div class="pkg-tag">Business Words<br>Master Pack</div>
-              <div class="pkg-num">268+</div>
-              <div class="pkg-brand">import</div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="pcard-bottom">
