@@ -1442,36 +1442,8 @@ section{padding: 100px 24px}
   position: relative;
   z-index: 2;
 }
-.p3-card-image.no-image picture{
-  display: none;
-}
-.p3-card-image .p3-image-fallback{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: rgba(15, 23, 42, 0.18);
-  font-family: var(--en);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  z-index: 1;
-}
 .p3-card-image picture img{
-  /* When image loads successfully, hide fallback */
-}
-.p3-card-blue .p3-image-fallback{
-  background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, rgba(59, 130, 246, 0.08) 100%);
-}
-.p3-card-purple .p3-image-fallback{
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(168, 85, 247, 0.08) 100%);
-}
-.p3-card-green .p3-image-fallback{
-  background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(16, 185, 129, 0.08) 100%);
+  /* image styles applied directly above */
 }
 
 /* Body text */
@@ -4416,15 +4388,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </h3>
         <div class="p3-card-image">
           <picture>
-            <img src="images/problem-01.png" alt="文字暗記の問題" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+            <img src="images/problem-01.png" alt="文字暗記の問題" />
           </picture>
-          <div class="p3-image-fallback">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-            <span>image</span>
-          </div>
         </div>
         <p class="p3-card-body">
           単語帳で覚えた単語は、視覚情報のみで記憶される脆い知識。1週間後には大半が消失することが、認知心理学の研究で明らかになっています。
@@ -4452,16 +4417,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </h3>
         <div class="p3-card-image">
           <picture>
-            <img src="images/problem-02.png" alt="日本語訳の限界" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+            <img src="images/problem-02.png" alt="日本語訳の限界" />
           </picture>
-          <div class="p3-image-fallback">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            <span>image</span>
-          </div>
         </div>
         <p class="p3-card-body">
           "take off" を「離陸する」とだけ覚えても、ネイティブの会話では追いつかない。多義語・句動詞は文脈と感覚で覚えるべきものです。
@@ -4489,16 +4446,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </h3>
         <div class="p3-card-image">
           <picture>
-            <img src="images/problem-03.png" alt="教科書英語のギャップ" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+            <img src="images/problem-03.png" alt="教科書英語のギャップ" />
           </picture>
-          <div class="p3-image-fallback">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 6.1H3"/>
-              <path d="M21 12.1H3"/>
-              <path d="M15.1 18H3"/>
-            </svg>
-            <span>image</span>
-          </div>
         </div>
         <p class="p3-card-body">
           "How are you?" — "I'm fine, thank you." は、ネイティブはほぼ使わない表現。実際の会話で頻出するイディオムやスラングは、教科書には載っていません。
