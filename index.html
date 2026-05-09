@@ -2143,18 +2143,21 @@ section{padding: 100px 24px}
 /* ========== ACHIEVEMENT BAND ========== */
 .achievement{
   --gold: #f0c419;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
+  background: #0a0d14;
   color: white;
   padding: 64px 24px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 .achievement::before{
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(240, 196, 25, 0.18) 0%, transparent 60%);
+  background: radial-gradient(ellipse 50% 70% at 50% 55%, rgba(240, 196, 25, 0.08) 0%, transparent 65%);
+  pointer-events: none;
 }
 .achievement-inner{position: relative}
 .achievement .label{
@@ -2165,8 +2168,8 @@ section{padding: 100px 24px}
   color: var(--gold);
   margin-bottom: 16px;
   text-shadow:
-    0 0 10px rgba(240, 196, 25, 0.45),
-    0 0 22px rgba(240, 196, 25, 0.20);
+    0 0 8px rgba(240, 196, 25, 0.35),
+    0 0 14px rgba(240, 196, 25, 0.15);
 }
 .achievement .big{
   font-family: var(--en);
@@ -2181,18 +2184,16 @@ section{padding: 100px 24px}
 }
 .achievement .big .num{
   text-shadow:
-    0 0 20px rgba(255, 255, 255, 0.22),
-    0 0 40px rgba(255, 255, 255, 0.12),
-    0 0 60px rgba(240, 196, 25, 0.18);
+    0 0 14px rgba(255, 255, 255, 0.18),
+    0 0 26px rgba(255, 255, 255, 0.08);
 }
 .achievement .big .plus{
   color: var(--gold);
   font-size: 0.7em;
   font-family: var(--en);
   text-shadow:
-    0 0 14px rgba(240, 196, 25, 0.6),
-    0 0 28px rgba(240, 196, 25, 0.32),
-    0 0 44px rgba(240, 196, 25, 0.15);
+    0 0 10px rgba(240, 196, 25, 0.5),
+    0 0 18px rgba(240, 196, 25, 0.22);
 }
 .achievement .big .suffix{
   color: var(--gold);
@@ -2202,8 +2203,8 @@ section{padding: 100px 24px}
   letter-spacing: 0.02em;
   margin-left: 4px;
   text-shadow:
-    0 0 12px rgba(240, 196, 25, 0.55),
-    0 0 24px rgba(240, 196, 25, 0.25);
+    0 0 8px rgba(240, 196, 25, 0.45),
+    0 0 14px rgba(240, 196, 25, 0.18);
 }
 .achievement .desc{
   margin-top: 16px;
@@ -4153,7 +4154,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="achievement-inner">
     <div class="label">— 累計受講者数</div>
     <div class="big">
-      <span class="num">20,000</span>
+      <span class="num" id="achievement-count" data-target="20000">0</span>
       <span class="num plus">+</span>
       <span class="num suffix">人突破！</span>
     </div>
@@ -5633,6 +5634,47 @@ function updateUrgencyTimer(){
 }
 updateUrgencyTimer();
 setInterval(updateUrgencyTimer, 1000);
+
+/* Count-up animation for achievement number */
+(function(){
+  const el = document.getElementById('achievement-count');
+  if (!el) return;
+
+  const target = parseInt(el.dataset.target, 10) || 20000;
+  let started = false;
+
+  function animateCount(){
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function tick(now){
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(target * eased);
+      el.textContent = current.toLocaleString('en-US');
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !started){
+          started = true;
+          animateCount();
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+  } else {
+    // Fallback: just show final number
+    el.textContent = target.toLocaleString('en-US');
+  }
+})();
 </script>
 
 </body>
