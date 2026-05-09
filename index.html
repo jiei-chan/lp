@@ -978,6 +978,39 @@ body{
   max-width: 100%;
 }
 
+/* Chart entrance animation */
+.ig-chart .ig-chart-area{
+  opacity: 0;
+  transition: opacity 0.7s ease 0.4s;
+}
+.ig-chart .ig-chart-line{
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.ig-chart .ig-chart-points circle{
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.ig-chart .ig-tooltip{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.ig-chart.animate .ig-chart-area{opacity: 1}
+.ig-chart.animate .ig-chart-line{stroke-dashoffset: 0}
+.ig-chart.animate .ig-chart-points circle:nth-child(1){opacity: 1; transition-delay: 0.05s}
+.ig-chart.animate .ig-chart-points circle:nth-child(2){opacity: 1; transition-delay: 0.20s}
+.ig-chart.animate .ig-chart-points circle:nth-child(3){opacity: 1; transition-delay: 0.35s}
+.ig-chart.animate .ig-chart-points circle:nth-child(4){opacity: 1; transition-delay: 0.50s}
+.ig-chart.animate .ig-chart-points circle:nth-child(5){opacity: 1; transition-delay: 0.70s}
+.ig-chart.animate .ig-chart-points circle:nth-child(6){opacity: 1; transition-delay: 0.90s}
+.ig-chart.animate .ig-chart-points circle:nth-child(7){opacity: 1; transition-delay: 1.10s}
+.ig-chart.animate .ig-chart-points circle:nth-child(8){opacity: 1; transition-delay: 1.30s}
+.ig-chart.animate .ig-chart-points circle:nth-child(9){opacity: 1; transition-delay: 1.45s}
+.ig-chart.animate .ig-chart-points circle:nth-child(10){opacity: 1; transition-delay: 1.55s}
+.ig-chart.animate .ig-tooltip{opacity: 1; transition-delay: 1.7s}
+
 /* Mobile */
 @media (max-width: 900px){
   .ig-growth-card{
@@ -4314,25 +4347,34 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <text x="535" y="372" text-anchor="end" font-size="15" fill="#64748b" font-family="-apple-system, system-ui, sans-serif">6ヶ月</text>
 
             <!-- Filled area under curve -->
-            <path d="M 86 340
-                     L 136 335
-                     L 186 325
-                     L 236 308
-                     L 286 282
-                     L 336 244
-                     L 386 192
-                     L 436 138
-                     L 486 100
-                     L 525 80
-                     L 525 340 L 86 340 Z"
+            <path class="ig-chart-area" d="M 86,340
+                     C 94.33,339.17 119.33,337.5 136,335
+                     C 152.67,332.5 169.33,329.5 186,325
+                     C 202.67,320.5 219.33,315.17 236,308
+                     C 252.67,300.83 269.33,292.67 286,282
+                     C 302.67,271.33 319.33,259 336,244
+                     C 352.67,229 369.33,209.67 386,192
+                     C 402.67,174.33 419.33,153.33 436,138
+                     C 452.67,122.67 471.17,109.67 486,100
+                     C 500.83,90.33 518.5,83.33 525,80
+                     L 525,340 L 86,340 Z"
                   fill="url(#chartGrad)"/>
 
-            <!-- Growth line - polyline through actual data points -->
-            <polyline points="86,340 136,335 186,325 236,308 286,282 336,244 386,192 436,138 486,100 525,80"
+            <!-- Growth line - smooth cubic bezier through data points -->
+            <path class="ig-chart-line" pathLength="100" d="M 86,340
+                     C 94.33,339.17 119.33,337.5 136,335
+                     C 152.67,332.5 169.33,329.5 186,325
+                     C 202.67,320.5 219.33,315.17 236,308
+                     C 252.67,300.83 269.33,292.67 286,282
+                     C 302.67,271.33 319.33,259 336,244
+                     C 352.67,229 369.33,209.67 386,192
+                     C 402.67,174.33 419.33,153.33 436,138
+                     C 452.67,122.67 471.17,109.67 486,100
+                     C 500.83,90.33 518.5,83.33 525,80"
                   fill="none" stroke="#0066ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 
             <!-- Data points - exactly on the line -->
-            <g fill="#0066ff">
+            <g class="ig-chart-points" fill="#0066ff">
               <circle cx="86" cy="340" r="5"/>
               <circle cx="136" cy="335" r="5"/>
               <circle cx="186" cy="325" r="5"/>
@@ -5673,6 +5715,27 @@ setInterval(updateUrgencyTimer, 1000);
   } else {
     // Fallback: just show final number
     el.textContent = target.toLocaleString('en-US');
+  }
+})();
+
+/* Instagram growth chart animation */
+(function(){
+  const chart = document.querySelector('.ig-chart');
+  if (!chart) return;
+
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          chart.classList.add('animate');
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    io.observe(chart);
+  } else {
+    // Fallback: show all immediately
+    chart.classList.add('animate');
   }
 })();
 </script>
