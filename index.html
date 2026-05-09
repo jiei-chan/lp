@@ -2315,36 +2315,31 @@ section{padding: 100px 24px}
   box-shadow: 0 24px 60px rgba(10, 22, 40, 0.1);
 }
 
-/* Color themes (light gradient backgrounds matching the screenshot) */
+/* Color themes - solid brand color background, white text */
+.pcard{color: white}
+.pcard .pcard-label{color: white}
+.pcard .pcard-name{color: white}
+.pcard .pcard-tagline{color: rgba(255, 255, 255, 0.88)}
+.pcard .pcard-stats{border-bottom-color: rgba(255, 255, 255, 0.18)}
+.pcard .stat-num{color: white}
+.pcard .stat-label{color: rgba(255, 255, 255, 0.6)}
+.pcard .pcard-features li{color: rgba(255, 255, 255, 0.92)}
+.pcard .pcard-features li::before{background: rgba(255, 255, 255, 0.18)}
+.pcard .pcard-features li::after{border-color: white}
+
+/* Per-product brand colors */
 .pcard-blue{
-  background: linear-gradient(180deg, #eef5ff 0%, #ffffff 60%);
-  border-color: #d4e6ff;
+  background: #0066ff;
+  border-color: #0066ff;
 }
-.pcard-blue .pcard-label,
-.pcard-blue .pcard-name,
-.pcard-blue .stat-num{color: #0066ff}
-.pcard-blue .pcard-features li::before{background: rgba(0, 102, 255, 0.12)}
-.pcard-blue .pcard-features li::after{border-color: #0066ff}
-
 .pcard-purple{
-  background: linear-gradient(180deg, #f3eeff 0%, #ffffff 60%);
-  border-color: #e0d4ff;
+  background: #7c3aed;
+  border-color: #7c3aed;
 }
-.pcard-purple .pcard-label,
-.pcard-purple .pcard-name,
-.pcard-purple .stat-num{color: #7c3aed}
-.pcard-purple .pcard-features li::before{background: rgba(124, 58, 237, 0.12)}
-.pcard-purple .pcard-features li::after{border-color: #7c3aed}
-
 .pcard-teal{
-  background: linear-gradient(180deg, #e6f7f5 0%, #ffffff 60%);
-  border-color: #c5e8e2;
+  background: #334155;
+  border-color: #334155;
 }
-.pcard-teal .pcard-label,
-.pcard-teal .pcard-name,
-.pcard-teal .stat-num{color: #0d9488}
-.pcard-teal .pcard-features li::before{background: rgba(13, 148, 136, 0.12)}
-.pcard-teal .pcard-features li::after{border-color: #0d9488}
 
 /* Bundle-only badge (top-right of card) */
 .pcard-bundle-badge{
@@ -2480,13 +2475,12 @@ section{padding: 100px 24px}
 
 /* Bottom section (white background) */
 .pcard-bottom{
-  background: white;
+  background: transparent;
   padding: 28px;
   margin-top: 16px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-radius: 24px 24px 0 0;
 }
 
 .pcard-stats{
@@ -2560,13 +2554,13 @@ section{padding: 100px 24px}
   align-items: baseline;
   justify-content: space-between;
   padding: 16px 20px;
-  background: var(--bg-soft);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   margin-top: auto;
 }
 .pcard-price .label{
   font-size: 12px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 700;
   letter-spacing: 0.05em;
 }
@@ -2574,27 +2568,27 @@ section{padding: 100px 24px}
   font-family: var(--en);
   font-size: 26px;
   font-weight: 800;
-  color: var(--ink);
+  color: white;
   letter-spacing: -0.02em;
 }
 .pcard-price .yen{font-size: 16px; margin-right: 1px}
 .pcard-price .amount-text{
   font-size: 14px;
   font-weight: 700;
-  color: #0d9488;
+  color: white;
   letter-spacing: -0.01em;
 }
 .pcard-price-bundle{
-  background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(20, 184, 166, 0.12) 100%);
-  border: 1px dashed rgba(13, 148, 136, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
 }
 .pcard-price-bundle .label-bundle{
   display: inline-flex;
   align-items: center;
   gap: 4px;
   padding: 5px 10px;
-  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
-  color: white;
+  background: white;
+  color: #334155;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
