@@ -2997,7 +2997,8 @@ section{padding: 100px 24px}
   .urgency-grid{column-gap: 4px}
   .urgency-num{font-size: 28px; min-width: 40px}
   .urgency-lbl{font-size: 9px; letter-spacing: 0.12em}
-  .urgency-sep{font-size: 22px}
+  .urgency-sep{padding: 0 2px; gap: 5px}
+  .urgency-sep span{width: 4px; height: 4px}
 }
 
 /* ─── Urgency / Countdown ─── */
@@ -3059,13 +3060,18 @@ section{padding: 100px 24px}
 .urgency-sep{
   grid-row: 1;
   align-self: center;
-  font-family: var(--en);
-  font-size: clamp(28px, 5vw, 36px);
-  font-weight: 700;
-  color: #cbd5e1;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  transform: translateY(-0.08em);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 4px;
+}
+.urgency-sep span{
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #cbd5e1;
 }
 
 .bundle-cta-row{
@@ -5145,17 +5151,17 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
               <span class="urgency-num" id="cd-days">--</span>
               <span class="urgency-lbl">DAYS</span>
             </div>
-            <span class="urgency-sep">:</span>
+            <span class="urgency-sep" aria-hidden="true"><span></span><span></span></span>
             <div class="urgency-block">
               <span class="urgency-num" id="cd-hours">--</span>
               <span class="urgency-lbl">HRS</span>
             </div>
-            <span class="urgency-sep">:</span>
+            <span class="urgency-sep" aria-hidden="true"><span></span><span></span></span>
             <div class="urgency-block">
               <span class="urgency-num" id="cd-min">--</span>
               <span class="urgency-lbl">MIN</span>
             </div>
-            <span class="urgency-sep">:</span>
+            <span class="urgency-sep" aria-hidden="true"><span></span><span></span></span>
             <div class="urgency-block">
               <span class="urgency-num" id="cd-sec">--</span>
               <span class="urgency-lbl">SEC</span>
