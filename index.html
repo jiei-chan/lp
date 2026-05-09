@@ -2942,35 +2942,56 @@ section{padding: 100px 24px}
   font-weight: 500;
 }
 
-/* Mobile: stack comparison vertically, arrow rotates */
+/* Mobile: compact, edge-to-edge, no blue border */
 @media (max-width: 600px){
-  .offer-hero{padding: 28px 20px 24px}
-  .offer-eyebrow{margin-bottom: 18px}
+  .bundle-card{
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .bundle-card-inner{
+    padding: 24px 0 0;
+  }
+
+  .offer-card{
+    margin-top: 4px;
+    border-radius: 18px;
+  }
+  .offer-hero{padding: 24px 18px 22px}
+  .offer-eyebrow{margin-bottom: 14px; font-size: 11px; letter-spacing: 0.14em}
+
+  /* Compact comparison: just strike + big red, no arrow */
   .offer-compare{
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
-  .compare-arrow{
-    transform: rotate(90deg);
-    margin: 4px 0;
-  }
-  .compare-arrow svg{width: 24px; height: 24px}
-  .compare-strike{font-size: 22px}
-  .compare-now{font-size: 56px}
+  .compare-from .compare-label,
+  .compare-to .compare-label-now{display: none}
+  .compare-arrow{display: none}
+  .compare-strike{font-size: 18px}
+  .compare-now{font-size: 64px}
+
+  /* Compact savings pill */
   .offer-savings-bar{
-    padding: 9px 16px;
+    padding: 8px 16px;
     gap: 10px;
   }
   .savings-big,
-  .savings-pct-big{font-size: 14px}
-  .offer-urgency{padding: 18px 16px 20px}
-  .urgency-grid{gap: 3px}
-  .urgency-block{min-width: 44px}
-  .urgency-num{font-size: 30px}
-  .urgency-lbl{font-size: 9px; letter-spacing: 0.14em}
-  .urgency-sep{font-size: 24px; margin-bottom: 14px}
-  .urgency-header{font-size: 11.5px}
+  .savings-pct-big{font-size: 14px; white-space: nowrap}
+  .savings-pct-big .pct-sym{font-size: 0.8em}
+
+  .offer-tax{font-size: 11.5px}
+
+  /* Countdown: fit fully */
+  .offer-urgency{padding: 16px 12px 18px}
+  .urgency-header{font-size: 11.5px; margin-bottom: 12px; gap: 6px}
+  .urgency-grid{gap: 2px}
+  .urgency-block{min-width: 40px}
+  .urgency-num{font-size: 28px}
+  .urgency-lbl{font-size: 9px; letter-spacing: 0.12em; margin-top: 4px}
+  .urgency-sep{font-size: 22px; margin-bottom: 14px; margin: 0 -2px 14px}
 }
 
 /* ─── Urgency / Countdown ─── */
@@ -3827,8 +3848,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .pcard-features li{font-size: 12px}
 
   /* ─── Bundle card ─── */
-  .bundle{padding: 40px 20px}
-  .bundle-card{padding: 32px 20px}
+  .bundle{padding: 40px 16px}
+  .bundle-card{padding: 0}
   .bundle-ribbon{font-size: 11px; padding: 6px 16px; letter-spacing: 0.1em}
   .bundle-products{gap: 12px}
   .bundle-icon{width: 52px; height: 52px; font-size: 16px}
