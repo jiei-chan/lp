@@ -2327,17 +2327,23 @@ section{padding: 100px 24px}
 .pcard .pcard-features li::before{background: rgba(255, 255, 255, 0.18)}
 .pcard .pcard-features li::after{border-color: white}
 
-/* Per-product brand colors */
+/* Per-product brand colors with luxurious gradients */
 .pcard-blue{
-  background: #0066ff;
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.12) 0%, transparent 55%),
+    linear-gradient(160deg, #1a7aff 0%, #0066ff 45%, #0046b8 100%);
   border-color: #0066ff;
 }
 .pcard-purple{
-  background: #7c3aed;
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.14) 0%, transparent 55%),
+    linear-gradient(160deg, #9555f7 0%, #7c3aed 45%, #5b21b6 100%);
   border-color: #7c3aed;
 }
 .pcard-teal{
-  background: #334155;
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.10) 0%, transparent 55%),
+    linear-gradient(160deg, #475569 0%, #334155 45%, #1e293b 100%);
   border-color: #334155;
 }
 
@@ -2587,15 +2593,15 @@ section{padding: 100px 24px}
   align-items: center;
   gap: 4px;
   padding: 5px 10px;
-  background: white;
-  color: #334155;
+  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  color: white;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
   border-radius: 100px;
-  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.35);
 }
-.pcard-price-bundle .amount{color: #0d9488}
+.pcard-price-bundle .amount{color: white}
 
 @media (max-width: 768px){
   .pcard-top{padding: 22px 22px 0}
