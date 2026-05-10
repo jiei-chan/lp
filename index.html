@@ -1683,7 +1683,28 @@ section{padding: 100px 24px}
 }
 
 /* ========== SOLUTION ========== */
-.solution{background: white; padding-top: 120px}
+.solution{
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0, 102, 255, 0.14) 0%, transparent 65%),
+    linear-gradient(180deg, #0d1730 0%, #0a1226 100%);
+  padding: 120px 0 140px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Solution dark theme: text colors */
+.solution .section-eyebrow{color: var(--accent)}
+.solution .section-eyebrow::before{background: var(--accent)}
+.solution .section-title{color: white}
+.solution .section-title .blue{color: var(--blue-light)}
+.solution .section-lead{color: rgba(255, 255, 255, 0.72)}
+
+/* Solution dark theme: card shadows for depth on dark bg */
+.solution .compare-visual,
+.solution .solution-points{
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.08);
+}
 
 /* Header section */
 .solution-header{
