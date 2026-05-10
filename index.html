@@ -244,10 +244,12 @@ body{
     display: block;
     align-items: stretch;
     position: relative;
+    overflow: visible;
   }
   .hero-bg{
     position: absolute;
     inset: 0;
+    bottom: -160px;
     z-index: 0;
   }
   .hero-bg img{
@@ -305,31 +307,21 @@ body{
 .hero-below{
   position: relative;
   z-index: 2;
-  margin-top: 0;
-  padding: 56px 20px 48px;
-  background:
-    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(77, 148, 255, 0.18) 0%, transparent 65%),
-    linear-gradient(180deg,
-      #1a2848 0%,
-      #14203b 40%,
-      #0f1a30 100%
-    );
+  margin-top: -160px;
+  padding: 180px 20px 48px;
+  background: linear-gradient(180deg,
+    transparent 0,
+    transparent 110px,
+    rgba(15, 26, 48, 0.5) 135px,
+    rgba(20, 32, 59, 0.92) 160px,
+    #1a2848 200px,
+    #14203b 60%,
+    #0f1a30 100%
+  );
   color: white;
 }
 .hero-below::before{
-  content: '';
-  position: absolute;
-  top: -100px;
-  left: 0; right: 0;
-  height: 100px;
-  background: linear-gradient(180deg,
-    transparent 0%,
-    rgba(15, 26, 48, 0.35) 45%,
-    rgba(20, 32, 59, 0.8) 75%,
-    #1a2848 100%
-  );
-  pointer-events: none;
-  display: block;
+  display: none;
 }
 .hero-tagline-m{
   font-size: 18px;
