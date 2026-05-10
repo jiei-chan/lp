@@ -307,28 +307,37 @@ body{
 .hero-below{
   position: relative;
   z-index: 2;
-  margin-top: 260px;
-  padding: 56px 20px 48px;
+  margin-top: 248px;
+  padding: 68px 20px 48px;
   background:
     radial-gradient(ellipse 100% 60% at 50% 0%, rgba(77, 148, 255, 0.18) 0%, transparent 65%),
     linear-gradient(180deg,
-      #1a2848 0%,
-      #14203b 40%,
+      rgba(26, 40, 72, 0) 0px,
+      rgba(22, 34, 60, 0.55) 10px,
+      rgba(20, 32, 59, 0.92) 22px,
+      #1a2848 36px,
+      #14203b 60%,
       #0f1a30 100%
     );
   color: white;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .hero-below::before{
   display: none;
 }
 .hero-tagline-m{
-  font-size: 18px;
-  line-height: 1.55;
-  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 700;
   color: white;
-  letter-spacing: -0.01em;
-  margin-bottom: 18px;
+  letter-spacing: -0.015em;
+  margin-bottom: 22px;
+}
+.hero-tagline-m .highlight{
+  background: linear-gradient(120deg, var(--accent) 0%, var(--blue-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
 }
 .hero-sub-m{
   font-size: 14px;
@@ -4418,7 +4427,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== HERO BELOW (MOBILE ONLY) ========== -->
 <section class="hero-below mobile-only">
   <p class="hero-tagline-m">
-    生きた3D映像で、<br>英語が「使える」に変わる。
+    生きた3D映像で、<br>英語が<span class="highlight">「使える」</span>に変わる。
   </p>
 
   <p class="hero-sub-m">
