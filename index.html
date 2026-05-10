@@ -4045,6 +4045,9 @@ section{padding: 100px 24px}
 .final h2 .line{
   display: block;
 }
+.final h2 .h2-3line{
+  display: none;
+}
 .final h2 .accent{
   background: linear-gradient(120deg, #ffffff 0%, #80f5ff 100%);
   -webkit-background-clip: text;
@@ -4231,36 +4234,33 @@ section{padding: 100px 24px}
     padding: 80px 20px 56px;
   }
   .final h2{
-    font-size: 32px;
-    line-height: 1.25;
-    margin-bottom: 32px;
+    font-size: clamp(38px, 11vw, 46px);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin-bottom: 0;
   }
+  .final h2 .h2-2line{ display: none; }
+  .final h2 .h2-3line{ display: block; }
   .final-bg-overlay{
-    /* Re-tuned: top dim under h2 + price card; middle clear (products+characters); bottom dim under CTA/countdown/meta */
+    /* New layout: h2 at top (sky), spacer (image visible), price card + CTA at bottom (floor)
+       → light dim at top under h2, clear in middle for image impact, strong dim at bottom for card legibility */
     background:
       linear-gradient(180deg,
-        rgba(5, 8, 24, 0.5) 0%,
-        rgba(5, 8, 24, 0.35) 22%,
-        rgba(5, 8, 24, 0.15) 38%,
-        rgba(5, 8, 24, 0.05) 55%,
-        rgba(5, 8, 24, 0.5) 75%,
-        rgba(5, 8, 24, 0.92) 92%,
-        rgba(5, 8, 24, 0.97) 100%
+        rgba(5, 8, 24, 0.45) 0%,
+        rgba(5, 8, 24, 0.20) 12%,
+        rgba(5, 8, 24, 0.05) 28%,
+        rgba(5, 8, 24, 0.05) 50%,
+        rgba(5, 8, 24, 0.55) 72%,
+        rgba(5, 8, 24, 0.88) 88%,
+        rgba(5, 8, 24, 0.96) 100%
       );
   }
-  .final h2{
-    font-size: 28px;
-    line-height: 1.4;
-    margin-bottom: 28px;
-  }
-  .final-image-banner{
-    display: none;
-  }
+  .final-image-banner{ display: none; }
   .final-spacer{
     display: block;
     height: 80vw;
-    max-height: 340px;
-    min-height: 240px;
+    max-height: 360px;
+    min-height: 280px;
   }
   .final-price-card{
     padding: 22px 24px;
@@ -6095,8 +6095,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="final-inner">
     <h2>
       <span class="line">映像と感覚で、</span>
-      <span class="line accent">英語が「使える」へ。</span>
+      <span class="line accent h2-2line">英語が「使える」へ。</span>
+      <span class="line accent h2-3line">英語が</span>
+      <span class="line accent h2-3line">「使える」へ。</span>
     </h2>
+
+    <div class="final-spacer"></div>
 
     <div class="final-price-card">
       <div class="bundle-pill">3 PRODUCTS BUNDLE</div>
@@ -6111,8 +6115,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
     </div>
-
-    <div class="final-spacer"></div>
 
     <a href="#bundle" class="btn-final-cta">
       今すぐバンドルを始める
