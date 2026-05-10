@@ -245,11 +245,12 @@ body{
     align-items: stretch;
     position: relative;
     overflow: visible;
-    aspect-ratio: 1200 / 3304;
+    aspect-ratio: auto;
+    height: calc(140px + 100vw * 3304 / 1200);
   }
   .hero-bg{
     position: absolute;
-    inset: 0;
+    inset: 140px 0 0 0;
     z-index: 0;
   }
   .hero-bg img{
@@ -266,9 +267,10 @@ body{
     background:
       linear-gradient(
         180deg,
-        rgba(5, 8, 16, 0.5) 0%,
-        rgba(5, 8, 16, 0.15) 18%,
-        rgba(5, 8, 16, 0) 35%,
+        rgba(5, 8, 16, 0.55) 0px,
+        rgba(5, 8, 16, 0.35) 80px,
+        rgba(5, 8, 16, 0.1) 140px,
+        rgba(5, 8, 16, 0) 220px,
         transparent 100%
       );
   }
@@ -307,8 +309,8 @@ body{
 .hero-below{
   position: relative;
   z-index: 2;
-  margin-top: -150vw;
-  padding: 80px 20px 48px;
+  margin-top: -200vw;
+  padding: 40px 20px 48px;
   background: linear-gradient(180deg,
     rgba(10, 18, 38, 0) 0%,
     rgba(13, 22, 44, 0.3) 8%,
