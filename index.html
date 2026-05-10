@@ -249,7 +249,7 @@ body{
   .hero-bg{
     position: absolute;
     inset: 0;
-    bottom: -160px;
+    bottom: -260px;
     z-index: 0;
   }
   .hero-bg img{
@@ -307,18 +307,17 @@ body{
 .hero-below{
   position: relative;
   z-index: 2;
-  margin-top: -160px;
-  padding: 180px 20px 48px;
-  background: linear-gradient(180deg,
-    transparent 0,
-    transparent 110px,
-    rgba(15, 26, 48, 0.5) 135px,
-    rgba(20, 32, 59, 0.92) 160px,
-    #1a2848 200px,
-    #14203b 60%,
-    #0f1a30 100%
-  );
+  margin-top: 260px;
+  padding: 56px 20px 48px;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(77, 148, 255, 0.18) 0%, transparent 65%),
+    linear-gradient(180deg,
+      #1a2848 0%,
+      #14203b 40%,
+      #0f1a30 100%
+    );
   color: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .hero-below::before{
   display: none;
