@@ -1685,7 +1685,9 @@ section{padding: 100px 24px}
 /* ========== SOLUTION ========== */
 .solution{
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0, 102, 255, 0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(0, 102, 255, 0.22) 0%, transparent 60%),
+    radial-gradient(circle 600px at 15% 65%, rgba(0, 212, 255, 0.10) 0%, transparent 65%),
+    radial-gradient(circle 600px at 85% 35%, rgba(124, 92, 255, 0.10) 0%, transparent 65%),
     linear-gradient(180deg, #0d1730 0%, #0a1226 100%);
   padding: 120px 0 140px;
   position: relative;
@@ -1699,33 +1701,46 @@ section{padding: 100px 24px}
 .solution .section-title .blue{color: var(--blue-light)}
 .solution .section-lead{color: rgba(255, 255, 255, 0.72)}
 
-/* Solution dark theme: outer cards (compare-visual + solution-points) */
+/* Solution dark theme: outer cards (compare-visual + solution-points) - GLASSMORPHISM */
 .solution .compare-visual,
 .solution .solution-points{
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Solution dark theme: compare cards (inner bad/good) */
+/* Solution dark theme: compare cards (inner bad/good) - subtle glass */
 .solution .compare-row .col.bad{
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 .solution .compare-row .col.good{
-  background: linear-gradient(135deg, rgba(0, 102, 255, 0.14) 0%, rgba(0, 102, 255, 0.04) 100%);
-  border-color: rgba(0, 102, 255, 0.22);
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.22) 0%, rgba(0, 212, 255, 0.06) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(0, 102, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .solution .compare-row .word{color: white}
 .solution .compare-row .feeling{color: white}
 .solution .compare-row .col-label{color: #ff8585}
 .solution .compare-row .meaning{color: #ff8585}
 .solution .compare-arrow{
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.15);
   color: var(--blue-light);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 .solution .compare-header{
   border-bottom-color: rgba(255, 255, 255, 0.1);
