@@ -1699,11 +1699,58 @@ section{padding: 100px 24px}
 .solution .section-title .blue{color: var(--blue-light)}
 .solution .section-lead{color: rgba(255, 255, 255, 0.72)}
 
-/* Solution dark theme: card shadows for depth on dark bg */
+/* Solution dark theme: outer cards (compare-visual + solution-points) */
 .solution .compare-visual,
 .solution .solution-points{
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Solution dark theme: compare cards (inner bad/good) */
+.solution .compare-row .col.bad{
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.solution .compare-row .col.good{
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.14) 0%, rgba(0, 102, 255, 0.04) 100%);
+  border-color: rgba(0, 102, 255, 0.22);
+}
+.solution .compare-row .word{color: white}
+.solution .compare-row .feeling{color: white}
+.solution .compare-row .col-label{color: #ff8585}
+.solution .compare-row .meaning{color: #ff8585}
+.solution .compare-arrow{
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--blue-light);
+}
+.solution .compare-header{
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+.solution .ch-good{color: var(--accent)}
+
+/* Solution dark theme: solution-points text + dividers */
+.solution .sp-title{color: white}
+.solution .sp-desc{color: rgba(255, 255, 255, 0.72)}
+.solution .sp-desc strong{color: white}
+.solution .solution-point{border-bottom-color: rgba(255, 255, 255, 0.08)}
+.solution .sp-image{background: rgba(0, 102, 255, 0.05)}
+
+/* Section dividers: thin white line at top of dark sections */
+.real-problem::after,
+.solution::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(60%, 700px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  z-index: 3;
 }
 
 /* Header section */
