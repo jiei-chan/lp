@@ -4024,6 +4024,10 @@ section{padding: 100px 24px}
     );
 }
 
+.final-image-banner{
+  display: none;
+}
+
 .final-inner{
   position: relative;
   max-width: 760px;
@@ -4221,16 +4225,32 @@ section{padding: 100px 24px}
 /* Mobile adjustments */
 @media (max-width: 768px){
   .final{
-    padding: 64px 20px 56px;
+    padding: 56px 20px 56px;
+    background: linear-gradient(180deg, #0a1226 0%, #050818 100%);
+  }
+  .final-bg-wrap{
+    display: none;
   }
   .final p{
     font-size: 15px;
     line-height: 1.8;
   }
+  .final-image-banner{
+    display: block;
+    width: calc(100% + 40px);
+    margin: 32px -20px 32px;
+    aspect-ratio: 4500 / 3000;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .final-image-banner img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .final-spacer{
-    height: 110vw;
-    max-height: 480px;
-    min-height: 360px;
+    display: none;
   }
   .final-price-card{
     padding: 22px 24px;
@@ -6054,10 +6074,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== FINAL CTA (HERO POSTER) ========== -->
 <section class="final">
   <div class="final-bg-wrap">
-    <picture>
-      <source media="(max-width: 768px)" srcset="images/final-bg-mobile.png">
-      <img src="images/final-bg.png" alt="" />
-    </picture>
+    <img src="images/final-bg.png" alt="" />
     <div class="final-bg-overlay"></div>
   </div>
 
@@ -6070,6 +6087,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       3教材バンドル、GW期間限定の特別価格で。<br>
       30日間返金保証付き、リスクなく今日から始められます。
     </p>
+
+    <div class="final-image-banner">
+      <img src="images/final-bg.png" alt="" />
+    </div>
 
     <div class="final-spacer"></div>
 
