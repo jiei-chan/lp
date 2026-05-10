@@ -4042,6 +4042,9 @@ section{padding: 100px 24px}
   margin-bottom: 22px;
   text-shadow: 0 2px 30px rgba(0,0,0,0.6);
 }
+.final h2 .line{
+  display: block;
+}
 .final h2 .accent{
   background: linear-gradient(120deg, #ffffff 0%, #80f5ff 100%);
   -webkit-background-clip: text;
@@ -4227,41 +4230,42 @@ section{padding: 100px 24px}
   .final{
     padding: 80px 20px 56px;
   }
-  .final-bg-wrap{
-    /* keep visible: image is the impact */
+  .final h2{
+    font-size: 32px;
+    line-height: 1.25;
+    margin-bottom: 32px;
   }
   .final-bg-overlay{
-    /* Re-tuned for vertical mobile image:
-       - top: subtle dim under h2 (sky already dark, just helps text)
-       - middle: nearly clear (products + characters area shows through)
-       - bottom: strong dim under price card / CTA / countdown / meta */
+    /* Re-tuned: top dim under h2 + price card; middle clear (products+characters); bottom dim under CTA/countdown/meta */
     background:
       linear-gradient(180deg,
-        rgba(5, 8, 24, 0.45) 0%,
-        rgba(5, 8, 24, 0.15) 18%,
-        rgba(5, 8, 24, 0.05) 32%,
+        rgba(5, 8, 24, 0.5) 0%,
+        rgba(5, 8, 24, 0.35) 22%,
+        rgba(5, 8, 24, 0.15) 38%,
         rgba(5, 8, 24, 0.05) 55%,
-        rgba(5, 8, 24, 0.55) 75%,
+        rgba(5, 8, 24, 0.5) 75%,
         rgba(5, 8, 24, 0.92) 92%,
         rgba(5, 8, 24, 0.97) 100%
       );
   }
-  .final p{
-    font-size: 15px;
-    line-height: 1.8;
+  .final h2{
+    font-size: 28px;
+    line-height: 1.4;
+    margin-bottom: 28px;
   }
   .final-image-banner{
     display: none;
   }
   .final-spacer{
     display: block;
-    height: 90vw;
-    max-height: 380px;
-    min-height: 280px;
+    height: 80vw;
+    max-height: 340px;
+    min-height: 240px;
   }
   .final-price-card{
     padding: 22px 24px;
     border-radius: 22px;
+    margin-bottom: 0;
   }
   .final-price-card .price-row{
     gap: 16px;
@@ -6090,15 +6094,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
   <div class="final-inner">
     <h2>
-      映像と感覚で、<br>
-      <span class="accent">英語が「使える」へ。</span>
+      <span class="line">映像と感覚で、</span>
+      <span class="line accent">英語が「使える」へ。</span>
     </h2>
-    <p>
-      3教材バンドル、GW期間限定の特別価格で。<br>
-      30日間返金保証付き、リスクなく今日から始められます。
-    </p>
-
-    <div class="final-spacer"></div>
 
     <div class="final-price-card">
       <div class="bundle-pill">3 PRODUCTS BUNDLE</div>
@@ -6113,6 +6111,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </div>
     </div>
+
+    <div class="final-spacer"></div>
 
     <a href="#bundle" class="btn-final-cta">
       今すぐバンドルを始める
