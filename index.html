@@ -3985,123 +3985,275 @@ section{padding: 100px 24px}
 
 /* ========== FINAL CTA (BLACK) ========== */
 .final{
-  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
-  color: white;
-  padding: 120px 24px;
   position: relative;
+  color: white;
+  padding: 100px 24px 80px;
   overflow: hidden;
+  isolation: isolate;
+  background: #050818;
 }
-.final::before{
-  content: '';
+.final-bg-wrap{
   position: absolute;
-  top: -100px; left: 50%;
-  transform: translateX(-50%);
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, var(--blue) 0%, transparent 60%);
-  opacity: 0.2;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.final-bg-wrap img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.final-bg-overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 50%, transparent 0%, rgba(5,8,24,0.35) 60%, rgba(5,8,24,0.7) 100%),
+    linear-gradient(180deg,
+      rgba(5, 8, 24, 0.55) 0%,
+      rgba(5, 8, 24, 0.2) 22%,
+      rgba(5, 8, 24, 0.15) 50%,
+      rgba(5, 8, 24, 0.55) 75%,
+      rgba(5, 8, 24, 0.93) 100%
+    );
 }
 
 .final-inner{
   position: relative;
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
   text-align: center;
 }
 .final h2{
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(34px, 5.5vw, 56px);
   font-weight: 800;
   letter-spacing: -0.025em;
-  line-height: 1.25;
-  margin-bottom: 24px;
+  line-height: 1.2;
+  margin-bottom: 22px;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.6);
 }
 .final h2 .accent{
-  background: linear-gradient(120deg, white 0%, var(--accent) 100%);
+  background: linear-gradient(120deg, #ffffff 0%, #80f5ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .final p{
   font-size: 17px;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.88);
   line-height: 1.85;
-  margin-bottom: 40px;
+  margin-bottom: 0;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+
+/* Spacer to let image's products+characters breathe */
+.final-spacer{
+  height: 30vw;
+  max-height: 380px;
+  min-height: 220px;
 }
 
 .final-price-card{
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
-  padding: 32px;
-  margin-bottom: 32px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border-radius: 28px;
+  padding: 28px 36px;
+  margin: 0 auto 28px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
-.final-price-card .label{
-  font-size: 12px;
+.bundle-pill{
+  display: inline-block;
+  font-family: var(--en);
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  letter-spacing: 0.22em;
+  color: white;
+  background: linear-gradient(120deg, var(--accent) 0%, var(--blue) 100%);
+  padding: 7px 18px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 20px rgba(0,212,255,0.35);
 }
-.final-price-card .strike{
+.final-price-card .price-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.final-price-card .prices{
+  text-align: center;
+}
+.final-price-card .price-strike{
   font-family: var(--en);
-  font-size: 18px;
-  color: rgba(255,255,255,0.5);
+  font-size: 17px;
+  color: rgba(255,255,255,0.45);
   text-decoration: line-through;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
 }
-.final-price-card .price{
+.final-price-card .price-main{
   font-family: var(--en);
-  font-size: clamp(48px, 7vw, 72px);
+  font-size: clamp(52px, 8.5vw, 78px);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
   color: white;
 }
-.final-price-card .price .yen{font-size: 0.45em; vertical-align: top}
+.final-price-card .price-main .yen{
+  font-size: 0.5em;
+  vertical-align: top;
+  margin-right: 2px;
+  font-weight: 700;
+}
+.off-badge{
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 6px 28px rgba(0, 102, 255, 0.55), inset 0 0 0 1px rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+.off-badge .num{
+  font-family: var(--en);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1;
+}
+.off-badge .off{
+  font-family: var(--en);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin-top: 3px;
+}
 
-.final .btn-primary{padding: 22px 48px; font-size: 16px}
+.btn-final-cta{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: var(--ink-2);
+  padding: 22px 44px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-bottom: 32px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: var(--jp);
+}
+.btn-final-cta:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.6);
+}
 
 .final-countdown{
-  margin-top: 24px;
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 28px;
 }
 .cd-box{
   background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 12px 16px;
-  min-width: 70px;
-  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 14px 18px;
+  min-width: 76px;
+  border-radius: 14px;
   text-align: center;
 }
 .cd-box .num{
   font-family: var(--en);
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
-  color: var(--accent);
+  color: white;
   display: block;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 .cd-box .lbl{
-  font-size: 9px;
+  font-family: var(--en);
+  font-size: 10px;
   letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.5);
-  margin-top: 4px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 6px;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .final-meta{
-  margin-top: 24px;
   display: flex;
-  gap: 20px;
+  gap: 24px;
   justify-content: center;
   flex-wrap: wrap;
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
+}
+.final-meta span{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.final-meta svg{
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px){
+  .final{
+    padding: 64px 20px 56px;
+  }
+  .final p{
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .final-spacer{
+    height: 50vw;
+    max-height: 280px;
+    min-height: 180px;
+  }
+  .final-price-card{
+    padding: 22px 24px;
+    border-radius: 22px;
+  }
+  .final-price-card .price-row{
+    gap: 16px;
+  }
+  .off-badge{
+    width: 70px;
+    height: 70px;
+  }
+  .off-badge .num{font-size: 18px}
+  .off-badge .off{font-size: 11px}
+  .btn-final-cta{
+    padding: 18px 36px;
+    font-size: 15px;
+  }
+  .cd-box{
+    padding: 11px 12px;
+    min-width: 60px;
+  }
+  .cd-box .num{font-size: 22px}
+  .cd-box .lbl{font-size: 9px}
+  .final-meta{
+    gap: 14px;
+    font-size: 12px;
+  }
 }
 
 /* ========== FOOTER ========== */
@@ -5894,8 +6046,13 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 </section>
 
-<!-- ========== FINAL CTA (BLACK) ========== -->
+<!-- ========== FINAL CTA (HERO POSTER) ========== -->
 <section class="final">
+  <div class="final-bg-wrap">
+    <img src="images/final-bg.png" alt="" />
+    <div class="final-bg-overlay"></div>
+  </div>
+
   <div class="final-inner">
     <h2>
       映像と感覚で、<br>
@@ -5906,15 +6063,25 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       30日間返金保証付き、リスクなく今日から始められます。
     </p>
 
+    <div class="final-spacer"></div>
+
     <div class="final-price-card">
-      <div class="label">3 PRODUCTS BUNDLE</div>
-      <div class="num strike">¥10,850</div>
-      <div class="num price"><span class="yen">¥</span>7,500</div>
+      <div class="bundle-pill">3 PRODUCTS BUNDLE</div>
+      <div class="price-row">
+        <div class="prices">
+          <div class="price-strike">¥10,850</div>
+          <div class="price-main"><span class="yen">¥</span>7,500</div>
+        </div>
+        <div class="off-badge">
+          <span class="num">31%</span>
+          <span class="off">OFF</span>
+        </div>
+      </div>
     </div>
 
-    <a href="#" class="btn btn-primary">
+    <a href="#bundle" class="btn-final-cta">
       今すぐバンドルを始める
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 
     <div class="final-countdown">
@@ -5925,9 +6092,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </div>
 
     <div class="final-meta">
-      <span>✓ 30日間返金保証</span>
-      <span>✓ 買い切り・追加課金なし</span>
-      <span>✓ スマホ・PC視聴可</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>30日間返金保証</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>買い切り・追加課金なし</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>スマホ・PC視聴可</span>
     </div>
   </div>
 </section>
