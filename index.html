@@ -4091,10 +4091,11 @@ section{padding: 100px 24px}
   display: block;
 }
 .final h2 .accent{
-  background: linear-gradient(120deg, #ffffff 0%, #80f5ff 100%);
+  background: linear-gradient(110deg, #5cf2ff 0%, #00d4ff 35%, #4d8eff 75%, #a07dff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  filter: drop-shadow(0 2px 16px rgba(0, 212, 255, 0.45)) drop-shadow(0 0 32px rgba(0, 212, 255, 0.25));
 }
 .final-sub{
   font-size: 17px;
@@ -4148,19 +4149,21 @@ section{padding: 100px 24px}
 }
 .final-price-card .price-strike{
   font-family: var(--en);
-  font-size: 17px;
-  color: rgba(255,255,255,0.45);
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
   text-decoration: line-through;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   letter-spacing: -0.01em;
+  font-weight: 500;
 }
 .final-price-card .price-main{
   font-family: var(--en);
-  font-size: clamp(52px, 8.5vw, 78px);
+  font-size: clamp(56px, 9vw, 84px);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
   color: white;
+  text-shadow: 0 2px 24px rgba(0, 212, 255, 0.25);
 }
 .final-price-card .price-main .yen{
   font-size: 0.5em;
@@ -4168,31 +4171,86 @@ section{padding: 100px 24px}
   margin-right: 2px;
   font-weight: 700;
 }
+
+/* === Savings tag: prominent discount banner === */
+.savings-tag{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(120deg, #ffd33d 0%, #ff9b1f 100%);
+  color: #1a0e00;
+  padding: 9px 22px;
+  border-radius: 100px;
+  font-family: var(--en);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 24px rgba(255, 180, 30, 0.45), inset 0 1px 0 rgba(255,255,255,0.5);
+  animation: savings-pulse 2.4s ease-in-out infinite;
+}
+.savings-tag .flash{
+  font-size: 18px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+.savings-tag .amt{
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+.savings-tag .off-text{
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin-left: 2px;
+}
+@keyframes savings-pulse{
+  0%, 100% { transform: scale(1); box-shadow: 0 6px 24px rgba(255, 180, 30, 0.45), inset 0 1px 0 rgba(255,255,255,0.5); }
+  50%      { transform: scale(1.04); box-shadow: 0 8px 32px rgba(255, 180, 30, 0.65), inset 0 1px 0 rgba(255,255,255,0.5); }
+}
+
+/* === OFF circular badge: bigger + more dramatic === */
 .off-badge{
-  width: 84px;
-  height: 84px;
+  width: 102px;
+  height: 102px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
+    linear-gradient(135deg, #00f0ff 0%, var(--accent) 35%, var(--blue) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 6px 28px rgba(0, 102, 255, 0.55), inset 0 0 0 1px rgba(255,255,255,0.2);
+  box-shadow:
+    0 8px 36px rgba(0, 212, 255, 0.6),
+    0 0 0 2px rgba(255,255,255,0.12) inset,
+    0 0 60px rgba(0, 212, 255, 0.25);
   flex-shrink: 0;
+  position: relative;
+  font-family: var(--en);
+  transform: rotate(-6deg);
 }
 .off-badge .num{
-  font-family: var(--en);
-  font-weight: 800;
-  font-size: 22px;
+  font-weight: 900;
+  font-size: 36px;
   line-height: 1;
+  letter-spacing: -0.04em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.off-badge .pct{
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1;
+  margin-top: -2px;
+  opacity: 0.9;
 }
 .off-badge .off{
-  font-family: var(--en);
   font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 0.05em;
-  margin-top: 3px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  margin-top: 4px;
+  opacity: 0.95;
 }
 
 .btn-final-cta{
@@ -4273,7 +4331,7 @@ section{padding: 100px 24px}
 /* Mobile adjustments */
 @media (max-width: 768px){
   .final-image-area{
-    padding: 64px 20px 40px;
+    padding: 28px 20px 40px;
   }
   .final-action-area{
     padding: 8px 20px 56px;
@@ -4282,14 +4340,13 @@ section{padding: 100px 24px}
     font-size: clamp(32px, 9vw, 36px);
     letter-spacing: -0.04em;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   .final-sub{
     font-size: 13px;
     line-height: 1.75;
   }
   .final-bg-overlay{
-    /* lighter middle (image visible: products + characters), darker at top + bottom for text legibility */
     background:
       linear-gradient(180deg,
         rgba(5, 8, 24, 0.55) 0%,
@@ -4311,6 +4368,15 @@ section{padding: 100px 24px}
     max-height: 280px;
     min-height: 220px;
   }
+  /* Savings tag - mobile size */
+  .savings-tag{
+    font-size: 14px;
+    padding: 7px 16px;
+    margin-bottom: 14px;
+  }
+  .savings-tag .amt{ font-size: 16px; }
+  .savings-tag .off-text{ font-size: 11px; }
+  .savings-tag .flash{ font-size: 15px; }
   .final-price-card{
     padding: 22px 24px;
     border-radius: 22px;
@@ -4320,11 +4386,12 @@ section{padding: 100px 24px}
     gap: 16px;
   }
   .off-badge{
-    width: 70px;
-    height: 70px;
+    width: 88px;
+    height: 88px;
   }
-  .off-badge .num{font-size: 18px}
-  .off-badge .off{font-size: 11px}
+  .off-badge .num{font-size: 30px}
+  .off-badge .pct{font-size: 13px}
+  .off-badge .off{font-size: 10px}
   .btn-final-cta{
     padding: 18px 36px;
     font-size: 15px;
@@ -6157,13 +6224,19 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
       <div class="final-price-card">
         <div class="bundle-pill">3 PRODUCTS BUNDLE</div>
+        <div class="savings-tag">
+          <span class="flash">⚡</span>
+          <span class="amt">¥3,194</span>
+          <span class="off-text">OFF</span>
+        </div>
         <div class="price-row">
           <div class="prices">
-            <div class="price-strike">¥10,850</div>
-            <div class="price-main"><span class="yen">¥</span>7,500</div>
+            <div class="price-strike">通常 ¥10,850</div>
+            <div class="price-main"><span class="yen">¥</span>7,656</div>
           </div>
           <div class="off-badge">
-            <span class="num">31%</span>
+            <span class="num">29</span>
+            <span class="pct">%</span>
             <span class="off">OFF</span>
           </div>
         </div>
