@@ -3987,10 +3987,16 @@ section{padding: 100px 24px}
 .final{
   position: relative;
   color: white;
+  background: #050818;
+  isolation: isolate;
+}
+
+/* === Image area: top of section, has the image bg === */
+.final-image-area{
+  position: relative;
   padding: 100px 24px 80px;
   overflow: hidden;
   isolation: isolate;
-  background: #050818;
 }
 .final-bg-wrap{
   position: absolute;
@@ -4024,6 +4030,44 @@ section{padding: 100px 24px}
     );
 }
 
+/* Seamless fade-to-dark at bottom of image-area */
+.final-fade{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(5, 8, 24, 0.6) 50%,
+    rgba(5, 8, 24, 0.95) 85%,
+    #050818 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* === Action area: dark seamless extension below image === */
+.final-action-area{
+  position: relative;
+  background: #050818;
+  padding: 16px 24px 64px;
+  text-align: center;
+  isolation: isolate;
+}
+/* Subtle blur/blend at very top of action area to feel continuous with image */
+.final-action-area::before{
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(to bottom, rgba(5,8,24,0.4), transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .final-image-banner{
   display: none;
 }
@@ -4033,6 +4077,7 @@ section{padding: 100px 24px}
   max-width: 760px;
   margin: 0 auto;
   text-align: center;
+  z-index: 2;
 }
 .final h2{
   font-size: clamp(34px, 5.5vw, 56px);
@@ -4045,20 +4090,17 @@ section{padding: 100px 24px}
 .final h2 .line{
   display: block;
 }
-.final h2 .h2-3line{
-  display: none;
-}
 .final h2 .accent{
   background: linear-gradient(120deg, #ffffff 0%, #80f5ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.final p{
+.final-sub{
   font-size: 17px;
   color: rgba(255,255,255,0.88);
   line-height: 1.85;
-  margin-bottom: 0;
+  margin: 0 0 8px;
   text-shadow: 0 1px 8px rgba(0,0,0,0.5);
 }
 
@@ -4230,37 +4272,44 @@ section{padding: 100px 24px}
 
 /* Mobile adjustments */
 @media (max-width: 768px){
-  .final{
-    padding: 80px 20px 56px;
+  .final-image-area{
+    padding: 64px 20px 40px;
+  }
+  .final-action-area{
+    padding: 8px 20px 56px;
   }
   .final h2{
-    font-size: clamp(38px, 11vw, 46px);
+    font-size: clamp(32px, 9vw, 36px);
+    letter-spacing: -0.04em;
     line-height: 1.2;
-    letter-spacing: -0.03em;
-    margin-bottom: 0;
+    margin-bottom: 20px;
   }
-  .final h2 .h2-2line{ display: none; }
-  .final h2 .h2-3line{ display: block; }
+  .final-sub{
+    font-size: 13px;
+    line-height: 1.75;
+  }
   .final-bg-overlay{
-    /* New layout: h2 at top (sky), spacer (image visible), price card + CTA at bottom (floor)
-       → light dim at top under h2, clear in middle for image impact, strong dim at bottom for card legibility */
+    /* lighter middle (image visible: products + characters), darker at top + bottom for text legibility */
     background:
       linear-gradient(180deg,
-        rgba(5, 8, 24, 0.45) 0%,
-        rgba(5, 8, 24, 0.20) 12%,
-        rgba(5, 8, 24, 0.05) 28%,
-        rgba(5, 8, 24, 0.05) 50%,
-        rgba(5, 8, 24, 0.55) 72%,
-        rgba(5, 8, 24, 0.88) 88%,
-        rgba(5, 8, 24, 0.96) 100%
+        rgba(5, 8, 24, 0.55) 0%,
+        rgba(5, 8, 24, 0.30) 14%,
+        rgba(5, 8, 24, 0.05) 32%,
+        rgba(5, 8, 24, 0.05) 55%,
+        rgba(5, 8, 24, 0.45) 75%,
+        rgba(5, 8, 24, 0.85) 92%,
+        rgba(5, 8, 24, 0.95) 100%
       );
+  }
+  .final-fade{
+    height: 90px;
   }
   .final-image-banner{ display: none; }
   .final-spacer{
     display: block;
-    height: 80vw;
-    max-height: 360px;
-    min-height: 280px;
+    height: 65vw;
+    max-height: 280px;
+    min-height: 220px;
   }
   .final-price-card{
     padding: 22px 24px;
@@ -6084,38 +6133,49 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
 <!-- ========== FINAL CTA (HERO POSTER) ========== -->
 <section class="final">
-  <div class="final-bg-wrap">
-    <picture>
-      <source media="(max-width: 768px)" srcset="images/final-bg-mobile.png">
-      <img src="images/final-bg.png" alt="" />
-    </picture>
-    <div class="final-bg-overlay"></div>
-  </div>
+  <!-- Image area: image bg + h2 + subtitle + spacer + price card on floor -->
+  <div class="final-image-area">
+    <div class="final-bg-wrap">
+      <picture>
+        <source media="(max-width: 768px)" srcset="images/final-bg-mobile.png">
+        <img src="images/final-bg.png" alt="" />
+      </picture>
+      <div class="final-bg-overlay"></div>
+    </div>
 
-  <div class="final-inner">
-    <h2>
-      <span class="line">映像と感覚で、</span>
-      <span class="line accent h2-2line">英語が「使える」へ。</span>
-      <span class="line accent h2-3line">英語が</span>
-      <span class="line accent h2-3line">「使える」へ。</span>
-    </h2>
+    <div class="final-inner">
+      <h2>
+        <span class="line">映像と感覚で、</span>
+        <span class="line accent">英語が「使える」へ。</span>
+      </h2>
+      <p class="final-sub">
+        3教材バンドル、GW期間限定の特別価格で。<br>
+        30日間返金保証付き、リスクなく今日から始められます。
+      </p>
 
-    <div class="final-spacer"></div>
+      <div class="final-spacer"></div>
 
-    <div class="final-price-card">
-      <div class="bundle-pill">3 PRODUCTS BUNDLE</div>
-      <div class="price-row">
-        <div class="prices">
-          <div class="price-strike">¥10,850</div>
-          <div class="price-main"><span class="yen">¥</span>7,500</div>
-        </div>
-        <div class="off-badge">
-          <span class="num">31%</span>
-          <span class="off">OFF</span>
+      <div class="final-price-card">
+        <div class="bundle-pill">3 PRODUCTS BUNDLE</div>
+        <div class="price-row">
+          <div class="prices">
+            <div class="price-strike">¥10,850</div>
+            <div class="price-main"><span class="yen">¥</span>7,500</div>
+          </div>
+          <div class="off-badge">
+            <span class="num">31%</span>
+            <span class="off">OFF</span>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Seamless fade to dark at bottom of image area -->
+    <div class="final-fade"></div>
+  </div>
+
+  <!-- Action area: dark seamless extension below image -->
+  <div class="final-action-area">
     <a href="#bundle" class="btn-final-cta">
       今すぐバンドルを始める
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
