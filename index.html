@@ -1640,7 +1640,7 @@ section{padding: 100px 24px}
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.16) 0%, transparent 60%),
+    radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.18) 0%, transparent 60%),
     radial-gradient(circle at 70% 50%, rgba(255, 165, 75, 0.10) 0%, transparent 60%);
   pointer-events: none;
 }
@@ -1680,6 +1680,59 @@ section{padding: 100px 24px}
   background-clip: text;
   color: transparent;
   font-style: normal;
+}
+
+/* ========== REALIZATION (white intermission between real-problem and solution) ========== */
+.realization{
+  background: white;
+  padding: 80px 24px;
+  position: relative;
+}
+.realization-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 36px;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  border: 1px solid #ffd7b8;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.06);
+}
+.realization-icon{
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 107, 53, 0.12);
+  color: var(--warning);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.realization-card p{
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin: 0;
+}
+.realization-card strong{
+  color: var(--warning);
+  font-weight: 800;
+}
+
+@media (max-width: 768px){
+  .realization{padding: 56px 20px}
+  .realization-card{
+    flex-direction: column;
+    text-align: center;
+    padding: 22px 20px;
+    gap: 14px;
+  }
+  .realization-icon{width: 44px; height: 44px}
+  .realization-card p{font-size: 14px; line-height: 1.7}
+  .realization-card p br{display: none}
 }
 
 /* ========== SOLUTION ========== */
@@ -1754,7 +1807,7 @@ section{padding: 100px 24px}
 .solution .solution-point{border-bottom-color: rgba(255, 255, 255, 0.08)}
 .solution .sp-image{background: rgba(0, 102, 255, 0.05)}
 
-/* Section dividers: thin white line at top of dark sections */
+/* Section dividers: thin line at top to separate sections */
 .real-problem::after,
 .solution::before{
   content: '';
@@ -4812,16 +4865,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </div>
       </article>
     </div>
-
-    <div class="p3-conclusion">
-      <div class="p3-conclusion-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </div>
-      <p>
-        これらの問題は、あなたの努力不足ではなく、<br>
-        <strong>学習方法そのもの</strong>が、<strong>脳の仕組みに合っていない</strong>ことが原因です。
-      </p>
-    </div>
   </div>
 </section>
 
@@ -4833,6 +4876,25 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       その悩みは <em>勉強法</em> ではなく、<br>
       <em>「記憶の入れ方」</em>の問題です。
     </h2>
+  </div>
+</section>
+
+<!-- ========== REALIZATION (white intermission) ========== -->
+<section class="realization">
+  <div class="wrap">
+    <div class="realization-card">
+      <div class="realization-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <p>
+        これらの問題は、あなたの努力不足ではなく、<br>
+        <strong>学習方法そのもの</strong>が、<strong>脳の仕組みに合っていない</strong>ことが原因です。
+      </p>
+    </div>
   </div>
 </section>
 
