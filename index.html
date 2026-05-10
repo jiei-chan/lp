@@ -1782,6 +1782,25 @@ section{padding: 100px 24px}
   gap: 16px;
 }
 
+/* Section header: column labels (desktop only) */
+.compare-header{
+  display: grid;
+  grid-template-columns: 0.85fr auto 1.15fr;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0;
+}
+.compare-header .ch-good{
+  font-family: var(--en);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--blue);
+  padding-left: 16px;
+  align-self: center;
+}
+
 /* Each comparison row */
 .compare-row{
   display: grid;
@@ -1809,12 +1828,12 @@ section{padding: 100px 24px}
   border: 1px solid #d4e6ff;
 }
 
-/* Good card inner: image left + text right */
+/* Good card inner: image on top, feeling below */
 .good-row{
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .compare-row .col-label{
@@ -1857,11 +1876,12 @@ section{padding: 100px 24px}
   border-bottom: 1px dashed rgba(0, 102, 255, 0.2);
 }
 .compare-row .feeling{
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--ink);
   line-height: 1.45;
   letter-spacing: -0.01em;
+  text-align: center;
 }
 
 /* Image inside compare card */
@@ -2010,6 +2030,7 @@ section{padding: 100px 24px}
 
 @media (max-width: 768px){
   .compare-visual{padding: 16px}
+  .compare-header{display: none}
   .compare-row{
     grid-template-columns: 1fr;
     gap: 6px;
@@ -2027,9 +2048,9 @@ section{padding: 100px 24px}
     width: 28px; height: 28px;
   }
   .compare-arrow svg{width: 16px; height: 16px}
-  .good-row{
-    grid-template-columns: 1.2fr 1fr;
-    gap: 12px;
+  .compare-img{
+    max-width: 280px;
+    margin: 0 auto;
   }
   .solution-points{padding: 0 20px}
   .solution-point{
@@ -4766,6 +4787,11 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     <div class="solution-grid">
       <!-- LEFT: Comparison cards -->
       <div class="compare-visual">
+        <div class="compare-header">
+          <div></div>
+          <div></div>
+          <div class="ch-good">IMPORT</div>
+        </div>
         <article class="compare-row">
           <div class="col bad">
             <div class="col-content">
@@ -4778,7 +4804,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
           <div class="col good">
-            <div class="col-label-good">IMPORT</div>
             <div class="good-row">
               <div class="compare-img">
                 <picture>
@@ -4786,10 +4811,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
                 </picture>
                 <div class="compare-img-fallback"><span>image</span></div>
               </div>
-              <div class="col-content">
-                <div class="meaning-text">飛行機が地を離れる映像<br>+ シャツを脱ぐシーン</div>
-                <div class="feeling">「何かが離れる」感覚</div>
-              </div>
+              <div class="feeling">「何かが離れる」感覚</div>
             </div>
           </div>
         </article>
@@ -4806,7 +4828,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
           <div class="col good">
-            <div class="col-label-good">IMPORT</div>
             <div class="good-row">
               <div class="compare-img">
                 <picture>
@@ -4814,10 +4835,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
                 </picture>
                 <div class="compare-img-fallback"><span>image</span></div>
               </div>
-              <div class="col-content">
-                <div class="meaning-text">自分の足に銃を撃つ映像</div>
-                <div class="feeling">自分の行動で<br>状況を悪化させるイメージ</div>
-              </div>
+              <div class="feeling">自分の行動で<br>状況を悪化させるイメージ</div>
             </div>
           </div>
         </article>
@@ -4834,7 +4852,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
           <div class="col good">
-            <div class="col-label-good">IMPORT</div>
             <div class="good-row">
               <div class="compare-img">
                 <picture>
@@ -4842,10 +4859,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
                 </picture>
                 <div class="compare-img-fallback"><span>image</span></div>
               </div>
-              <div class="col-content">
-                <div class="meaning-text">少ない力で大きな力を出す映像</div>
-                <div class="feeling">てこを活かして<br>活用するイメージ</div>
-              </div>
+              <div class="feeling">てこを活かして<br>活用するイメージ</div>
             </div>
           </div>
         </article>
