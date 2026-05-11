@@ -2327,12 +2327,9 @@ section{padding: 100px 24px}
   justify-content: center;
   width: 16px; height: 16px;
   background: var(--success);
-  color: white;
   border-radius: 50%;
-  font-size: 10px;
-  font-weight: 700;
   margin-right: 6px;
-  line-height: 1;
+  vertical-align: middle;
 }
 .tb-table .cross{
   display: inline-flex;
@@ -2340,13 +2337,10 @@ section{padding: 100px 24px}
   justify-content: center;
   width: 16px; height: 16px;
   background: #d04020;
-  color: white;
   border-radius: 50%;
-  font-size: 11px;
-  font-weight: 700;
   margin-right: 6px;
   opacity: 0.7;
-  line-height: 1;
+  vertical-align: middle;
 }
 .tb-table .partial{
   display: inline-flex;
@@ -2354,13 +2348,17 @@ section{padding: 100px 24px}
   justify-content: center;
   width: 16px; height: 16px;
   background: #ffaa00;
-  color: white;
   border-radius: 50%;
-  font-size: 11px;
-  font-weight: 700;
   margin-right: 6px;
   opacity: 0.8;
-  line-height: 1;
+  vertical-align: middle;
+}
+.tb-table .check svg,
+.tb-table .cross svg,
+.tb-table .partial svg{
+  width: 70%;
+  height: 70%;
+  display: block;
 }
 .tb-note{
   margin-top: 24px;
@@ -4648,18 +4646,21 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     color: var(--ink);
     font-weight: 700;
   }
-  /* Icons - smaller for better proportion with 12.5px text; per-icon font sizes compensate for glyph differences */
+  /* Icons - SVG-based for perfect glyph centering; vertical-align middle for clean alignment with text line */
   .tb-table .check,
   .tb-table .cross,
   .tb-table .partial{
     width: 14px;
     height: 14px;
     margin: 0 6px 0 0;
-    vertical-align: -3px;
+    vertical-align: middle;
   }
-  .tb-table .check{ font-size: 9px; }
-  .tb-table .cross{ font-size: 10px; }
-  .tb-table .partial{ font-size: 10px; }
+  .tb-table .check svg,
+  .tb-table .cross svg,
+  .tb-table .partial svg{
+    width: 75%;
+    height: 75%;
+  }
   .tb-note{padding: 0 20px; margin-top: 16px}
 
   /* ─── Science ─── */
@@ -5543,33 +5544,33 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <tbody>
           <tr>
             <td class="row-label">学習方法</td>
-            <td><span class="cross">×</span>文字 × 日本語訳</td>
-            <td class="import-cell"><span class="check">✓</span>3D映像 × 音声 × 感覚</td>
+            <td><span class="cross"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 5L11 11M11 5L5 11" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg></span>文字 × 日本語訳</td>
+            <td class="import-cell"><span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8.5L7 11.5L12 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3D映像 × 音声 × 感覚</td>
           </tr>
           <tr>
             <td class="row-label">記憶定着率</td>
-            <td><span class="cross">×</span>低い（1週間で大半が消失）</td>
-            <td class="import-cell"><span class="check">✓</span>映像で4.7倍定着</td>
+            <td><span class="cross"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 5L11 11M11 5L5 11" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg></span>低い（1週間で大半が消失）</td>
+            <td class="import-cell"><span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8.5L7 11.5L12 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>映像で4.7倍定着</td>
           </tr>
           <tr>
             <td class="row-label">多義語・句動詞</td>
-            <td><span class="cross">×</span>訳語の暗記のみ</td>
-            <td class="import-cell"><span class="check">✓</span>コアイメージで応用可</td>
+            <td><span class="cross"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 5L11 11M11 5L5 11" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg></span>訳語の暗記のみ</td>
+            <td class="import-cell"><span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8.5L7 11.5L12 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>コアイメージで応用可</td>
           </tr>
           <tr>
             <td class="row-label">単語選定</td>
-            <td><span class="cross">×</span>教科書英語が中心</td>
-            <td class="import-cell"><span class="check">✓</span>映画・日常会話から逆算</td>
+            <td><span class="cross"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 5L11 11M11 5L5 11" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg></span>教科書英語が中心</td>
+            <td class="import-cell"><span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8.5L7 11.5L12 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>映画・日常会話から逆算</td>
           </tr>
           <tr>
             <td class="row-label">学習スタイル</td>
-            <td><span class="partial">△</span>本を開いて学習</td>
-            <td class="import-cell"><span class="check">✓</span>ご飯やお皿洗いと一緒に「ながら学習」</td>
+            <td><span class="partial"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 4L12.5 11.5L3.5 11.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/></svg></span>本を開いて学習</td>
+            <td class="import-cell"><span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8.5L7 11.5L12 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>ご飯やお皿洗いと一緒に「ながら学習」</td>
           </tr>
           <tr>
             <td class="row-label">続けやすさ</td>
-            <td><span class="cross">×</span>単調で挫折しやすい</td>
-            <td class="import-cell"><span class="check">✓</span>Booで楽しく続く。眺めるだけOK</td>
+            <td><span class="cross"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 5L11 11M11 5L5 11" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg></span>単調で挫折しやすい</td>
+            <td class="import-cell"><span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8.5L7 11.5L12 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Booで楽しく続く。眺めるだけOK</td>
           </tr>
         </tbody>
       </table>
