@@ -4561,67 +4561,102 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  /* === Comparison: compact table on mobile (column-based, all-at-glance) === */
+  /* === Comparison: hybrid mobile layout — row-label header + 2-col data === */
   .tb-table-wrap{
     margin: 0 16px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.04);
   }
   .tb-table{
-    min-width: 0;
-    width: 100%;
-    table-layout: fixed;
-    font-size: 12px;
-  }
-  .tb-table thead{
-    background: var(--ink);
-  }
-  .tb-table th{
-    padding: 14px 6px 12px;
-    font-size: 11.5px;
-    line-height: 1.35;
-    text-align: center;
-    vertical-align: middle;
-  }
-  .tb-table th small{
-    font-size: 9.5px;
     display: block;
-    margin-top: 2px;
-    line-height: 1.3;
+    width: 100%;
+    min-width: 0;
   }
-  .tb-table th.import-col::after{
-    font-size: 7.5px;
-    top: 3px;
-    right: 4px;
-    letter-spacing: 0.1em;
+  /* Top header: 従来 | import (skip empty corner cell) */
+  .tb-table thead{
+    display: block;
   }
-  /* Column widths */
-  .tb-table th:first-child,
-  .tb-table td.row-label{
-    width: 26%;
+  .tb-table thead tr{
+    display: flex;
   }
-  .tb-table th:nth-child(2),
-  .tb-table td:nth-child(2){
-    width: 37%;
+  .tb-table thead th:first-child{
+    display: none;
   }
-  .tb-table th:nth-child(3),
-  .tb-table td:nth-child(3){
-    width: 37%;
+  .tb-table thead th{
+    flex: 1;
+    padding: 13px 8px 12px;
+    text-align: center;
+    font-size: 12.5px;
+    line-height: 1.35;
+    color: white;
+    background: var(--ink);
+    position: relative;
+  }
+  .tb-table thead th small{
+    font-size: 10px;
+    margin-top: 3px;
+    display: block;
+    opacity: 0.7;
+  }
+  .tb-table thead th.import-col{
+    background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+  }
+  .tb-table thead th.import-col::after{
+    font-size: 8px;
+    top: 4px;
+    right: 6px;
+    letter-spacing: 0.12em;
   }
   /* Body */
-  .tb-table td{
-    padding: 11px 7px;
-    font-size: 12px;
+  .tb-table tbody{
+    display: block;
+  }
+  .tb-table tbody tr{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .tb-table tbody tr:hover td{
+    background: transparent;
+  }
+  /* Row label = full-width section header */
+  .tb-table .row-label{
+    flex: 0 0 100%;
+    width: 100%;
+    background: var(--bg-soft);
+    padding: 9px 14px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    line-height: 1.3;
+    border-top: 1px solid var(--line-soft);
+    word-break: keep-all;
+  }
+  /* Data cells = 50/50 split below the label */
+  .tb-table tbody tr td:not(.row-label){
+    flex: 1 0 0;
+    max-width: 50%;
+    padding: 12px 12px;
+    font-size: 12.5px;
     line-height: 1.5;
+    color: var(--ink);
+    background: white;
+    border-top: 0;
     vertical-align: top;
   }
-  .tb-table .row-label{
-    font-size: 11px;
-    word-break: keep-all;
-    overflow-wrap: normal;
-    padding: 11px 6px;
-    line-height: 1.4;
+  /* Subtle separator between the two data cells */
+  .tb-table tbody tr td:nth-child(2){
+    border-right: 1px solid var(--line-soft);
   }
+  /* import cell highlight */
+  .tb-table .import-cell{
+    background: rgba(0, 102, 255, 0.04);
+    font-weight: 700;
+  }
+  /* Icons */
   .tb-table .check,
   .tb-table .cross,
   .tb-table .partial{
@@ -4629,7 +4664,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     height: 14px;
     line-height: 14px;
     font-size: 9px;
-    margin-right: 4px;
+    margin-right: 5px;
     vertical-align: -2px;
   }
   .tb-note{padding: 0 20px; margin-top: 16px}
