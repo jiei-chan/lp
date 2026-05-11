@@ -4561,10 +4561,78 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .tb-table{min-width: 0; font-size: 11px}
-  .tb-table th, .tb-table td{padding: 10px 6px; line-height: 1.5}
-  .tb-table th{font-size: 11px}
-  .tb-table .row-label{font-size: 10.5px}
+  /* === Comparison: card-style layout on mobile === */
+  .tb-table-wrap{
+    margin: 0 16px;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .tb-table{
+    display: block;
+    min-width: 0;
+    font-size: 13px;
+  }
+  .tb-table thead{ display: none }
+  .tb-table tbody{ display: block }
+  .tb-table tr{
+    display: block;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    margin-bottom: 12px;
+    padding: 14px 14px 14px;
+  }
+  .tb-table tr:hover td{ background: transparent }
+  .tb-table td{
+    display: block;
+    border: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    vertical-align: baseline;
+  }
+  .tb-table .row-label{
+    background: transparent;
+    padding: 0 2px 10px;
+    margin: 0 0 10px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  /* 従来 cell */
+  .tb-table td:not(.row-label):not(.import-cell){
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: rgba(208, 64, 32, 0.05);
+    border-radius: 10px;
+    color: rgba(15, 23, 48, 0.7);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  /* import cell - highlighted */
+  .tb-table .import-cell{
+    padding: 11px 12px;
+    background: linear-gradient(120deg, rgba(0, 102, 255, 0.07) 0%, rgba(0, 212, 255, 0.07) 100%);
+    border: 1px solid rgba(0, 102, 255, 0.20);
+    border-radius: 10px;
+    color: var(--ink);
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .tb-table .check,
+  .tb-table .cross,
+  .tb-table .partial{
+    flex-shrink: 0;
+    margin-top: 1px;
+    margin-right: 0;
+  }
   .tb-note{padding: 0 20px; margin-top: 16px}
 
   /* ─── Science ─── */
