@@ -2322,42 +2322,45 @@ section{padding: 100px 24px}
   color: var(--ink);
 }
 .tb-table .check{
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 16px; height: 16px;
   background: var(--success);
   color: white;
   border-radius: 50%;
-  line-height: 16px;
-  text-align: center;
   font-size: 10px;
   font-weight: 700;
   margin-right: 6px;
+  line-height: 1;
 }
 .tb-table .cross{
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 16px; height: 16px;
   background: #d04020;
   color: white;
   border-radius: 50%;
-  line-height: 16px;
-  text-align: center;
   font-size: 11px;
   font-weight: 700;
   margin-right: 6px;
   opacity: 0.7;
+  line-height: 1;
 }
 .tb-table .partial{
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 16px; height: 16px;
   background: #ffaa00;
   color: white;
   border-radius: 50%;
-  line-height: 16px;
-  text-align: center;
   font-size: 11px;
   font-weight: 700;
   margin-right: 6px;
   opacity: 0.8;
+  line-height: 1;
 }
 .tb-note{
   margin-top: 24px;
@@ -4657,16 +4660,13 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     color: var(--ink);
     font-weight: 700;
   }
-  /* Icons */
+  /* Icons - mobile size tweaks (centering inherited from inline-flex base) */
   .tb-table .check,
   .tb-table .cross,
   .tb-table .partial{
     width: 16px;
     height: 16px;
-    line-height: 16px;
-    font-size: 10px;
     margin: 0;
-    vertical-align: top;
   }
   .tb-note{padding: 0 20px; margin-top: 16px}
 
