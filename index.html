@@ -4561,77 +4561,76 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  /* === Comparison: card-style layout on mobile === */
+  /* === Comparison: compact table on mobile (column-based, all-at-glance) === */
   .tb-table-wrap{
     margin: 0 16px;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    overflow: visible;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .tb-table{
-    display: block;
     min-width: 0;
-    font-size: 13px;
+    width: 100%;
+    table-layout: fixed;
+    font-size: 12px;
   }
-  .tb-table thead{ display: none }
-  .tb-table tbody{ display: block }
-  .tb-table tr{
+  .tb-table thead{
+    background: var(--ink);
+  }
+  .tb-table th{
+    padding: 14px 6px 12px;
+    font-size: 11.5px;
+    line-height: 1.35;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .tb-table th small{
+    font-size: 9.5px;
     display: block;
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-    margin-bottom: 12px;
-    padding: 14px 14px 14px;
+    margin-top: 2px;
+    line-height: 1.3;
   }
-  .tb-table tr:hover td{ background: transparent }
+  .tb-table th.import-col::after{
+    font-size: 7.5px;
+    top: 3px;
+    right: 4px;
+    letter-spacing: 0.1em;
+  }
+  /* Column widths */
+  .tb-table th:first-child,
+  .tb-table td.row-label{
+    width: 26%;
+  }
+  .tb-table th:nth-child(2),
+  .tb-table td:nth-child(2){
+    width: 37%;
+  }
+  .tb-table th:nth-child(3),
+  .tb-table td:nth-child(3){
+    width: 37%;
+  }
+  /* Body */
   .tb-table td{
-    display: block;
-    border: 0;
-    padding: 0;
-    font-size: 13px;
-    line-height: 1.55;
-    vertical-align: baseline;
+    padding: 11px 7px;
+    font-size: 12px;
+    line-height: 1.5;
+    vertical-align: top;
   }
   .tb-table .row-label{
-    background: transparent;
-    padding: 0 2px 10px;
-    margin: 0 0 10px;
-    border-bottom: 1px solid var(--line);
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  /* 従来 cell */
-  .tb-table td:not(.row-label):not(.import-cell){
-    padding: 10px 12px;
-    margin-bottom: 8px;
-    background: rgba(208, 64, 32, 0.05);
-    border-radius: 10px;
-    color: rgba(15, 23, 48, 0.7);
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-  }
-  /* import cell - highlighted */
-  .tb-table .import-cell{
-    padding: 11px 12px;
-    background: linear-gradient(120deg, rgba(0, 102, 255, 0.07) 0%, rgba(0, 212, 255, 0.07) 100%);
-    border: 1px solid rgba(0, 102, 255, 0.20);
-    border-radius: 10px;
-    color: var(--ink);
-    font-weight: 700;
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
+    font-size: 11px;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    padding: 11px 6px;
+    line-height: 1.4;
   }
   .tb-table .check,
   .tb-table .cross,
   .tb-table .partial{
-    flex-shrink: 0;
-    margin-top: 1px;
-    margin-right: 0;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 9px;
+    margin-right: 4px;
+    vertical-align: -2px;
   }
   .tb-note{padding: 0 20px; margin-top: 16px}
 
@@ -5499,7 +5498,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <span class="blue">新しい代替案として。</span>
       </h2>
       <p class="section-lead" style="margin: 0 auto">
-        DUO、キクタン、金フレ — これまで何冊もの単語帳を試してきたあなたへ。<br>import が、なぜ次の選択肢になるのか。
+        何冊もの単語帳を試してきたあなたへ。<br>
+        import が、なぜ次の選択肢になるのか。
       </p>
     </div>
 
@@ -5508,7 +5508,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <thead>
           <tr>
             <th></th>
-            <th>従来の英単語帳・アプリ<br><small style="font-weight: 500; opacity: 0.7">DUO・キクタン・フラッシュカード型</small></th>
+            <th>従来の英単語学習<br><small style="font-weight: 500; opacity: 0.7">暗記・フラッシュ型</small></th>
             <th class="import-col">import<br><small style="font-weight: 500; opacity: 0.85">3教材バンドル</small></th>
           </tr>
         </thead>
