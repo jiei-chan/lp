@@ -2303,16 +2303,6 @@ section{padding: 100px 24px}
   background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
   position: relative;
 }
-.tb-table th.import-col::after{
-  content: 'BEST CHOICE';
-  position: absolute;
-  top: 4px; right: 8px;
-  font-family: var(--en);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.7);
-}
 .tb-table td{
   padding: 18px 16px;
   border-top: 1px solid var(--line-soft);
@@ -4604,12 +4594,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .tb-table thead th.import-col{
     background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
   }
-  .tb-table thead th.import-col::after{
-    font-size: 8px;
-    top: 4px;
-    right: 6px;
-    letter-spacing: 0.12em;
-  }
   /* Body */
   .tb-table tbody{
     display: block;
@@ -4639,33 +4623,50 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .tb-table tbody tr td:not(.row-label){
     flex: 1 0 0;
     max-width: 50%;
-    padding: 12px 12px;
+    padding: 14px 12px;
     font-size: 12.5px;
-    line-height: 1.5;
+    line-height: 1.6;
     color: var(--ink);
-    background: white;
     border-top: 0;
-    vertical-align: top;
+    /* Flexbox to align icon with first line of text */
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    /* Better line breaking for Japanese */
+    text-wrap: balance;
+    word-break: auto-phrase;
+    overflow-wrap: anywhere;
   }
-  /* Subtle separator between the two data cells */
+  /* Make text inside cell take remaining space and wrap as a unit */
+  .tb-table tbody tr td:not(.row-label) > .check,
+  .tb-table tbody tr td:not(.row-label) > .cross,
+  .tb-table tbody tr td:not(.row-label) > .partial{
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  /* 従来 cell: muted with subtle red tint */
   .tb-table tbody tr td:nth-child(2){
+    background: rgba(208, 64, 32, 0.03);
+    color: rgba(15, 23, 48, 0.62);
+    font-weight: 500;
     border-right: 1px solid var(--line-soft);
   }
-  /* import cell highlight */
+  /* import cell: emphasized with blue tint */
   .tb-table .import-cell{
-    background: rgba(0, 102, 255, 0.04);
+    background: rgba(0, 102, 255, 0.05);
+    color: var(--ink);
     font-weight: 700;
   }
   /* Icons */
   .tb-table .check,
   .tb-table .cross,
   .tb-table .partial{
-    width: 14px;
-    height: 14px;
-    line-height: 14px;
-    font-size: 9px;
-    margin-right: 5px;
-    vertical-align: -2px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 10px;
+    margin: 0;
+    vertical-align: top;
   }
   .tb-note{padding: 0 20px; margin-top: 16px}
 
@@ -5544,7 +5545,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           <tr>
             <th></th>
             <th>従来の英単語学習<br><small style="font-weight: 500; opacity: 0.7">暗記・フラッシュ型</small></th>
-            <th class="import-col">import<br><small style="font-weight: 500; opacity: 0.85">3教材バンドル</small></th>
+            <th class="import-col">import<br><small style="font-weight: 500; opacity: 0.85">映像没入型</small></th>
           </tr>
         </thead>
         <tbody>
