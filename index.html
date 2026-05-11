@@ -4326,6 +4326,20 @@ section{padding: 100px 24px}
   }
   .final-action-area{
     padding: 0 20px 56px;
+    margin-top: -340px;
+    position: relative;
+    z-index: 2;
+  }
+  .final-action-area::before{
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(5,8,24,0.5) 40%, rgba(5,8,24,0.9) 80%, #050818 100%);
+    pointer-events: none;
+    z-index: -1;
   }
   .final h2{
     font-size: clamp(32px, 9vw, 36px);
