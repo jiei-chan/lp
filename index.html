@@ -4561,9 +4561,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .tb-table{min-width: 580px; font-size: 11px}
-  .tb-table th, .tb-table td{padding: 10px 8px}
+  .tb-table{min-width: 0; font-size: 11px}
+  .tb-table th, .tb-table td{padding: 10px 6px; line-height: 1.5}
   .tb-table th{font-size: 11px}
+  .tb-table .row-label{font-size: 10.5px}
   .tb-note{padding: 0 20px; margin-top: 16px}
 
   /* ─── Science ─── */
@@ -5439,8 +5440,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <thead>
           <tr>
             <th></th>
-            <th>定番の単語帳<br><small style="font-weight: 500; opacity: 0.7">DUO・キクタン・金フレ等</small></th>
-            <th>従来の英語アプリ<br><small style="font-weight: 500; opacity: 0.7">フラッシュカード型</small></th>
+            <th>従来の英単語帳・アプリ<br><small style="font-weight: 500; opacity: 0.7">DUO・キクタン・フラッシュカード型</small></th>
             <th class="import-col">import<br><small style="font-weight: 500; opacity: 0.85">3教材バンドル</small></th>
           </tr>
         </thead>
@@ -5448,44 +5448,32 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           <tr>
             <td class="row-label">学習方法</td>
             <td><span class="cross">×</span>文字 × 日本語訳</td>
-            <td><span class="partial">△</span>文字 × 音声</td>
             <td class="import-cell"><span class="check">✓</span>3D映像 × 音声 × 感覚</td>
           </tr>
           <tr>
             <td class="row-label">記憶定着率</td>
             <td><span class="cross">×</span>低い（1週間で大半が消失）</td>
-            <td><span class="partial">△</span>中程度</td>
             <td class="import-cell"><span class="check">✓</span>映像で4.7倍定着</td>
           </tr>
           <tr>
             <td class="row-label">多義語・句動詞</td>
             <td><span class="cross">×</span>訳語の暗記のみ</td>
-            <td><span class="cross">×</span>訳語の暗記のみ</td>
             <td class="import-cell"><span class="check">✓</span>コアイメージで応用可</td>
           </tr>
           <tr>
-            <td class="row-label">ネイティブ表現</td>
+            <td class="row-label">単語選定</td>
             <td><span class="cross">×</span>教科書英語が中心</td>
-            <td><span class="partial">△</span>一部のみ</td>
-            <td class="import-cell"><span class="check">✓</span>SNS・映画から逆算</td>
+            <td class="import-cell"><span class="check">✓</span>映画・日常会話から逆算</td>
           </tr>
           <tr>
             <td class="row-label">学習スタイル</td>
-            <td><span class="cross">×</span>机に向かう必要あり</td>
-            <td><span class="partial">△</span>スマホで可能</td>
-            <td class="import-cell"><span class="check">✓</span>1日10分・縦動画</td>
+            <td><span class="partial">△</span>本を開いて学習</td>
+            <td class="import-cell"><span class="check">✓</span>ご飯やお皿洗いと一緒に「ながら学習」</td>
           </tr>
           <tr>
-            <td class="row-label">挫折のしにくさ</td>
-            <td><span class="cross">×</span>3週間で離脱が大半</td>
-            <td><span class="cross">×</span>飽きやすい</td>
-            <td class="import-cell"><span class="check">✓</span>Booで楽しく続く</td>
-          </tr>
-          <tr>
-            <td class="row-label">料金</td>
-            <td><span class="partial">△</span>1冊 ¥1,500〜2,500</td>
-            <td><span class="cross">×</span>月額 ¥1,500〜3,000</td>
-            <td class="import-cell"><span class="check">✓</span>買い切り ¥7,656</td>
+            <td class="row-label">続けやすさ</td>
+            <td><span class="cross">×</span>単調で挫折しやすい</td>
+            <td class="import-cell"><span class="check">✓</span>Booで楽しく続く。眺めるだけOK</td>
           </tr>
         </tbody>
       </table>
