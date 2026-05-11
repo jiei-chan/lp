@@ -4322,10 +4322,10 @@ section{padding: 100px 24px}
 /* Mobile adjustments */
 @media (max-width: 768px){
   .final-image-area{
-    padding: 28px 20px 40px;
+    padding: 28px 20px 0;
   }
   .final-action-area{
-    padding: 28px 20px 56px;
+    padding: 0 20px 56px;
   }
   .final h2{
     font-size: clamp(32px, 9vw, 36px);
@@ -4336,6 +4336,9 @@ section{padding: 100px 24px}
   .final-sub{
     font-size: 13px;
     line-height: 1.75;
+  }
+  .final-bg-wrap img{
+    object-position: center;
   }
   .final-bg-overlay{
     background:
@@ -4350,7 +4353,7 @@ section{padding: 100px 24px}
       );
   }
   .final-fade{
-    height: 90px;
+    height: 50px;
   }
   .final-image-banner{ display: none; }
   .final-spacer{
