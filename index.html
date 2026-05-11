@@ -4628,24 +4628,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     max-width: 50%;
     padding: 14px 12px;
     font-size: 12.5px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--ink);
     border-top: 0;
-    /* Flexbox to align icon with first line of text */
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-    /* Better line breaking for Japanese */
-    text-wrap: balance;
-    word-break: auto-phrase;
-    overflow-wrap: anywhere;
-  }
-  /* Make text inside cell take remaining space and wrap as a unit */
-  .tb-table tbody tr td:not(.row-label) > .check,
-  .tb-table tbody tr td:not(.row-label) > .cross,
-  .tb-table tbody tr td:not(.row-label) > .partial{
-    flex-shrink: 0;
-    margin-top: 2px;
+    /* Inline flow: icon + text on first line, text wraps below at full cell width */
+    display: block;
+    overflow-wrap: break-word;
   }
   /* 従来 cell: muted with subtle red tint */
   .tb-table tbody tr td:nth-child(2){
@@ -4660,14 +4648,18 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     color: var(--ink);
     font-weight: 700;
   }
-  /* Icons - mobile size tweaks (centering inherited from inline-flex base) */
+  /* Icons - smaller for better proportion with 12.5px text; per-icon font sizes compensate for glyph differences */
   .tb-table .check,
   .tb-table .cross,
   .tb-table .partial{
-    width: 16px;
-    height: 16px;
-    margin: 0;
+    width: 14px;
+    height: 14px;
+    margin: 0 6px 0 0;
+    vertical-align: -3px;
   }
+  .tb-table .check{ font-size: 9px; }
+  .tb-table .cross{ font-size: 10px; }
+  .tb-table .partial{ font-size: 10px; }
   .tb-note{padding: 0 20px; margin-top: 16px}
 
   /* ─── Science ─── */
