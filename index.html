@@ -1253,6 +1253,11 @@ section{padding: 100px 24px}
 @media (max-width: 600px){
   .mb-br{display: inline}
 }
+/* PC-only line break utility — visible on desktop, hidden on mobile */
+.pc-br{display: inline}
+@media (max-width: 600px){
+  .pc-br{display: none}
+}
 .section-lead{
   font-size: 17px;
   line-height: 1.9;
@@ -4991,7 +4996,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
       <div class="section-eyebrow">About import</div>
       <h2 class="section-title">
-        Boo は <span class="blue">import</span> の<br>
+        Boo は <span class="blue">import</span> の<br class="pc-br">
         メインキャラクター。
       </h2>
 
@@ -5004,7 +5009,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
       <div class="authority-body">
         <p class="authority-lead">
-          世界中の英語学習者に届く、<br>
+          世界中の英語学習者に届く、<br class="pc-br">
           <strong>日本発の次世代英語学習プログラム</strong>。
         </p>
         <p class="authority-detail">
@@ -5065,10 +5070,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             </div>
           </a>
           <h3 class="ig-headline">
-            開設から半年で<br>
+            開設から半年で<br class="pc-br">
             <span class="ig-highlight">100万フォロワー突破！</span>
           </h3>
-          <p class="ig-sub">毎日、世界中の学習者に<br>新しい英語体験を届けています。</p>
+          <p class="ig-sub">毎日、世界中の学習者に<br class="pc-br">新しい英語体験を届けています。</p>
         </div>
 
         <div class="ig-growth-right">
