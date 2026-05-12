@@ -2241,7 +2241,7 @@ section{padding: 100px 24px}
   .compare-header{display: none}
   .compare-row{
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 0;
     position: relative;
   }
   .compare-row .col{
@@ -2253,10 +2253,18 @@ section{padding: 100px 24px}
   }
   .compare-arrow{
     transform: rotate(90deg);
-    margin: 8px auto;
-    width: 40px; height: 40px;
+    margin: -22px auto;
+    width: 44px; height: 44px;
+    z-index: 5;
+    position: relative;
   }
-  .compare-arrow svg{width: 20px; height: 20px}
+  .compare-arrow svg{width: 22px; height: 22px}
+  .solution .compare-arrow{
+    background: rgba(20, 28, 48, 0.92) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
   .compare-img{
     max-width: 280px;
     margin: 0 auto;
