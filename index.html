@@ -2077,6 +2077,15 @@ section{padding: 100px 24px}
   letter-spacing: -0.01em;
   text-align: center;
 }
+.compare-row .feeling-arrow{
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0;
+}
+.solution .compare-row .feeling-arrow{ color: var(--blue-light); }
 
 /* Image inside compare card */
 .compare-img{
@@ -2224,11 +2233,12 @@ section{padding: 100px 24px}
 
 @media (max-width: 768px){
   .solution{padding: 56px 0 72px}
-  .compare-visual{padding: 16px}
+  .compare-visual{padding: 16px; gap: 28px}
   .compare-header{display: none}
   .compare-row{
     grid-template-columns: 1fr;
-    gap: 6px;
+    gap: 8px;
+    position: relative;
   }
   .compare-row .col{
     padding: 12px 14px;
@@ -2239,10 +2249,18 @@ section{padding: 100px 24px}
   }
   .compare-arrow{
     transform: rotate(90deg);
-    margin: 0 auto;
-    width: 28px; height: 28px;
+    margin: 4px auto;
+    width: 36px; height: 36px;
+    background: rgba(0, 102, 255, 0.18) !important;
+    border-color: rgba(0, 212, 255, 0.5) !important;
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.35);
   }
-  .compare-arrow svg{width: 16px; height: 16px}
+  .compare-arrow svg{width: 18px; height: 18px; stroke-width: 3}
+  .solution .compare-arrow{
+    background: rgba(0, 212, 255, 0.18) !important;
+    border-color: rgba(0, 212, 255, 0.55) !important;
+    color: var(--accent) !important;
+  }
   .compare-img{
     max-width: 280px;
     margin: 0 auto;
@@ -5415,7 +5433,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <div class="col-content">
               <div class="col-label">従来の単語帳</div>
               <div class="word">take off</div>
-              <div class="meaning">→ 離陸する</div>
+              <div class="meaning">→ 離陸する、脱ぐ</div>
             </div>
           </div>
           <div class="compare-arrow">
@@ -5429,7 +5447,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
                 </picture>
                 <div class="compare-img-fallback"><span>image</span></div>
               </div>
-              <div class="feeling">「何かが離れる」感覚</div>
+              <div class="feeling">「何かが離れる」感覚<br><span class="feeling-arrow">→ 飛び立つ、脱ぐ</span></div>
             </div>
           </div>
         </article>
@@ -5453,7 +5471,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
                 </picture>
                 <div class="compare-img-fallback"><span>image</span></div>
               </div>
-              <div class="feeling">自分の行動で<br>状況を悪化させるイメージ</div>
+              <div class="feeling">自分の行動で状況を悪化させるイメージ<br><span class="feeling-arrow">→ 墓穴を掘る</span></div>
             </div>
           </div>
         </article>
@@ -5463,7 +5481,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <div class="col-content">
               <div class="col-label">従来の単語帳</div>
               <div class="word">leverage</div>
-              <div class="meaning">→ てこの作用</div>
+              <div class="meaning">→ てこの作用、活用する</div>
             </div>
           </div>
           <div class="compare-arrow">
