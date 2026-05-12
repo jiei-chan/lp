@@ -4141,10 +4141,13 @@ section{padding: 100px 24px}
 }
 .final-price-card .price-strike{
   font-family: var(--en);
-  font-size: 16px;
-  color: rgba(255,255,255,0.55);
+  font-size: 22px;
+  color: rgba(255,255,255,0.6);
   text-decoration: line-through;
-  margin-bottom: 6px;
+  text-decoration-color: rgba(255, 107, 74, 0.85);
+  text-decoration-thickness: 2px;
+  text-underline-offset: -1px;
+  margin-bottom: 8px;
   letter-spacing: -0.01em;
   font-weight: 500;
 }
@@ -4164,41 +4167,34 @@ section{padding: 100px 24px}
   font-weight: 700;
 }
 
-/* === Savings tag: prominent discount banner === */
+/* === Savings tag: refined typographic treatment === */
 .savings-tag{
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
-  background: linear-gradient(120deg, #ffd33d 0%, #ff9b1f 100%);
-  color: #1a0e00;
-  padding: 9px 22px;
+  background: rgba(255, 107, 74, 0.12);
+  color: #ff9577;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 107, 74, 0.28);
   border-radius: 100px;
   font-family: var(--en);
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 0.02em;
+  font-weight: 700;
   margin-bottom: 18px;
-  box-shadow: 0 6px 24px rgba(255, 180, 30, 0.45), inset 0 1px 0 rgba(255,255,255,0.5);
-  animation: savings-pulse 2.4s ease-in-out infinite;
 }
 .savings-tag .flash{
-  font-size: 18px;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+  display: none;
 }
 .savings-tag .amt{
   font-size: 19px;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.01em;
+  color: #ffa088;
 }
 .savings-tag .off-text{
   font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  margin-left: 2px;
-}
-@keyframes savings-pulse{
-  0%, 100% { transform: scale(1); box-shadow: 0 6px 24px rgba(255, 180, 30, 0.45), inset 0 1px 0 rgba(255,255,255,0.5); }
-  50%      { transform: scale(1.04); box-shadow: 0 8px 32px rgba(255, 180, 30, 0.65), inset 0 1px 0 rgba(255,255,255,0.5); }
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  opacity: 0.85;
 }
 
 /* === OFF circular badge: bigger + more dramatic === */
@@ -4385,7 +4381,7 @@ section{padding: 100px 24px}
   }
   .savings-tag .amt{ font-size: 16px; }
   .savings-tag .off-text{ font-size: 11px; }
-  .savings-tag .flash{ font-size: 15px; }
+  .final-price-card .price-strike{ font-size: 18px; }
   .final-price-card{
     padding: 22px 24px;
     border-radius: 22px;
