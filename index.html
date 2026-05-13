@@ -4493,6 +4493,33 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 .sticky-cta .label{font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em}
 .sticky-cta .btn{padding: 14px 20px; font-size: 13px; flex-shrink: 0}
 
+/* Pulse the CTA button every 5 seconds (only when visible) */
+@keyframes sticky-cta-pulse{
+  0%, 78%{
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.35);
+  }
+  85%{
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.18);
+  }
+  92%{
+    transform: scale(0.99);
+    box-shadow: 0 0 0 12px rgba(0, 102, 255, 0);
+  }
+  100%{
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 102, 255, 0);
+  }
+}
+.sticky-cta.visible .btn{
+  animation: sticky-cta-pulse 5s ease-in-out infinite;
+}
+.sticky-cta.visible .btn:hover,
+.sticky-cta.visible .btn:active{
+  animation-play-state: paused;
+}
+
 /* ========== MOBILE OPTIMIZATIONS (≤768px) ========== */
 @media (max-width: 768px){
   /* ─── Layout basics ─── */
