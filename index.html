@@ -1384,6 +1384,24 @@ section{padding: 100px 24px}
   background-clip: text;
   color: transparent;
 }
+.section-title .muted-strike{
+  position: relative;
+  color: rgba(20, 28, 40, 0.42);
+  text-decoration: line-through;
+  text-decoration-color: rgba(0, 102, 255, 0.55);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0;
+}
+.section-lead strong{
+  color: var(--ink);
+  font-weight: 800;
+}
+.section-lead .lead-accent{
+  background: linear-gradient(transparent 62%, rgba(0, 102, 255, 0.18) 62%, rgba(0, 102, 255, 0.18) 92%, transparent 92%);
+  padding: 0 2px;
+  font-weight: 700;
+  color: var(--ink);
+}
 
 /* Mobile-only line break utility (used in section titles to break at 句読点) */
 .mb-br{display: none}
@@ -5417,13 +5435,13 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="wrap">
     <div class="empathy-header">
       <div class="empathy-header-text">
-        <div class="section-eyebrow">— SECTION 01 / Empathy</div>
+        <div class="section-eyebrow">— Why It Doesn't Stick</div>
         <h2 class="section-title">
-          単語帳を何周しても、<br class="mb-br">
+          単語帳を<span class="muted-strike">何周しても</span>、<br class="mb-br">
           なぜ<span class="blue">覚えられない</span>のか。
         </h2>
         <p class="section-lead">
-          もし1つでも当てはまるなら、それは「努力不足」ではありません。<br>従来の暗記法そのものが、人間の脳の仕組みに合っていないだけです。
+          もし1つでも当てはまるなら、それは<strong>「努力不足」ではありません</strong>。<br>従来の暗記法そのものが、<span class="lead-accent">人間の脳の仕組みに合っていない</span>だけです。
         </p>
       </div>
       <div class="empathy-header-image">
