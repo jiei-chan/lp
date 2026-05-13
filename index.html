@@ -609,23 +609,20 @@ body{
   66%{transform: translate(-20px, 30px) scale(0.95)}
 }
 
-/* ========== WHAT IS INSIDE STRIP ========== */
+/* ========== WHAT IS INSIDE — VIDEO PREVIEW CARDS ========== */
 .inside{
   background: var(--ink-2);
-  padding: 56px 24px;
+  padding: 72px 24px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   color: white;
 }
 .inside-inner{
   max-width: 1120px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 48px;
-  align-items: center;
 }
-@media (max-width: 800px){
-  .inside-inner{grid-template-columns: 1fr; gap: 32px}
+.inside-header{
+  text-align: center;
+  margin-bottom: 36px;
 }
 .inside-label{
   font-family: var(--en);
@@ -637,8 +634,8 @@ body{
 }
 .inside-label .small{
   display: block;
-  margin-top: 8px;
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 18px;
   font-weight: 700;
   color: white;
   letter-spacing: -0.01em;
@@ -648,17 +645,71 @@ body{
 .inside-products{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px;
+  max-width: 880px;
+  margin: 0 auto;
 }
-@media (max-width: 700px){.inside-products{grid-template-columns: 1fr}}
 .inside-product{
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
+  border-radius: 18px;
+  padding: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.inside-product:hover{
+  transform: translateY(-3px);
+  border-color: rgba(0, 212, 255, 0.35);
+  background: rgba(255,255,255,0.06);
+}
+.inside-video-wrap{
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  margin-bottom: 14px;
+}
+.inside-video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.inside-video-overlay{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 10px;
+  border-radius: 100px;
+  font-family: var(--en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: white;
+  pointer-events: none;
+}
+.inside-sound-icon{
+  flex-shrink: 0;
+}
+.inside-tap-hint{
+  white-space: nowrap;
+}
+.inside-meta{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 4px 4px 2px;
 }
 .inside-pill{
   width: 38px; height: 38px;
@@ -675,8 +726,70 @@ body{
 .inside-pill.p1{background: linear-gradient(135deg, #0066ff, #4d94ff)}
 .inside-pill.p2{background: linear-gradient(135deg, #7c5cff, #a78bfa)}
 .inside-pill.p3{background: linear-gradient(135deg, #00b8d4, #00d4ff)}
-.inside-product .name{font-family: var(--en); font-size: 14px; font-weight: 700; letter-spacing: -0.01em}
-.inside-product .desc{font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px}
+.inside-text .name{font-family: var(--en); font-size: 15px; font-weight: 700; letter-spacing: -0.01em}
+.inside-text .desc{font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px}
+
+/* Video lightbox modal */
+.video-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.video-modal.open{
+  display: flex;
+}
+.video-modal-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 24, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+.video-modal-close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.2s;
+}
+.video-modal-close:hover{
+  background: rgba(255, 255, 255, 0.2);
+}
+.video-modal-frame{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 9 / 16;
+  max-height: calc(100vh - 100px);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+.video-modal-player{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 
 /* ========== AUTHORITY (Boo / import) - LIGHT CINEMATIC ========== */
 .authority{
@@ -4581,15 +4694,32 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     margin-bottom: 20px;
   }
 
-  /* ─── WHAT IS INSIDE ─── */
-  .inside{padding: 40px 20px}
-  .inside-inner{gap: 20px}
+  /* ─── WHAT IS INSIDE — video cards ─── */
+  .inside{padding: 48px 20px}
+  .inside-header{margin-bottom: 24px}
   .inside-label{font-size: 11px; letter-spacing: 0.18em}
-  .inside-label .small{font-size: 13px; margin-top: 6px}
-  .inside-product{padding: 12px 14px}
-  .inside-pill{width: 32px; height: 32px; font-size: 11px}
-  .inside-product .name{font-size: 13px}
-  .inside-product .desc{font-size: 10px}
+  .inside-label .small{font-size: 16px; margin-top: 8px}
+  .inside-products{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 100%;
+  }
+  .inside-product{padding: 8px; border-radius: 14px}
+  .inside-video-wrap{border-radius: 10px; margin-bottom: 10px}
+  .inside-video-overlay{
+    bottom: 6px; left: 6px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+  .inside-tap-hint{font-size: 9px}
+  .inside-meta{gap: 8px; padding: 2px}
+  .inside-pill{width: 28px; height: 28px; font-size: 10px; border-radius: 8px}
+  .inside-text .name{font-size: 12px; line-height: 1.2}
+  .inside-text .desc{font-size: 10px}
+  /* Video modal — adjust for mobile */
+  .video-modal{padding: 16px}
+  .video-modal-frame{max-width: 100%; max-height: calc(100vh - 80px)}
+  .video-modal-close{width: 40px; height: 40px; top: 12px; right: 12px}
 
   /* ─── Section titles globally smaller on mobile ─── */
   .section-eyebrow{font-size: 11px; letter-spacing: 0.18em; margin-bottom: 14px}
@@ -4998,38 +5128,97 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 </section>
 
-<!-- ========== WHAT IS INSIDE ========== -->
-<div class="inside" id="what">
+<!-- ========== WHAT IS INSIDE (Video Previews) ========== -->
+<section class="inside" id="what">
   <div class="inside-inner">
-    <div>
+    <div class="inside-header">
       <div class="inside-label">
         WHAT IS INSIDE
         <span class="small">まず中身を10秒で。</span>
       </div>
     </div>
     <div class="inside-products">
-      <div class="inside-product">
-        <div class="inside-pill p1">EV</div>
-        <div>
-          <div class="name">Essential Verbs</div>
-          <div class="desc">句動詞 400</div>
+
+      <article class="inside-product" data-modal-src="videos/preview-essential-verbs.mp4">
+        <div class="inside-video-wrap">
+          <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-essential-verbs.jpg">
+            <source src="videos/preview-essential-verbs.mp4" type="video/mp4">
+          </video>
+          <div class="inside-video-overlay">
+            <svg class="inside-sound-icon" width="14" height="14" viewBox="0 0 24 24" fill="white">
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z" opacity="0.95"/>
+              <path d="M19 7l-1.4 1.4M19 17l-1.4-1.4" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="inside-tap-hint">タップで音あり</span>
+          </div>
         </div>
-      </div>
-      <div class="inside-product">
-        <div class="inside-pill p2">ND</div>
-        <div>
-          <div class="name">NativeDose</div>
-          <div class="desc">イディオム 300</div>
+        <div class="inside-meta">
+          <div class="inside-pill p1">EV</div>
+          <div class="inside-text">
+            <div class="name">Essential Verbs</div>
+            <div class="desc">句動詞 400</div>
+          </div>
         </div>
-      </div>
-      <div class="inside-product">
-        <div class="inside-pill p3">SE</div>
-        <div>
-          <div class="name">Silver Express</div>
-          <div class="desc">ビジネス語彙 500</div>
+      </article>
+
+      <article class="inside-product" data-modal-src="videos/preview-nativedose.mp4">
+        <div class="inside-video-wrap">
+          <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-nativedose.jpg">
+            <source src="videos/preview-nativedose.mp4" type="video/mp4">
+          </video>
+          <div class="inside-video-overlay">
+            <svg class="inside-sound-icon" width="14" height="14" viewBox="0 0 24 24" fill="white">
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z" opacity="0.95"/>
+              <path d="M19 7l-1.4 1.4M19 17l-1.4-1.4" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="inside-tap-hint">タップで音あり</span>
+          </div>
         </div>
-      </div>
+        <div class="inside-meta">
+          <div class="inside-pill p2">ND</div>
+          <div class="inside-text">
+            <div class="name">NativeDose</div>
+            <div class="desc">イディオム 300</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="inside-product" data-modal-src="videos/preview-silver-express.mp4">
+        <div class="inside-video-wrap">
+          <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-silver-express.jpg">
+            <source src="videos/preview-silver-express.mp4" type="video/mp4">
+          </video>
+          <div class="inside-video-overlay">
+            <svg class="inside-sound-icon" width="14" height="14" viewBox="0 0 24 24" fill="white">
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z" opacity="0.95"/>
+              <path d="M19 7l-1.4 1.4M19 17l-1.4-1.4" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="inside-tap-hint">タップで音あり</span>
+          </div>
+        </div>
+        <div class="inside-meta">
+          <div class="inside-pill p3">SE</div>
+          <div class="inside-text">
+            <div class="name">Silver Express</div>
+            <div class="desc">ビジネス語彙 500</div>
+          </div>
+        </div>
+      </article>
+
     </div>
+  </div>
+</section>
+
+<!-- Video modal (lightbox for tap-to-play with sound) -->
+<div class="video-modal" id="videoModal" role="dialog" aria-hidden="true">
+  <div class="video-modal-backdrop" data-modal-close></div>
+  <button class="video-modal-close" data-modal-close aria-label="閉じる">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M6 6l12 12M18 6L6 18"/>
+    </svg>
+  </button>
+  <div class="video-modal-frame">
+    <video class="video-modal-player" controls playsinline preload="metadata"></video>
   </div>
 </div>
 
@@ -6491,6 +6680,61 @@ document.querySelectorAll('.faq-item').forEach(item => {
       ticking = true;
     }
   }, { passive: true });
+})();
+
+// WHAT IS INSIDE — video previews
+(function(){
+  const cards = document.querySelectorAll('.inside-product');
+  const modal = document.getElementById('videoModal');
+  if (!cards.length || !modal) return;
+  const modalPlayer = modal.querySelector('.video-modal-player');
+
+  // Pause videos when out of viewport (saves CPU & data)
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target.querySelector('.inside-video');
+        if (!video) return;
+        if (entry.isIntersecting){
+          video.play().catch(()=>{}); // ignore autoplay blocked
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    cards.forEach(card => io.observe(card));
+  }
+
+  // Tap card → open modal with that video + sound + controls
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      const src = card.getAttribute('data-modal-src');
+      if (!src) return;
+      modalPlayer.src = src;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      modalPlayer.play().catch(()=>{});
+    });
+  });
+
+  // Close modal
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    modalPlayer.pause();
+    modalPlayer.removeAttribute('src');
+    modalPlayer.load();
+    document.body.style.overflow = '';
+  }
+  modal.querySelectorAll('[data-modal-close]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')){
+      closeModal();
+    }
+  });
 })();
 
 // Reveal on scroll
