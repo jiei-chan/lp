@@ -656,23 +656,51 @@ body{
   padding: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   display: block;
   text-decoration: none;
   color: inherit;
 }
 .inside-product:hover{
   transform: translateY(-3px);
-  border-color: rgba(0, 212, 255, 0.35);
-  background: rgba(255,255,255,0.06);
 }
+
+/* Color themes — match the bundle product cards */
+.inside-product.theme-blue{
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.12) 0%, transparent 55%),
+    linear-gradient(160deg, #1a7aff 0%, #0066ff 45%, #0046b8 100%);
+  border-color: rgba(0, 102, 255, 0.55);
+}
+.inside-product.theme-blue:hover{
+  box-shadow: 0 12px 32px rgba(0, 102, 255, 0.32);
+}
+.inside-product.theme-purple{
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.14) 0%, transparent 55%),
+    linear-gradient(160deg, #9555f7 0%, #7c3aed 45%, #5b21b6 100%);
+  border-color: rgba(124, 58, 237, 0.55);
+}
+.inside-product.theme-purple:hover{
+  box-shadow: 0 12px 32px rgba(124, 58, 237, 0.32);
+}
+.inside-product.theme-teal{
+  background:
+    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.10) 0%, transparent 55%),
+    linear-gradient(160deg, #475569 0%, #334155 45%, #1e293b 100%);
+  border-color: rgba(100, 116, 139, 0.55);
+}
+.inside-product.theme-teal:hover{
+  box-shadow: 0 12px 32px rgba(51, 65, 85, 0.5);
+}
+
 .inside-video-wrap{
   position: relative;
   aspect-ratio: 9 / 16;
   border-radius: 12px;
   overflow: hidden;
   background: #000;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .inside-video{
   width: 100%;
@@ -706,28 +734,21 @@ body{
   white-space: nowrap;
 }
 .inside-meta{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 4px 4px 4px 2px;
+  padding: 4px 6px 6px;
+  text-align: center;
 }
-.inside-pill{
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.inside-meta .name{
   font-family: var(--en);
-  font-weight: 800;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: white;
-  flex-shrink: 0;
 }
-.inside-pill.p1{background: linear-gradient(135deg, #0066ff, #4d94ff)}
-.inside-pill.p2{background: linear-gradient(135deg, #7c5cff, #a78bfa)}
-.inside-pill.p3{background: linear-gradient(135deg, #00b8d4, #00d4ff)}
-.inside-text .name{font-family: var(--en); font-size: 15px; font-weight: 700; letter-spacing: -0.01em}
-.inside-text .desc{font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px}
+.inside-meta .desc{
+  font-size: 11px;
+  color: rgba(255,255,255,0.78);
+  margin-top: 3px;
+}
 
 /* Video lightbox modal */
 .video-modal{
@@ -4712,10 +4733,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     font-size: 9px;
   }
   .inside-tap-hint{font-size: 9px}
-  .inside-meta{gap: 8px; padding: 2px}
-  .inside-pill{width: 28px; height: 28px; font-size: 10px; border-radius: 8px}
-  .inside-text .name{font-size: 12px; line-height: 1.2}
-  .inside-text .desc{font-size: 10px}
+  .inside-meta{padding: 2px 2px 4px}
+  .inside-meta .name{font-size: 12px; line-height: 1.2}
+  .inside-meta .desc{font-size: 10px}
   /* Video modal — adjust for mobile */
   .video-modal{padding: 16px}
   .video-modal-frame{max-width: 100%; max-height: calc(100vh - 80px)}
@@ -5139,7 +5159,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </div>
     <div class="inside-products">
 
-      <article class="inside-product" data-modal-src="videos/preview-essential-verbs.mp4">
+      <article class="inside-product theme-blue" data-modal-src="videos/preview-essential-verbs.mp4">
         <div class="inside-video-wrap">
           <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-essential-verbs.jpg">
             <source src="videos/preview-essential-verbs.mp4" type="video/mp4">
@@ -5153,15 +5173,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           </div>
         </div>
         <div class="inside-meta">
-          <div class="inside-pill p1">EV</div>
-          <div class="inside-text">
-            <div class="name">Essential Verbs</div>
-            <div class="desc">句動詞 400</div>
-          </div>
+          <div class="name">Essential Verbs</div>
+          <div class="desc">句動詞 400</div>
         </div>
       </article>
 
-      <article class="inside-product" data-modal-src="videos/preview-nativedose.mp4">
+      <article class="inside-product theme-purple" data-modal-src="videos/preview-nativedose.mp4">
         <div class="inside-video-wrap">
           <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-nativedose.jpg">
             <source src="videos/preview-nativedose.mp4" type="video/mp4">
@@ -5175,15 +5192,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           </div>
         </div>
         <div class="inside-meta">
-          <div class="inside-pill p2">ND</div>
-          <div class="inside-text">
-            <div class="name">NativeDose</div>
-            <div class="desc">イディオム 300</div>
-          </div>
+          <div class="name">NativeDose</div>
+          <div class="desc">イディオム 300</div>
         </div>
       </article>
 
-      <article class="inside-product" data-modal-src="videos/preview-silver-express.mp4">
+      <article class="inside-product theme-teal" data-modal-src="videos/preview-silver-express.mp4">
         <div class="inside-video-wrap">
           <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-silver-express.jpg">
             <source src="videos/preview-silver-express.mp4" type="video/mp4">
@@ -5197,11 +5211,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           </div>
         </div>
         <div class="inside-meta">
-          <div class="inside-pill p3">SE</div>
-          <div class="inside-text">
-            <div class="name">Silver Express</div>
-            <div class="desc">ビジネス語彙 500</div>
-          </div>
+          <div class="name">Silver Express</div>
+          <div class="desc">ビジネス語彙 500</div>
         </div>
       </article>
 
