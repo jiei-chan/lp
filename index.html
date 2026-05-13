@@ -1444,16 +1444,13 @@ section{padding: 100px 24px}
 /* Bubbles grid */
 .bubbles-grid{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1240px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1100px;
   margin: 0 auto;
 }
-@media (max-width: 900px){
-  .bubbles-grid{grid-template-columns: 1fr 1fr; gap: 16px}
-}
 @media (max-width: 600px){
-  .bubbles-grid{grid-template-columns: 1fr}
+  .bubbles-grid{grid-template-columns: 1fr; gap: 16px}
 }
 
 /* Pop-in entrance animation for empathy bubbles */
@@ -1582,6 +1579,7 @@ section{padding: 100px 24px}
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px){
