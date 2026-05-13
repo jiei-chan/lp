@@ -4480,10 +4480,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   z-index: 100;
   box-shadow: 0 -8px 24px rgba(10, 22, 40, 0.08);
   border-top: 1px solid var(--line);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sticky-cta.visible{
+  transform: translateY(0);
 }
 .sticky-cta .info{flex: 1}
 .sticky-cta .price{font-family: var(--en); font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: -0.02em}
-.sticky-cta .price .strike{font-size: 12px; color: var(--muted); text-decoration: line-through; font-weight: 500; margin-right: 6px}
+.sticky-cta .price .strike{font-size: 12px; color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(255, 107, 74, 0.85); text-decoration-thickness: 1.5px; font-weight: 500; margin-right: 6px}
+.sticky-cta .price .now{color: #ff5e3a; font-weight: 800}
 .sticky-cta .label{font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em}
 .sticky-cta .btn{padding: 14px 20px; font-size: 13px; flex-shrink: 0}
 
@@ -6418,7 +6424,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <div class="sticky-cta">
   <div class="info">
     <div class="label">3教材バンドル</div>
-    <div class="price"><span class="strike">¥10,850</span>¥7,656</div>
+    <div class="price"><span class="strike">¥10,850</span><span class="now">¥7,656</span></div>
   </div>
   <a href="#bundle" class="btn btn-primary-blue">購入する</a>
 </div>
@@ -6430,6 +6436,28 @@ document.querySelectorAll('.faq-item').forEach(item => {
     item.classList.toggle('open');
   });
 });
+
+// Sticky CTA: show after user scrolls past the hero (~ 60% of viewport height)
+(function(){
+  const stickyCta = document.querySelector('.sticky-cta');
+  if (!stickyCta) return;
+  const showThreshold = () => window.innerHeight * 0.6;
+  let ticking = false;
+  function update(){
+    if (window.scrollY > showThreshold()){
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking){
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
 
 // Reveal on scroll
 const observer = new IntersectionObserver((entries) => {
