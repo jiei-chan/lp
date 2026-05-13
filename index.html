@@ -1476,16 +1476,13 @@ section{padding: 100px 24px}
 .bubbles-grid.animate .bubble:nth-child(6){animation-delay: 0.50s}
 
 .bubble{
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: stretch;
   padding: 0;
   border-radius: 18px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
   border: 1px solid;
-  aspect-ratio: 16 / 9;
-  min-height: 240px;
-  background: white;
 }
 .bubble:hover{
   transform: translateY(-3px);
@@ -1494,47 +1491,56 @@ section{padding: 100px 24px}
 
 /* Color themes */
 .bubble-blue{
+  background: white;
   border-color: #dce8fa;
 }
 .bubble-blue .who{color: #2563eb}
 .bubble-blue .bubble-image{background: linear-gradient(135deg, #e0edff 0%, #cfe1ff 100%)}
 
 .bubble-cyan{
+  background: white;
   border-color: #c9e3fa;
 }
 .bubble-cyan .who{color: #0284c7}
 .bubble-cyan .bubble-image{background: linear-gradient(135deg, #e0f1ff 0%, #c9e3fa 100%)}
 
 .bubble-green{
+  background: white;
   border-color: #cdeedb;
 }
 .bubble-green .who{color: #059669}
 .bubble-green .bubble-image{background: linear-gradient(135deg, #dff5e8 0%, #c9efd9 100%)}
 
 .bubble-orange{
+  background: white;
   border-color: #fbe2c8;
 }
 .bubble-orange .who{color: #ea580c}
 .bubble-orange .bubble-image{background: linear-gradient(135deg, #ffeed9 0%, #ffdcb4 100%)}
 
 .bubble-pink{
+  background: white;
   border-color: #fbd0dc;
 }
 .bubble-pink .who{color: #db2777}
 .bubble-pink .bubble-image{background: linear-gradient(135deg, #ffe4ed 0%, #ffd1de 100%)}
 
 .bubble-skyblue{
+  background: white;
   border-color: #d0e8fa;
 }
 .bubble-skyblue .who{color: #0369a1}
 .bubble-skyblue .bubble-image{background: linear-gradient(135deg, #e0f2ff 0%, #c9e3fa 100%)}
 
-/* Full-bleed image (fills entire bubble) */
+/* Image area inside bubble (left side, square) */
 .bubble-image{
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  position: relative;
+  flex: 0 0 55%;
+  align-self: stretch;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bubble-image picture,
 .bubble-image img{
@@ -1542,39 +1548,22 @@ section{padding: 100px 24px}
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
+  object-position: center;
+  position: relative;
+  z-index: 2;
 }
 .bubble-image.no-image picture{display: none}
 .bubble-image-fallback{display: none}
 
-/* White gradient overlay on right side for text legibility */
-.bubble-image::after{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right,
-    transparent 0%,
-    transparent 32%,
-    rgba(255, 255, 255, 0.55) 45%,
-    rgba(255, 255, 255, 0.92) 60%,
-    rgba(255, 255, 255, 1) 72%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Text content overlaid on right */
+/* Text content */
 .bubble-content{
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 55%;
-  padding: 26px 28px 22px;
+  flex: 1;
+  padding: 24px 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 2;
-  background: transparent;
+  min-width: 0;
+  background: white;
 }
 .bubble-text{
   font-size: 14px;
@@ -1594,23 +1583,15 @@ section{padding: 100px 24px}
 }
 
 @media (max-width: 768px){
-  .bubble{aspect-ratio: 5 / 3; min-height: 220px}
-  .bubble-content{width: 58%; padding: 22px 22px 18px}
+  .bubble-image{flex: 0 0 38%}
+  .bubble-content{padding: 18px 20px}
   .bubble-text{font-size: 13px; line-height: 1.75; margin-bottom: 12px}
   .bubble .who{font-size: 12px}
 }
 
 @media (max-width: 600px){
-  .bubble{aspect-ratio: 3 / 2; min-height: 200px}
-  .bubble-content{width: 60%; padding: 20px 20px 18px}
-  .bubble-image::after{
-    background: linear-gradient(to right,
-      transparent 0%,
-      transparent 22%,
-      rgba(255, 255, 255, 0.55) 38%,
-      rgba(255, 255, 255, 0.92) 55%,
-      rgba(255, 255, 255, 1) 68%);
-  }
+  .bubble-image{flex: 0 0 42%}
+  .bubble-content{padding: 16px 18px}
 }
 
 /* ========== PROBLEM 3 ========== */
