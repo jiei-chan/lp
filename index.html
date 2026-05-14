@@ -5089,7 +5089,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       </p>
 
       <div class="cta-row desktop-only">
-        <a href="#bundle" class="btn btn-primary">
+        <a href="https://www.import-language.com/cart/45097168175283:1?discount=boo%21" class="btn btn-primary" data-purchase-cta="hero_desktop">
           import完全版を購入
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -5143,7 +5143,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </p>
 
   <div class="cta-row-m">
-    <a href="#bundle" class="btn btn-primary">
+    <a href="https://www.import-language.com/cart/45097168175283:1?discount=boo%21" class="btn btn-primary" data-purchase-cta="hero_mobile">
       import完全版を購入
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -6332,7 +6332,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         セール価格が自動適用 + クーポンコード入力でさらに割引。<br>
         合わせて最大 29% OFF。
       </p>
-      <a href="#" class="btn btn-anchor-cta">
+      <a href="https://www.import-language.com/cart/45097168175283:1?discount=boo%21" class="btn btn-anchor-cta" data-purchase-cta="bundle_anchor">
         セット内容を確認して購入へ
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -6692,7 +6692,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       </div>
     </div>
 
-    <a href="#bundle" class="btn-final-cta">
+    <a href="https://www.import-language.com/cart/45097168175283:1?discount=boo%21" class="btn-final-cta" data-purchase-cta="final">
       今すぐバンドルを始める
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -6734,8 +6734,192 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     <div class="label">3教材バンドル</div>
     <div class="price"><span class="strike">¥10,850</span><span class="now">¥7,656</span></div>
   </div>
-  <a href="#bundle" class="btn btn-primary-blue">購入する</a>
+  <a href="https://www.import-language.com/cart/45097168175283:1?discount=boo%21" class="btn btn-primary-blue" data-purchase-cta="sticky_mobile">購入する</a>
 </div>
+
+<script>
+window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
+  ga4MeasurementId: "G-B4H6FNYS88",
+  metaPixelId: ""
+};
+
+(function(){
+  const config = window.IMPORT_ANALYTICS_CONFIG;
+  const checkoutBaseUrl = 'https://www.import-language.com/cart/45097168175283:1?discount=boo%21';
+  const product = {
+    id: '45097168175283',
+    name: 'import完全版 - PREMIUM COMPLETE EDITION',
+    price: 10850,
+    currency: 'JPY',
+    coupon: 'boo!'
+  };
+  const attributionKeys = [
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'utm_id',
+    'fbclid',
+    'gclid',
+    'gbraid',
+    'wbraid',
+    'ttclid'
+  ];
+  const storageKey = 'import_lp_attribution';
+
+  window.dataLayer = window.dataLayer || [];
+
+  function loadScript(src){
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.head.appendChild(script);
+  }
+
+  if (config.ga4MeasurementId){
+    window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', config.ga4MeasurementId);
+    loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(config.ga4MeasurementId));
+  }
+
+  if (config.metaPixelId){
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', config.metaPixelId);
+    window.fbq('track', 'PageView');
+  }
+
+  function readStoredAttribution(){
+    try {
+      return JSON.parse(window.sessionStorage.getItem(storageKey) || '{}');
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function writeStoredAttribution(data){
+    try {
+      window.sessionStorage.setItem(storageKey, JSON.stringify(data));
+    } catch (_) {}
+  }
+
+  function collectAttribution(){
+    const params = new URLSearchParams(window.location.search);
+    const stored = readStoredAttribution();
+    const current = {};
+
+    attributionKeys.forEach(key => {
+      const value = params.get(key);
+      if (value) current[key] = value;
+    });
+
+    const hasCurrent = Object.keys(current).length > 0;
+    const attribution = hasCurrent
+      ? { ...stored, ...current, captured_at: new Date().toISOString() }
+      : stored;
+
+    if (hasCurrent) writeStoredAttribution(attribution);
+    return attribution;
+  }
+
+  function currentPageLabel(){
+    if (window.location.protocol === 'http:' || window.location.protocol === 'https:'){
+      return window.location.pathname || '/';
+    }
+    return 'local_preview';
+  }
+
+  function buildCheckoutUrl(ctaId, attribution){
+    const url = new URL(checkoutBaseUrl);
+
+    url.searchParams.set('attributes[lp_cta]', ctaId);
+    url.searchParams.set('attributes[lp_page]', currentPageLabel());
+
+    attributionKeys.forEach(key => {
+      const value = attribution[key];
+      if (!value) return;
+      url.searchParams.set(key, value);
+      url.searchParams.set('attributes[' + key + ']', value);
+    });
+
+    return url.toString();
+  }
+
+  function trackPurchaseCtaClick(ctaId, checkoutUrl){
+    const payload = {
+      event: 'purchase_cta_click',
+      cta_id: ctaId,
+      product_id: product.id,
+      product_name: product.name,
+      value: product.price,
+      currency: product.currency,
+      coupon: product.coupon,
+      checkout_url: checkoutUrl
+    };
+
+    window.dataLayer.push(payload);
+
+    if (typeof window.gtag === 'function'){
+      window.gtag('event', 'purchase_cta_click', {
+        cta_id: payload.cta_id,
+        value: payload.value,
+        currency: payload.currency,
+        coupon: payload.coupon,
+        items: [{
+          item_id: payload.product_id,
+          item_name: payload.product_name,
+          price: payload.value,
+          quantity: 1
+        }]
+      });
+    }
+
+    if (typeof window.fbq === 'function'){
+      window.fbq('trackCustom', 'PurchaseCtaClick', {
+        cta_id: payload.cta_id,
+        content_ids: [payload.product_id],
+        content_name: payload.product_name,
+        value: payload.value,
+        currency: payload.currency,
+        coupon: payload.coupon
+      });
+    }
+  }
+
+  const attribution = collectAttribution();
+  document.querySelectorAll('[data-purchase-cta]').forEach(link => {
+    const ctaId = link.getAttribute('data-purchase-cta');
+    const checkoutUrl = buildCheckoutUrl(ctaId, attribution);
+    link.href = checkoutUrl;
+    link.addEventListener('click', (event) => {
+      trackPurchaseCtaClick(ctaId, link.href);
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        link.target === '_blank'
+      ) {
+        return;
+      }
+      event.preventDefault();
+      window.setTimeout(() => {
+        window.location.href = link.href;
+      }, 120);
+    });
+  });
+})();
+</script>
 
 <script>
 // FAQ accordion
