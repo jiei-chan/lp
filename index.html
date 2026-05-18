@@ -3675,6 +3675,16 @@ section{padding: 100px 24px}
   font-weight: 700;
   color: #ff6b3d;
   letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.anchor-pct-label{
+  font-family: var(--jp);
+  font-size: 0.48em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #9a3412;
 }
 .anchor-pct strong{
   font-weight: 800;
@@ -3715,6 +3725,7 @@ section{padding: 100px 24px}
 @media (max-width: 600px){
   .anchor-card{padding: 28px 22px}
   .anchor-headline{gap: 12px}
+  .anchor-pct{gap: 8px}
   .btn-anchor-cta{font-size: 15px; padding: 18px 28px}
 }
 
@@ -6307,11 +6318,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="anchor-eyebrow">— PREMIUM COMPLETE EDITION</div>
       <div class="anchor-headline">
         <span class="anchor-strike">¥10,850</span>
-        <span class="anchor-pct">最大<strong>29% OFF</strong></span>
+        <span class="anchor-pct"><span class="anchor-pct-label">今だけ</span><strong>29% OFF</strong></span>
       </div>
       <p class="anchor-desc">
-        セール価格が自動適用 + クーポンコード入力でさらに割引。<br>
-        合わせて最大 29% OFF。
+        購入ページでは、割引後の価格がそのまま表示されます。
       </p>
       <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="btn btn-anchor-cta" data-purchase-cta="bundle_anchor">
         セット内容を確認して購入へ
@@ -6725,8 +6735,7 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
     id: '45097168175283',
     name: 'import完全版 - PREMIUM COMPLETE EDITION',
     price: 10850,
-    currency: 'JPY',
-    coupon: 'boo!'
+    currency: 'JPY'
   };
   const attributionKeys = [
     'utm_source',
@@ -6835,7 +6844,6 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
       product_name: product.name,
       value: product.price,
       currency: product.currency,
-      coupon: product.coupon,
       purchase_url: purchaseUrl
     };
 
@@ -6846,7 +6854,6 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
         cta_id: payload.cta_id,
         value: payload.value,
         currency: payload.currency,
-        coupon: payload.coupon,
         items: [{
           item_id: payload.product_id,
           item_name: payload.product_name,
@@ -6862,8 +6869,7 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
         content_ids: [payload.product_id],
         content_name: payload.product_name,
         value: payload.value,
-        currency: payload.currency,
-        coupon: payload.coupon
+        currency: payload.currency
       });
     }
   }
