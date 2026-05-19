@@ -4648,11 +4648,75 @@ footer .links{
   display: flex;
   gap: 24px;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
 }
 footer a{color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s}
 footer a:hover{color: white}
+footer .contact-box{
+  display: none;
+  width: min(100%, 520px);
+  margin: 0 auto 24px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+}
+footer .contact-box.open{
+  display: block;
+}
+footer .contact-copy{
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.64);
+  line-height: 1.7;
+}
+footer .contact-row{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+footer .contact-address{
+  appearance: none;
+  min-width: 0;
+  padding: 11px 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  color: white;
+  font-family: var(--en);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+footer .contact-copy-button{
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: white;
+  color: #02040a;
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-family: var(--jp);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s, opacity 0.2s;
+}
+footer .contact-copy-button:hover{
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+footer .contact-status{
+  min-height: 18px;
+  margin-top: 8px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+}
 footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
 /* ========== STICKY MOBILE CTA ========== */
@@ -5027,6 +5091,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   /* ─── Footer ─── */
   footer{padding: 36px 20px 24px}
   footer .links{gap: 16px; font-size: 11px}
+  footer .contact-box{padding: 16px}
+  footer .contact-row{align-items: stretch; flex-wrap: wrap}
+  footer .contact-address{flex: 1 1 210px; padding: 11px 12px; font-size: 12px}
+  footer .contact-copy-button{padding: 11px 13px}
 }
 
 /* Even smaller mobile (≤400px) */
@@ -6707,8 +6775,18 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     <a href="https://www.import-language.com/ja/pages/%E7%89%B9%E5%AE%9A%E5%95%86%E5%8F%96%E5%BC%95%E6%B3%95%E3%81%AB%E5%9F%BA%E3%81%A5%E3%81%8F%E8%A1%A8%E7%A4%BA">特定商取引法に基づく表記</a>
     <a href="https://www.import-language.com/ja/policies/privacy-policy">プライバシーポリシー</a>
     <a href="https://www.import-language.com/ja/policies/terms-of-service">利用規約</a>
-    <a href="https://www.import-language.com/ja/pages/%E7%89%B9%E5%AE%9A%E5%95%86%E5%8F%96%E5%BC%95%E6%B3%95%E3%81%AB%E5%9F%BA%E3%81%A5%E3%81%8F%E8%A1%A8%E7%A4%BA">お問い合わせ</a>
+    <a href="#footer-contact" data-contact-toggle aria-expanded="false">お問い合わせ</a>
     <a href="https://www.import-language.com/ja/pages/%E7%89%B9%E5%AE%9A%E5%95%86%E5%8F%96%E5%BC%95%E6%B3%95%E3%81%AB%E5%9F%BA%E3%81%A5%E3%81%8F%E8%A1%A8%E7%A4%BA">運営会社</a>
+  </div>
+  <div class="contact-box" id="footer-contact" hidden>
+    <p class="contact-copy">ご購入前後のお問い合わせは、こちらのメールアドレスまでご連絡ください。</p>
+    <div class="contact-row">
+      <input class="contact-address" type="text" value="import.language@gmail.com" readonly aria-label="お問い合わせメールアドレス">
+      <button class="contact-copy-button" type="button" data-copy-email="import.language@gmail.com" aria-describedby="footer-contact-status">
+        コピー
+      </button>
+    </div>
+    <div class="contact-status" id="footer-contact-status" aria-live="polite"></div>
   </div>
   <div class="copy">© 2026 import. All rights reserved.</div>
 </footer>
@@ -6908,6 +6986,71 @@ document.querySelectorAll('.faq-item').forEach(item => {
     item.classList.toggle('open');
   });
 });
+
+// Footer contact email copy
+(function(){
+  const contactToggle = document.querySelector('[data-contact-toggle]');
+  const contactBox = document.getElementById('footer-contact');
+  const copyButton = document.querySelector('[data-copy-email]');
+  const status = document.getElementById('footer-contact-status');
+  if (!contactToggle || !contactBox || !copyButton || !status) return;
+
+  contactToggle.addEventListener('click', (event) => {
+    event.preventDefault();
+    contactBox.hidden = false;
+    contactBox.classList.add('open');
+    contactToggle.setAttribute('aria-expanded', 'true');
+    contactBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  function selectEmailText(){
+    const address = contactBox.querySelector('.contact-address');
+    if (!address || !window.getSelection) return;
+    if (typeof address.select === 'function'){
+      address.focus();
+      address.select();
+      if (typeof address.setSelectionRange === 'function'){
+        address.setSelectionRange(0, address.value.length);
+      }
+      return;
+    }
+    const range = document.createRange();
+    range.selectNodeContents(address);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+  function fallbackCopy(){
+    selectEmailText();
+    return document.execCommand && document.execCommand('copy');
+  }
+
+  copyButton.addEventListener('click', async () => {
+    const email = copyButton.getAttribute('data-copy-email');
+    let copied = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(email);
+        copied = true;
+      } else {
+        copied = fallbackCopy();
+      }
+    } catch (_) {
+      copied = false;
+    }
+
+    if (!copied){
+      selectEmailText();
+      window.setTimeout(selectEmailText, 0);
+    }
+
+    status.textContent = 'コピーしました';
+    window.setTimeout(() => {
+      status.textContent = '';
+    }, 1800);
+  });
+})();
 
 // Sticky CTA: show after user scrolls past the hero (~ 60% of viewport height)
 (function(){
