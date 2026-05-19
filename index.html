@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0066ff" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>import｜映像 × 音声で覚える、忘れない英単語学習</title>
-<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / Silver Express の3教材完全バンドル、GW期間限定29%OFF。" />
+<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / Silver Express の3教材完全エディション、GW期間限定29%OFF。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -160,18 +160,6 @@ body{
   background: white;
   opacity: 0.4;
 }
-.nav-cta{
-  background: white;
-  color: var(--ink);
-  padding: 10px 20px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.nav-cta:hover{transform: translateY(-1px); box-shadow: 0 8px 20px rgba(255,255,255,0.2)}
-
 .nav-burger{
   display: none;
   width: 44px; height: 44px;
@@ -386,7 +374,7 @@ body{
 }
 .hero-trust-m{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 .hero-trust-m .trust-badge{
@@ -562,7 +550,7 @@ body{
 
 .hero-trust{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 4px;
 }
@@ -883,7 +871,7 @@ body{
   .authority p strong{color: var(--ink); font-weight: 700}
   .authority-grid{grid-template-columns: 1fr; gap: 0; min-height: auto; padding: 8px 20px 0}
   .authority-content > .mobile-only.authority-visual{
-    margin: -8px -20px -8px;
+    margin: -8px 0 -8px;
   }
 }
 
@@ -999,7 +987,13 @@ body{
 @media (max-width: 900px){
   .authority-bg{display: none}
   .authority-overlay{display: none}
-  .authority-visual{margin: 8px -20px 0}
+  .authority-visual{margin: 8px 0 0}
+  .about-img{
+    width: 100%;
+    margin: -6% 0;
+    transform: scale(1.18);
+    transform-origin: center;
+  }
 }
 
 /* ========== INSTAGRAM GROWTH CARD ========== */
@@ -3681,6 +3675,16 @@ section{padding: 100px 24px}
   font-weight: 700;
   color: #ff6b3d;
   letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.anchor-pct-label{
+  font-family: var(--jp);
+  font-size: 0.48em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #9a3412;
 }
 .anchor-pct strong{
   font-weight: 800;
@@ -3721,6 +3725,7 @@ section{padding: 100px 24px}
 @media (max-width: 600px){
   .anchor-card{padding: 28px 22px}
   .anchor-headline{gap: 12px}
+  .anchor-pct{gap: 8px}
   .btn-anchor-cta{font-size: 15px; padding: 18px 28px}
 }
 
@@ -4584,16 +4589,22 @@ section{padding: 100px 24px}
   .savings-tag .off-text{ font-size: 11px; }
   .final-price-card .price-strike{ font-size: 18px; }
   .final-price-card{
-    padding: 22px 24px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 360px;
+    padding: 22px 18px;
     border-radius: 22px;
     margin-bottom: 28px;
   }
   .final-price-card .price-row{
-    gap: 16px;
+    gap: 12px;
+  }
+  .final-price-card .price-main{
+    font-size: clamp(42px, 15vw, 56px);
   }
   .off-badge{
-    width: 88px;
-    height: 88px;
+    width: 82px;
+    height: 82px;
   }
   .off-badge .num{font-size: 30px}
   .off-badge .pct{font-size: 13px}
@@ -4637,11 +4648,75 @@ footer .links{
   display: flex;
   gap: 24px;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
 }
 footer a{color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s}
 footer a:hover{color: white}
+footer .contact-box{
+  display: none;
+  width: min(100%, 520px);
+  margin: 0 auto 24px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+}
+footer .contact-box.open{
+  display: block;
+}
+footer .contact-copy{
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.64);
+  line-height: 1.7;
+}
+footer .contact-row{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+footer .contact-address{
+  appearance: none;
+  min-width: 0;
+  padding: 11px 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  color: white;
+  font-family: var(--en);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+footer .contact-copy-button{
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: white;
+  color: #02040a;
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-family: var(--jp);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s, opacity 0.2s;
+}
+footer .contact-copy-button:hover{
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+footer .contact-status{
+  min-height: 18px;
+  margin-top: 8px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+}
 footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
 /* ========== STICKY MOBILE CTA ========== */
@@ -5016,6 +5091,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   /* ─── Footer ─── */
   footer{padding: 36px 20px 24px}
   footer .links{gap: 16px; font-size: 11px}
+  footer .contact-box{padding: 16px}
+  footer .contact-row{align-items: stretch; flex-wrap: wrap}
+  footer .contact-address{flex: 1 1 210px; padding: 11px 12px; font-size: 12px}
+  footer .contact-copy-button{padding: 11px 13px}
 }
 
 /* Even smaller mobile (≤400px) */
@@ -5051,7 +5130,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="logo-mark"></div>
       import
     </a>
-    <a href="#bundle" class="nav-cta">バンドルを見る</a>
     <button class="nav-burger" aria-label="メニュー" onclick="document.body.classList.toggle('menu-open')">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <line x1="3" y1="6" x2="21" y2="6"/>
@@ -5102,15 +5180,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="hero-trust desktop-only">
         <div class="trust-badge">
           <div class="trust-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="trust-text">
-            <strong>30日間</strong>
-            <span>返金保証</span>
-          </div>
-        </div>
-        <div class="trust-badge">
-          <div class="trust-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           </div>
           <div class="trust-text">
@@ -5154,15 +5223,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 
   <div class="hero-trust-m">
-    <div class="trust-badge">
-      <div class="trust-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="trust-text">
-        <strong>30日間</strong>
-        <span>返金保証</span>
-      </div>
-    </div>
     <div class="trust-badge">
       <div class="trust-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -6020,7 +6080,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="products-header">
     <div class="section-eyebrow" style="justify-content: center; display: inline-flex">— SECTION 03 / Products</div>
     <h2 class="section-title" style="text-align: center">
-      バンドルに含まれる<br>
+      エディションに含まれる<br>
       <span class="gradient">3つの映像教材</span>
     </h2>
     <p class="section-lead" style="margin: 0 auto; text-align: center">
@@ -6131,7 +6191,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
     <!-- Product 03: Silver Express -->
     <article class="pcard pcard-teal">
-      <div class="pcard-bundle-badge">BUNDLE限定</div>
+      <div class="pcard-bundle-badge">EDITION限定</div>
       <div class="pcard-image">
         <picture>
           <img src="images/product-silver.png" alt="Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
@@ -6174,7 +6234,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         </ul>
 
         <div class="pcard-price pcard-price-bundle">
-          <span class="label-bundle">バンドル限定商品</span>
+          <span class="label-bundle">エディション限定商品</span>
           <span class="amount"><span class="yen">¥</span>2,170</span>
         </div>
       </div>
@@ -6189,7 +6249,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     <div class="section-eyebrow">— Special Offer</div>
     <h2 class="section-title">
       3つすべてを、<br>
-      <span class="gradient">バンドル価格で。</span>
+      <span class="gradient">エディション価格で。</span>
     </h2>
     <p class="section-lead" style="margin: 0 auto">
       個別に買うより圧倒的にお得。期間限定の特別価格で、3教材すべてが手に入ります。
@@ -6197,12 +6257,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   </div>
 
   <div class="bundle-card">
-    <div class="bundle-ribbon">期間限定 BUNDLE OFFER</div>
+    <div class="bundle-ribbon">期間限定 EDITION OFFER</div>
 
     <!-- Complete Bundle hero image (full bleed) -->
     <div class="bundle-hero">
       <picture>
-        <img src="images/CompleteBundle.png" alt="Complete Bundle - Essential Verbs + NativeDose + Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        <img src="images/CompleteBundle.png" alt="Complete Edition - Essential Verbs + NativeDose + Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
       </picture>
       <div class="bundle-hero-fallback">
         <div class="bundle-product-img bundle-img-blue">
@@ -6223,7 +6283,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
     <h3 class="bundle-title">
       <span class="bundle-title-jp">import 完全版</span>
-      <span class="bundle-title-en">Complete Bundle</span>
+      <span class="bundle-title-en">Complete Edition</span>
       <span class="blue">+ 限定特典付き</span>
     </h3>
 
@@ -6258,7 +6318,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
             <span class="dot p3"></span>
             <div class="item-text">
               <span>Silver Express（ビジネス268単語）</span>
-              <span class="bundle-only-pill">バンドル限定</span>
+              <span class="bundle-only-pill">エディション限定</span>
             </div>
           </div>
           <div class="num price">¥2,170</div>
@@ -6283,7 +6343,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </div>
             <div class="compare-to">
-              <div class="compare-label-now">バンドル価格</div>
+              <div class="compare-label-now">エディション価格</div>
               <div class="num compare-now"><span class="yen">¥</span>7,656</div>
             </div>
           </div>
@@ -6302,7 +6362,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <div class="offer-urgency">
           <div class="urgency-header">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>このバンドル価格は <strong>5/10（土）23:59 まで</strong></span>
+            <span>このエディション価格は <strong>5/10（土）23:59 まで</strong></span>
           </div>
           <div class="urgency-grid">
             <span class="urgency-num" id="cd-days">--</span>
@@ -6326,11 +6386,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="anchor-eyebrow">— PREMIUM COMPLETE EDITION</div>
       <div class="anchor-headline">
         <span class="anchor-strike">¥10,850</span>
-        <span class="anchor-pct">最大<strong>29% OFF</strong></span>
+        <span class="anchor-pct"><span class="anchor-pct-label">今だけ</span><strong>29% OFF</strong></span>
       </div>
       <p class="anchor-desc">
-        セール価格が自動適用 + クーポンコード入力でさらに割引。<br>
-        合わせて最大 29% OFF。
+        購入ページでは、割引後の価格がそのまま表示されます。
       </p>
       <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="btn btn-anchor-cta" data-purchase-cta="bundle_anchor">
         セット内容を確認して購入へ
@@ -6340,9 +6399,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
     <div class="bundle-cta-row">
       <div class="meta">
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success)"><polyline points="20 6 9 17 4 12"/></svg>30日間返金保証付き</span>
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success)"><polyline points="20 6 9 17 4 12"/></svg>クレジットカード／PayPay対応</span>
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success)"><polyline points="20 6 9 17 4 12"/></svg>追加課金なし</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--success)"><polyline points="20 6 9 17 4 12"/></svg>スマホ・PC視聴可</span>
       </div>
     </div>
     </div><!-- /.bundle-card-inner -->
@@ -6541,7 +6599,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           <div class="voice-avatar voice-avatar-4">A</div>
           <div class="voice-meta">
             <div class="voice-name">A.K <span class="voice-verified">✓</span></div>
-            <div class="voice-tag">Bundle ユーザー</div>
+            <div class="voice-tag">Edition ユーザー</div>
           </div>
         </div>
         <p class="voice-body">Boo ちゃんがかわいすぎて毎日開いちゃいます！勉強するつもりはなくても自然と頭に入る感じ。</p>
@@ -6563,7 +6621,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           <div class="voice-avatar voice-avatar-6">S</div>
           <div class="voice-meta">
             <div class="voice-name">S.M <span class="voice-verified">✓</span></div>
-            <div class="voice-tag">Bundle ユーザー</div>
+            <div class="voice-tag">Edition ユーザー</div>
           </div>
         </div>
         <p class="voice-body">単語帳の周回がしんどかった私でも続いてる。やっぱり映像つよい。</p>
@@ -6574,7 +6632,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
           <div class="voice-avatar voice-avatar-7">Y</div>
           <div class="voice-meta">
             <div class="voice-name">Y.T <span class="voice-verified">✓</span></div>
-            <div class="voice-tag">Bundle ユーザー</div>
+            <div class="voice-tag">Edition ユーザー</div>
           </div>
         </div>
         <p class="voice-body">単語数が全部で800ちょっとで少ないと思ったけど、イメージで覚える感覚が完全についたので、他の単語暗記の効率が爆上がりした。</p>
@@ -6627,16 +6685,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <div class="faq-a">教材には、ストリーミング版とダウンロード版があります。<br><br>動画をデバイスにダウンロードしていただければ、オフラインでも視聴できます。通勤中や移動中など、インターネット環境がない場所でも学習できます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">返金保証はありますか?返金条件を教えてください<span class="marker">+</span></div>
-        <div class="faq-a">はい。購入後30日以内であれば、理由を問わず全額返金いたします。<br><br>「自分には合わない」と感じた場合は、フォームから簡単に申請できます。リスクなくお試しいただけるよう、30日間の返金保証をご用意しています。</div>
-      </div>
-      <div class="faq-item">
         <div class="faq-q">塾や学校の授業で使ってもいいですか?商用利用はできますか?<span class="marker">+</span></div>
         <div class="faq-a">個人利用以外でのご利用には、教育者・法人向けのライセンスをご用意しています。<br><br>塾、学校、英語教室、社内研修などでの利用をご希望の場合は、お問い合わせください。利用内容に合わせてご案内いたします。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">サンプルは見られますか?視聴できますか?<span class="marker">+</span></div>
-        <div class="faq-a">はい、サンプルをご覧いただけます。<br><br>以下のリンクから、実際の教材の雰囲気をお試しください。<br><br><a href="#" class="faq-link">▸ サンプルを見る</a></div>
+        <div class="faq-a">はい、サンプルをご覧いただけます。<br><br>以下のリンクから、実際の教材の雰囲気をお試しください。<br><br><a href="#what" class="faq-link">▸ サンプルを見る</a></div>
       </div>
     </div>
   </div>
@@ -6673,7 +6727,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <!-- Action area: dark seamless extension below image -->
   <div class="final-action-area">
     <div class="final-price-card">
-      <div class="bundle-pill">3 PRODUCTS BUNDLE</div>
+      <div class="bundle-pill">3 PRODUCTS EDITION</div>
       <div class="savings-tag">
         <span class="flash">⚡</span>
         <span class="amt">¥3,194</span>
@@ -6693,7 +6747,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </div>
 
     <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="btn-final-cta" data-purchase-cta="final">
-      今すぐバンドルを始める
+      今すぐエディションを始める
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 
@@ -6705,7 +6759,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </div>
 
     <div class="final-meta">
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>30日間返金保証</span>
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>買い切り・追加課金なし</span>
       <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>スマホ・PC視聴可</span>
     </div>
@@ -6714,16 +6767,26 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
 <!-- ========== FOOTER ========== -->
 <footer>
-  <div class="footer-logo">
+  <a href="https://www.import-language.com/ja" class="footer-logo">
     <div class="logo-mark"></div>
     import
-  </div>
+  </a>
   <div class="links">
-    <a href="#">特定商取引法に基づく表記</a>
-    <a href="#">プライバシーポリシー</a>
-    <a href="#">利用規約</a>
-    <a href="#">お問い合わせ</a>
-    <a href="#">運営会社</a>
+    <a href="https://www.import-language.com/ja/pages/%E7%89%B9%E5%AE%9A%E5%95%86%E5%8F%96%E5%BC%95%E6%B3%95%E3%81%AB%E5%9F%BA%E3%81%A5%E3%81%8F%E8%A1%A8%E7%A4%BA">特定商取引法に基づく表記</a>
+    <a href="https://www.import-language.com/ja/policies/privacy-policy">プライバシーポリシー</a>
+    <a href="https://www.import-language.com/ja/policies/terms-of-service">利用規約</a>
+    <a href="#footer-contact" data-contact-toggle aria-expanded="false">お問い合わせ</a>
+    <a href="https://www.import-language.com/ja/pages/%E7%89%B9%E5%AE%9A%E5%95%86%E5%8F%96%E5%BC%95%E6%B3%95%E3%81%AB%E5%9F%BA%E3%81%A5%E3%81%8F%E8%A1%A8%E7%A4%BA">運営会社</a>
+  </div>
+  <div class="contact-box" id="footer-contact" hidden>
+    <p class="contact-copy">ご購入前後のお問い合わせは、こちらのメールアドレスまでご連絡ください。</p>
+    <div class="contact-row">
+      <input class="contact-address" type="text" value="import.language@gmail.com" readonly aria-label="お問い合わせメールアドレス">
+      <button class="contact-copy-button" type="button" data-copy-email="import.language@gmail.com" aria-describedby="footer-contact-status">
+        コピー
+      </button>
+    </div>
+    <div class="contact-status" id="footer-contact-status" aria-live="polite"></div>
   </div>
   <div class="copy">© 2026 import. All rights reserved.</div>
 </footer>
@@ -6731,7 +6794,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== STICKY MOBILE CTA ========== -->
 <div class="sticky-cta">
   <div class="info">
-    <div class="label">3教材バンドル</div>
+    <div class="label">3教材エディション</div>
     <div class="price"><span class="strike">¥10,850</span><span class="now">¥7,656</span></div>
   </div>
   <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="btn btn-primary-blue" data-purchase-cta="sticky_mobile">購入する</a>
@@ -6750,8 +6813,7 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
     id: '45097168175283',
     name: 'import完全版 - PREMIUM COMPLETE EDITION',
     price: 10850,
-    currency: 'JPY',
-    coupon: 'boo!'
+    currency: 'JPY'
   };
   const attributionKeys = [
     'utm_source',
@@ -6860,7 +6922,6 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
       product_name: product.name,
       value: product.price,
       currency: product.currency,
-      coupon: product.coupon,
       purchase_url: purchaseUrl
     };
 
@@ -6871,7 +6932,6 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
         cta_id: payload.cta_id,
         value: payload.value,
         currency: payload.currency,
-        coupon: payload.coupon,
         items: [{
           item_id: payload.product_id,
           item_name: payload.product_name,
@@ -6887,8 +6947,7 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
         content_ids: [payload.product_id],
         content_name: payload.product_name,
         value: payload.value,
-        currency: payload.currency,
-        coupon: payload.coupon
+        currency: payload.currency
       });
     }
   }
@@ -6927,6 +6986,71 @@ document.querySelectorAll('.faq-item').forEach(item => {
     item.classList.toggle('open');
   });
 });
+
+// Footer contact email copy
+(function(){
+  const contactToggle = document.querySelector('[data-contact-toggle]');
+  const contactBox = document.getElementById('footer-contact');
+  const copyButton = document.querySelector('[data-copy-email]');
+  const status = document.getElementById('footer-contact-status');
+  if (!contactToggle || !contactBox || !copyButton || !status) return;
+
+  contactToggle.addEventListener('click', (event) => {
+    event.preventDefault();
+    contactBox.hidden = false;
+    contactBox.classList.add('open');
+    contactToggle.setAttribute('aria-expanded', 'true');
+    contactBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  function selectEmailText(){
+    const address = contactBox.querySelector('.contact-address');
+    if (!address || !window.getSelection) return;
+    if (typeof address.select === 'function'){
+      address.focus();
+      address.select();
+      if (typeof address.setSelectionRange === 'function'){
+        address.setSelectionRange(0, address.value.length);
+      }
+      return;
+    }
+    const range = document.createRange();
+    range.selectNodeContents(address);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+  function fallbackCopy(){
+    selectEmailText();
+    return document.execCommand && document.execCommand('copy');
+  }
+
+  copyButton.addEventListener('click', async () => {
+    const email = copyButton.getAttribute('data-copy-email');
+    let copied = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(email);
+        copied = true;
+      } else {
+        copied = fallbackCopy();
+      }
+    } catch (_) {
+      copied = false;
+    }
+
+    if (!copied){
+      selectEmailText();
+      window.setTimeout(selectEmailText, 0);
+    }
+
+    status.textContent = 'コピーしました';
+    window.setTimeout(() => {
+      status.textContent = '';
+    }, 1800);
+  });
+})();
 
 // Sticky CTA: show after user scrolls past the hero (~ 60% of viewport height)
 (function(){
