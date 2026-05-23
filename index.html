@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0066ff" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>import｜映像 × 音声で覚える、忘れない英単語学習</title>
-<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / Silver Express の3教材完全エディション、GW期間限定29%OFF。" />
+<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / Silver Express の3教材完全エディション、期間限定29%OFF。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -5117,9 +5117,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 <!-- ========== ANNOUNCEMENT (TOP BANNER) ========== -->
 <div class="announce">
   <div class="announce-inner">
-    <span class="pill"><span class="dot"></span>GW LIMITED</span>
+    <span class="pill"><span class="dot"></span>LIMITED SALE</span>
     <span>期間限定 import 完全版 <strong>29% OFF</strong> ／ <strong>3,194円OFF</strong> 実施中</span>
-    <span class="period">5/2 → 5/10</span>
+    <span class="period">5/24 → 6/7</span>
   </div>
 </div>
 
@@ -6362,7 +6362,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
         <div class="offer-urgency">
           <div class="urgency-header">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>このエディション価格は <strong>5/10（土）23:59 まで</strong></span>
+            <span>このエディション価格は <strong>6/7（日）23:59 まで</strong></span>
           </div>
           <div class="urgency-grid">
             <span class="urgency-num" id="cd-days">--</span>
@@ -7140,8 +7140,8 @@ document.querySelectorAll('section > .wrap > *, section > .wrap-narrow > *, .bun
   observer.observe(el);
 });
 
-// GW Countdown to 5/10 23:59
-const target = new Date('2026-05-10T23:59:59+09:00');
+// Sale countdown to 6/7 23:59 JST.
+const target = new Date('2026-06-07T23:59:59+09:00');
 
 function updateUrgencyTimer(){
   const now = new Date();
@@ -7158,6 +7158,10 @@ function updateUrgencyTimer(){
   setEl('cd-hours', h);
   setEl('cd-min', m);
   setEl('cd-sec', s);
+  setEl('cd-d', d);
+  setEl('cd-h', h);
+  setEl('cd-m', m);
+  setEl('cd-s', s);
 }
 updateUrgencyTimer();
 setInterval(updateUrgencyTimer, 1000);
