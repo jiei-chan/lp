@@ -73,67 +73,30 @@ body{
 .wrap{max-width: 1120px; margin: 0 auto; padding: 0 24px}
 .wrap-narrow{max-width: 760px; margin: 0 auto; padding: 0 24px}
 
-/* ========== ANNOUNCEMENT (TOP BANNER) ========== */
-.announce{
-  background: var(--ink);
-  color: white;
-  padding: 14px 24px;
-  text-align: center;
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.announce-inner{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.announce .pill{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
-  border-radius: 100px;
-  font-family: var(--en);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: white;
-}
-.announce .dot{
-  width: 6px; height: 6px;
-  background: white;
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
 @keyframes pulse{
   0%, 100%{opacity: 1}
   50%{opacity: 0.5}
 }
-.announce strong{color: var(--accent); font-weight: 700}
-.announce .period{
-  font-family: var(--en);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.6);
-}
 
-/* ========== NAV (transparent on dark hero) ========== */
+/* ========== NAV (fixed conversion header) ========== */
 .nav{
-  position: absolute;
-  top: 47px; left: 0; right: 0;
-  z-index: 50;
-  padding: 20px 24px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 150;
+  padding: 12px 24px;
+  background: rgba(5, 8, 16, 0.76);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.18);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
 }
 .nav-inner{
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 18px;
 }
 .logo{
   font-family: var(--en);
@@ -173,6 +136,100 @@ body{
   transition: transform 0.2s;
 }
 .nav-burger:hover{transform: scale(1.05)}
+
+.nav-actions{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  justify-content: flex-end;
+  min-width: 0;
+}
+.nav-offer{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+  color: white;
+  font-size: 13px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+.nav-offer .pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ffb000 100%);
+  color: #140900;
+  font-family: var(--en);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  box-shadow: 0 6px 20px rgba(255, 139, 32, 0.28);
+}
+.nav-offer .dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff7d6;
+  animation: pulse 2s ease-in-out infinite;
+}
+.nav-offer strong{
+  color: var(--accent);
+  font-weight: 800;
+}
+.nav-offer .period{
+  font-family: var(--en);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.62);
+  white-space: nowrap;
+}
+.mobile-period,
+.nav-purchase .label-short{
+  display: none;
+}
+.nav-offer-copy{
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-purchase{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 11px 16px 11px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 14px 34px rgba(0, 102, 255, 0.34),
+    0 0 22px rgba(0, 212, 255, 0.18),
+    0 0 0 1px rgba(255,255,255,0.26) inset;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.nav-purchase svg{color: white; transition: transform 0.2s}
+.nav-purchase:hover{
+  background: linear-gradient(135deg, #0090ff 0%, #00e0ff 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 44px rgba(0, 102, 255, 0.42),
+    0 0 32px rgba(0, 212, 255, 0.32),
+    0 0 0 1px rgba(255,255,255,0.34) inset;
+}
+.nav-purchase:hover svg{transform: translateX(2px)}
 
 /* ========== HERO (DARK + IMAGE BG) ========== */
 .hero{
@@ -268,7 +325,7 @@ body{
   .hero-grid{
     position: relative;
     z-index: 2;
-    padding: 8px 20px 40px;
+    padding: 24px 20px 40px;
     background: transparent;
     min-height: auto;
     display: flex;
@@ -4778,40 +4835,59 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   section{padding: 40px 20px}
   .wrap, .wrap-narrow{padding: 0 20px}
 
-  /* ─── Hide top header (announce + nav) on mobile — hero is the eye-catcher ─── */
-  .announce{display: none}
-  .nav{display: none}
+  /* ─── Compact fixed header on mobile, kept out of normal layout flow. ─── */
+  .nav{
+    display: block;
+    padding: calc(8px + env(safe-area-inset-top)) 10px 8px;
+    background: rgba(5, 8, 16, 0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  }
+  .nav-inner{
+    gap: 8px;
+  }
+  .logo{display: none}
+  .nav-actions{
+    width: 100%;
+    gap: 8px;
+    justify-content: space-between;
+  }
+  .nav-offer{
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+  .nav-offer .pill{
+    padding: 4px 8px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .nav-offer-copy{
+    display: none;
+  }
+  .nav-offer .period{
+    display: inline-flex;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.74);
+  }
+  .desktop-period{display: none}
+  .mobile-period{display: inline}
+  .nav-purchase{
+    padding: 10px 13px;
+    gap: 7px;
+    font-size: 12px;
+    box-shadow:
+      0 10px 26px rgba(0,0,0,0.18),
+      0 0 0 1px rgba(255,255,255,0.32) inset;
+  }
+  .nav-purchase .label-full{display: none}
+  .nav-purchase .label-short{display: inline}
+  .nav-purchase svg{width: 15px; height: 15px}
 
   /* ─── Sticky CTA on ─── */
   .sticky-cta{display: flex}
-
-  /* ─── Announcement bar: 2-line readable layout ─── */
-  .announce{padding: 10px 16px; font-size: 11px; text-align: center}
-  .announce-inner{
-    gap: 4px 8px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-  .announce .pill{padding: 3px 10px; font-size: 9px; flex-shrink: 0; letter-spacing: 0.08em}
-  .announce-inner > span:not(.pill):not(.period){
-    font-size: 11px;
-    white-space: normal;
-    text-align: center;
-    line-height: 1.5;
-  }
-  .announce .period{
-    font-size: 10px;
-    width: 100%;
-    margin-top: 2px;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 0.1em;
-    padding-left: 0;
-  }
-
-  /* ─── Nav: hidden on mobile (cleaner hero) ─── */
-  .nav{display: none}
 
   /* ─── HERO: image top, text bottom ─── */
   .hero{padding: 0; min-height: auto; display: block}
@@ -5114,15 +5190,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 </head>
 <body>
 
-<!-- ========== ANNOUNCEMENT (TOP BANNER) ========== -->
-<div class="announce">
-  <div class="announce-inner">
-    <span class="pill"><span class="dot"></span>LIMITED SALE</span>
-    <span>期間限定 import 完全版 <strong>29% OFF</strong> ／ <strong>3,194円OFF</strong> 実施中</span>
-    <span class="period">5/24 → 6/7</span>
-  </div>
-</div>
-
 <!-- ========== NAV ========== -->
 <nav class="nav">
   <div class="nav-inner">
@@ -5130,13 +5197,25 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="logo-mark"></div>
       import
     </a>
-    <button class="nav-burger" aria-label="メニュー" onclick="document.body.classList.toggle('menu-open')">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
+    <div class="nav-actions">
+      <div class="nav-offer" aria-label="期間限定セール">
+        <span class="pill"><span class="dot"></span>29% OFF</span>
+        <span class="nav-offer-copy">期間限定 import 完全版セール中</span>
+        <span class="period"><span class="desktop-period">5/24 → 6/7</span><span class="mobile-period">6/7まで</span></span>
+      </div>
+      <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="nav-purchase" data-purchase-cta="header_sticky">
+        <span class="label-full">import完全版を手に入れる</span>
+        <span class="label-short">完全版を手に入れる</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="nav-burger" aria-label="メニュー" onclick="document.body.classList.toggle('menu-open')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -7052,7 +7131,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 })();
 
-// Sticky CTA: show after user scrolls past the hero (~ 60% of viewport height)
+// Sticky mobile CTA: show after user scrolls past the hero (~ 60% of viewport height)
 (function(){
   const stickyCta = document.querySelector('.sticky-cta');
   if (!stickyCta) return;
@@ -7072,6 +7151,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
       ticking = true;
     }
   }, { passive: true });
+  update();
 })();
 
 // WHAT IS INSIDE — video previews
