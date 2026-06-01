@@ -6,12 +6,25 @@
 
 ```bash
 # Pythonがあるなら
-python3 -m http.server 8000
-# → http://localhost:8000
+python3 -m http.server 4173
+# → http://localhost:4173
 
 # Node.jsがあるなら
 npx serve .
 ```
+
+## レイアウト検査
+
+Hero / CTA / header を触った後は、スマホのファーストビューが崩れていないか確認する。
+
+```bash
+node scripts/verify-mobile-hero.js http://localhost:4173
+
+# スクリーンショットも残す場合
+SCREENSHOT_DIR=/tmp/import-lp-mobile-hero node scripts/verify-mobile-hero.js http://localhost:4173
+```
+
+この検査は 320px / 390px 幅で、Hero 見出し、スマホヘッダーCTAの固定表示、初期 sticky CTA 非表示、横 overflow、Hero 高さ、ヘッダーCTAと見出しの距離、下部コピーとの距離を確認する。
 
 ## Vercelへのデプロイ
 

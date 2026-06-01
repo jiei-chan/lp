@@ -30,3 +30,6 @@ git status --short --branch
 - 文言削除や導線変更後は `rg` で対象文言が残っていないことを確認する。
 - レイアウト変更後はローカルHTTPサーバーで表示し、少なくとも 320px / 390px / desktop 相当で横 overflow を確認する。
 - 静的確認は例として `python3 -m http.server 4173` を使える。
+- Hero / CTA / header を触った場合は、スマホのファーストビュー保護として `node scripts/verify-mobile-hero.js http://localhost:4173` を実行する。
+- スマホの上部固定CTAは `.nav` を `position: fixed` のまま表示し、通常フローに入れて Hero 画像のフレームを押し下げない。Hero 内テキスト側に安全余白を持たせる。
+- Mobile hero の基準値は `.hero { height: 240vw }`、`.hero-grid { padding-top: 24px }`、`.hero-below { margin-top: -150vw; padding-top: 80px }`。変更する場合は、320px / 390px のスクリーンショットで「英単語は忘れない」が見え、ヘッダーCTA・キャラクター・商品画像・文字が被らないことを確認する。
