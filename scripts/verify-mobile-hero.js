@@ -97,8 +97,8 @@ function fail(message, details = {}) {
           titleTop: metrics.titleTop,
         });
       }
-      if (metrics.stickyVisibleInitially !== false) {
-        fail('Sticky mobile CTA should not cover the initial hero view.', { viewport: viewport.name, stickyVisibleInitially: metrics.stickyVisibleInitially });
+      if (metrics.stickyVisibleInitially !== true) {
+        fail('Sticky offer CTA should be visible from the initial view.', { viewport: viewport.name, stickyVisibleInitially: metrics.stickyVisibleInitially });
       }
       if (metrics.scrollOverflow > 1) {
         fail('Mobile layout has horizontal overflow.', { viewport: viewport.name, scrollOverflow: metrics.scrollOverflow });
