@@ -4776,72 +4776,234 @@ footer .contact-status{
 }
 footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
-/* ========== STICKY MOBILE CTA ========== */
+/* ========== STICKY OFFER CTA ========== */
 .sticky-cta{
   position: fixed;
   bottom: 0; left: 0; right: 0;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  padding: 12px 16px;
-  display: none;
-  align-items: center;
-  gap: 12px;
-  z-index: 100;
-  box-shadow:
-    0 -10px 30px rgba(10, 22, 40, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  border-top: 1px solid rgba(255, 255, 255, 0.45);
-  transform: translateY(100%);
+  display: flex;
+  justify-content: center;
+  padding: 8px 18px calc(8px + env(safe-area-inset-bottom));
+  z-index: 160;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 8, 16, 0.62), rgba(5, 8, 16, 0.42)),
+    linear-gradient(90deg, rgba(0, 102, 255, 0.16), rgba(0, 212, 255, 0.12));
+  box-shadow: 0 -12px 34px rgba(5, 8, 16, 0.14);
+  transform: translateY(110%);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .sticky-cta.visible{
   transform: translateY(0);
 }
-.sticky-cta .info{flex: 1}
-.sticky-cta .price{font-family: var(--en); font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: -0.02em}
-.sticky-cta .price .strike{font-size: 12px; color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(255, 107, 74, 0.85); text-decoration-thickness: 1.5px; font-weight: 500; margin-right: 6px}
-.sticky-cta .price .now{color: #ff5e3a; font-weight: 800}
-.sticky-cta .label{font-size: 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em}
-.sticky-cta .btn{padding: 14px 20px; font-size: 13px; flex-shrink: 0; margin-right: 32px}
-.sticky-cta-boo{
+.sticky-cta-panel{
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 12px 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 14px 34px rgba(5, 8, 16, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  pointer-events: auto;
+}
+.sticky-eyebrow{
+  color: var(--text-soft);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.sticky-discount{
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: #ff5e3a;
+  font-family: var(--en);
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.sticky-discount small{
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+.sticky-offer-note{
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+.sticky-count-wrap{
+  min-width: 270px;
+}
+.sticky-count-label{
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+.sticky-countdown{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.sticky-time{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  width: 56px;
+  height: 42px;
+  margin: 0 auto;
+}
+.sticky-time strong{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #ffdfd0;
+  border-radius: 999px;
+  background: rgba(255, 248, 245, 0.78);
+  color: #ff5e3a;
+  font-family: var(--en);
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.sticky-time span{
   position: absolute;
-  right: 4px;
-  bottom: 0;
-  width: 44px;
-  height: auto;
-  pointer-events: none;
-  z-index: 2;
-  filter: drop-shadow(0 8px 12px rgba(15, 23, 42, 0.18));
+  left: 38px;
+  bottom: 2px;
+  color: #c2410c;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+.sticky-shop-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--accent) 100%);
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 900;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 102, 255, 0.16);
+  box-shadow:
+    0 12px 28px rgba(0, 102, 255, 0.28),
+    0 0 0 1px rgba(255,255,255,0.26) inset;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+}
+.sticky-shop-btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow:
+    0 18px 40px rgba(0, 102, 255, 0.4),
+    0 0 0 1px rgba(255,255,255,0.32) inset;
+}
+.sticky-shop-btn:active{
+  transform: translateY(1px) scale(0.985);
+  filter: brightness(0.98);
+  box-shadow:
+    0 8px 18px rgba(0, 102, 255, 0.24),
+    0 0 0 1px rgba(255,255,255,0.2) inset;
+}
+.sticky-shop-btn:focus-visible{
+  outline: 3px solid rgba(0, 212, 255, 0.38);
+  outline-offset: 3px;
 }
 
 /* Gentle breathing animation on the CTA button (always running) */
 @keyframes sticky-cta-breathe{
-  0%, 100%{
-    transform: translateY(0) scale(1);
-    box-shadow:
-      0 3px 10px rgba(0, 102, 255, 0.15),
-      0 0 0 rgba(0, 212, 255, 0);
-  }
-  50%{
-    transform: translateY(-1px) scale(1.018);
-    box-shadow:
-      0 8px 22px rgba(0, 102, 255, 0.3),
-      0 0 18px rgba(0, 212, 255, 0.2);
-  }
+  0%, 100%{transform: translateY(0) scale(1)}
+  50%{transform: translateY(-1px) scale(1.018)}
 }
-.sticky-cta.visible .btn{
+.sticky-cta.visible .sticky-shop-btn{
   animation: sticky-cta-breathe 3.4s ease-in-out infinite;
 }
-.sticky-cta.visible .btn:hover,
-.sticky-cta.visible .btn:active{
-  animation-play-state: paused;
+.sticky-cta.visible .sticky-shop-btn:hover,
+.sticky-cta.visible .sticky-shop-btn:active,
+.sticky-cta.visible .sticky-shop-btn:focus-visible{
+  animation: none;
+}
+
+@media (max-width: 768px){
+  .sticky-cta{
+    width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
+    padding: 7px 10px calc(7px + env(safe-area-inset-bottom));
+  }
+  .sticky-cta-panel{
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "count button";
+    gap: 7px;
+    padding: 7px 10px;
+    border-radius: 14px;
+  }
+  .sticky-offer{display: none}
+  .sticky-count-wrap{grid-area: count; min-width: 0}
+  .sticky-shop-btn{
+    grid-area: button;
+    min-width: 84px;
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  .sticky-count-label{
+    margin-bottom: 2px;
+    color: var(--text-soft);
+    font-size: 10px;
+    line-height: 1.1;
+    text-align: left;
+  }
+  .sticky-countdown{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .sticky-time{
+    width: 48px;
+    height: 30px;
+  }
+  .sticky-time strong{
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+  .sticky-time span{
+    left: 28px;
+    bottom: 0;
+    font-size: 8px;
+  }
 }
 
 /* ========== MOBILE OPTIMIZATIONS (≤768px) ========== */
 @media (max-width: 768px){
   /* ─── Layout basics ─── */
-  body{padding-bottom: 76px}
+  body{padding-bottom: 82px}
   section{padding: 40px 20px}
   .wrap, .wrap-narrow{padding: 0 20px}
 
@@ -4895,9 +5057,6 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .nav-purchase .label-full{display: none}
   .nav-purchase .label-short{display: inline}
   .nav-purchase svg{width: 15px; height: 15px}
-
-  /* ─── Sticky CTA on ─── */
-  .sticky-cta{display: flex}
 
   /* ─── HERO: image top, text bottom ─── */
   .hero{padding: 0; min-height: auto; display: block}
@@ -5209,9 +5368,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     </a>
     <div class="nav-actions">
       <div class="nav-offer" aria-label="期間限定セール">
-        <span class="pill"><span class="dot"></span>29% OFF</span>
+        <span class="pill"><span class="dot"></span>¥3,194円OFF</span>
         <span class="nav-offer-copy">期間限定 import 完全版セール中</span>
-        <span class="period"><span class="desktop-period">5/24 → 6/7</span><span class="mobile-period">6/7まで</span></span>
+        <span class="period"><span class="desktop-period">6/21 23:59まで</span><span class="mobile-period">6/21まで</span></span>
       </div>
       <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="nav-purchase" data-purchase-cta="header_sticky">
         <span class="label-full">import完全版を手に入れる</span>
@@ -6880,14 +7039,25 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   <div class="copy">© 2026 import. All rights reserved.</div>
 </footer>
 
-<!-- ========== STICKY MOBILE CTA ========== -->
-<div class="sticky-cta">
-  <div class="info">
-    <div class="label">コンプリートエディション</div>
-    <div class="price"><span class="now">29%OFF</span></div>
+<!-- ========== STICKY OFFER CTA ========== -->
+<div class="sticky-cta visible" aria-label="期間限定オファー">
+  <div class="sticky-cta-panel">
+    <div class="sticky-offer">
+      <div class="sticky-eyebrow">本日の特価</div>
+      <div class="sticky-discount"><span class="num">¥3,194</span><small>OFF</small></div>
+      <div class="sticky-offer-note">通常 ¥10,850 → 特価 ¥7,656</div>
+    </div>
+    <div class="sticky-count-wrap">
+      <div class="sticky-count-label">特別価格終了まで</div>
+      <div class="sticky-countdown" aria-label="特別価格終了までの残り時間">
+        <div class="sticky-time"><strong id="sticky-cd-days">--</strong><span>日</span></div>
+        <div class="sticky-time"><strong id="sticky-cd-hours">--</strong><span>時間</span></div>
+        <div class="sticky-time"><strong id="sticky-cd-min">--</strong><span>分</span></div>
+        <div class="sticky-time"><strong id="sticky-cd-sec">--</strong><span>秒</span></div>
+      </div>
+    </div>
+    <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="sticky-shop-btn" data-purchase-cta="sticky_offer">中身を見る</a>
   </div>
-  <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="btn btn-primary-blue" data-purchase-cta="sticky_mobile">商品ページへ</a>
-  <img class="sticky-cta-boo" src="images/button01-cropped.png" alt="" aria-hidden="true" decoding="async">
 </div>
 
 <script>
@@ -7142,27 +7312,44 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 })();
 
-// Sticky mobile CTA: show after user scrolls past the hero (~ 60% of viewport height)
+// Sticky offer CTA: visible from page load.
 (function(){
   const stickyCta = document.querySelector('.sticky-cta');
   if (!stickyCta) return;
-  const showThreshold = () => window.innerHeight * 0.6;
-  let ticking = false;
-  function update(){
-    if (window.scrollY > showThreshold()){
-      stickyCta.classList.add('visible');
-    } else {
-      stickyCta.classList.remove('visible');
-    }
-    ticking = false;
+  stickyCta.classList.add('visible');
+})();
+
+// Sticky offer countdown: fixed to the special price deadline.
+(function(){
+  const ids = {
+    d: 'sticky-cd-days',
+    h: 'sticky-cd-hours',
+    m: 'sticky-cd-min',
+    s: 'sticky-cd-sec'
+  };
+  const stickyOfferDeadline = new Date('2026-06-21T23:59:59+09:00');
+
+  function set(id, value){
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(value).padStart(2, '0');
   }
-  window.addEventListener('scroll', () => {
-    if (!ticking){
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }, { passive: true });
-  update();
+
+  function updateStickyOfferTimer(){
+    const now = new Date();
+    const diff = Math.max(0, stickyOfferDeadline - now);
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    set(ids.d, d);
+    set(ids.h, h);
+    set(ids.m, m);
+    set(ids.s, s);
+  }
+
+  updateStickyOfferTimer();
+  setInterval(updateStickyOfferTimer, 1000);
 })();
 
 // WHAT IS INSIDE — video previews
