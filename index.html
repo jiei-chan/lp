@@ -4852,6 +4852,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   line-height: 1.2;
   text-align: center;
 }
+.sticky-count-label strong{
+  color: inherit;
+  font-weight: 950;
+}
 .sticky-countdown{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -4977,39 +4981,52 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   .sticky-count-wrap{grid-area: count; min-width: 0}
   .sticky-shop-btn{
     grid-area: button;
-    min-width: 84px;
+    min-width: 80px;
     min-height: 36px;
-    padding: 0 12px;
+    padding: 0 11px;
     font-size: 12px;
   }
   .sticky-count-label{
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     color: var(--text-soft);
-    font-size: 10px;
+    font-size: 9px;
+    font-weight: 700;
     line-height: 1.1;
     text-align: left;
+    white-space: nowrap;
+  }
+  .sticky-count-label strong{
+    color: var(--ink);
+    font-size: 10.5px;
+    font-weight: 950;
+  }
+  .sticky-count-label span{
+    color: var(--text-soft);
+    font-weight: 700;
   }
   .sticky-countdown{
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 4px;
+    gap: 3px;
   }
   .sticky-price-shift-note{
-    margin-top: 3px;
-    font-size: 9px;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 8px;
+    font-weight: 700;
     line-height: 1.1;
     text-align: left;
   }
   .sticky-time{
-    width: 48px;
-    height: 30px;
+    width: 42px;
+    height: 32px;
   }
   .sticky-time strong{
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     font-size: 15px;
   }
   .sticky-time span{
-    left: 28px;
+    left: 29px;
     bottom: 0;
     font-size: 8px;
   }
@@ -7063,14 +7080,14 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="sticky-offer-note">通常 ¥10,850 → 特価 <span data-sale-price>¥8,250</span></div>
     </div>
     <div class="sticky-count-wrap">
-      <div class="sticky-count-label">特別価格終了まで</div>
+      <div class="sticky-count-label"><strong data-sale-savings-yen>2,600円</strong>OFF！ <span>特別価格終了まで</span></div>
       <div class="sticky-countdown" aria-label="特別価格終了までの残り時間">
         <div class="sticky-time"><strong id="sticky-cd-days">--</strong><span>日</span></div>
         <div class="sticky-time"><strong id="sticky-cd-hours">--</strong><span>時間</span></div>
         <div class="sticky-time"><strong id="sticky-cd-min">--</strong><span>分</span></div>
         <div class="sticky-time"><strong id="sticky-cd-sec">--</strong><span>秒</span></div>
       </div>
-      <div class="sticky-price-shift-note">終了後は次の価格に切り替わります</div>
+      <div class="sticky-price-shift-note">終了後は商品の価格が上昇します</div>
     </div>
     <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="sticky-shop-btn" data-purchase-cta="sticky_offer">中身を見る</a>
   </div>
