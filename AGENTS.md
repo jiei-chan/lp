@@ -7,7 +7,7 @@
 - 正本 path: `/Users/uchida/projects/lp`
 - GitHub remote: `git@github.com:jiei-chan/lp.git`
 - 主ファイル: `index.html`
-- 旧検討用 repo `/Users/uchida/projects/import-gw-lp` と混同しない。
+- 旧試作 LP は `/Users/uchida/projects/_archive/import-gw-lp` に退避済み（現役ではない）。混同しない。
 
 LP の作業を始める前に、必ず次を確認する。
 
