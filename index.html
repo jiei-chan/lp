@@ -7214,6 +7214,8 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
     'ttclid'
   ];
   const storageKey = 'import_lp_attribution';
+  // Keep captured click IDs across visits; Google/Meta click lookback is up to 90 days.
+  const storageTtlMs = 90 * 24 * 60 * 60 * 1000;
 
   window.dataLayer = window.dataLayer || [];
 
@@ -7246,7 +7248,12 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
 
   function readStoredAttribution(){
     try {
-      return JSON.parse(window.sessionStorage.getItem(storageKey) || '{}');
+      // localStorage (not sessionStorage) so attribution survives tab close and
+      // still decorates the purchase URL when the visitor returns days later.
+      const stored = JSON.parse(window.localStorage.getItem(storageKey) || '{}');
+      const capturedAt = Date.parse(stored.captured_at || '');
+      if (!capturedAt || Date.now() - capturedAt > storageTtlMs) return {};
+      return stored;
     } catch (_) {
       return {};
     }
@@ -7254,7 +7261,7 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
 
   function writeStoredAttribution(data){
     try {
-      window.sessionStorage.setItem(storageKey, JSON.stringify(data));
+      window.localStorage.setItem(storageKey, JSON.stringify(data));
     } catch (_) {}
   }
 
@@ -7341,7 +7348,26 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
     }
   }
 
+  function decorateStoreLinks(attribution){
+    // Non-CTA links to the store (footer logo, legal pages) keep their own
+    // destination but still carry attribution, so a visitor entering the store
+    // that way is not counted as direct.
+    const hasAttribution = attributionKeys.some(key => attribution[key]);
+    if (!hasAttribution) return;
+    document.querySelectorAll('a[href^="https://www.import-language.com"]:not([data-purchase-cta])').forEach(link => {
+      try {
+        const url = new URL(link.href);
+        attributionKeys.forEach(key => {
+          const value = attribution[key];
+          if (value && !url.searchParams.has(key)) url.searchParams.set(key, value);
+        });
+        link.href = url.toString();
+      } catch (_) {}
+    });
+  }
+
   const attribution = collectAttribution();
+  decorateStoreLinks(attribution);
   document.querySelectorAll('[data-purchase-cta]').forEach(link => {
     const ctaId = link.getAttribute('data-purchase-cta');
     const purchaseUrl = buildPurchaseUrl(ctaId, attribution);
