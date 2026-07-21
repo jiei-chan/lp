@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0066ff" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>import｜映像 × 音声で覚える、忘れない英単語学習</title>
-<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / Silver Express の3教材完全エディション、期間限定OFF。" />
+<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / Silver Express の3教材完全エディションを割引価格で。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -199,6 +199,13 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.sale-mode-copy-discount-only{display: none}
+body.sale-mode-discount-only .sale-mode-copy-scheduled{display: none}
+body.sale-mode-discount-only .sale-mode-copy-discount-only{display: revert}
+body.sale-mode-discount-only .nav-offer .period,
+body.sale-mode-discount-only .offer-urgency,
+body.sale-mode-discount-only .final-countdown,
+body.sale-mode-discount-only .sticky-count-wrap{display: none}
 .nav-purchase{
   display: inline-flex;
   align-items: center;
@@ -4870,6 +4877,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   text-align: center;
   white-space: nowrap;
 }
+body.sale-mode-discount-only .sticky-cta-panel{
+  grid-template-columns: minmax(220px, 1fr) auto;
+}
 .sticky-time{
   position: relative;
   display: flex;
@@ -4978,6 +4988,15 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
     border-radius: 14px;
   }
   .sticky-offer{display: none}
+  body.sale-mode-discount-only .sticky-cta-panel{
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "offer button";
+  }
+  body.sale-mode-discount-only .sticky-offer{
+    display: block;
+    grid-area: offer;
+    min-width: 0;
+  }
   .sticky-count-wrap{grid-area: count; min-width: 0}
   .sticky-shop-btn{
     grid-area: button;
@@ -5389,7 +5408,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 .reveal.visible{opacity: 1; transform: translateY(0)}
 </style>
 </head>
-<body>
+<body class="sale-mode-discount-only">
 
 <!-- ========== NAV ========== -->
 <nav class="nav">
@@ -5399,9 +5418,9 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       import
     </a>
     <div class="nav-actions">
-      <div class="nav-offer" aria-label="期間限定セール">
+      <div class="nav-offer" aria-label="import 完全版セール">
         <span class="pill"><span class="dot"></span><span data-sale-savings-yen>2,851円</span>OFF</span>
-        <span class="nav-offer-copy">期間限定 import 完全版セール中</span>
+        <span class="nav-offer-copy"><span class="sale-mode-copy-scheduled">期間限定 import 完全版セール中</span><span class="sale-mode-copy-discount-only">import 完全版セール中</span></span>
         <span class="period"><span class="desktop-period" data-sale-deadline-long>7/13（月）8:59まで</span><span class="mobile-period" data-sale-deadline-short>7/13まで</span></span>
       </div>
       <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="nav-purchase" data-purchase-cta="header_sticky">
@@ -6531,13 +6550,16 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       3つすべてを、<br>
       <span class="gradient">エディション価格で。</span>
     </h2>
-    <p class="section-lead" style="margin: 0 auto">
+    <p class="section-lead sale-mode-copy-scheduled" style="margin: 0 auto">
       個別に買うより圧倒的にお得。期間限定の特別価格で、3教材すべてが手に入ります。
+    </p>
+    <p class="section-lead sale-mode-copy-discount-only" style="margin: 0 auto">
+      個別に買うより圧倒的にお得。割引価格で、3教材すべてが手に入ります。
     </p>
   </div>
 
   <div class="bundle-card">
-    <div class="bundle-ribbon">期間限定 EDITION OFFER</div>
+    <div class="bundle-ribbon"><span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span><span class="sale-mode-copy-discount-only">EDITION OFFER</span></div>
 
     <!-- Complete Bundle hero image (full bleed) -->
     <div class="bundle-hero">
@@ -6611,7 +6633,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
       <div class="offer-card">
         <div class="offer-hero">
-          <div class="offer-eyebrow">今だけ特別価格</div>
+          <div class="offer-eyebrow"><span class="sale-mode-copy-scheduled">今だけ特別価格</span><span class="sale-mode-copy-discount-only">特別価格</span></div>
 
           <!-- Direct price comparison -->
           <div class="offer-compare">
@@ -6666,7 +6688,7 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
       <div class="anchor-eyebrow">— PREMIUM COMPLETE EDITION</div>
       <div class="anchor-headline">
         <span class="anchor-strike">¥10,850</span>
-        <span class="anchor-pct"><span class="anchor-pct-label">今だけ</span><strong><span data-sale-percent>27</span>% OFF</strong></span>
+        <span class="anchor-pct"><span class="anchor-pct-label"><span class="sale-mode-copy-scheduled">今だけ</span><span class="sale-mode-copy-discount-only">割引中</span></span><strong><span data-sale-percent>27</span>% OFF</strong></span>
       </div>
       <p class="anchor-desc">
         購入ページでは、割引後の価格がそのまま表示されます。
@@ -7072,10 +7094,10 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 </footer>
 
 <!-- ========== STICKY OFFER CTA ========== -->
-<div class="sticky-cta visible" aria-label="期間限定オファー">
+<div class="sticky-cta visible" aria-label="import 完全版オファー">
   <div class="sticky-cta-panel">
     <div class="sticky-offer">
-      <div class="sticky-eyebrow">本日の特価</div>
+      <div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">本日の特価</span><span class="sale-mode-copy-discount-only">特別価格</span></div>
       <div class="sticky-discount"><span class="num" data-sale-savings-price>¥2,851</span><small>OFF</small></div>
       <div class="sticky-offer-note">通常 ¥10,850 → 特価 <span data-sale-price>¥7,999</span></div>
     </div>
@@ -7095,7 +7117,15 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
 
 <script>
 window.IMPORT_SALE_CONFIG = {
+  // Change to 'scheduled' to re-enable the saved campaign schedule below.
+  // Refresh the saved dates first when reusing it for a future campaign.
+  mode: 'discount-only',
   regularPrice: 10850,
+  staticOffer: {
+    salePrice: 8499,
+    savings: 2351,
+    percent: 22
+  },
   periods: [
     {
       salePrice: 7999,
@@ -7137,7 +7167,10 @@ window.IMPORT_SALE_CONFIG = {
 
 (function(){
   const config = window.IMPORT_SALE_CONFIG;
-  if (!config || !Array.isArray(config.periods) || !config.periods.length) return;
+  if (!config || !config.staticOffer || !Array.isArray(config.periods) || !config.periods.length) return;
+  const isDiscountOnly = config.mode === 'discount-only';
+  document.body.classList.toggle('sale-mode-discount-only', isDiscountOnly);
+  document.body.classList.toggle('sale-mode-scheduled', !isDiscountOnly);
 
   function yen(value){
     return '¥' + Number(value).toLocaleString('ja-JP');
@@ -7156,19 +7189,20 @@ window.IMPORT_SALE_CONFIG = {
     return {
       ...period,
       savings,
-      endDate: new Date(period.endAt),
+      endDate: period.endAt ? new Date(period.endAt) : null,
       percent: period.percent ?? Math.round((savings / config.regularPrice) * 100)
     };
   }
 
   function getCurrentSale(now = readNow()){
+    if (isDiscountOnly) return withComputedValues(config.staticOffer);
     const active = config.periods.find(period => {
       const startsAt = period.startAt ? new Date(period.startAt) : null;
       const endsAt = new Date(period.endAt);
       return (!startsAt || now >= startsAt) && now < endsAt;
     });
 
-    return withComputedValues(active || config.periods[config.periods.length - 1]);
+    return withComputedValues(active || config.staticOffer);
   }
 
   function setAll(selector, value){
@@ -7178,6 +7212,9 @@ window.IMPORT_SALE_CONFIG = {
   }
 
   function renderSaleOffer(sale = getCurrentSale()){
+    const hasActiveSchedule = !isDiscountOnly && Boolean(sale.endDate);
+    document.body.classList.toggle('sale-mode-discount-only', !hasActiveSchedule);
+    document.body.classList.toggle('sale-mode-scheduled', hasActiveSchedule);
     window.IMPORT_CURRENT_SALE = sale;
     setAll('[data-sale-price]', yen(sale.salePrice));
     setAll('[data-sale-price-plain]', number(sale.salePrice));
@@ -7185,8 +7222,8 @@ window.IMPORT_SALE_CONFIG = {
     setAll('[data-sale-savings-minus]', '−' + yen(sale.savings));
     setAll('[data-sale-savings-yen]', number(sale.savings) + '円');
     setAll('[data-sale-percent]', String(sale.percent));
-    setAll('[data-sale-deadline-long]', sale.deadlineLong);
-    setAll('[data-sale-deadline-short]', sale.deadlineShort);
+    setAll('[data-sale-deadline-long]', sale.deadlineLong || '');
+    setAll('[data-sale-deadline-short]', sale.deadlineShort || '');
     return sale;
   }
 
@@ -7504,6 +7541,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
     if (typeof window.IMPORT_RENDER_SALE_OFFER === 'function'){
       window.IMPORT_RENDER_SALE_OFFER(sale);
     }
+    if (!sale.endDate) return;
     const diff = Math.max(0, sale.endDate - now);
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -7516,8 +7554,13 @@ document.querySelectorAll('.faq-item').forEach(item => {
     set(ids.s, s);
   }
 
-  updateStickyOfferTimer();
-  setInterval(updateStickyOfferTimer, 1000);
+  const initialSale = typeof window.IMPORT_GET_CURRENT_SALE === 'function'
+    ? window.IMPORT_GET_CURRENT_SALE()
+    : null;
+  if (initialSale && initialSale.endDate){
+    updateStickyOfferTimer();
+    setInterval(updateStickyOfferTimer, 1000);
+  }
 })();
 
 // WHAT IS INSIDE — video previews
@@ -7596,6 +7639,7 @@ function updateUrgencyTimer(){
   if (typeof window.IMPORT_RENDER_SALE_OFFER === 'function'){
     window.IMPORT_RENDER_SALE_OFFER(sale);
   }
+  if (!sale.endDate) return;
   const diff = Math.max(0, sale.endDate - now);
 
   const d = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -7613,8 +7657,13 @@ function updateUrgencyTimer(){
   setEl('cd-m', m);
   setEl('cd-s', s);
 }
-updateUrgencyTimer();
-setInterval(updateUrgencyTimer, 1000);
+const initialUrgencySale = typeof window.IMPORT_GET_CURRENT_SALE === 'function'
+  ? window.IMPORT_GET_CURRENT_SALE()
+  : null;
+if (initialUrgencySale && initialUrgencySale.endDate){
+  updateUrgencyTimer();
+  setInterval(updateUrgencyTimer, 1000);
+}
 
 /* Count-up animation for achievement number */
 (function(){
