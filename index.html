@@ -390,8 +390,9 @@ body.sale-mode-regular .final-price-card .price-row{justify-content: center}
     rgba(12, 20, 40, 0.18) 14%,
     rgba(14, 23, 46, 0.35) 25%,
     rgba(11, 19, 39, 0.5) 40%,
-    rgba(10, 18, 38, 0.6) 60%,
-    rgba(10, 18, 38, 0.65) 100%
+    rgba(10, 18, 38, 0.72) 60%,
+    rgba(10, 13, 20, 0.92) 84%,
+    #0a0d14 100%
   );
   color: white;
 }
@@ -765,14 +766,14 @@ body.sale-mode-regular .final-price-card .price-row{justify-content: center}
 .inside-product.theme-purple:hover{
   box-shadow: 0 12px 32px rgba(124, 58, 237, 0.32);
 }
-.inside-product.theme-teal{
+.inside-product.theme-gold{
   background:
-    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.10) 0%, transparent 55%),
-    linear-gradient(160deg, #475569 0%, #334155 45%, #1e293b 100%);
-  border-color: rgba(100, 116, 139, 0.55);
+    radial-gradient(ellipse at top right, rgba(255, 238, 179, 0.08) 0%, transparent 55%),
+    linear-gradient(160deg, #986500 0%, #815305 48%, #583100 100%);
+  border-color: rgba(189, 133, 25, 0.7);
 }
-.inside-product.theme-teal:hover{
-  box-shadow: 0 12px 32px rgba(51, 65, 85, 0.5);
+.inside-product.theme-gold:hover{
+  box-shadow: 0 12px 32px rgba(129, 83, 5, 0.5);
 }
 
 .inside-video-wrap{
@@ -2843,11 +2844,17 @@ section{padding: 100px 24px}
     linear-gradient(160deg, #9555f7 0%, #7c3aed 45%, #5b21b6 100%);
   border-color: #7c3aed;
 }
-.pcard-teal{
+.pcard-gold{
   background:
-    radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.10) 0%, transparent 55%),
-    linear-gradient(160deg, #475569 0%, #334155 45%, #1e293b 100%);
-  border-color: #334155;
+    radial-gradient(ellipse at top right, rgba(255, 238, 179, 0.08) 0%, transparent 55%),
+    linear-gradient(160deg, #986500 0%, #815305 48%, #583100 100%);
+  border-color: #bd8519;
+}
+.pcard-gold .pcard-name{
+  font-size: clamp(28px, 2.6vw, 38px);
+}
+.pcard-name-line{
+  white-space: nowrap;
 }
 
 /* Bundle-only badge (top-right of card) */
@@ -2956,7 +2963,7 @@ section{padding: 100px 24px}
 }
 .pkg-blue{background: linear-gradient(135deg, #1e5fff 0%, #0066ff 100%)}
 .pkg-purple{background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)}
-.pkg-teal{background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)}
+.pkg-gold{background: linear-gradient(135deg, #dca442 0%, #9a6406 100%)}
 
 .pkg-name{
   font-family: var(--en);
@@ -4310,7 +4317,7 @@ section{padding: 100px 24px}
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 12%;
   display: block;
 }
 .final-bg-overlay{
@@ -5383,7 +5390,7 @@ body.sale-mode-regular .sticky-cta-panel{
   .pcard-desc{font-size: 13px}
   .pcard-stats{gap: 10px; padding: 12px}
   .pcard-stats .stat-num{font-size: 17px}
-  .pcard-teal .pcard-stats .stat:nth-child(2) .stat-num{font-size: 15px; letter-spacing: -0.06em}
+  .pcard-gold .pcard-stats .stat:nth-child(2) .stat-num{font-size: 15px; letter-spacing: -0.06em}
   .pcard-features li{font-size: 12px}
 
   /* ─── Section paddings (compact on mobile) ─── */
@@ -5640,6 +5647,25 @@ body.sale-mode-regular .sticky-cta-panel{
         </div>
       </article>
 
+      <article class="inside-product theme-gold" data-modal-src="videos/preview-toeic-vocab.mp4">
+        <div class="inside-video-wrap">
+          <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-silver-express.jpg">
+            <source src="videos/preview-toeic-vocab.mp4" type="video/mp4">
+          </video>
+          <div class="inside-video-overlay">
+            <svg class="inside-sound-icon" width="14" height="14" viewBox="0 0 24 24" fill="white">
+              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z" opacity="0.95"/>
+              <path d="M19 7l-1.4 1.4M19 17l-1.4-1.4" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="inside-tap-hint">タップで音あり</span>
+          </div>
+        </div>
+        <div class="inside-meta">
+          <div class="name">TOEIC® - VOCAB COMPLETE</div>
+          <div class="desc"><span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span></div>
+        </div>
+      </article>
+
       <article class="inside-product theme-purple" data-modal-src="videos/preview-nativedose.mp4">
         <div class="inside-video-wrap">
           <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-nativedose.jpg">
@@ -5656,25 +5682,6 @@ body.sale-mode-regular .sticky-cta-panel{
         <div class="inside-meta">
           <div class="name">NativeDose</div>
           <div class="desc">イディオム 200</div>
-        </div>
-      </article>
-
-      <article class="inside-product theme-teal" data-modal-src="videos/preview-silver-express.mp4">
-        <div class="inside-video-wrap">
-          <video class="inside-video" autoplay muted loop playsinline preload="metadata" poster="images/poster-silver-express.jpg">
-            <source src="videos/preview-silver-express.mp4" type="video/mp4">
-          </video>
-          <div class="inside-video-overlay">
-            <svg class="inside-sound-icon" width="14" height="14" viewBox="0 0 24 24" fill="white">
-              <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z" opacity="0.95"/>
-              <path d="M19 7l-1.4 1.4M19 17l-1.4-1.4" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
-            </svg>
-            <span class="inside-tap-hint">タップで音あり</span>
-          </div>
-        </div>
-        <div class="inside-meta">
-          <div class="name">TOEIC® - VOCAB COMPLETE</div>
-          <div class="desc"><span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span></div>
         </div>
       </article>
 
@@ -6444,56 +6451,6 @@ body.sale-mode-regular .sticky-cta-panel{
 
   <div class="product-cards">
 
-    <!-- Product 01: Essential Verbs -->
-    <article class="pcard pcard-blue">
-      <div class="pcard-image">
-        <picture>
-          <img src="images/product-essential.png" alt="Essential Verbs" onerror="this.parentElement.parentElement.classList.add('no-image')" />
-        </picture>
-        <div class="pcard-image-fallback">
-          <div class="pkg pkg-blue">
-            <div class="pkg-name">Essential<br>Verbs</div>
-            <div class="pkg-num">400</div>
-            <div class="pkg-tag">Remastered</div>
-            <div class="pkg-brand">import</div>
-          </div>
-        </div>
-      </div>
-      <div class="pcard-top">
-        <div class="pcard-label">PRODUCT 01</div>
-        <h3 class="pcard-name">Essential<br>Verbs</h3>
-        <p class="pcard-tagline">頻出400句動詞を、<br>映像で完全マスター</p>
-      </div>
-
-      <div class="pcard-bottom">
-        <div class="pcard-stats">
-          <div class="stat">
-            <div class="stat-num">400</div>
-            <div class="stat-label">PHRASES</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">初・中級</div>
-            <div class="stat-label">LEVEL</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">2ヶ月</div>
-            <div class="stat-label">DURATION</div>
-          </div>
-        </div>
-
-        <ul class="pcard-features">
-          <li>日常会話・映画・ビジネスで圧倒的に使われる句動詞400個を、シーンと一緒に体感的に習得</li>
-          <li>1動詞ずつ短尺映像でコアイメージを掴む</li>
-          <li>全英語版 Global Edition</li>
-        </ul>
-
-        <div class="pcard-price">
-          <span class="label">単品価格</span>
-          <span class="amount"><span class="yen">¥</span>4,190</span>
-        </div>
-      </div>
-    </article>
-
     <!-- Product 02: NativeDose -->
     <article class="pcard pcard-purple">
       <div class="pcard-image">
@@ -6543,15 +6500,15 @@ body.sale-mode-regular .sticky-cta-panel{
       </div>
     </article>
 
-    <!-- Product 03: TOEIC® - VOCAB COMPLETE -->
-    <article class="pcard pcard-teal">
-      <div class="pcard-image pcard-image-poster">
+    <!-- Product 03: TOEIC® - VOCAB 完全制覇 -->
+    <article class="pcard pcard-gold">
+      <div class="pcard-image">
         <picture>
-          <img src="images/product-silver.png" alt="TOEIC® - VOCAB COMPLETE" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          <img src="images/product-toeic-vocab.webp" alt="TOEIC® - VOCAB 完全制覇" onerror="this.parentElement.parentElement.classList.add('no-image')" />
         </picture>
         <div class="pcard-image-fallback">
-          <div class="pkg pkg-teal">
-            <div class="pkg-name">TOEIC®<br>VOCAB COMPLETE</div>
+          <div class="pkg pkg-gold">
+            <div class="pkg-name">TOEIC®<br>VOCAB 完全制覇</div>
             <div class="pkg-tag">Business Words<br>Master Pack</div>
             <div class="pkg-num">1100</div>
             <div class="pkg-brand">import</div>
@@ -6560,8 +6517,8 @@ body.sale-mode-regular .sticky-cta-panel{
       </div>
       <div class="pcard-top">
         <div class="pcard-label">PRODUCT 03</div>
-        <h3 class="pcard-name">TOEIC® -<br>VOCAB COMPLETE</h3>
-        <p class="pcard-tagline">ビジネス基礎単語と、<br>多義語の本当の意味</p>
+        <h3 class="pcard-name">TOEIC® -<br><span class="pcard-name-line">VOCAB 完全制覇</span></h3>
+        <p class="pcard-tagline">TOEIC® L&amp;R TEST 制覇の完全版</p>
       </div>
 
       <div class="pcard-bottom">
@@ -6581,14 +6538,64 @@ body.sale-mode-regular .sticky-cta-panel{
         </div>
 
         <ul class="pcard-features">
-          <li>"address" は「住所」だけじゃない。"run a meeting" の "run" の本当の意味を、映像で図解</li>
-          <li>ビジネスメール・会議で頻出する基礎語彙</li>
+          <li>TOEICの頻出語彙や厄介な多義語をコアイメージで完全理解</li>
           <li>BASICからSCORE 600までをカバー</li>
+          <li>追加課金なし、SCORE 730以降も近日中に追加予定</li>
         </ul>
 
         <div class="pcard-price">
           <span class="label">単品価格</span>
           <span class="amount"><span class="yen">¥</span>5,280</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 01: Essential Verbs -->
+    <article class="pcard pcard-blue">
+      <div class="pcard-image">
+        <picture>
+          <img src="images/product-essential.png" alt="Essential Verbs" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        </picture>
+        <div class="pcard-image-fallback">
+          <div class="pkg pkg-blue">
+            <div class="pkg-name">Essential<br>Verbs</div>
+            <div class="pkg-num">400</div>
+            <div class="pkg-tag">Remastered</div>
+            <div class="pkg-brand">import</div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard-top">
+        <div class="pcard-label">PRODUCT 01</div>
+        <h3 class="pcard-name">Essential<br>Verbs</h3>
+        <p class="pcard-tagline">頻出400句動詞を、<br>映像で完全マスター</p>
+      </div>
+
+      <div class="pcard-bottom">
+        <div class="pcard-stats">
+          <div class="stat">
+            <div class="stat-num">400</div>
+            <div class="stat-label">PHRASES</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">初・中級</div>
+            <div class="stat-label">LEVEL</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2ヶ月</div>
+            <div class="stat-label">DURATION</div>
+          </div>
+        </div>
+
+        <ul class="pcard-features">
+          <li>日常会話・映画・ビジネスで圧倒的に使われる句動詞400個を、シーンと一緒に体感的に習得</li>
+          <li>1動詞ずつ短尺映像でコアイメージを掴む</li>
+          <li>全英語版 Global Edition</li>
+        </ul>
+
+        <div class="pcard-price">
+          <span class="label">単品価格</span>
+          <span class="amount"><span class="yen">¥</span>4,190</span>
         </div>
       </div>
     </article>
@@ -7061,8 +7068,8 @@ body.sale-mode-regular .sticky-cta-panel{
   <div class="final-image-area">
     <div class="final-bg-wrap">
       <picture>
-        <source media="(max-width: 768px)" srcset="images/final-bg-mobile.png">
-        <img src="images/final-bg.png" alt="" />
+        <source media="(max-width: 768px)" srcset="images/toeic-vo-comp-pack-cta-mobile.png">
+        <img src="images/toeic-vo-comp-pack-cta-pc.png" alt="" />
       </picture>
       <div class="final-bg-overlay"></div>
     </div>
