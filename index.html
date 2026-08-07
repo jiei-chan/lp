@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0066ff" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>import｜映像 × 音声で覚える、忘れない英単語学習</title>
-<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / Silver Express の3教材完全エディションを割引価格で。" />
+<meta name="description" content="脳科学に基づいた映像×感覚で学ぶ英単語。Essential Verbs / NativeDose / TOEIC® - VOCAB COMPLETE の3教材完全エディションを期間限定価格で。" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -199,13 +199,33 @@ body{
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.sale-mode-copy-discount-only{display: none}
+.sale-mode-copy-discount-only,
+.sale-mode-copy-regular{display: none}
 body.sale-mode-discount-only .sale-mode-copy-scheduled{display: none}
 body.sale-mode-discount-only .sale-mode-copy-discount-only{display: revert}
 body.sale-mode-discount-only .nav-offer .period,
 body.sale-mode-discount-only .offer-urgency,
 body.sale-mode-discount-only .final-countdown,
 body.sale-mode-discount-only .sticky-count-wrap{display: none}
+body.sale-mode-regular .sale-mode-copy-scheduled,
+body.sale-mode-regular .sale-mode-copy-discount-only{display: none}
+body.sale-mode-regular .sale-mode-copy-regular{display: revert}
+body.sale-mode-regular .nav-offer .pill,
+body.sale-mode-regular .nav-offer .period,
+body.sale-mode-regular .offer-eyebrow,
+body.sale-mode-regular .offer-compare .compare-from,
+body.sale-mode-regular .offer-compare .compare-arrow,
+body.sale-mode-regular .offer-savings-bar,
+body.sale-mode-regular .offer-urgency,
+body.sale-mode-regular .anchor-card,
+body.sale-mode-regular .final-countdown,
+body.sale-mode-regular .final-price-card .savings-tag,
+body.sale-mode-regular .final-price-card .price-strike,
+body.sale-mode-regular .final-price-card .off-badge,
+body.sale-mode-regular .sticky-discount,
+body.sale-mode-regular .sticky-count-wrap{display: none}
+body.sale-mode-regular .offer-compare{margin-bottom: 18px}
+body.sale-mode-regular .final-price-card .price-row{justify-content: center}
 .nav-purchase{
   display: inline-flex;
   align-items: center;
@@ -805,6 +825,7 @@ body.sale-mode-discount-only .sticky-count-wrap{display: none}
   color: rgba(255,255,255,0.78);
   margin-top: 3px;
 }
+.inside-meta .desc-line{display: block}
 
 /* Video lightbox modal */
 .video-modal{
@@ -2885,6 +2906,15 @@ section{padding: 100px 24px}
   position: relative;
   z-index: 2;
 }
+.pcard-image-poster{
+  background: #000;
+}
+.pcard-image-poster img{
+  object-fit: contain;
+}
+.pcard-image-poster .pcard-image-fallback{
+  display: none;
+}
 .pcard-image.no-image picture{display: none}
 .pcard-image-fallback{
   position: absolute;
@@ -2986,6 +3016,7 @@ section{padding: 100px 24px}
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
+  white-space: nowrap;
 }
 .pcard-stats .stat-label{
   font-family: var(--en);
@@ -3352,7 +3383,7 @@ section{padding: 100px 24px}
 
 /* ========================================================
    OFFER CARD (unified pricing + urgency)
-   - Direct price comparison: ¥10,850 → current campaign price
+   - Direct price comparison: regular price → current campaign price
    - Red/orange theme for sale energy on the new price
    ======================================================== */
 .offer-card{
@@ -3448,7 +3479,7 @@ section{padding: 100px 24px}
   box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
 }
 
-/* Direct comparison: ¥10,850 → current campaign price */
+/* Direct comparison: regular price → current campaign price */
 .offer-compare{
   display: flex;
   align-items: center;
@@ -4877,7 +4908,8 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   text-align: center;
   white-space: nowrap;
 }
-body.sale-mode-discount-only .sticky-cta-panel{
+body.sale-mode-discount-only .sticky-cta-panel,
+body.sale-mode-regular .sticky-cta-panel{
   grid-template-columns: minmax(220px, 1fr) auto;
 }
 .sticky-time{
@@ -4988,11 +5020,13 @@ body.sale-mode-discount-only .sticky-cta-panel{
     border-radius: 14px;
   }
   .sticky-offer{display: none}
-  body.sale-mode-discount-only .sticky-cta-panel{
+  body.sale-mode-discount-only .sticky-cta-panel,
+  body.sale-mode-regular .sticky-cta-panel{
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "offer button";
   }
-  body.sale-mode-discount-only .sticky-offer{
+  body.sale-mode-discount-only .sticky-offer,
+  body.sale-mode-regular .sticky-offer{
     display: block;
     grid-area: offer;
     min-width: 0;
@@ -5329,6 +5363,7 @@ body.sale-mode-discount-only .sticky-cta-panel{
   .pcard-desc{font-size: 13px}
   .pcard-stats{gap: 10px; padding: 12px}
   .pcard-stats .stat-num{font-size: 17px}
+  .pcard-teal .pcard-stats .stat:nth-child(2) .stat-num{font-size: 15px; letter-spacing: -0.06em}
   .pcard-features li{font-size: 12px}
 
   /* ─── Section paddings (compact on mobile) ─── */
@@ -5408,7 +5443,7 @@ body.sale-mode-discount-only .sticky-cta-panel{
 .reveal.visible{opacity: 1; transform: translateY(0)}
 </style>
 </head>
-<body class="sale-mode-discount-only">
+<body class="sale-mode-scheduled">
 
 <!-- ========== NAV ========== -->
 <nav class="nav">
@@ -5418,10 +5453,10 @@ body.sale-mode-discount-only .sticky-cta-panel{
       import
     </a>
     <div class="nav-actions">
-      <div class="nav-offer" aria-label="import 完全版セール">
-        <span class="pill"><span class="dot"></span><span data-sale-savings-yen>2,551円</span>OFF</span>
-        <span class="nav-offer-copy"><span class="sale-mode-copy-scheduled">期間限定 import 完全版セール中</span><span class="sale-mode-copy-discount-only">import 完全版セール中</span></span>
-        <span class="period"><span class="desktop-period" data-sale-deadline-long>7/13（月）8:59まで</span><span class="mobile-period" data-sale-deadline-short>7/13まで</span></span>
+      <div class="nav-offer" aria-label="import 完全版の価格案内">
+        <span class="pill"><span class="dot"></span><span data-sale-savings-yen>3,891円</span>OFF</span>
+        <span class="nav-offer-copy"><span class="sale-mode-copy-scheduled">期間限定 import 完全版セール中</span><span class="sale-mode-copy-discount-only">import 完全版セール中</span><span class="sale-mode-copy-regular">import 完全版 ¥12,850</span></span>
+        <span class="period"><span class="desktop-period" data-sale-deadline-long>8/16（日）23:59まで</span><span class="mobile-period" data-sale-deadline-short>8/16まで</span></span>
       </div>
       <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="nav-purchase" data-purchase-cta="header_sticky">
         <span class="label-full">import完全版を手に入れる</span>
@@ -5618,8 +5653,8 @@ body.sale-mode-discount-only .sticky-cta-panel{
           </div>
         </div>
         <div class="inside-meta">
-          <div class="name">Silver Express</div>
-          <div class="desc">基礎単語と多義語 268</div>
+          <div class="name">TOEIC® - VOCAB COMPLETE</div>
+          <div class="desc"><span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span></div>
         </div>
       </article>
 
@@ -6488,40 +6523,39 @@ body.sale-mode-discount-only .sticky-cta-panel{
       </div>
     </article>
 
-    <!-- Product 03: Silver Express -->
+    <!-- Product 03: TOEIC® - VOCAB COMPLETE -->
     <article class="pcard pcard-teal">
-      <div class="pcard-bundle-badge">EDITION限定</div>
-      <div class="pcard-image">
+      <div class="pcard-image pcard-image-poster">
         <picture>
-          <img src="images/product-silver.png" alt="Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+          <img src="images/product-silver.png" alt="TOEIC® - VOCAB COMPLETE" onerror="this.parentElement.parentElement.classList.add('no-image')" />
         </picture>
         <div class="pcard-image-fallback">
           <div class="pkg pkg-teal">
-            <div class="pkg-name">Silver<br>Express</div>
+            <div class="pkg-name">TOEIC®<br>VOCAB COMPLETE</div>
             <div class="pkg-tag">Business Words<br>Master Pack</div>
-            <div class="pkg-num">268+</div>
+            <div class="pkg-num">1100</div>
             <div class="pkg-brand">import</div>
           </div>
         </div>
       </div>
       <div class="pcard-top">
         <div class="pcard-label">PRODUCT 03</div>
-        <h3 class="pcard-name">Silver<br>Express</h3>
+        <h3 class="pcard-name">TOEIC® -<br>VOCAB COMPLETE</h3>
         <p class="pcard-tagline">ビジネス基礎単語と、<br>多義語の本当の意味</p>
       </div>
 
       <div class="pcard-bottom">
         <div class="pcard-stats">
           <div class="stat">
-            <div class="stat-num">268</div>
+            <div class="stat-num">1100</div>
             <div class="stat-label">WORDS</div>
           </div>
           <div class="stat">
-            <div class="stat-num">初級</div>
+            <div class="stat-num">初〜上級</div>
             <div class="stat-label">LEVEL</div>
           </div>
           <div class="stat">
-            <div class="stat-num">1ヶ月</div>
+            <div class="stat-num">3ヶ月</div>
             <div class="stat-label">DURATION</div>
           </div>
         </div>
@@ -6529,12 +6563,12 @@ body.sale-mode-discount-only .sticky-cta-panel{
         <ul class="pcard-features">
           <li>"address" は「住所」だけじゃない。"run a meeting" の "run" の本当の意味を、映像で図解</li>
           <li>ビジネスメール・会議で頻出する基礎語彙</li>
-          <li>TOEICテストの基礎固めに</li>
+          <li>BASICからSCORE 600までをカバー</li>
         </ul>
 
-        <div class="pcard-price pcard-price-bundle">
-          <span class="label-bundle">エディション限定商品</span>
-          <span class="amount"><span class="yen">¥</span>2,170</span>
+        <div class="pcard-price">
+          <span class="label">単品価格</span>
+          <span class="amount"><span class="yen">¥</span>5,280</span>
         </div>
       </div>
     </article>
@@ -6545,10 +6579,11 @@ body.sale-mode-discount-only .sticky-cta-panel{
 <!-- ========== BUNDLE ========== -->
 <section class="bundle" id="bundle">
   <div class="bundle-header">
-    <div class="section-eyebrow">— Special Offer</div>
+    <div class="section-eyebrow"><span class="sale-mode-copy-scheduled">— Special Offer</span><span class="sale-mode-copy-discount-only">— Special Offer</span><span class="sale-mode-copy-regular">— Complete Edition</span></div>
     <h2 class="section-title">
-      3つすべてを、<br>
-      <span class="gradient">エディション価格で。</span>
+      <span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">エディション価格で。</span></span>
+      <span class="sale-mode-copy-discount-only">3つすべてを、<br><span class="gradient">エディション価格で。</span></span>
+      <span class="sale-mode-copy-regular">3つすべてを、<br><span class="gradient">Complete Editionで。</span></span>
     </h2>
     <p class="section-lead sale-mode-copy-scheduled" style="margin: 0 auto">
       個別に買うより圧倒的にお得。期間限定の特別価格で、3教材すべてが手に入ります。
@@ -6556,15 +6591,18 @@ body.sale-mode-discount-only .sticky-cta-panel{
     <p class="section-lead sale-mode-copy-discount-only" style="margin: 0 auto">
       個別に買うより圧倒的にお得。割引価格で、3教材すべてが手に入ります。
     </p>
+    <p class="section-lead sale-mode-copy-regular" style="margin: 0 auto">
+      3つの映像教材と限定特典を、Complete Editionとしてまとめて手に入れられます。
+    </p>
   </div>
 
   <div class="bundle-card">
-    <div class="bundle-ribbon"><span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span><span class="sale-mode-copy-discount-only">EDITION OFFER</span></div>
+    <div class="bundle-ribbon"><span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span><span class="sale-mode-copy-discount-only">EDITION OFFER</span><span class="sale-mode-copy-regular">COMPLETE EDITION</span></div>
 
     <!-- Complete Bundle hero image (full bleed) -->
     <div class="bundle-hero">
       <picture>
-        <img src="images/CompleteBundle.png" alt="Complete Edition - Essential Verbs + NativeDose + Silver Express" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+        <img src="images/CompleteBundle.png" alt="Complete Edition - Essential Verbs + NativeDose + TOEIC® - VOCAB COMPLETE" onerror="this.parentElement.parentElement.classList.add('no-image')" />
       </picture>
       <div class="bundle-hero-fallback">
         <div class="bundle-product-img bundle-img-blue">
@@ -6576,7 +6614,7 @@ body.sale-mode-discount-only .sticky-cta-panel{
         </div>
         <span class="bundle-plus">+</span>
         <div class="bundle-product-img bundle-img-teal">
-          <div class="bundle-product-fallback">SE</div>
+          <div class="bundle-product-fallback">TVC</div>
         </div>
       </div>
     </div>
@@ -6590,7 +6628,7 @@ body.sale-mode-discount-only .sticky-cta-panel{
     </h3>
 
     <p class="bundle-sub">
-      Essential Verbs、NativeDose、Silver Express、<br>
+      Essential Verbs、NativeDose、TOEIC® - VOCAB COMPLETE、<br>
       3つすべての映像教材＋限定特典＋永久アクセス権が、<br>
       一括で手に入ります。
     </p>
@@ -6619,15 +6657,14 @@ body.sale-mode-discount-only .sticky-cta-panel{
           <div class="item">
             <span class="dot p3"></span>
             <div class="item-text">
-              <span>Silver Express（ビジネス268単語）</span>
-              <span class="bundle-only-pill">エディション限定</span>
+              <span>TOEIC® - VOCAB COMPLETE（TOEIC 1,101単語）</span>
             </div>
           </div>
-          <div class="num price">¥2,170</div>
+          <div class="num price">¥5,280</div>
         </div>
         <div class="bundle-row total">
           <div class="item">単品で買うと合計</div>
-          <div class="num price">¥10,850</div>
+          <div class="num price">¥13,960</div>
         </div>
       </div>
 
@@ -6639,22 +6676,22 @@ body.sale-mode-discount-only .sticky-cta-panel{
           <div class="offer-compare">
             <div class="compare-from">
               <div class="compare-label">通常価格</div>
-              <div class="num compare-strike">¥10,850</div>
+              <div class="num compare-strike">¥12,850</div>
             </div>
             <div class="compare-arrow" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </div>
             <div class="compare-to">
-              <div class="compare-label-now">エディション価格</div>
-              <div class="num compare-now"><span class="yen">¥</span><span data-sale-price-plain>8,299</span></div>
+              <div class="compare-label-now"><span class="sale-mode-copy-scheduled">特別価格</span><span class="sale-mode-copy-discount-only">エディション価格</span><span class="sale-mode-copy-regular">通常価格</span></div>
+              <div class="num compare-now"><span class="yen">¥</span><span data-sale-price-plain>8,959</span></div>
             </div>
           </div>
 
           <!-- Savings bar -->
           <div class="offer-savings-bar">
-            <span class="num savings-big" data-sale-savings-minus>−¥2,551</span>
+            <span class="num savings-big" data-sale-savings-minus>−¥3,891</span>
             <span class="savings-bar-divider"></span>
-            <span class="num savings-pct-big"><span data-sale-percent>24</span><span class="pct-sym">%</span> OFF</span>
+            <span class="num savings-pct-big"><span data-sale-percent>30</span><span class="pct-sym">%</span> OFF</span>
           </div>
 
           <div class="offer-tax">税込・買い切り型・追加課金なし</div>
@@ -6664,7 +6701,7 @@ body.sale-mode-discount-only .sticky-cta-panel{
         <div class="offer-urgency">
           <div class="urgency-header">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>このエディション価格は <strong data-sale-deadline-long>7/13（月）8:59まで</strong></span>
+            <span>この特別価格は <strong data-sale-deadline-long>8/16（日）23:59まで</strong></span>
           </div>
           <div class="urgency-grid">
             <span class="urgency-num" id="cd-days">--</span>
@@ -6687,8 +6724,8 @@ body.sale-mode-discount-only .sticky-cta-panel{
     <div class="anchor-card">
       <div class="anchor-eyebrow">— PREMIUM COMPLETE EDITION</div>
       <div class="anchor-headline">
-        <span class="anchor-strike">¥10,850</span>
-        <span class="anchor-pct"><span class="anchor-pct-label"><span class="sale-mode-copy-scheduled">今だけ</span><span class="sale-mode-copy-discount-only">割引中</span></span><strong><span data-sale-percent>24</span>% OFF</strong></span>
+        <span class="anchor-strike">¥12,850</span>
+        <span class="anchor-pct"><span class="anchor-pct-label"><span class="sale-mode-copy-scheduled">今だけ</span><span class="sale-mode-copy-discount-only">割引中</span></span><strong><span data-sale-percent>30</span>% OFF</strong></span>
       </div>
       <p class="anchor-desc">
         購入ページでは、割引後の価格がそのまま表示されます。
@@ -6879,10 +6916,10 @@ body.sale-mode-discount-only .sticky-cta-panel{
           <div class="voice-avatar voice-avatar-2">T</div>
           <div class="voice-meta">
             <div class="voice-name">T.S <span class="voice-verified">✓</span></div>
-            <div class="voice-tag">Silver Express ユーザー</div>
+            <div class="voice-tag">TOEIC® - VOCAB COMPLETE ユーザー</div>
           </div>
         </div>
-        <p class="voice-body">SILVER EXPRESS の多義語、TOEIC で完全に効きました。</p>
+        <p class="voice-body">TOEIC® - VOCAB COMPLETE の多義語、TOEIC で完全に効きました。</p>
       </article>
 
       <article class="voice">
@@ -7032,16 +7069,16 @@ body.sale-mode-discount-only .sticky-cta-panel{
       <div class="bundle-pill">3 PRODUCTS EDITION</div>
       <div class="savings-tag">
         <span class="flash">⚡</span>
-        <span class="amt" data-sale-savings-price>¥2,551</span>
+        <span class="amt" data-sale-savings-price>¥3,891</span>
         <span class="off-text">OFF</span>
       </div>
       <div class="price-row">
         <div class="prices">
-          <div class="price-strike">通常 ¥10,850</div>
-          <div class="price-main"><span class="yen">¥</span><span data-sale-price-plain>8,299</span></div>
+          <div class="price-strike">通常 ¥12,850</div>
+          <div class="price-main"><span class="yen">¥</span><span data-sale-price-plain>8,959</span></div>
         </div>
         <div class="off-badge">
-          <span class="num" data-sale-percent>24</span>
+          <span class="num" data-sale-percent>30</span>
           <span class="pct">%</span>
           <span class="off">OFF</span>
         </div>
@@ -7097,12 +7134,12 @@ body.sale-mode-discount-only .sticky-cta-panel{
 <div class="sticky-cta visible" aria-label="import 完全版オファー">
   <div class="sticky-cta-panel">
     <div class="sticky-offer">
-      <div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">本日の特価</span><span class="sale-mode-copy-discount-only">特別価格</span></div>
-      <div class="sticky-discount"><span class="num" data-sale-savings-price>¥2,551</span><small>OFF</small></div>
-      <div class="sticky-offer-note">通常 ¥10,850 → 特価 <span data-sale-price>¥8,299</span></div>
+      <div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">本日の特価</span><span class="sale-mode-copy-discount-only">特別価格</span><span class="sale-mode-copy-regular">通常販売</span></div>
+      <div class="sticky-discount"><span class="num" data-sale-savings-price>¥3,891</span><small>OFF</small></div>
+      <div class="sticky-offer-note"><span class="sale-mode-copy-scheduled">通常 ¥12,850 → 特価 <span data-sale-price>¥8,959</span></span><span class="sale-mode-copy-discount-only">特別価格 <span data-sale-price>¥8,959</span></span><span class="sale-mode-copy-regular">通常価格 <span data-sale-price>¥12,850</span></span></div>
     </div>
     <div class="sticky-count-wrap">
-      <div class="sticky-count-label"><strong data-sale-savings-yen>2,551円</strong>OFF！ <span>特別価格終了まで</span></div>
+      <div class="sticky-count-label"><strong data-sale-savings-yen>3,891円</strong>OFF！ <span>特別価格終了まで</span></div>
       <div class="sticky-countdown" aria-label="特別価格終了までの残り時間">
         <div class="sticky-time"><strong id="sticky-cd-days">--</strong><span>日</span></div>
         <div class="sticky-time"><strong id="sticky-cd-hours">--</strong><span>時間</span></div>
@@ -7117,50 +7154,22 @@ body.sale-mode-discount-only .sticky-cta-panel{
 
 <script>
 window.IMPORT_SALE_CONFIG = {
-  // Change to 'scheduled' to re-enable the saved campaign schedule below.
-  // Refresh the saved dates first when reusing it for a future campaign.
-  mode: 'discount-only',
-  regularPrice: 10850,
+  mode: 'scheduled',
+  regularPrice: 12850,
   staticOffer: {
-    salePrice: 8299,
-    savings: 2551,
-    percent: 24
+    salePrice: 12850,
+    savings: 0,
+    percent: 0,
+    isRegular: true
   },
   periods: [
     {
-      salePrice: 7999,
-      savings: 2851,
-      percent: 27,
-      endAt: '2026-07-13T09:00:00+09:00',
-      deadlineLong: '7/13（月）8:59まで',
-      deadlineShort: '7/13まで'
-    },
-    {
-      salePrice: 8099,
-      savings: 2751,
-      percent: 25,
-      startAt: '2026-07-13T09:00:00+09:00',
-      endAt: '2026-07-15T09:00:00+09:00',
-      deadlineLong: '7/15（水）8:59まで',
-      deadlineShort: '7/15まで'
-    },
-    {
-      salePrice: 8199,
-      savings: 2651,
-      percent: 24,
-      startAt: '2026-07-15T09:00:00+09:00',
-      endAt: '2026-07-20T06:00:00+09:00',
-      deadlineLong: '7/20（月）5:59まで',
-      deadlineShort: '7/20まで'
-    },
-    {
-      salePrice: 8299,
-      savings: 2551,
-      percent: 24,
-      startAt: '2026-07-20T06:00:00+09:00',
-      endAt: '2026-07-21T09:00:00+09:00',
-      deadlineLong: '7/21（火）8:59まで',
-      deadlineShort: '7/21まで'
+      salePrice: 8959,
+      savings: 3891,
+      percent: 30,
+      endAt: '2026-08-17T00:00:00+09:00',
+      deadlineLong: '8/16（日）23:59まで',
+      deadlineShort: '8/16まで'
     }
   ]
 };
@@ -7185,7 +7194,7 @@ window.IMPORT_SALE_CONFIG = {
   }
 
   function withComputedValues(period){
-    const savings = period.savings || (config.regularPrice - period.salePrice);
+    const savings = period.savings ?? (config.regularPrice - period.salePrice);
     return {
       ...period,
       savings,
@@ -7213,8 +7222,10 @@ window.IMPORT_SALE_CONFIG = {
 
   function renderSaleOffer(sale = getCurrentSale()){
     const hasActiveSchedule = !isDiscountOnly && Boolean(sale.endDate);
-    document.body.classList.toggle('sale-mode-discount-only', !hasActiveSchedule);
+    const isRegular = !hasActiveSchedule && Boolean(sale.isRegular);
+    document.body.classList.toggle('sale-mode-discount-only', !hasActiveSchedule && !isRegular);
     document.body.classList.toggle('sale-mode-scheduled', hasActiveSchedule);
+    document.body.classList.toggle('sale-mode-regular', isRegular);
     window.IMPORT_CURRENT_SALE = sale;
     setAll('[data-sale-price]', yen(sale.salePrice));
     setAll('[data-sale-price-plain]', number(sale.salePrice));
@@ -7228,6 +7239,7 @@ window.IMPORT_SALE_CONFIG = {
   }
 
   window.IMPORT_GET_CURRENT_SALE = getCurrentSale;
+  window.IMPORT_GET_SALE_NOW = readNow;
   window.IMPORT_RENDER_SALE_OFFER = renderSaleOffer;
   renderSaleOffer();
 })();
@@ -7243,7 +7255,7 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
   const product = {
     id: '45097168175283',
     name: 'import完全版 - PREMIUM COMPLETE EDITION',
-    price: 10850,
+    price: 12850,
     currency: 'JPY'
   };
   const attributionKeys = [
@@ -7534,10 +7546,12 @@ document.querySelectorAll('.faq-item').forEach(item => {
   }
 
   function updateStickyOfferTimer(){
-    const now = new Date();
+    const now = typeof window.IMPORT_GET_SALE_NOW === 'function'
+      ? window.IMPORT_GET_SALE_NOW()
+      : new Date();
     const sale = typeof window.IMPORT_GET_CURRENT_SALE === 'function'
       ? window.IMPORT_GET_CURRENT_SALE(now)
-      : { endDate: new Date('2026-07-21T09:00:00+09:00') };
+      : { endDate: null };
     if (typeof window.IMPORT_RENDER_SALE_OFFER === 'function'){
       window.IMPORT_RENDER_SALE_OFFER(sale);
     }
@@ -7554,13 +7568,8 @@ document.querySelectorAll('.faq-item').forEach(item => {
     set(ids.s, s);
   }
 
-  const initialSale = typeof window.IMPORT_GET_CURRENT_SALE === 'function'
-    ? window.IMPORT_GET_CURRENT_SALE()
-    : null;
-  if (initialSale && initialSale.endDate){
-    updateStickyOfferTimer();
-    setInterval(updateStickyOfferTimer, 1000);
-  }
+  updateStickyOfferTimer();
+  setInterval(updateStickyOfferTimer, 1000);
 })();
 
 // WHAT IS INSIDE — video previews
@@ -7632,10 +7641,12 @@ document.querySelectorAll('section > .wrap > *, section > .wrap-narrow > *, .bun
 // Sale countdown: follows the active JST campaign period.
 
 function updateUrgencyTimer(){
-  const now = new Date();
+  const now = typeof window.IMPORT_GET_SALE_NOW === 'function'
+    ? window.IMPORT_GET_SALE_NOW()
+    : new Date();
   const sale = typeof window.IMPORT_GET_CURRENT_SALE === 'function'
     ? window.IMPORT_GET_CURRENT_SALE(now)
-    : { endDate: new Date('2026-07-21T09:00:00+09:00') };
+    : { endDate: null };
   if (typeof window.IMPORT_RENDER_SALE_OFFER === 'function'){
     window.IMPORT_RENDER_SALE_OFFER(sale);
   }
@@ -7657,13 +7668,8 @@ function updateUrgencyTimer(){
   setEl('cd-m', m);
   setEl('cd-s', s);
 }
-const initialUrgencySale = typeof window.IMPORT_GET_CURRENT_SALE === 'function'
-  ? window.IMPORT_GET_CURRENT_SALE()
-  : null;
-if (initialUrgencySale && initialUrgencySale.endDate){
-  updateUrgencyTimer();
-  setInterval(updateUrgencyTimer, 1000);
-}
+updateUrgencyTimer();
+setInterval(updateUrgencyTimer, 1000);
 
 /* Count-up animation for achievement number */
 (function(){
