@@ -5054,7 +5054,48 @@ body.sale-mode-regular .sticky-cta-panel{
     grid-area: offer;
     min-width: 0;
   }
-  .sticky-count-wrap{grid-area: count; min-width: 0}
+  .sticky-count-wrap{
+    grid-area: count;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-areas:
+      "savings label"
+      "savings countdown"
+      "note note";
+    column-gap: 6px;
+    align-items: center;
+  }
+  .sticky-mobile-savings{
+    grid-area: savings;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 5px 4px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff5e3a 0%, #ff8a4c 100%);
+    color: white;
+    font-family: var(--en);
+    line-height: 1;
+    box-shadow:
+      0 6px 14px rgba(255, 94, 58, 0.24),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+  }
+  .sticky-mobile-savings strong{
+    font-size: 15px;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+  }
+  .sticky-mobile-savings span{
+    margin-top: 3px;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+  }
   .sticky-shop-btn{
     grid-area: button;
     min-width: 80px;
@@ -5063,12 +5104,13 @@ body.sale-mode-regular .sticky-cta-panel{
     font-size: 12px;
   }
   .sticky-count-label{
+    grid-area: label;
     margin-bottom: 3px;
-    color: var(--text-soft);
+    color: #c2410c;
     font-size: 9px;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1.1;
-    text-align: left;
+    text-align: center;
     white-space: nowrap;
   }
   .sticky-count-label strong{
@@ -5085,10 +5127,12 @@ body.sale-mode-regular .sticky-cta-panel{
     font-weight: 900;
   }
   .sticky-countdown{
+    grid-area: countdown;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 3px;
   }
   .sticky-price-shift-note{
+    grid-area: note;
     margin-top: 4px;
     color: var(--muted);
     font-size: 8px;
@@ -5110,6 +5154,47 @@ body.sale-mode-regular .sticky-cta-panel{
     bottom: 0;
     font-size: 8px;
   }
+}
+
+@media (max-width: 360px){
+  .sticky-cta-panel{
+    gap: 5px;
+    padding: 6px 8px;
+  }
+  .sticky-count-wrap{
+    grid-template-columns: 64px minmax(0, 1fr);
+    column-gap: 4px;
+  }
+  .sticky-mobile-savings{
+    min-height: 42px;
+    border-radius: 10px;
+  }
+  .sticky-mobile-savings strong{font-size: 13px}
+  .sticky-mobile-savings span{font-size: 7px}
+  .sticky-shop-btn{
+    min-width: 72px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+  .sticky-count-label{
+    margin-bottom: 2px;
+    font-size: 8px;
+  }
+  .sticky-countdown{gap: 1px}
+  .sticky-time{
+    width: 29px;
+    height: 28px;
+  }
+  .sticky-time strong{
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+  .sticky-time span{
+    left: 23px;
+    font-size: 7px;
+  }
+  .sticky-price-shift-note{font-size: 7px}
 }
 
 /* ========== MOBILE OPTIMIZATIONS (≤768px) ========== */
@@ -6506,6 +6591,7 @@ body.sale-mode-regular .sticky-cta-panel{
         <picture>
           <img src="images/product-toeic-vocab.webp" alt="TOEIC® - VOCAB 完全制覇" onerror="this.parentElement.parentElement.classList.add('no-image')" />
         </picture>
+        <div class="pcard-bundle-badge">NEW</div>
         <div class="pcard-image-fallback">
           <div class="pkg pkg-gold">
             <div class="pkg-name">TOEIC®<br>VOCAB 完全制覇</div>
@@ -7166,7 +7252,8 @@ body.sale-mode-regular .sticky-cta-panel{
       <div class="sticky-offer-note"><span class="sale-mode-copy-scheduled">通常 ¥12,850 → 特価 <span data-sale-price>¥8,959</span></span><span class="sale-mode-copy-discount-only">特別価格 <span data-sale-price>¥8,959</span></span><span class="sale-mode-copy-regular">通常価格 <span data-sale-price>¥12,850</span></span></div>
     </div>
     <div class="sticky-count-wrap">
-      <div class="sticky-count-label"><span class="desktop-only"><strong data-sale-savings-yen>3,891円</strong>OFF！ <span>特別価格終了まで</span></span><span class="mobile-only"><span class="sticky-launch-label">新商品発売記念</span><span aria-hidden="true">｜</span><strong><span data-sale-percent>30</span>% OFF</strong></span></div>
+      <div class="sticky-mobile-savings mobile-only"><strong data-sale-savings-yen>3,891円</strong><span>OFF</span></div>
+      <div class="sticky-count-label"><span class="desktop-only"><strong data-sale-savings-yen>3,891円</strong>OFF！ <span>特別価格終了まで</span></span><span class="mobile-only">セール終了まで</span></div>
       <div class="sticky-countdown" aria-label="特別価格終了までの残り時間">
         <div class="sticky-time"><strong id="sticky-cd-days">--</strong><span>日</span></div>
         <div class="sticky-time"><strong id="sticky-cd-hours">--</strong><span>時間</span></div>
