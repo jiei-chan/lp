@@ -224,6 +224,8 @@ body.sale-mode-regular .final-price-card .price-strike,
 body.sale-mode-regular .final-price-card .off-badge,
 body.sale-mode-regular .sticky-discount,
 body.sale-mode-regular .sticky-count-wrap{display: none}
+body.sale-mode-regular .sale-promo,
+body.sale-mode-final-hours .sale-promo{display: none}
 body.sale-mode-regular .offer-compare{margin-bottom: 18px}
 body.sale-mode-regular .final-price-card .price-row{justify-content: center}
 .nav-purchase{
@@ -5553,6 +5555,27 @@ body.sale-mode-regular .sticky-cta-panel{
 /* ========== REVEAL ========== */
 .reveal{opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease}
 .reveal.visible{opacity: 1; transform: translateY(0)}
+
+/* ========== SUMMER SALE PROMO ========== */
+.sale-promo{
+  padding: 69px 0 0;
+  background: #111;
+}
+.sale-promo picture{
+  display: block;
+  aspect-ratio: 16 / 9;
+}
+.sale-promo img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 768px){
+  .sale-promo{
+    padding: calc(57px + env(safe-area-inset-top)) 0 0;
+  }
+  .sale-promo picture{aspect-ratio: 9 / 16}
+}
 </style>
 </head>
 <body class="sale-mode-scheduled">
@@ -5567,7 +5590,7 @@ body.sale-mode-regular .sticky-cta-panel{
     <div class="nav-actions">
       <div class="nav-offer" aria-label="import 完全版の価格案内">
         <span class="pill"><span class="dot"></span><span>新商品発売</span></span>
-        <span class="nav-offer-copy"><span class="sale-mode-copy-scheduled">発売記念セール <strong><span data-sale-percent>30</span>% OFF</strong></span><span class="sale-mode-copy-discount-only">新商品発売記念セール <strong><span data-sale-percent>30</span>% OFF</strong></span><span class="sale-mode-copy-regular">import 完全版 ¥12,850</span></span>
+        <span class="nav-offer-copy"><span class="sale-mode-copy-scheduled"><span data-sale-nav-label>発売記念セール</span> <strong><span data-sale-percent>30</span>% OFF</strong></span><span class="sale-mode-copy-discount-only">新商品発売記念セール <strong><span data-sale-percent>30</span>% OFF</strong></span><span class="sale-mode-copy-regular">import 完全版 ¥12,850</span></span>
         <span class="period"><span class="desktop-period" data-sale-deadline-long>8/16（日）23:59まで</span><span class="mobile-period"><span data-sale-percent>30</span>% OFF</span></span>
       </div>
       <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="nav-purchase" data-purchase-cta="header_sticky">
@@ -5585,6 +5608,14 @@ body.sale-mode-regular .sticky-cta-panel{
     </div>
   </div>
 </nav>
+
+<!-- ========== SUMMER SALE PROMO ========== -->
+<section class="sale-promo">
+  <picture>
+    <source media="(max-width: 768px)" srcset="images/summer-sale-promo-phone.png">
+    <img src="images/summer-sale-promo-pc.png" alt="import完全版のサマーセール2026。8月16日まで通常価格12,850円が8,960円、3,890円OFF。購入者限定のアプリ先行アクセス権付き。">
+  </picture>
+</section>
 
 <!-- ========== HERO (DARK + IMAGE BG) ========== -->
 <section class="hero">
@@ -6783,7 +6814,7 @@ body.sale-mode-regular .sticky-cta-panel{
 
       <div class="offer-card">
         <div class="offer-hero">
-          <div class="offer-eyebrow"><span class="sale-mode-copy-scheduled">今だけ特別価格</span><span class="sale-mode-copy-discount-only">特別価格</span></div>
+          <div class="offer-eyebrow"><span class="sale-mode-copy-scheduled" data-sale-offer-label>今だけ特別価格</span><span class="sale-mode-copy-discount-only">特別価格</span></div>
 
           <!-- Direct price comparison -->
           <div class="offer-compare">
@@ -6796,13 +6827,13 @@ body.sale-mode-regular .sticky-cta-panel{
             </div>
             <div class="compare-to">
               <div class="compare-label-now"><span class="sale-mode-copy-scheduled">特別価格</span><span class="sale-mode-copy-discount-only">エディション価格</span><span class="sale-mode-copy-regular">通常価格</span></div>
-              <div class="num compare-now"><span class="yen">¥</span><span data-sale-price-plain>8,959</span></div>
+              <div class="num compare-now"><span class="yen">¥</span><span data-sale-price-plain>8,960</span></div>
             </div>
           </div>
 
           <!-- Savings bar -->
           <div class="offer-savings-bar">
-            <span class="num savings-big" data-sale-savings-minus>−¥3,891</span>
+            <span class="num savings-big" data-sale-savings-minus>−¥3,890</span>
             <span class="savings-bar-divider"></span>
             <span class="num savings-pct-big"><span data-sale-percent>30</span><span class="pct-sym">%</span> OFF</span>
           </div>
@@ -6814,9 +6845,9 @@ body.sale-mode-regular .sticky-cta-panel{
         <div class="offer-urgency">
           <div class="urgency-header">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>この特別価格は <strong data-sale-deadline-long>8/16（日）23:59まで</strong></span>
+            <span><span data-sale-urgency-prefix>発売記念セール期間は</span> <strong data-sale-deadline-long>8/16（日）23:59まで</strong></span>
           </div>
-          <div class="urgency-grid">
+          <div class="urgency-grid" role="timer" aria-label="発売記念セール第1期間終了までの残り時間" data-sale-countdown-aria>
             <span class="urgency-num" id="cd-days">--</span>
             <span class="urgency-sep" aria-hidden="true"><span></span><span></span></span>
             <span class="urgency-num" id="cd-hours">--</span>
@@ -7182,13 +7213,13 @@ body.sale-mode-regular .sticky-cta-panel{
       <div class="bundle-pill"><span class="sale-mode-copy-scheduled" data-sale-deadline-long>8/16（日）23:59まで</span><span class="sale-mode-copy-discount-only">SPECIAL OFFER</span><span class="sale-mode-copy-regular">3 PRODUCTS EDITION</span></div>
       <div class="savings-tag">
         <span class="flash">⚡</span>
-        <span class="amt" data-sale-savings-price>¥3,891</span>
+        <span class="amt" data-sale-savings-price>¥3,890</span>
         <span class="off-text">OFF</span>
       </div>
       <div class="price-row">
         <div class="prices">
           <div class="price-strike">通常 ¥12,850</div>
-          <div class="price-main"><span class="yen">¥</span><span data-sale-price-plain>8,959</span></div>
+          <div class="price-main"><span class="yen">¥</span><span data-sale-price-plain>8,960</span></div>
         </div>
         <div class="off-badge">
           <span class="num" data-sale-percent>30</span>
@@ -7203,7 +7234,7 @@ body.sale-mode-regular .sticky-cta-panel{
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 
-    <div class="final-countdown">
+    <div class="final-countdown" role="timer" aria-label="発売記念セール第1期間終了までの残り時間" data-sale-countdown-aria>
       <div class="cd-box"><span class="num" id="cd-d">--</span><div class="lbl">DAYS</div></div>
       <div class="cd-box"><span class="num" id="cd-h">--</span><div class="lbl">HOURS</div></div>
       <div class="cd-box"><span class="num" id="cd-m">--</span><div class="lbl">MIN</div></div>
@@ -7247,20 +7278,20 @@ body.sale-mode-regular .sticky-cta-panel{
 <div class="sticky-cta visible" aria-label="import 完全版オファー">
   <div class="sticky-cta-panel">
     <div class="sticky-offer">
-      <div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">新商品発売記念セール</span><span class="sale-mode-copy-discount-only">特別価格</span><span class="sale-mode-copy-regular">通常販売</span></div>
-      <div class="sticky-discount"><span class="num" data-sale-savings-price>¥3,891</span><small>OFF</small></div>
-      <div class="sticky-offer-note"><span class="sale-mode-copy-scheduled">通常 ¥12,850 → 特価 <span data-sale-price>¥8,959</span></span><span class="sale-mode-copy-discount-only">特別価格 <span data-sale-price>¥8,959</span></span><span class="sale-mode-copy-regular">通常価格 <span data-sale-price>¥12,850</span></span></div>
+      <div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled" data-sale-sticky-eyebrow>新商品発売記念セール</span><span class="sale-mode-copy-discount-only">特別価格</span><span class="sale-mode-copy-regular">通常販売</span></div>
+      <div class="sticky-discount"><span class="num" data-sale-savings-price>¥3,890</span><small>OFF</small></div>
+      <div class="sticky-offer-note"><span class="sale-mode-copy-scheduled">通常 ¥12,850 → 特価 <span data-sale-price>¥8,960</span></span><span class="sale-mode-copy-discount-only">特別価格 <span data-sale-price>¥8,960</span></span><span class="sale-mode-copy-regular">通常価格 <span data-sale-price>¥12,850</span></span></div>
     </div>
     <div class="sticky-count-wrap">
-      <div class="sticky-mobile-savings mobile-only"><strong data-sale-savings-yen>3,891円</strong><span>OFF</span></div>
-      <div class="sticky-count-label"><span class="desktop-only"><strong data-sale-savings-yen>3,891円</strong>OFF！ <span>特別価格終了まで</span></span><span class="mobile-only">セール終了まで</span></div>
-      <div class="sticky-countdown" aria-label="特別価格終了までの残り時間">
+      <div class="sticky-mobile-savings mobile-only"><strong data-sale-savings-yen>3,890円</strong><span>OFF</span></div>
+      <div class="sticky-count-label"><span class="desktop-only"><strong data-sale-savings-yen>3,890円</strong>OFF！ <span data-sale-sticky-countdown-label>発売記念期間終了まで</span></span><span class="mobile-only" data-sale-mobile-countdown-label>8/16終了まで</span></div>
+      <div class="sticky-countdown" role="timer" aria-label="発売記念セール第1期間終了までの残り時間" data-sale-countdown-aria>
         <div class="sticky-time"><strong id="sticky-cd-days">--</strong><span>日</span></div>
         <div class="sticky-time"><strong id="sticky-cd-hours">--</strong><span>時間</span></div>
         <div class="sticky-time"><strong id="sticky-cd-min">--</strong><span>分</span></div>
         <div class="sticky-time"><strong id="sticky-cd-sec">--</strong><span>秒</span></div>
       </div>
-      <div class="sticky-price-shift-note"><span class="desktop-only">終了後は価格が切り替わります</span><span class="mobile-only">通常 ¥12,850 → <span data-sale-price>¥8,959</span></span></div>
+      <div class="sticky-price-shift-note"><span class="desktop-only" data-sale-price-shift-note>終了後は朝9時まで延長します</span><span class="mobile-only">通常 ¥12,850 → <span data-sale-price>¥8,960</span></span></div>
     </div>
     <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="sticky-shop-btn" data-purchase-cta="sticky_offer">中身を見る</a>
   </div>
@@ -7278,12 +7309,39 @@ window.IMPORT_SALE_CONFIG = {
   },
   periods: [
     {
-      salePrice: 8959,
-      savings: 3891,
+      salePrice: 8960,
+      savings: 3890,
       percent: 30,
+      phase: 'main',
       endAt: '2026-08-17T00:00:00+09:00',
       deadlineLong: '8/16（日）23:59まで',
-      deadlineShort: '8/16まで'
+      deadlineShort: '8/16まで',
+      navLabel: '発売記念セール',
+      offerLabel: '今だけ特別価格',
+      urgencyPrefix: '発売記念セール期間は',
+      stickyEyebrow: '新商品発売記念セール',
+      stickyCountdownLabel: '発売記念期間終了まで',
+      mobileCountdownLabel: '8/16終了まで',
+      countdownAriaLabel: '発売記念セール第1期間終了までの残り時間',
+      priceShiftNote: '終了後は朝9時まで延長します'
+    },
+    {
+      salePrice: 8960,
+      savings: 3890,
+      percent: 30,
+      phase: 'final-hours',
+      startAt: '2026-08-17T00:00:00+09:00',
+      endAt: '2026-08-17T09:00:00+09:00',
+      deadlineLong: '8/17（月）朝9:00まで',
+      deadlineShort: '朝9:00まで',
+      navLabel: 'ラスト9時間',
+      offerLabel: '朝9時まで延長',
+      urgencyPrefix: 'この特別価格は',
+      stickyEyebrow: '朝9時まで延長',
+      stickyCountdownLabel: '朝9時の終了まで',
+      mobileCountdownLabel: '朝9時まで',
+      countdownAriaLabel: '朝9時の特別価格終了までの残り時間',
+      priceShiftNote: '終了後は通常価格へ戻ります'
     }
   ]
 };
@@ -7337,8 +7395,10 @@ window.IMPORT_SALE_CONFIG = {
   function renderSaleOffer(sale = getCurrentSale()){
     const hasActiveSchedule = !isDiscountOnly && Boolean(sale.endDate);
     const isRegular = !hasActiveSchedule && Boolean(sale.isRegular);
+    const isFinalHours = hasActiveSchedule && sale.phase === 'final-hours';
     document.body.classList.toggle('sale-mode-discount-only', !hasActiveSchedule && !isRegular);
     document.body.classList.toggle('sale-mode-scheduled', hasActiveSchedule);
+    document.body.classList.toggle('sale-mode-final-hours', isFinalHours);
     document.body.classList.toggle('sale-mode-regular', isRegular);
     window.IMPORT_CURRENT_SALE = sale;
     setAll('[data-sale-price]', yen(sale.salePrice));
@@ -7349,6 +7409,16 @@ window.IMPORT_SALE_CONFIG = {
     setAll('[data-sale-percent]', String(sale.percent));
     setAll('[data-sale-deadline-long]', sale.deadlineLong || '');
     setAll('[data-sale-deadline-short]', sale.deadlineShort || '');
+    setAll('[data-sale-nav-label]', sale.navLabel || '発売記念セール');
+    setAll('[data-sale-offer-label]', sale.offerLabel || '今だけ特別価格');
+    setAll('[data-sale-urgency-prefix]', sale.urgencyPrefix || 'この特別価格は');
+    setAll('[data-sale-sticky-eyebrow]', sale.stickyEyebrow || '新商品発売記念セール');
+    setAll('[data-sale-sticky-countdown-label]', sale.stickyCountdownLabel || '特別価格終了まで');
+    setAll('[data-sale-mobile-countdown-label]', sale.mobileCountdownLabel || 'セール終了まで');
+    setAll('[data-sale-price-shift-note]', sale.priceShiftNote || '終了後は通常価格へ戻ります');
+    document.querySelectorAll('[data-sale-countdown-aria]').forEach(el => {
+      el.setAttribute('aria-label', sale.countdownAriaLabel || '特別価格終了までの残り時間');
+    });
     return sale;
   }
 
