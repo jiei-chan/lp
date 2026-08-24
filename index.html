@@ -213,6 +213,7 @@ body.sale-mode-regular .final-price-card .savings-tag,
 body.sale-mode-regular .final-price-card .price-strike,
 body.sale-mode-regular .final-price-card .off-badge,
 body.sale-mode-regular .sticky-discount,
+body.sale-mode-regular .sticky-offer-note,
 body.sale-mode-regular .sticky-count-wrap{display: none}
 body.sale-mode-regular .sale-promo,
 body.sale-mode-final-hours .sale-promo{display: none}
@@ -4875,6 +4876,12 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   font-weight: 900;
   letter-spacing: 0.1em;
 }
+.sticky-offer-note{
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
 .sticky-count-wrap{
   min-width: 270px;
 }
@@ -4894,6 +4901,15 @@ footer .copy{font-family: var(--en); opacity: 0.5; margin-top: 16px}
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+}
+.sticky-assurance-note{
+  margin-top: 5px;
+  color: var(--text-soft);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
 }
 body.sale-mode-discount-only .sticky-cta-panel,
 body.sale-mode-regular .sticky-cta-panel{
@@ -5538,7 +5554,7 @@ body.sale-mode-regular .sticky-cta-panel{
     </a>
     <div class="nav-actions">
       <div class="nav-offer" aria-label="import 完全版の価格案内">
-        <span class="pill"><span class="dot"></span><span data-sale-savings-yen>3,880円</span>OFF</span>
+        <span class="pill"><span class="dot"></span><span><span data-sale-percent>27</span>% OFF</span></span>
         <span class="nav-offer-copy"><span class="sale-mode-copy-scheduled">import 完全版 セール中</span><span class="sale-mode-copy-discount-only">import 完全版 セール中</span><span class="sale-mode-copy-regular">import 完全版 <span data-sale-regular-price>¥13,960</span></span></span>
       </div>
       <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="nav-purchase" data-purchase-cta="header_sticky">
@@ -7220,6 +7236,7 @@ body.sale-mode-regular .sticky-cta-panel{
     <div class="sticky-offer">
       <div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span><span class="sale-mode-copy-discount-only">セット特別価格</span><span class="sale-mode-copy-regular">通常販売</span></div>
       <div class="sticky-discount"><span class="num" data-sale-savings-price>¥3,880</span><small>OFF</small></div>
+      <div class="sticky-offer-note desktop-only">単品合計 <span data-sale-regular-price>¥13,960</span> → 特別価格 <span data-sale-price>¥10,080</span></div>
     </div>
     <div class="sticky-count-wrap">
       <div class="sticky-mobile-savings mobile-only"><strong data-sale-savings-yen>3,880円</strong><span>OFF</span></div>
@@ -7230,6 +7247,7 @@ body.sale-mode-regular .sticky-cta-panel{
         <div class="sticky-time"><strong id="sticky-cd-min">--</strong><span>分</span></div>
         <div class="sticky-time"><strong id="sticky-cd-sec">--</strong><span>秒</span></div>
       </div>
+      <div class="sticky-assurance-note desktop-only">税込・買い切り型・追加課金なし</div>
     </div>
     <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="sticky-shop-btn" data-purchase-cta="sticky_offer">中身を見る</a>
   </div>
