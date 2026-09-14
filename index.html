@@ -7420,7 +7420,7 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
     price: 13960,
     currency: 'JPY'
   };
-  const attributionKeys = [
+  const storedAttributionKeys = [
     'utm_source',
     'utm_medium',
     'utm_campaign',
@@ -7433,8 +7433,10 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
     'wbraid',
     'ttclid'
   ];
+  // Forward these IDs only from the current URL; do not persist them across visits.
+  const attributionKeys = [...storedAttributionKeys, 'yclid', 'oppref'];
   const storageKey = 'import_lp_attribution';
-  // Keep captured click IDs across visits; Google/Meta click lookback is up to 90 days.
+  // Preserve the existing 90-day lifetime for the existing storage allowlist.
   const storageTtlMs = 90 * 24 * 60 * 60 * 1000;
 
   window.dataLayer = window.dataLayer || [];
@@ -7472,22 +7474,29 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
       // still decorates the purchase URL when the visitor returns days later.
       const stored = JSON.parse(window.localStorage.getItem(storageKey) || '{}');
       const capturedAt = Date.parse(stored.captured_at || '');
-      if (!capturedAt || Date.now() - capturedAt > storageTtlMs) return {};
-      return stored;
+      if (!Number.isFinite(capturedAt) || capturedAt > Date.now() || Date.now() - capturedAt > storageTtlMs) return {};
+      return pickStoredAttribution(stored);
     } catch (_) {
       return {};
     }
   }
 
+  function pickStoredAttribution(data){
+    const stored = { captured_at: data.captured_at };
+    storedAttributionKeys.forEach(key => {
+      if (typeof data[key] === 'string' && data[key]) stored[key] = data[key];
+    });
+    return stored;
+  }
+
   function writeStoredAttribution(data){
     try {
-      window.localStorage.setItem(storageKey, JSON.stringify(data));
+      window.localStorage.setItem(storageKey, JSON.stringify(pickStoredAttribution(data)));
     } catch (_) {}
   }
 
   function collectAttribution(){
     const params = new URLSearchParams(window.location.search);
-    const stored = readStoredAttribution();
     const current = {};
 
     attributionKeys.forEach(key => {
@@ -7496,9 +7505,11 @@ window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
     });
 
     const hasCurrent = Object.keys(current).length > 0;
+    // A tagged visit is one complete touchpoint, even within the same channel.
+    // Never fill missing IDs or UTM fields from a previous ad visit.
     const attribution = hasCurrent
-      ? { ...stored, ...current, captured_at: new Date().toISOString() }
-      : stored;
+      ? { ...current, captured_at: new Date().toISOString() }
+      : readStoredAttribution();
 
     if (hasCurrent) writeStoredAttribution(attribution);
     return attribution;
