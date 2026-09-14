@@ -48,6 +48,12 @@ function fail(message, details = {}) {
         isMobile: true,
       });
 
+      // Keep fixture page views away from external analytics and ad services.
+      await page.route('**/*', route => {
+        return new URL(route.request().url()).origin === new URL(targetUrl).origin
+          ? route.continue()
+          : route.abort();
+      });
       await page.goto(targetUrl, { waitUntil: 'networkidle' });
 
       const metrics = await page.evaluate(() => {

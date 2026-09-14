@@ -28,6 +28,8 @@ SCREENSHOT_DIR=/tmp/import-lp-mobile-hero node scripts/verify-mobile-hero.js htt
 
 ## Vercelへのデプロイ
 
+広告流入情報の引き継ぎ仕様・架空値による検査・今回の公開手順は [docs/attribution-forwarding.md](docs/attribution-forwarding.md) を参照。
+
 ### 方法A: Vercel CLI（推奨・最速）
 
 ```bash
