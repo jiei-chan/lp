@@ -20,7 +20,9 @@ const cases = [
   ['week-3', '2026-08-31T09:00:00+09:00', 10380, 3580, 25, true],
   ['week-4', '2026-09-07T09:00:00+09:00', 10530, 3430, 24, true],
   ['week-5', '2026-09-14T09:00:00+09:00', 10665, 3295, 23, true],
-  ['after-ladder', '2026-09-21T09:00:00+09:00', 10700, 3260, 23, false],
+  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 3195, 22, true],
+  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 3195, 22, true],
+  ['after-ladder', '2026-09-24T09:00:00+09:00', 10765, 3195, 22, false],
 ];
 
 function assert(condition, message, details) {
@@ -45,6 +47,12 @@ function assert(condition, message, details) {
       await page.addInitScript((value) => {
         window.IMPORT_SALE_NOW = value;
       }, now);
+      // Keep local checks from sending analytics to external services.
+      await page.route('**/*', route => {
+        return new URL(route.request().url()).origin === new URL(targetUrl).origin
+          ? route.continue()
+          : route.abort();
+      });
       await page.goto(targetUrl, { waitUntil: 'networkidle' });
 
       const actual = await page.evaluate(() => ({
