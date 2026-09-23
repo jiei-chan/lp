@@ -15,14 +15,14 @@ try {
 
 const targetUrl = process.argv[2] || process.env.LP_URL || 'http://localhost:4173';
 const cases = [
-  ['week-1', '2026-08-17T13:00:00+09:00', 10080, 3880, 27, true],
-  ['week-2', '2026-08-24T09:00:00+09:00', 10230, 3730, 26, true],
-  ['week-3', '2026-08-31T09:00:00+09:00', 10380, 3580, 25, true],
-  ['week-4', '2026-09-07T09:00:00+09:00', 10530, 3430, 24, true],
-  ['week-5', '2026-09-14T09:00:00+09:00', 10665, 3295, 23, true],
-  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 3195, 22, true],
-  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 3195, 22, true],
-  ['after-ladder', '2026-09-24T09:00:00+09:00', 10765, 3195, 22, false],
+  ['week-1', '2026-08-17T13:00:00+09:00', 10080, 6280, 38, true],
+  ['week-2', '2026-08-24T09:00:00+09:00', 10230, 6130, 37, true],
+  ['week-3', '2026-08-31T09:00:00+09:00', 10380, 5980, 36, true],
+  ['week-4', '2026-09-07T09:00:00+09:00', 10530, 5830, 35, true],
+  ['week-5', '2026-09-14T09:00:00+09:00', 10665, 5695, 34, true],
+  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 5595, 34, true],
+  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 5595, 34, true],
+  ['after-ladder', '2026-09-24T09:00:00+09:00', 10765, 5595, 34, false],
 ];
 
 function assert(condition, message, details) {
@@ -75,7 +75,7 @@ function assert(condition, message, details) {
       assert(actual.savings === savings, 'savings mismatch', { phase, actual });
       assert(actual.percent === percent, 'percent mismatch', { phase, actual });
       assert(actual.prices.every((value) => value === price.toLocaleString('ja-JP')), 'rendered price mismatch', { phase, actual });
-      assert(actual.regularPrices.every((value) => value === '¥13,960'), 'regular price mismatch', { phase, actual });
+      assert(actual.regularPrices.every((value) => value === '¥16,360'), 'regular price mismatch', { phase, actual });
       assert(actual.savingsPrices.every((value) => value === `¥${savings.toLocaleString('ja-JP')}`), 'rendered savings mismatch', { phase, actual });
       assert(actual.savingsYen.every((value) => value === `${savings.toLocaleString('ja-JP')}円`), 'rendered savings yen mismatch', { phase, actual });
       assert(actual.percents.every((value) => value === String(percent)), 'rendered percent mismatch', { phase, actual });
