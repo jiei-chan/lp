@@ -22,7 +22,7 @@ const cases = [
   ['week-5', '2026-09-14T09:00:00+09:00', 10665, 5695, 34, true],
   ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 5595, 34, true],
   ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 5595, 34, true],
-  ['after-ladder', '2026-09-24T09:00:00+09:00', 10765, 5595, 34, false],
+  ['after-ladder', '2026-09-24T09:00:00+09:00', 10965, 5395, 33, false],
 ];
 
 function assert(condition, message, details) {
