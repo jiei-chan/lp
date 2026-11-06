@@ -15,35 +15,35 @@ try {
 
 const targetUrl = process.argv[2] || process.env.LP_URL || 'http://localhost:4173';
 const cases = [
-  ['week-1', '2026-08-17T13:00:00+09:00', 10080, 6280, 38, true],
-  ['week-2', '2026-08-24T09:00:00+09:00', 10230, 6130, 37, true],
-  ['week-3', '2026-08-31T09:00:00+09:00', 10380, 5980, 36, true],
-  ['week-4', '2026-09-07T09:00:00+09:00', 10530, 5830, 35, true],
-  ['week-5', '2026-09-14T09:00:00+09:00', 10665, 5695, 34, true],
-  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 5595, 34, true],
-  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 5595, 34, true],
+  ['week-1', '2026-08-17T13:00:00+09:00', 10080, 8260, 45, true],
+  ['week-2', '2026-08-24T09:00:00+09:00', 10230, 8110, 44, true],
+  ['week-3', '2026-08-31T09:00:00+09:00', 10380, 7960, 43, true],
+  ['week-4', '2026-09-07T09:00:00+09:00', 10530, 7810, 42, true],
+  ['week-5', '2026-09-14T09:00:00+09:00', 10665, 7675, 41, true],
+  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 7575, 41, true],
+  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 7575, 41, true],
 ];
 
 // These fixtures express the approved prices independently of the page configuration.
 const autumnSchedule = [
-  ['2026-09-24', '2026-10-05', 10965, 33],
-  ['2026-10-05', '2026-10-12', 11099, 32],
-  ['2026-10-12', '2026-10-19', 11199, 31],
-  ['2026-10-19', '2026-10-26', 11399, 30],
-  ['2026-10-26', '2026-11-02', 11499, 29],
-  ['2026-11-02', '2026-11-04', 11699, 28],
-  ['2026-11-04', '2026-11-09', 11899, 27],
-  ['2026-11-09', '2026-11-24', 11999, 26],
+  ['2026-09-24', '2026-10-05', 10965, 40],
+  ['2026-10-05', '2026-10-12', 11099, 39],
+  ['2026-10-12', '2026-10-19', 11199, 38],
+  ['2026-10-19', '2026-10-26', 11399, 37],
+  ['2026-10-26', '2026-11-02', 11499, 37],
+  ['2026-11-02', '2026-11-04', 11699, 36],
+  ['2026-11-04', '2026-11-09', 11899, 35],
+  ['2026-11-09', '2026-11-24', 11999, 34],
 ];
 for (const [start, end, price, percent] of autumnSchedule) {
   const deadline = `${end}T09:00:00+09:00`;
   for (const now of [`${start}T09:00:00+09:00`, `${end}T08:59:59+09:00`]) {
-    cases.push([`autumn-${start.slice(5)}`, now, price, 16360 - price, percent, true, deadline]);
+    cases.push([`autumn-${start.slice(5)}`, now, price, 18340 - price, percent, true, deadline]);
   }
 }
-cases.push(['autumn-09-24', '2026-09-28T12:00:00+09:00', 10965, 5395, 33, true, '2026-10-05T09:00:00+09:00']);
-cases.push(['after-ladder', '2026-11-24T09:00:00+09:00', 12199, 4161, 25, false]);
-cases.push(['after-ladder', '2026-12-01T09:00:00+09:00', 12199, 4161, 25, false]);
+cases.push(['autumn-09-24', '2026-09-28T12:00:00+09:00', 10965, 7375, 40, true, '2026-10-05T09:00:00+09:00']);
+cases.push(['after-ladder', '2026-11-24T09:00:00+09:00', 12199, 6141, 33, false]);
+cases.push(['after-ladder', '2026-12-01T09:00:00+09:00', 12199, 6141, 33, false]);
 
 function assert(condition, message, details) {
   if (!condition) throw new Error(`${message}: ${JSON.stringify(details)}`);
@@ -111,7 +111,7 @@ function assert(condition, message, details) {
       assert(actual.savings === savings, 'savings mismatch', { phase, actual });
       assert(actual.percent === percent, 'percent mismatch', { phase, actual });
       assert(actual.prices.every((value) => value === price.toLocaleString('ja-JP')), 'rendered price mismatch', { phase, actual });
-      assert(actual.regularPrices.every((value) => value === '¥16,360'), 'regular price mismatch', { phase, actual });
+      assert(actual.regularPrices.every((value) => value === '¥18,340'), 'regular price mismatch', { phase, actual });
       assert(actual.savingsPrices.every((value) => value === `¥${savings.toLocaleString('ja-JP')}`), 'rendered savings mismatch', { phase, actual });
       assert(actual.savingsYen.every((value) => value === `${savings.toLocaleString('ja-JP')}円`), 'rendered savings yen mismatch', { phase, actual });
       assert(actual.percents.every((value) => value === String(percent)), 'rendered percent mismatch', { phase, actual });
