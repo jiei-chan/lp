@@ -70,6 +70,7 @@ function expectAttribution(result, expected) {
 }
 
 for (const [label, previous, current] of [
+  ['Meta to TikTok', oldMeta, { utm_source: 'tiktok', utm_medium: 'paid_social', utm_campaign: 'fixture-tiktok', ttclid: 'fixture-tt-click' }],
   ['Meta to OpenAI', oldMeta, { utm_source: 'chatgpt', utm_medium: 'cpc', utm_campaign: 'fixture-openai-campaign', utm_content: 'fixture-openai-ad', oppref: 'fixture-oppref' }],
   ['Google to LY', oldGoogle, { utm_source: 'ly', utm_medium: 'cpc', utm_campaign: 'fixture-ly-campaign', utm_content: 'fixture-ly-ad', yclid: 'fixture-yclid' }],
   ['Meta to LY without click ID', oldMeta, { utm_source: 'ly', utm_medium: 'cpc' }],
@@ -186,3 +187,11 @@ test('modified clicks, prevented events and new tabs preserve native navigation'
   }
   assert.equal(result.timers.length, 0);
 });
+
+for (const [label, query, previous, expected] of [
+  ['TikTok direct revisit', '', { ttclid: 'fixture-tt-click', utm_source: 'tiktok', captured_at: captured }, { ttclid: 'fixture-tt-click', utm_source: 'tiktok' }],
+  ['TikTok special characters', '?' + new URLSearchParams({ ttclid: 'fixture+slash/=id', utm_campaign: '日本語 & sale', utm_content: '動画 1' }), oldMeta, { ttclid: 'fixture+slash/=id', utm_campaign: '日本語 & sale', utm_content: '動画 1' }],
+  ['TikTok click ID alone replaces old attribution', '?ttclid=fixture-new-tt', oldGoogle, { ttclid: 'fixture-new-tt' }]
+]) {
+  test(label, () => expectAttribution(run(query, previous), expected));
+}
