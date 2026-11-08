@@ -30,20 +30,14 @@ SCREENSHOT_DIR=/tmp/import-lp-mobile-hero node scripts/verify-mobile-hero.js htt
 
 広告流入情報の引き継ぎ仕様・架空値による検査・今回の公開手順は [docs/attribution-forwarding.md](docs/attribution-forwarding.md) を参照。
 
-### 方法A: Vercel CLI（推奨・最速）
+既存のGitHub連携を使います。2026-11-08時点で `jiei-chan/lp` の `main` とGitHub Production deployment、公開HTMLの一致を確認しています。新しいVercelプロジェクトを作成する必要はありません。
 
-```bash
-npm i -g vercel
-vercel              # 初回はログイン → プロジェクト作成
-vercel --prod       # 本番デプロイ
-```
+1. 対象差分をレビューし、commit・pushの承認後に作業ブランチをpushします。
+2. base `main` のPRを作成し、Vercel Previewと必要な検査を確認します。
+3. マージ前に対象ドメイン・Production Branch・既存ビルド設定を確認します。**mainへのマージは本番自動公開につながるため、公開承認後に実行します。**
+4. GitHub Production deploymentのコミット・成功状態と公開HTMLを照合します。
 
-### 方法B: GitHub経由
-
-1. このフォルダをGitHubリポジトリにpush
-2. https://vercel.com/new でリポジトリをimport
-3. Frameworkは「Other」を選択
-4. デフォルト設定のままDeploy
+CLIの接続スコープによっては本番プロジェクトが見つかりません。不明な接続先で `vercel --prod` を実行しないでください。公開元の証拠、管理設定の未確認事項、TikTok計測の検査・公開手順は [docs/tiktok-measurement.md](docs/tiktok-measurement.md) を参照してください。
 
 ## ファイル構成
 

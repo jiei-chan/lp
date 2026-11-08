@@ -7516,8 +7516,63 @@ window.IMPORT_SALE_CONFIG = {
 
 window.IMPORT_ANALYTICS_CONFIG = window.IMPORT_ANALYTICS_CONFIG || {
   ga4MeasurementId: "G-B4H6FNYS88",
-  metaPixelId: "1285442426603597"
+  metaPixelId: "1285442426603597",
+  tiktokPixelId: "DBNU0BJC77UBRT4SAQK0"
 };
+
+// TikTok measures LP page views only; Shopify owns commerce events.
+(function initTikTokPageView(){
+  const pixelId = window.IMPORT_ANALYTICS_CONFIG.tiktokPixelId;
+  if (!pixelId || window.location.hostname !== 'promo.import-language.com'
+    || window.location.protocol !== 'https:') return;
+  if (window.IMPORT_TIKTOK_INITIALIZED) return;
+  // Leave an existing SDK or queue intact and avoid a duplicate page event.
+  if (window.ttq || document.querySelector('script[src*="analytics.tiktok.com/"]')) {
+    console.warn('Existing TikTok installation detected; skipping the LP pixel.');
+    return;
+  }
+  window.IMPORT_TIKTOK_INITIALIZED = true;
+  window.TiktokAnalyticsObject = 'ttq';
+  /** @type {any} Official SDK queue gains its methods at runtime. */
+  const ttq = window.ttq = [];
+  const methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off',
+    'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie',
+    'holdConsent', 'revokeConsent', 'grantConsent'];
+  ttq.methods = methods;
+  /** @param {any} target @param {string} method */
+  ttq.setAndDefer = function(target, method){
+    target[method] = function(){
+      target.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+    };
+  };
+  methods.forEach(method => ttq.setAndDefer(ttq, method));
+  /** @param {string} id */
+  ttq.instance = function(id){
+    const instance = ttq._i[id] || [];
+    methods.forEach(method => ttq.setAndDefer(instance, method));
+    return instance;
+  };
+  /** @param {string} id */
+  ttq.load = function(id){
+    const sdkUrl = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+    ttq._i = ttq._i || {};
+    ttq._i[id] = [];
+    ttq._i[id]._u = sdkUrl;
+    ttq._t = ttq._t || {};
+    ttq._t[id] = Date.now();
+    ttq._o = ttq._o || {};
+    ttq._o[id] = {};
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = sdkUrl + '?sdkid=' + encodeURIComponent(id) + '&lib=ttq';
+    script.onerror = function(){
+      console.warn('TikTok Pixel could not load; LP navigation remains available.');
+    };
+    document.head.appendChild(script);
+  };
+  ttq.load(pixelId);
+  ttq.page();
+})();
 
 (function(){
   const config = window.IMPORT_ANALYTICS_CONFIG;

@@ -23,6 +23,8 @@ const storageKey = 'import_lp_attribution';
       const context = await browser.newContext({ viewport: { width, height: 900 }, serviceWorkers: 'block' });
       let interceptedPurchase = '';
       await context.route('**/*', route => {
+        // Media playback is unrelated to attribution and can stall networkidle.
+        if (route.request().resourceType() === 'media') return route.abort();
         const requestUrl = new URL(route.request().url());
         if (requestUrl.origin === target.origin) return route.continue();
         if (requestUrl.hostname === 'www.import-language.com' && route.request().isNavigationRequest()) {
@@ -42,13 +44,13 @@ const storageKey = 'import_lp_attribution';
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
       await page.goto(targetUrl, { waitUntil: 'networkidle' });
-      for (const channel of ['chatgpt', 'ly']) {
+      for (const channel of ['chatgpt', 'ly', 'tiktok']) {
         await page.evaluate(key => localStorage.setItem(key, JSON.stringify({
           utm_source: 'meta', utm_campaign: 'fixture-old-campaign', utm_content: 'fixture-old-ad',
           utm_term: 'fixture-old-term', fbclid: 'fixture-old-fb', gclid: 'fixture-old-g',
           captured_at: new Date().toISOString()
         })), storageKey);
-        const clickKey = channel === 'chatgpt' ? 'oppref' : 'yclid';
+        const clickKey = channel === 'chatgpt' ? 'oppref' : channel === 'ly' ? 'yclid' : 'ttclid';
         const current = { utm_source: channel, utm_medium: 'cpc', utm_campaign: 'fixture-current-campaign', utm_content: 'fixture-current-ad', [clickKey]: 'fixture-current-click' };
         const visit = new URL(targetUrl);
         visit.search = new URLSearchParams(current).toString();
@@ -67,8 +69,8 @@ const storageKey = 'import_lp_attribution';
           assert.deepEqual(params, { lp_cta: id, lp_page: target.pathname, ...current });
         }
         for (const href of snapshot.storeLinks) assert.deepEqual(Object.fromEntries(new URL(href).searchParams), current);
-        const { [clickKey]: transient, ...persistent } = current;
-        assert(transient);
+        const persistent = { ...current };
+        if (channel !== 'tiktok') delete persistent[clickKey];
         const { captured_at: timestamp, ...saved } = snapshot.storage;
         assert(timestamp);
         assert.deepEqual(saved, persistent);
@@ -106,7 +108,7 @@ const storageKey = 'import_lp_attribution';
         }), storageKey);
         const params = new URL(revisit.href).searchParams;
         assert.deepEqual(revisit.storage, snapshot.storage);
-        assert.equal(params.get(clickKey), null);
+        assert.equal(params.get(clickKey), channel === 'tiktok' ? current[clickKey] : null);
         assert.equal(params.get('utm_source'), channel);
         assert.equal(params.get('fbclid'), null);
 
