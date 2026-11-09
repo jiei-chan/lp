@@ -33,7 +33,8 @@ const autumnSchedule = [
   ['2026-10-26', '2026-11-02', 11499, 37],
   ['2026-11-02', '2026-11-04', 11699, 36],
   ['2026-11-04', '2026-11-09', 11899, 35],
-  ['2026-11-09', '2026-11-24', 11999, 34],
+  ['2026-11-09', '2026-11-16', 14780, 19],
+  ['2026-11-16', '2026-11-23', 14980, 18],
 ];
 for (const [start, end, price, percent] of autumnSchedule) {
   const deadline = `${end}T09:00:00+09:00`;
@@ -42,8 +43,8 @@ for (const [start, end, price, percent] of autumnSchedule) {
   }
 }
 cases.push(['autumn-09-24', '2026-09-28T12:00:00+09:00', 10965, 7375, 40, true, '2026-10-05T09:00:00+09:00']);
-cases.push(['after-ladder', '2026-11-24T09:00:00+09:00', 12199, 6141, 33, false]);
-cases.push(['after-ladder', '2026-12-01T09:00:00+09:00', 12199, 6141, 33, false]);
+cases.push(['after-ladder', '2026-11-23T09:00:00+09:00', 14980, 3360, 18, false]);
+cases.push(['after-ladder', '2026-12-01T09:00:00+09:00', 14980, 3360, 18, false]);
 
 function assert(condition, message, details) {
   if (!condition) throw new Error(`${message}: ${JSON.stringify(details)}`);
@@ -125,7 +126,7 @@ function assert(condition, message, details) {
         const next = cases.find(entry => entry[1] === deadline);
         assert(Boolean(next), 'missing next-boundary fixture', { deadline });
         await page.evaluate(value => { window.IMPORT_SALE_NOW = value; }, deadline);
-        await page.waitForFunction(price => window.IMPORT_CURRENT_SALE.salePrice === price, next[2]);
+        await page.waitForFunction(phase => window.IMPORT_CURRENT_SALE.phase === phase, next[0]);
         const mode = await page.evaluate(() => ({
           scheduled: document.body.classList.contains('sale-mode-scheduled'),
           countdownHidden: getComputedStyle(document.querySelector('.final-countdown')).display === 'none',
