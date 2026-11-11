@@ -15,36 +15,36 @@ try {
 
 const targetUrl = process.argv[2] || process.env.LP_URL || 'http://localhost:4173';
 const cases = [
-  ['week-1', '2026-08-17T13:00:00+09:00', 10080, 8260, 45, true],
-  ['week-2', '2026-08-24T09:00:00+09:00', 10230, 8110, 44, true],
-  ['week-3', '2026-08-31T09:00:00+09:00', 10380, 7960, 43, true],
-  ['week-4', '2026-09-07T09:00:00+09:00', 10530, 7810, 42, true],
-  ['week-5', '2026-09-14T09:00:00+09:00', 10665, 7675, 41, true],
-  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 7575, 41, true],
-  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 7575, 41, true],
+  ['week-1', '2026-08-17T13:00:00+09:00', 10080, 10260, 50, true],
+  ['week-2', '2026-08-24T09:00:00+09:00', 10230, 10110, 49, true],
+  ['week-3', '2026-08-31T09:00:00+09:00', 10380, 9960, 48, true],
+  ['week-4', '2026-09-07T09:00:00+09:00', 10530, 9810, 48, true],
+  ['week-5', '2026-09-14T09:00:00+09:00', 10665, 9675, 47, true],
+  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 9575, 47, true],
+  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 9575, 47, true],
 ];
 
 // These fixtures express the approved prices independently of the page configuration.
 const autumnSchedule = [
-  ['2026-09-24', '2026-10-05', 10965, 40],
-  ['2026-10-05', '2026-10-12', 11099, 39],
-  ['2026-10-12', '2026-10-19', 11199, 38],
-  ['2026-10-19', '2026-10-26', 11399, 37],
-  ['2026-10-26', '2026-11-02', 11499, 37],
-  ['2026-11-02', '2026-11-04', 11699, 36],
-  ['2026-11-04', '2026-11-09', 11899, 35],
-  ['2026-11-09', '2026-11-16', 14780, 19],
-  ['2026-11-16', '2026-11-23', 14980, 18],
+  ['2026-09-24', '2026-10-05', 10965, 46],
+  ['2026-10-05', '2026-10-12', 11099, 45],
+  ['2026-10-12', '2026-10-19', 11199, 44],
+  ['2026-10-19', '2026-10-26', 11399, 43],
+  ['2026-10-26', '2026-11-02', 11499, 43],
+  ['2026-11-02', '2026-11-04', 11699, 42],
+  ['2026-11-04', '2026-11-09', 11899, 41],
+  ['2026-11-09', '2026-11-16', 14780, 27],
+  ['2026-11-16', '2026-11-23', 14980, 26],
 ];
 for (const [start, end, price, percent] of autumnSchedule) {
   const deadline = `${end}T09:00:00+09:00`;
   for (const now of [`${start}T09:00:00+09:00`, `${end}T08:59:59+09:00`]) {
-    cases.push([`autumn-${start.slice(5)}`, now, price, 18340 - price, percent, true, deadline]);
+    cases.push([`autumn-${start.slice(5)}`, now, price, 20340 - price, percent, true, deadline]);
   }
 }
-cases.push(['autumn-09-24', '2026-09-28T12:00:00+09:00', 10965, 7375, 40, true, '2026-10-05T09:00:00+09:00']);
-cases.push(['after-ladder', '2026-11-23T09:00:00+09:00', 14980, 3360, 18, false]);
-cases.push(['after-ladder', '2026-12-01T09:00:00+09:00', 14980, 3360, 18, false]);
+cases.push(['autumn-09-24', '2026-09-28T12:00:00+09:00', 10965, 9375, 46, true, '2026-10-05T09:00:00+09:00']);
+cases.push(['after-ladder', '2026-11-23T09:00:00+09:00', 14980, 5360, 26, false]);
+cases.push(['after-ladder', '2026-12-01T09:00:00+09:00', 14980, 5360, 26, false]);
 
 function assert(condition, message, details) {
   if (!condition) throw new Error(`${message}: ${JSON.stringify(details)}`);
@@ -112,7 +112,7 @@ function assert(condition, message, details) {
       assert(actual.savings === savings, 'savings mismatch', { phase, actual });
       assert(actual.percent === percent, 'percent mismatch', { phase, actual });
       assert(actual.prices.every((value) => value === price.toLocaleString('ja-JP')), 'rendered price mismatch', { phase, actual });
-      assert(actual.regularPrices.every((value) => value === '¥18,340'), 'regular price mismatch', { phase, actual });
+      assert(actual.regularPrices.every((value) => value === '¥20,340'), 'regular price mismatch', { phase, actual });
       assert(actual.savingsPrices.every((value) => value === `¥${savings.toLocaleString('ja-JP')}`), 'rendered savings mismatch', { phase, actual });
       assert(actual.savingsYen.every((value) => value === `${savings.toLocaleString('ja-JP')}円`), 'rendered savings yen mismatch', { phase, actual });
       assert(actual.percents.every((value) => value === String(percent)), 'rendered percent mismatch', { phase, actual });
