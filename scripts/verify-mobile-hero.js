@@ -83,7 +83,8 @@ function fail(message, details = {}) {
         };
       });
 
-      if (!metrics.titleText.includes('英単語は忘れない')) {
+      // ペルソナ別ページは見出しが違う。HERO_KEY_COPY で期待文言を渡す（既定は正本の見出し）。
+      if (!metrics.titleText.includes(process.env.HERO_KEY_COPY || '英単語は忘れない')) {
         fail('Mobile hero title is missing the key copy.', { viewport: viewport.name, titleText: metrics.titleText });
       }
       if (metrics.navDisplay === 'none' || metrics.navPosition !== 'fixed') {
