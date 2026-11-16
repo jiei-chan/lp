@@ -3,6 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- SmartNews Ads: LP PageView only; Shopify owns commerce events. -->
+<script>
+(function initSmartNewsPageView(){
+  // Keep local and deployment previews out of the production pixel.
+  if (window.location.hostname !== 'promo.import-language.com') return;
+  if (window.IMPORT_SMARTNEWS_PAGE_INITIALIZED) return;
+  window.IMPORT_SMARTNEWS_PAGE_INITIALIZED = true;
+
+  window.SmartnewsAds = window.SmartnewsAds || {};
+  if (!window.SmartnewsAds.p) {
+    var p = window.SmartnewsAds.p = function(){
+      p.callMethod ? p.callMethod.apply(p, arguments) : p.queue.push(arguments);
+    };
+    p.push = p;
+    p.version = '1.0.1';
+    p.queue = [];
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://cdn.smartnews-ads.com/i/pixel.js';
+    var firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(script, firstScript);
+  }
+  window.SmartnewsAds.p('ea7ac8b73db4d3663fc7db75', 'PageView');
+})();
+</script>
 <!-- Match browser chrome (Safari URL bar etc) to hero blue for seamless top edge -->
 <meta name="theme-color" content="#0066ff" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
