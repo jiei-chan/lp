@@ -44,3 +44,18 @@ CLIの接続スコープによっては本番プロジェクトが見つかり�
 - `index.html` — LP本体（CSS/JSすべて埋め込み済み）
 - `vercel.json` — Vercel設定（セキュリティヘッダー、cleanUrls等）
 - `README.md` — このファイル
+
+## Cloudflare Pagesへの移行準備
+
+動画も同じPagesプロジェクトの `videos/` から配信します。SmartNews追加を含む現在のHTMLを、そのまま公開用フォルダへコピーします。
+
+```bash
+node scripts/build-pages.js
+python3 -m http.server 4173 --directory dist
+```
+
+Cloudflare PagesのGit連携では、Framework presetを `None`、Build commandを `node scripts/build-pages.js`、Build output directoryを `dist`、Root directoryをリポジトリルートに設定します。公開ブランチは実際に公開する変更を確定してから指定します。
+
+`dist/` は毎回再生成する出力専用フォルダです。ソースを置かないでください。HTML・画像・動画・`_headers` だけを含み、ドキュメントや検証スクリプトは配信しません。各ファイルの25MiB制限をビルド時に検査します。
+
+移行・検証・DNS切替・切戻しは [Cloudflare移行手順](docs/cloudflare-migration.md) を参照してください。現時点ではCloudflare上のプロジェクト作成・公開・DNS変更は未実施です。
