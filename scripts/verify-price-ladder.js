@@ -14,37 +14,13 @@ try {
 }
 
 const targetUrl = process.argv[2] || process.env.LP_URL || 'http://localhost:4173';
+// Discount-only mode must ignore former schedule boundaries.
 const cases = [
-  ['week-1', '2026-08-17T13:00:00+09:00', 10080, 10260, 50, true],
-  ['week-2', '2026-08-24T09:00:00+09:00', 10230, 10110, 49, true],
-  ['week-3', '2026-08-31T09:00:00+09:00', 10380, 9960, 48, true],
-  ['week-4', '2026-09-07T09:00:00+09:00', 10530, 9810, 48, true],
-  ['week-5', '2026-09-14T09:00:00+09:00', 10665, 9675, 47, true],
-  ['september-offer', '2026-09-21T09:00:00+09:00', 10765, 9575, 47, true],
-  ['september-offer', '2026-09-24T08:59:59+09:00', 10765, 9575, 47, true],
-];
-
-// These fixtures express the approved prices independently of the page configuration.
-const autumnSchedule = [
-  ['2026-09-24', '2026-10-05', 10965, 46],
-  ['2026-10-05', '2026-10-12', 11099, 45],
-  ['2026-10-12', '2026-10-19', 11199, 44],
-  ['2026-10-19', '2026-10-26', 11399, 43],
-  ['2026-10-26', '2026-11-02', 11499, 43],
-  ['2026-11-02', '2026-11-04', 11699, 42],
-  ['2026-11-04', '2026-11-09', 11899, 41],
-  ['2026-11-09', '2026-11-16', 14780, 27],
-  ['2026-11-16', '2026-11-23', 14980, 26],
-];
-for (const [start, end, price, percent] of autumnSchedule) {
-  const deadline = `${end}T09:00:00+09:00`;
-  for (const now of [`${start}T09:00:00+09:00`, `${end}T08:59:59+09:00`]) {
-    cases.push([`autumn-${start.slice(5)}`, now, price, 20340 - price, percent, true, deadline]);
-  }
-}
-cases.push(['autumn-09-24', '2026-09-28T12:00:00+09:00', 10965, 9375, 46, true, '2026-10-05T09:00:00+09:00']);
-cases.push(['after-ladder', '2026-11-23T09:00:00+09:00', 14980, 5360, 26, false]);
-cases.push(['after-ladder', '2026-12-01T09:00:00+09:00', 14980, 5360, 26, false]);
+  '2026-11-16T08:59:59+09:00',
+  '2026-11-16T09:00:00+09:00',
+  '2026-11-23T09:00:00+09:00',
+  '2026-12-01T09:00:00+09:00',
+].map(now => ['after-ladder', now, 14980, 5360, 26, false]);
 
 function assert(condition, message, details) {
   if (!condition) throw new Error(`${message}: ${JSON.stringify(details)}`);
@@ -97,6 +73,7 @@ function assert(condition, message, details) {
         savingsYen: [...document.querySelectorAll('[data-sale-savings-yen]')].map((el) => el.textContent.trim()),
         percents: [...document.querySelectorAll('[data-sale-percent]')].map((el) => el.textContent.trim()),
         countdownDisplay: getComputedStyle(document.querySelector('.final-countdown')).display,
+        hiddenUrgency: ['.offer-urgency', '.final-countdown', '.sticky-count-wrap'].every(selector => getComputedStyle(document.querySelector(selector)).display === 'none'),
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       }));
 
@@ -118,6 +95,7 @@ function assert(condition, message, details) {
       assert(actual.percents.every((value) => value === String(percent)), 'rendered percent mismatch', { phase, actual });
       assert(scheduled ? actual.bodyClass.includes('sale-mode-scheduled') : actual.bodyClass.includes('sale-mode-discount-only'), 'sale mode mismatch', { phase, actual });
       assert(scheduled ? actual.countdownDisplay !== 'none' : actual.countdownDisplay === 'none', 'countdown visibility mismatch', { phase, actual });
+      assert(actual.hiddenUrgency && !actual.endAt, 'countdown and deadline must be disabled', { actual });
       assert(actual.overflow <= 1, 'desktop horizontal overflow', { phase, actual });
 
       console.log(`OK ${phase}: ¥${price.toLocaleString('ja-JP')} / ¥${savings.toLocaleString('ja-JP')} OFF / ${percent}%`);
