@@ -59,6 +59,8 @@ module.exports = {
       ['<span class="sale-mode-copy-scheduled">— Special Offer</span>', '<span class="sale-mode-copy-scheduled">— Black Friday Offer</span>'],
       ['<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">エディション価格で。</span></span>', '<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">ブラックフライデー価格で。</span></span>'],
       ['<span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY OFFER</span>'],
+      // 中身プレビューの TOEIC カード表記
+      ['<span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span>', '<span class="desc-line">BASIC → SCORE 990</span><span class="desc-line">2000語以上を掲載</span>'],
       ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
     ],
   },
