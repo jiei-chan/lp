@@ -61,6 +61,12 @@ module.exports = {
       ['<span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY OFFER</span>'],
       // 中身プレビューの TOEIC カード表記
       ['<span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span>', '<span class="desc-line">BASIC → SCORE 990</span><span class="desc-line">2000語以上を掲載</span>'],
+      // 商品カードと価格内訳の TOEIC 表記（SCORE 990・2000語以上）
+      ['<div class="stat-num">1100</div>', '<div class="stat-num">2000+</div>'],
+      ['<div class="pkg-num">1100</div>', '<div class="pkg-num">2000+</div>'],
+      ['<li>BASICからSCORE 600までをカバー</li>', '<li>BASICからSCORE 990までをカバー</li>'],
+      ['<li>追加課金なし、SCORE 730以降も近日中に追加予定</li>', '<li>2000語以上を掲載、追加課金なし</li>'],
+      ['TOEIC® - VOCAB COMPLETE（TOEIC 1,101単語）', 'TOEIC® - VOCAB COMPLETE（TOEIC 2000語以上）'],
       ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
     ],
   },
