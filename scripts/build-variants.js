@@ -93,6 +93,11 @@ function build(name, def, source) {
   const { chunks } = source;
   let head = source.head;
   const c = { ...chunks };
+  // 派生ページ専用のセクション（index.html に無いもの）。{ キー: 'ファイル名' } を scripts/variant-sections/ から読む。
+  Object.entries(def.extraSections || {}).forEach(([key, file]) => {
+    if (key in c) fail(`${name}: extraSections のキー "${key}" は既存セクションと重複しています。`);
+    c[key] = fs.readFileSync(path.join(__dirname, 'variant-sections', file), 'utf8');
+  });
   const at = label => `${name}: ${label}`;
 
   // --- head ---

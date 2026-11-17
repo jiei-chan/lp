@@ -42,23 +42,32 @@ module.exports = {
     placeholder: true,
     theme: 'blackfriday',
     sale: blackFridaySale,
-    title: 'import｜BLACK FRIDAY SALE — 映像で覚える英単語学習',
-    description: '映像×音声で覚える英単語学習 import。3教材がそろう完全版を、期間限定のブラックフライデー価格で。',
+    title: 'import｜BLACK FRIDAY — 完全版でアプリ版に先行アクセス',
+    description: '完全版にはアプリ版の利用も含まれます。アプリ版は単品購入ではまだ使えません。3教材がそろう import 完全版を、期間限定のブラックフライデー価格で。',
     eyebrow: 'Black Friday Sale',
-    h1: ['<span class="yellow-marker">BLACK FRIDAY</span>', '英単語は<span class="highlight">映像で覚える。</span>'],
-    tagline: '完全版が、期間限定のブラックフライデー価格。',
-    taglineMobile: '完全版が、期間限定の<br><span class="highlight">ブラックフライデー価格</span>。',
-    sub: '3つの映像教材がそろう import 完全版を、ブラックフライデー期間だけの特別価格で。買い切り・追加費用なし、1日10分スマホだけで完結。',
-    finalTitle: ['BLACK FRIDAY', '完全版を特別価格で。'],
-    finalSub: '期間限定のブラックフライデー価格。',
-    // セール目当ての人向けに、中身→商品→価格を先に。なぜ効くかの説明は価格の後ろへ。
-    sections: ['hero', 'heroBelow', 'achievement', 'inside', 'products', 'bundle', 'community', 'voices',
-      'empathy', 'solution', 'textbook', 'authority', 'faq', 'final'],
+    h1: ['<span class="yellow-marker">BLACK FRIDAY</span>', 'アプリ版に<span class="highlight">先行アクセス。</span>'],
+    tagline: '完全版には、アプリ版の利用も含まれます。',
+    taglineMobile: '完全版には、<br><span class="highlight">アプリ版の利用</span>も含まれます。',
+    sub: 'アプリ版は、単品購入ではまだ使えません。TOEIC 2000語以上・SCORE 990まで、Essential Verbs 500 を収録したアプリ版を、ブラックフライデー価格の完全版で先行して使えます。',
+    productsLead: '3つの映像教材に加えて、完全版ならアプリ版も使えます。アプリ版は単品購入ではまだ使えません。',
+    finalTitle: ['BLACK FRIDAY', 'アプリ版に先行アクセス。'],
+    finalSub: '完全版にはアプリ版の利用も含まれます。',
+    // 訴求の軸は「完全版だけのアプリ版 先行アクセス」（アプリ版は単品購入ではまだ使えない）。
+    // ヒーロー直後にアプリ版の説明 → 中身 → 商品 → 価格。なぜ効くかの説明は価格の後ろへ。
+    extraSections: { appAccess: 'app-access.html' },
+    sections: ['hero', 'heroBelow', 'achievement', 'appAccess', 'inside', 'products', 'bundle', 'community', 'voices',
+      'solution', 'authority', 'faq', 'final'],
     replace: [
       ['<span class="sale-mode-copy-scheduled">import 完全版 セール中</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY SALE 開催中</span>'],
       ['<span class="sale-mode-copy-scheduled">— Special Offer</span>', '<span class="sale-mode-copy-scheduled">— Black Friday Offer</span>'],
       ['<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">エディション価格で。</span></span>', '<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">ブラックフライデー価格で。</span></span>'],
       ['<span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY OFFER</span>'],
+      // オファー：アプリ版が含まれることを見出し・説明・内訳に入れる
+      ['個別に買うより圧倒的にお得。期間限定の特別価格で、3教材すべてが手に入ります。', '3教材すべてに加えて、アプリ版の利用も含まれます。アプリ版は単品購入ではまだ使えません。'],
+      ['<span class="blue">+ 限定特典付き</span>', '<span class="blue">+ 限定特典・アプリ版 先行アクセス付き</span>'],
+      ['3つすべての映像教材＋限定特典＋永久アクセス権が、<br>', '3つすべての映像教材＋アプリ版の先行アクセス＋限定特典＋永久アクセス権が、<br>'],
+      ['        <div class="bundle-row total">', '        <div class="bundle-row bundle-row-app">\n          <div class="item">\n            <span class="dot p1"></span>\n            <div class="item-text">\n              <span>アプリ版 先行アクセス</span>\n            </div>\n          </div>\n          <div class="num">完全版のみ</div>\n        </div>\n        <div class="bundle-row total">'],
+      ['    <div class="faq-list">\n', '    <div class="faq-list">\n      <div class="faq-item">\n        <div class="faq-q">アプリ版は単品購入でも使えますか?<span class="marker">+</span></div>\n        <div class="faq-a">現在、アプリ版は完全版をご購入いただいた方のみご利用いただけます。完全版にはアプリ版の利用も含まれます。</div>\n      </div>\n'],
       // 教材はアプリ版とストリーミング版で収録範囲が違う（2026-11-17 時点の聞き取り）:
       //   TOEIC  … アプリ版 SCORE 990・2000語以上 / ストリーミング版 SCORE 660まで
       //   Essential Verbs … アプリ版 500 / ストリーミング版 400
