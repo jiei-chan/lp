@@ -59,14 +59,17 @@ module.exports = {
       ['<span class="sale-mode-copy-scheduled">— Special Offer</span>', '<span class="sale-mode-copy-scheduled">— Black Friday Offer</span>'],
       ['<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">エディション価格で。</span></span>', '<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">ブラックフライデー価格で。</span></span>'],
       ['<span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY OFFER</span>'],
-      // 中身プレビューの TOEIC カード表記
-      ['<span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span>', '<span class="desc-line">BASIC → SCORE 990</span><span class="desc-line">2000語以上を掲載</span>'],
-      // 商品カードと価格内訳の TOEIC 表記（SCORE 990・2000語以上）
-      ['<div class="stat-num">1100</div>', '<div class="stat-num">2000+</div>'],
-      ['<div class="pkg-num">1100</div>', '<div class="pkg-num">2000+</div>'],
-      ['<li>BASICからSCORE 600までをカバー</li>', '<li>BASICからSCORE 990までをカバー</li>'],
-      ['<li>追加課金なし、SCORE 730以降も近日中に追加予定</li>', '<li>2000語以上を掲載、追加課金なし</li>'],
-      ['TOEIC® - VOCAB COMPLETE（TOEIC 1,101単語）', 'TOEIC® - VOCAB COMPLETE（TOEIC 2000語以上）'],
+      // 教材はアプリ版とストリーミング版で収録範囲が違う（2026-11-17 時点の聞き取り）:
+      //   TOEIC  … アプリ版 SCORE 990・2000語以上 / ストリーミング版 SCORE 660まで
+      //   Essential Verbs … アプリ版 500 / ストリーミング版 400
+      // どちらの版の数字かを必ず書く。版を書かずに 2000語・990 とだけ出さないこと。
+      ['<div class="desc">句動詞 400</div>', '<div class="desc"><span class="desc-line">句動詞 400</span><span class="desc-line">アプリ版は500</span></div>'],
+      ['<span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span>', '<span class="desc-line">アプリ版 〜990点</span><span class="desc-line">ストリーミング版</span><span class="desc-line">〜660点</span>'],
+      ['<div class="stat-num">1100</div>\n            <div class="stat-label">WORDS</div>', '<div class="stat-num">2000+</div>\n            <div class="stat-label">WORDS（アプリ版）</div>'],
+      ['<li>BASICからSCORE 600までをカバー</li>', '<li>アプリ版はSCORE 990まで・2000語以上を掲載</li>'],
+      ['<li>追加課金なし、SCORE 730以降も近日中に追加予定</li>', '<li>ストリーミング版はSCORE 660までをカバー</li>'],
+      ['TOEIC® - VOCAB COMPLETE（TOEIC 1,101単語）', 'TOEIC® - VOCAB COMPLETE（アプリ版は2000語以上）'],
+      ['Essential Verbs（句動詞400）', 'Essential Verbs（句動詞400・アプリ版は500）'],
       ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
     ],
   },
