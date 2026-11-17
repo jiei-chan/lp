@@ -9,3 +9,18 @@
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/v2
+  Cache-Control: public, max-age=0, must-revalidate
+
+/toeic
+  Cache-Control: public, max-age=0, must-revalidate
+
+/kaiwa
+  Cache-Control: public, max-age=0, must-revalidate
+
+/yarinaoshi
+  Cache-Control: public, max-age=0, must-revalidate
+
+/eiga
+  Cache-Control: public, max-age=0, must-revalidate

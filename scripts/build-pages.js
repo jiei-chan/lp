@@ -5,7 +5,9 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, 'dist');
 const maxSize = 25 * 1024 * 1024;
-const files = ['index.html'];
+// ペルソナ別ページ（scripts/build-variants.js の生成物）も公開対象。定義から列挙する。
+const variantPages = Object.keys(require('./variants.config.js')).map(name => `${name}.html`);
+const files = ['index.html', ...variantPages];
 const extensions = {
   images: new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.svg', '.ico']),
   videos: new Set(['.mp4', '.webm']),
