@@ -42,5 +42,18 @@ for (const relative of files) {
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.copyFileSync(path.join(root, relative), destination);
 }
+
+// トップ（/）の差し替え。派生ページは広告用に noindex 付きなので、/ に出すときは外す。
+const { home } = require('./pages.config.js');
+if (home !== 'index') {
+  const variants = require('./variants.config.js');
+  if (!variants[home]) throw new Error(`pages.config.js: home "${home}" is not defined in variants.config.js`);
+  if (variants[home].placeholder) throw new Error(`pages.config.js: "${home}" still has placeholder values and cannot be published as /`);
+  const noindex = '<meta name="robots" content="noindex" />\n';
+  const html = fs.readFileSync(path.join(root, `${home}.html`), 'utf8');
+  if (html.split(noindex).length !== 2) throw new Error(`Expected exactly one noindex meta in ${home}.html`);
+  fs.writeFileSync(path.join(output, 'index.html'), html.replace(noindex, ''));
+  console.log(`Home (/) is served from ${home}.html.`);
+}
 fs.copyFileSync(path.join(root, 'cloudflare/_headers'), path.join(output, '_headers'));
 console.log(`Built ${files.length} public files and _headers in dist/ (each <= 25 MiB).`);

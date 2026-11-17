@@ -107,7 +107,13 @@ function build(name, def, source) {
   head = replaceOnce(head, /<\/title>\n/, m =>
     `${m[0]}<meta name="robots" content="noindex" />\n<link rel="canonical" href="${canonicalUrl}" />\n`, at('robots'));
   head = replaceOnce(head, /<body class="([^"]*)">/, m =>
-    `<body class="${m[1]}" data-lp-variant="${name}">`, at('body'));
+    `<body class="${m[1]}${def.theme ? ` theme-${def.theme}` : ''}" data-lp-variant="${name}">` +
+    (def.placeholder ? '\n<div class="variant-placeholder-note">仮の価格・期間です（未確定）</div>' : ''), at('body'));
+  // テーマCSSは既存の <style> の後ろに足す（同じ詳細度なら後勝ち）。
+  if (def.theme) {
+    const css = fs.readFileSync(path.join(__dirname, 'variant-themes', `${def.theme}.css`), 'utf8');
+    head = replaceOnce(head, /<\/head>/, `<style>\n${css}</style>\n</head>`, at('theme'));
+  }
 
   // --- hero ---
   if (def.eyebrow) {
@@ -184,7 +190,20 @@ function build(name, def, source) {
     fail(at('FAQ の「サンプルを見る」が #what を指すため、inside を外すなら faq も外してください。'));
   }
 
-  return head + c.nav + def.sections.map(key => c[key]).join('') + fixedTail.map(key => c[key]).join('');
+  let html = head + c.nav + def.sections.map(key => c[key]).join('') + fixedTail.map(key => c[key]).join('');
+
+  // --- セール設定の差し替え（価格・期間）。index.html の IMPORT_SALE_CONFIG を丸ごと置き換える。 ---
+  if (def.sale) {
+    html = replaceOnce(html, /window\.IMPORT_SALE_CONFIG = \{[\s\S]*?\n\};/, () =>
+      `window.IMPORT_SALE_CONFIG = ${JSON.stringify(def.sale, null, 2)};`, at('sale config'));
+  }
+  // --- 文言の個別差し替え：[元の文字列, 新しい文字列]。元の文字列はちょうど1回だけ現れること。 ---
+  (def.replace || []).forEach(([from, to], i) => {
+    const count = html.split(from).length - 1;
+    if (count !== 1) fail(at(`replace[${i}] "${from.slice(0, 40)}…" が ${count} 箇所（想定 1 箇所）。`));
+    html = html.replace(from, () => to);
+  });
+  return html;
 }
 
 function main() {

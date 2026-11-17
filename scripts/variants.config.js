@@ -16,7 +16,53 @@
 // PCのヒーローは tagline が1行固定。全角24字程度までに収める。
 // コピーには index.html に無い数値・実績・効果の断定を足さないこと。
 
+// Black Friday の価格・期間。★すべて仮値★ 確定したらここを直し、blackfriday の placeholder を false にする。
+// 期間外は staticOffer（現行の通常オファー）が表示される。購入先 Shopify 商品の価格も同じ値にそろえること。
+const blackFridaySale = {
+  mode: 'scheduled',
+  regularPrice: 20340,
+  staticOffer: { salePrice: 14980, savings: 5360, percent: 26, phase: 'after-ladder' },
+  periods: [{
+    salePrice: 12980,
+    savings: 7360,
+    percent: 36,
+    phase: 'black-friday',
+    startAt: '2026-11-17T00:00:00+09:00', // 仮：プレビューで見えるよう今日から。実際の開始日時に直す
+    endAt: '2026-12-01T00:00:00+09:00',
+    deadlineLong: '11/30（月）23:59まで',
+    deadlineShort: '11/30 23:59まで',
+    urgencyPrefix: 'ブラックフライデー価格は',
+    mobileCountdownLabel: '11/30 23:59まで',
+  }],
+};
+
 module.exports = {
+  // Black Friday 版。期間中は scripts/pages.config.js の home を 'blackfriday' にすると / に出る。
+  blackfriday: {
+    placeholder: true,
+    theme: 'blackfriday',
+    sale: blackFridaySale,
+    title: 'import｜BLACK FRIDAY SALE — 映像で覚える英単語学習',
+    description: '映像×音声で覚える英単語学習 import。3教材がそろう完全版を、期間限定のブラックフライデー価格で。',
+    eyebrow: 'Black Friday Sale',
+    h1: ['<span class="yellow-marker">BLACK FRIDAY</span>', '英単語は<span class="highlight">映像で覚える。</span>'],
+    tagline: '完全版が、期間限定のブラックフライデー価格。',
+    taglineMobile: '完全版が、期間限定の<br><span class="highlight">ブラックフライデー価格</span>。',
+    sub: '3つの映像教材がそろう import 完全版を、ブラックフライデー期間だけの特別価格で。買い切り・追加費用なし、1日10分スマホだけで完結。',
+    finalTitle: ['BLACK FRIDAY', '完全版を特別価格で。'],
+    finalSub: '期間限定のブラックフライデー価格。',
+    // セール目当ての人向けに、中身→商品→価格を先に。なぜ効くかの説明は価格の後ろへ。
+    sections: ['hero', 'heroBelow', 'achievement', 'inside', 'products', 'bundle', 'community', 'voices',
+      'empathy', 'solution', 'textbook', 'authority', 'faq', 'final'],
+    replace: [
+      ['<span class="sale-mode-copy-scheduled">import 完全版 セール中</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY SALE 開催中</span>'],
+      ['<span class="sale-mode-copy-scheduled">— Special Offer</span>', '<span class="sale-mode-copy-scheduled">— Black Friday Offer</span>'],
+      ['<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">エディション価格で。</span></span>', '<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">ブラックフライデー価格で。</span></span>'],
+      ['<span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY OFFER</span>'],
+      ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
+    ],
+  },
+
   // 構成だけを見直した版（コピーは現行のまま）。構成の効果とコピーの効果を分けて測るための対照。
   v2: {
     sections: ['hero', 'heroBelow', 'achievement', 'inside', 'empathy', 'problem3', 'realProblem',
