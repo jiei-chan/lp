@@ -16,18 +16,19 @@
 // PCのヒーローは tagline が1行固定。全角24字程度までに収める。
 // コピーには index.html に無い数値・実績・効果の断定を足さないこと。
 
-// Black Friday の価格・期間。★すべて仮値★ 確定したらここを直し、blackfriday の placeholder を false にする。
+// Black Friday の価格・期間（2026-11-17 確定：12,800円、11/20〜11/30）。
+// 開始は 11/20 0:00、終了は 11/30 23:59（= 12/1 0:00）として設定。時刻が違う場合は startAt / endAt を直す。
 // 期間外は staticOffer（現行の通常オファー）が表示される。購入先 Shopify 商品の価格も同じ値にそろえること。
 const blackFridaySale = {
   mode: 'scheduled',
   regularPrice: 20340,
   staticOffer: { salePrice: 14980, savings: 5360, percent: 26, phase: 'after-ladder' },
   periods: [{
-    salePrice: 12980,
-    savings: 7360,
-    percent: 36,
+    salePrice: 12800,
+    savings: 7540,
+    percent: 37,
     phase: 'black-friday',
-    startAt: '2026-11-17T00:00:00+09:00', // 仮：プレビューで見えるよう今日から。実際の開始日時に直す
+    startAt: '2026-11-20T00:00:00+09:00',
     endAt: '2026-12-01T00:00:00+09:00',
     deadlineLong: '11/30（月）23:59まで',
     deadlineShort: '11/30 23:59まで',
@@ -39,7 +40,6 @@ const blackFridaySale = {
 module.exports = {
   // Black Friday 版。期間中は scripts/pages.config.js の home を 'blackfriday' にすると / に出る。
   blackfriday: {
-    placeholder: true,
     theme: 'blackfriday',
     sale: blackFridaySale,
     title: 'import｜BLACK FRIDAY — 完全版でアプリ版に先行アクセス',

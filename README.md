@@ -57,7 +57,7 @@ HERO_KEY_COPY="映像で忘れない" node scripts/verify-mobile-hero.js http://
 
 `/blackfriday` は Black Friday 用の派生ページ（黒×金のテーマ、セール用の構成）。`index.html` は書き換えない。
 
-- 価格・期間は `scripts/variants.config.js` の `blackFridaySale`。**現在は仮値**で、ページ右下に「仮の価格・期間です」と出る。確定したら値を直し、`blackfriday` の `placeholder` を `false` にする。購入先の Shopify 商品の価格も同じ値にそろえる。
+- 価格・期間は `scripts/variants.config.js` の `blackFridaySale`。**12,800円・11/20 0:00〜11/30 23:59 で確定**（2026-11-17）。購入先の Shopify 商品の価格も同じ値にそろえる。
 - テーマは `scripts/variant-themes/blackfriday.css`。
 - 期間中に `/` を Black Friday 版にするには、`scripts/pages.config.js` の `home` を `'blackfriday'` にして main に入れる。終了後は `'index'` に戻す。仮値のままでは切り替えられない（ビルドがエラーで止まる）。
 - `/` を切り替えている間、`verify-price-ladder.js` などトップの価格を前提にした検査は期待値が変わる。
