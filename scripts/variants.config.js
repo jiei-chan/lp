@@ -84,7 +84,12 @@ module.exports = {
       ['<li>BASICからSCORE 600までをカバー</li>', '<li>アプリ版はSCORE 990まで・2000語以上を掲載</li>'],
       ['<li>追加課金なし、SCORE 730以降も近日中に追加予定</li>', '<li>ストリーミング版はSCORE 660までをカバー</li>'],
       ['TOEIC® - VOCAB COMPLETE（TOEIC 1,101単語）', 'TOEIC® - VOCAB COMPLETE（アプリ版は2000語以上）'],
-      ['Essential Verbs（句動詞400）', 'Essential Verbs（句動詞400・アプリ版は500）'],
+      // Essential Verbs はアプリ版の 500 を前面に出し、ストリーミング版が 400 であることをカード内に明記する
+      ['<div class="desc">句動詞 400</div>', '<div class="desc">句動詞 500</div>'],
+      ['<p class="pcard-tagline">頻出400句動詞を、<br>映像で完全マスター</p>', '<p class="pcard-tagline">頻出500句動詞を、<br>映像で完全マスター</p>'],
+      ['<div class="stat-num">400</div>\n            <div class="stat-label">PHRASES</div>', '<div class="stat-num">500</div>\n            <div class="stat-label">PHRASES（アプリ版）</div>'],
+      ['<li>日常会話・映画・ビジネスで圧倒的に使われる句動詞400個を、シーンと一緒に体感的に習得</li>', '<li>日常会話・映画・ビジネスで圧倒的に使われる句動詞を、シーンと一緒に体感的に習得</li>\n          <li>アプリ版は句動詞500・ストリーミング版は400を収録</li>'],
+      ['Essential Verbs（句動詞400）', 'Essential Verbs（句動詞500・ストリーミング版は400）'],
       ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
     ],
   },
