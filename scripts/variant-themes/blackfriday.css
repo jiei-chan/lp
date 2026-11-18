@@ -18,11 +18,7 @@ body.theme-blackfriday .hero-eyebrow{
   font-weight: 800;
 }
 body.theme-blackfriday .hero-eyebrow::before{background: #0a0a0a; box-shadow: none}
-body.theme-blackfriday .hero h1 .yellow-marker{
-  background: none;
-  color: #ffcf4a;
-  letter-spacing: 0.02em;
-}
+/* 見出しの「映像 × 音声」は index.html のまま（白字＋黄色のハイライト線）。ここでは上書きしない */
 /* 元のグラデーションと同じ止め位置で、色だけ黒に（スマホではヒーロー画像に重なる） */
 body.theme-blackfriday .hero-below{
   background: linear-gradient(180deg,
