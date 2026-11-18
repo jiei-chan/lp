@@ -1,12 +1,14 @@
-# 横長のヒーロー画像（2000x1129）の右側（キャラクターと商品カード）を切り出し、
+# 横長のヒーロー画像（16:9 前後）の右側（キャラクターと商品カード）を切り出し、
 # スマホ用の縦長画像（1200x2880 = ヒーローの表示比率 1:2.4）を作る。
 import sys
 from PIL import Image, ImageFilter, ImageDraw
 src = Image.open(sys.argv[1]).convert('RGB')
 W, H = 1200, 2880
-crop = src.crop((980, 0, 2000, 1129))                 # 1020 x 1129
-scale = 1.03
-cw, ch = round(1020 * scale), round(1129 * scale)     # 1051 x 1163
+sw, sh = src.size
+left = round(sw * 0.49)                               # 右側 51%（キャラクターと商品カード）を使う。元画像の大きさが変わっても同じ割合で切る
+crop = src.crop((left, 0, sw, sh))
+cw = 1051                                             # スマホ画像の中での幅
+ch = round(sh * cw / (sw - left))
 crop = crop.resize((cw, ch), Image.LANCZOS)
 x0, y0 = W - cw, 260                                  # 右寄せ。キャラクターの頭が元のスマホ画像と同じ高さに来る位置
 
