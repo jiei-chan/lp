@@ -67,6 +67,8 @@ module.exports = {
       ['      <div class="inside-label">\n        WHAT IS INSIDE\n        <span class="small">まず中身を30秒で。</span>\n      </div>', '      <h2 class="inside-title">説明より、まず30秒。</h2>\n      <p class="inside-lead">3つの教材はどれも同じ形式。1シーンに1表現、音と一緒に。</p>'],
       // TOEIC の商品画像を「TOTAL 2000+ WORDS」のパッケージに（index.html が使う product-toeic-vocab.webp は残す）
       ['<img src="images/product-toeic-vocab.webp"', '<img src="images/product-toeic-vocab-2000.webp"'],
+      // オファーの3商品画像（index.html が使う CompleteBundle.png は残す）
+      ['<img src="images/CompleteBundle.png"', '<img src="images/complete-bundle-bf.webp"'],
       // Essential Verbs の商品画像も新しいパッケージに（index.html が使う product-essential.png は残す）
       ['<img src="images/product-essential.png"', '<img src="images/product-essential-remastered.webp"'],
       // オファー：アプリ版が含まれることを見出し・説明・内訳に入れる
