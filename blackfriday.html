@@ -6025,9 +6025,6 @@ body.theme-blackfriday .hero-trust-m{display: none}
    セールの告知は上の金のバナーに任せ、同じ内容の繰り返しと飾りを外す。 */
 /* 見出しの上の小さな帯（VIDEO × SOUND × MEMORY）。高さは残して見出しの位置を保つ */
 body.theme-blackfriday .hero-eyebrow{visibility: hidden}
-/* 一行の説明文（タグラインと役割が重なる） */
-body.theme-blackfriday .hero-sub,
-body.theme-blackfriday .hero-sub-m{display: none}
 /* ナビの「BLACK FRIDAY SALE 開催中」の文字（すぐ下のバナーと重複）。割引率のピルは残す */
 body.theme-blackfriday .nav-offer-copy{display: none}
 @media (min-width: 769px){
@@ -6035,35 +6032,9 @@ body.theme-blackfriday .nav-offer-copy{display: none}
   body.theme-blackfriday .hero-eyebrow{display: none}
 }
 
-/* --- ヒーローのボタン2つ（購入・中身を30秒で見る）は出さない。購入はナビと画面下の固定バーから --- */
-body.theme-blackfriday .hero .cta-row,
-body.theme-blackfriday .hero-below .cta-row-m{display: none}
-
-/* --- ヒーローの価格表示：カードの下に、細い線で区切って控えめに添える ---
-   大きな数字や赤いバッジで押し出さず、小さな英字の見出し・細めの数字・金の細い枠でまとめる。
-   価格を強く見せる役目は、下のオファーのカードに任せる。 */
-.bf-hero-price{
-  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
-  max-width: 560px; margin: 22px 0 0; padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
-}
-.bf-hero-price-label{font-family: var(--en); font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: #ffd766}
-.bf-hero-price-row{display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 12px; row-gap: 2px}
-.bf-hero-price-was{font-family: var(--en); font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.6); text-decoration: line-through}
-.bf-hero-price-now{font-family: var(--en); font-size: 34px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; color: #fff}
-.bf-hero-price-off{
-  align-self: center;
-  padding: 3px 10px; border-radius: 100px;
-  border: 1px solid rgba(255, 215, 102, 0.7); color: #ffd766;
-  font-family: var(--en); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; white-space: nowrap;
-}
-.bf-hero-price-note{font-size: 12px; color: rgba(255,255,255,0.65)}
-/* カードは価格の上に来るので、下の余白を詰める */
-body.theme-blackfriday .hero-extra .bf-points{margin-bottom: 0}
-@media (max-width: 768px){
-  .bf-hero-price{max-width: none; margin-top: 18px; padding-top: 16px}
-  .bf-hero-price-now{font-size: 30px}
-}
+/* --- ヒーローのボタンは「import完全版を購入」だけ。「中身を30秒で見る」は出さない --- */
+body.theme-blackfriday .hero .cta-row .btn-ghost,
+body.theme-blackfriday .hero-below .cta-row-m .btn-ghost{display: none}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
@@ -6125,11 +6096,12 @@ body.theme-blackfriday .hero-extra .bf-points{margin-bottom: 0}
       </h1>
 
       <p class="hero-tagline desktop-only">
-        3教材＋アプリ版。完全版がBLACK FRIDAY価格。
+        生きた3D映像で、英語が「使える」に変わる。
       </p>
 
       <p class="hero-sub desktop-only">
-        1日10分、スマホだけで完結。買い切りで追加費用なし。
+        脳科学に基づいた「映像×感覚」の記憶設計で、言いたいことが止まらない自分へ。<br>
+        1日10分、スマホだけで完結する英単語学習。
       </p>
 
       <div class="hero-extra desktop-only">
@@ -6143,15 +6115,6 @@ body.theme-blackfriday .hero-extra .bf-points{margin-bottom: 0}
     <span class="bf-point-note">句動詞・イディオム・TOEIC</span>
   </li>
 </ul>
-<div class="bf-hero-price">
-  <span class="bf-hero-price-label"><span class="sale-mode-copy-scheduled">Black Friday Price</span><span class="sale-mode-copy-discount-only">Complete Edition</span></span>
-  <span class="bf-hero-price-row">
-    <span class="bf-hero-price-was" data-sale-regular-price>¥20,340</span>
-    <span class="bf-hero-price-now" data-sale-price>¥12,800</span>
-    <span class="bf-hero-price-off"><span data-sale-savings-yen>7,540円</span> OFF</span>
-  </span>
-  <span class="bf-hero-price-note"><span class="sale-mode-copy-scheduled"><span data-sale-deadline-short>11/30 23:59まで</span>・</span>税込・買い切り・追加費用なし</span>
-</div>
       </div>
 
       <div class="cta-row desktop-only">
@@ -6192,11 +6155,11 @@ body.theme-blackfriday .hero-extra .bf-points{margin-bottom: 0}
 <!-- ========== HERO BELOW (MOBILE ONLY) ========== -->
 <section class="hero-below mobile-only">
   <p class="hero-tagline-m">
-    3教材＋アプリ版。<br>完全版が<span class="highlight">BLACK FRIDAY価格</span>。
+    生きた3D映像で、<br>英語が<span class="highlight">「使える」</span>に変わる。
   </p>
 
   <p class="hero-sub-m">
-    1日10分、スマホだけで完結。買い切りで追加費用なし。
+    脳科学に基づいた「映像×感覚」の記憶設計で、言いたいことが止まらない自分へ。1日10分、スマホだけで完結する英単語学習。
   </p>
 
   <div class="hero-extra">
@@ -6210,15 +6173,6 @@ body.theme-blackfriday .hero-extra .bf-points{margin-bottom: 0}
     <span class="bf-point-note">句動詞・イディオム・TOEIC</span>
   </li>
 </ul>
-<div class="bf-hero-price">
-  <span class="bf-hero-price-label"><span class="sale-mode-copy-scheduled">Black Friday Price</span><span class="sale-mode-copy-discount-only">Complete Edition</span></span>
-  <span class="bf-hero-price-row">
-    <span class="bf-hero-price-was" data-sale-regular-price>¥20,340</span>
-    <span class="bf-hero-price-now" data-sale-price>¥12,800</span>
-    <span class="bf-hero-price-off"><span data-sale-savings-yen>7,540円</span> OFF</span>
-  </span>
-  <span class="bf-hero-price-note"><span class="sale-mode-copy-scheduled"><span data-sale-deadline-short>11/30 23:59まで</span>・</span>税込・買い切り・追加費用なし</span>
-</div>
   </div>
 
   <div class="cta-row-m">

@@ -56,11 +56,8 @@ module.exports = {
     // ヒーローは「何の商品で、何が良いのか」を先に言う（初めて見る人にも通じる現行の見出し）。
     // セールはヒーロー上のバナー（bfBanner）、アプリ版などの訴求は見出しの下のカード（heroExtra）で見せる。
     h1: ['<span class="yellow-marker">映像 × 音声</span>で覚えると、', '英単語は<span class="highlight">忘れない。</span>'],
-    tagline: '3教材＋アプリ版。完全版がBLACK FRIDAY価格。',
-    taglineMobile: '3教材＋アプリ版。<br>完全版が<span class="highlight">BLACK FRIDAY価格</span>。',
-    sub: '1日10分、スマホだけで完結。買い切りで追加費用なし。',
-    // 価格（定価→セール価格・割引額・締切）と、アプリ版・セット内容のカードを、文章ではなく要素で見せる。
-    // ヒーロー内の購入ボタンと「中身を30秒で見る」は出さない（購入はナビと下の固定バーから）
+    // タグラインと説明文は index.html のまま（tagline / sub を指定しない）。
+    // アプリ版・セット内容は、説明文の下の2枚のカードで見せる。価格はヒーローに出さない
     heroExtra: bfHeroPoints,
     productsLead: '3つの映像教材に加えて、完全版ならアプリ版も使えます。アプリ版は単品購入ではまだ使えません。',
     finalTitle: ['BLACK FRIDAY', 'アプリ版に先行アクセス。'],
