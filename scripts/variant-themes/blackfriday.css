@@ -419,7 +419,7 @@ body.theme-blackfriday .anchor-pct strong{color: #ff4d4d}
    「アプリ版 先行アクセス」「割引」「3教材」を、文章ではなく3枚のカードで見せる。
    いちばん見せたいアプリ版のカードだけ金で塗る。 */
 .hero-extra{margin: 22px 0 26px}
-.bf-points{display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 10px; margin: 0; padding: 0; list-style: none; max-width: 640px}
+.bf-points{display: grid; grid-template-columns: 1.2fr 1fr; gap: 10px; margin: 0; padding: 0; list-style: none; max-width: 560px}
 .bf-point{
   display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
   padding: 14px 14px 13px;
@@ -448,10 +448,23 @@ body.theme-blackfriday .hero-trust,
 body.theme-blackfriday .hero-trust-m{display: none}
 @media (max-width: 768px){
   .hero-extra{margin: 18px 0 22px}
-  /* スマホはアプリ版のカードを横いっぱいに、残り2枚をその下に並べる */
-  .bf-points{grid-template-columns: 1fr 1fr; gap: 8px; max-width: none}
-  .bf-point-app{grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 10px; row-gap: 4px; padding: 14px 16px}
-  .bf-point-app .bf-point-main{font-size: 20px}
-  .bf-point-app .bf-point-note{flex-basis: 100%}
+  /* スマホは2枚を縦に並べる */
+  .bf-points{gap: 8px; max-width: none}
+  .bf-points{grid-template-columns: 1fr}
+  .bf-point{padding: 12px 16px}
   .bf-point-main{font-size: 17px}
+}
+
+/* --- ヒーローの要素を減らす ---
+   セールの告知は上の金のバナーに任せ、同じ内容の繰り返しと飾りを外す。 */
+/* 見出しの上の小さな帯（VIDEO × SOUND × MEMORY）。高さは残して見出しの位置を保つ */
+body.theme-blackfriday .hero-eyebrow{visibility: hidden}
+/* 一行の説明文（タグラインと役割が重なる） */
+body.theme-blackfriday .hero-sub,
+body.theme-blackfriday .hero-sub-m{display: none}
+/* ナビの「BLACK FRIDAY SALE 開催中」の文字（すぐ下のバナーと重複）。割引率のピルは残す */
+body.theme-blackfriday .nav-offer-copy{display: none}
+@media (min-width: 769px){
+  /* PCは帯を消した分、見出しを少し上へ */
+  body.theme-blackfriday .hero-eyebrow{display: none}
 }
