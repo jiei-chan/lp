@@ -42,13 +42,15 @@ module.exports = {
   blackfriday: {
     theme: 'blackfriday',
     sale: blackFridaySale,
-    title: 'import｜BLACK FRIDAY — 完全版でアプリ版に先行アクセス',
-    description: '完全版にはアプリ版の利用も含まれます。アプリ版は単品購入ではまだ使えません。3教材がそろう import 完全版を、期間限定のブラックフライデー価格で。',
-    eyebrow: 'Black Friday Sale',
-    h1: ['<span class="yellow-marker">BLACK FRIDAY</span>', 'アプリ版に<span class="highlight">先行アクセス。</span>'],
-    tagline: '完全版には、アプリ版の利用も含まれます。',
-    taglineMobile: '完全版には、<br><span class="highlight">アプリ版の利用</span>も含まれます。',
-    sub: 'アプリ版は、単品購入ではまだ使えません。TOEIC 2000語以上・SCORE 990まで、Essential Verbs 500 を収録したアプリ版を、ブラックフライデー価格の完全版で先行して使えます。',
+    title: 'import｜BLACK FRIDAY SALE — 映像 × 音声で覚える、忘れない英単語学習',
+    description: '映像×音声で覚える英単語学習 import。3教材がそろう完全版を、期間限定のブラックフライデー価格で。完全版にはアプリ版の利用も含まれます。',
+    // ヒーローは「何の商品で、何が良いのか」を先に言う（初めて見る人にも通じる現行の見出し）。
+    // セールは eyebrow とタグライン、アプリ版は「完全版を選ぶ理由」として添える。主役にはしない。
+    eyebrow: 'Black Friday Sale · 11/20–11/30',
+    h1: ['<span class="yellow-marker">映像 × 音声</span>で覚えると、', '英単語は<span class="highlight">忘れない。</span>'],
+    tagline: '完全版がブラックフライデー価格。アプリ版も使える。',
+    taglineMobile: '完全版が<span class="highlight">ブラックフライデー価格</span>。<br>アプリ版も使える。',
+    sub: '生きた3D映像で、英語が「使える」に変わる。句動詞・イディオム・TOEIC語彙の3教材がそろう完全版には、単品では使えないアプリ版の先行アクセスも付きます。1日10分、スマホだけで完結。',
     productsLead: '3つの映像教材に加えて、完全版ならアプリ版も使えます。アプリ版は単品購入ではまだ使えません。',
     finalTitle: ['BLACK FRIDAY', 'アプリ版に先行アクセス。'],
     finalSub: '完全版にはアプリ版の利用も含まれます。',
