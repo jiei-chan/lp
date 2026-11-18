@@ -459,6 +459,8 @@ body.theme-blackfriday .nav-offer-copy{display: none}
   body.theme-blackfriday .hero-eyebrow{display: none}
 }
 
-/* --- ヒーローのボタンは「import完全版を購入」だけ。「中身を30秒で見る」は出さない --- */
-body.theme-blackfriday .hero .cta-row .btn-ghost,
-body.theme-blackfriday .hero-below .cta-row-m .btn-ghost{display: none}
+/* --- ヒーローにボタンは出さない（購入・中身を30秒で見る の両方）。購入はナビと画面下の固定バーから --- */
+body.theme-blackfriday .hero .cta-row,
+body.theme-blackfriday .hero-below .cta-row-m{display: none}
+/* ボタンがなくなった分、カードの下の余白を詰める */
+body.theme-blackfriday .hero-extra{margin-bottom: 0}
