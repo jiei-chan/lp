@@ -5783,6 +5783,26 @@ body.theme-blackfriday .inside-meta .desc{margin-top: 4px; font-size: 15px; colo
   body.theme-blackfriday .bundle-sub{color: rgba(255,255,255,0.78)}
   body.theme-blackfriday .bundle-cta-row .meta span{color: rgba(255,255,255,0.72)}
 }
+
+/* --- オファーの3商品画像：箱の下部にある細かい文字（生成画像のため文字が崩れている）を隠す ---
+   画像の下 10% を切り落とし、下側を黒へのグラデーションで沈めて、その上に一行の説明を載せる。
+   対象は images/complete-bundle-bf.webp（1920×1449）。画像を差し替えたら位置を見直すこと。 */
+body.theme-blackfriday .bundle-hero{background: #07070a}
+body.theme-blackfriday .bundle-hero img{aspect-ratio: 1920 / 1300; object-fit: cover; object-position: center top}
+body.theme-blackfriday .bundle-hero::after{
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0; height: 42%;
+  z-index: 3; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,7,10,0) 0%, rgba(7,7,10,0.5) 28%, rgba(7,7,10,0.93) 46%, #07070a 62%);
+}
+body.theme-blackfriday .bundle-hero::before{
+  content: '3つの映像教材 ＋ アプリ版 先行アクセス';
+  position: absolute; left: 0; right: 0; bottom: 6%;
+  z-index: 4; pointer-events: none;
+  text-align: center;
+  font-size: clamp(15px, 2.3vw, 28px); font-weight: 800; letter-spacing: 0.04em;
+  color: #ffcf4a;
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
