@@ -292,3 +292,30 @@ body.theme-blackfriday .bundle-hero .bf-set-right img{object-position: 0% 46%}
   .bf-set-caption{margin-top: 52px; gap: 8px; letter-spacing: 0.02em}
   .bf-set-caption::before, .bf-set-caption::after{max-width: 28px}
 }
+
+/* --- セットのカードの縁を、光がゆっくり一周する ---
+   角度を持つ円すいグラデーションを縁の幅だけ見せ、その角度を回す。
+   角度のアニメーションに対応していないブラウザでは、光は止まったまま（縁の一部が明るいだけ）になる。
+   「視差効果を減らす」設定の人には動かさない。 */
+@property --bf-edge-angle{syntax: '<angle>'; initial-value: 0deg; inherits: false}
+.bf-set-card::before{
+  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  padding: 2px; border-radius: inherit;
+  background: conic-gradient(from var(--bf-edge-angle),
+    transparent 0deg, transparent 250deg,
+    rgba(255, 207, 74, 0.55) 300deg, #fff3c4 335deg, rgba(255, 207, 74, 0.55) 352deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: bf-edge-run 7s linear infinite;
+}
+.bf-set-left::before{animation-delay: -2.3s}
+.bf-set-right::before{animation-delay: -4.6s}
+@keyframes bf-edge-run{to{--bf-edge-angle: 360deg}}
+@media (prefers-reduced-motion: reduce){
+  .bf-set-card::before{animation: none}
+}
+@media (max-width: 768px){
+  .bf-set-card::before{padding: 1.5px}
+}
