@@ -10,14 +10,7 @@ body.theme-blackfriday{
   --shadow-blue: 0 12px 32px rgba(168, 116, 0, 0.22);
 }
 
-/* --- ヒーロー：青い背景画像を落として黒に --- */
-body.theme-blackfriday .hero{background: #07070a}
-body.theme-blackfriday .hero-bg img{filter: grayscale(1) brightness(0.42) contrast(1.15)}
-body.theme-blackfriday .hero-overlay{
-  background:
-    radial-gradient(ellipse 70% 55% at 70% 45%, rgba(255, 207, 74, 0.16) 0%, transparent 70%),
-    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.35) 100%);
-}
+/* --- ヒーロー：画像は元の色（青）のまま使う。上のバナー・ボタン・カードの金で Black Friday らしさを出す --- */
 body.theme-blackfriday .hero-eyebrow{
   background: #ffcf4a;
   border-color: #ffcf4a;
