@@ -486,3 +486,9 @@ body.theme-blackfriday .hero-extra{margin-bottom: 0}
   body.theme-blackfriday .nav-actions{justify-content: flex-end}
 }
 body.theme-blackfriday .nav-offer{display: none}
+
+/* スマホでは説明文（3行）を出さず、訴求カードを最初の画面に上げる。PCは説明文を出したまま */
+@media (max-width: 768px){
+  body.theme-blackfriday .hero-sub-m{display: none}
+  body.theme-blackfriday .hero-below .hero-extra{margin-top: 16px}
+}
