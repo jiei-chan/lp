@@ -45,8 +45,7 @@ module.exports = {
     title: 'import｜BLACK FRIDAY SALE — 映像 × 音声で覚える、忘れない英単語学習',
     description: '映像×音声で覚える英単語学習 import。3教材がそろう完全版を、期間限定のブラックフライデー価格で。完全版にはアプリ版の利用も含まれます。',
     // ヒーローは「何の商品で、何が良いのか」を先に言う（初めて見る人にも通じる現行の見出し）。
-    // セールは eyebrow とタグライン、アプリ版は「完全版を選ぶ理由」として添える。主役にはしない。
-    eyebrow: 'Black Friday Sale · 11/20–11/30',
+    // セールはヒーロー上のバナー（bfBanner）とタグライン、アプリ版は「完全版を選ぶ理由」として添える。主役にはしない。
     h1: ['<span class="yellow-marker">映像 × 音声</span>で覚えると、', '英単語は<span class="highlight">忘れない。</span>'],
     tagline: '完全版がブラックフライデー価格。アプリ版も使える。',
     taglineMobile: '完全版が<span class="highlight">ブラックフライデー価格</span>。<br>アプリ版も使える。',
@@ -56,8 +55,8 @@ module.exports = {
     finalSub: '完全版にはアプリ版の利用も含まれます。',
     // 訴求の軸は「完全版だけのアプリ版 先行アクセス」（アプリ版は単品購入ではまだ使えない）。
     // 中身 → 商品 → アプリ版の説明 → 価格。アプリ版の説明は価格の直前に置き、ボタンですぐ下の価格へつなぐ。
-    extraSections: { appAccess: 'app-access.html' },
-    sections: ['hero', 'heroBelow', 'achievement', 'inside', 'products', 'appAccess', 'bundle', 'community', 'voices',
+    extraSections: { bfBanner: 'bf-banner.html', appAccess: 'app-access.html' },
+    sections: ['bfBanner', 'hero', 'heroBelow', 'achievement', 'inside', 'products', 'appAccess', 'bundle', 'community', 'voices',
       'solution', 'authority', 'faq', 'final'],
     replace: [
       ['<span class="sale-mode-copy-scheduled">import 完全版 セール中</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY SALE 開催中</span>'],

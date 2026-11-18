@@ -5724,6 +5724,33 @@ body.theme-blackfriday .btn-final-cta{background: #ffcf4a; color: #0a0a0a}
   .app-row-value{font-size: 22px}
 }
 .bundle-row-app .dot{background: #ffb200 !important}
+
+/* --- Black Friday バナー（scripts/variant-sections/bf-banner.html） ---
+   固定ナビ（PC 70px / スマホ 58px）の分だけ上を空け、その下に金の帯を出す。
+   ヒーローは元々ナビの分の余白を持っているので、その分だけ引き上げて二重にしない。 */
+.bf-banner{position: relative; z-index: 3; padding-top: 70px; background: #07070a}
+.bf-banner-strip{
+  display: flex; align-items: center; justify-content: center; gap: 22px;
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #ffb200 0%, #ffd766 50%, #ffb200 100%);
+  color: #0a0a0a;
+}
+.bf-banner-title{font-family: var(--en); font-size: 26px; font-weight: 900; letter-spacing: 0.14em; line-height: 1}
+.bf-banner-meta{display: inline-flex; align-items: center; gap: 12px; font-family: var(--en); font-weight: 800; white-space: nowrap}
+.bf-banner-date{font-size: 16px; letter-spacing: 0.04em}
+.bf-banner-off{padding: 5px 12px; border-radius: 100px; background: #0a0a0a; color: #ffcf4a; font-size: 14px; letter-spacing: 0.04em}
+body.theme-blackfriday .hero{margin-top: -70px}
+@media (max-width: 768px){
+  .bf-banner{padding-top: 58px}
+  .bf-banner-strip{flex-direction: column; gap: 6px; padding: 10px 16px}
+  .bf-banner-title{font-size: 20px; letter-spacing: 0.12em}
+  .bf-banner-date{font-size: 13px}
+  .bf-banner-off{padding: 3px 10px; font-size: 12px}
+  /* スマホのヒーローは見出しの上に 76px の余白（ナビ分＋非表示同然の帯）がある。バナーの直下に見出しが来るよう詰める。 */
+  body.theme-blackfriday .hero{margin-top: -52px}
+  /* 元の小さな帯はバナーの裏に隠れる位置。端がはみ出さないよう消す（高さは残して見出し位置を保つ）。 */
+  body.theme-blackfriday .hero-eyebrow{visibility: hidden}
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
@@ -5756,6 +5783,17 @@ body.theme-blackfriday .btn-final-cta{background: #ffcf4a; color: #0a0a0a}
   </div>
 </nav>
 
+<!-- Black Friday バナー（ヒーローの上。固定ナビの下に出る） -->
+<div class="bf-banner" role="region" aria-label="Black Friday Sale">
+  <div class="bf-banner-strip">
+    <span class="bf-banner-title">BLACK FRIDAY SALE</span>
+    <span class="bf-banner-meta">
+      <span class="bf-banner-date">11/20 – 11/30</span>
+      <span class="bf-banner-off"><span data-sale-percent>37</span>% OFF</span>
+    </span>
+  </div>
+</div>
+
 <!-- ========== HERO (DARK + IMAGE BG) ========== -->
 <section class="hero">
   <picture class="hero-bg">
@@ -5766,7 +5804,7 @@ body.theme-blackfriday .btn-final-cta{background: #ffcf4a; color: #0a0a0a}
 
   <div class="hero-grid">
     <div class="hero-text">
-      <div class="hero-eyebrow">Black Friday Sale · 11/20–11/30</div>
+      <div class="hero-eyebrow">Video × Sound × Memory</div>
 
       <h1>
         <span class="h1-line"><span class="yellow-marker">映像 × 音声</span>で覚えると、</span>
