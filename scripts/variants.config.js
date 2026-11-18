@@ -73,6 +73,8 @@ module.exports = {
       ['      <div class="inside-label">\n        WHAT IS INSIDE\n        <span class="small">まず中身を30秒で。</span>\n      </div>', '      <h2 class="inside-title">説明より、まず30秒。</h2>\n      <p class="inside-lead">3つの教材はどれも同じ形式。1シーンに1表現、音と一緒に。</p>'],
       // TOEIC の商品画像を「TOTAL 2000+ WORDS」のパッケージに（index.html が使う product-toeic-vocab.webp は残す）
       ['<img src="images/product-toeic-vocab.webp"', '<img src="images/product-toeic-vocab-2000.webp"'],
+      // 価格カードの上の小見出し（すぐ下のラベルも「特別価格」で重複していた）。Black Friday 表記は期間中だけ出す
+      ['<div class="offer-eyebrow">特別価格</div>', '<div class="offer-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY PRICE</span><span class="sale-mode-copy-discount-only">エディション価格</span></div>'],
       // オファーの画像：1枚絵（CompleteBundle.png）の代わりに、単品の商品画像3枚を組んだ構図を入れる
       [`      <picture>
         <img src="images/CompleteBundle.png" alt="Complete Edition - Essential Verbs + NativeDose + TOEIC® - VOCAB COMPLETE" onerror="this.parentElement.parentElement.classList.add('no-image')" />

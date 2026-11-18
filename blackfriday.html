@@ -5892,6 +5892,85 @@ body.theme-blackfriday .bundle-hero .bf-set-right img{object-position: 0% 46%}
 @media (max-width: 768px){
   .bf-set-card::before{padding: 1.5px}
 }
+
+/* --- オファーのカード全体を黒×金にそろえる ---
+   元は白いカードに赤の価格・オレンジの購入ボタンで、上のセット構図（黒×金）と色がばらばらだった。
+   カード・内訳・価格・カウントダウン・購入ボタンを同じ黒い面と金のアクセントに統一する。 */
+body.theme-blackfriday .bundle-card{
+  background: linear-gradient(180deg, #0c0b08 0%, #08080a 100%);
+  border: 1px solid rgba(255, 207, 74, 0.55);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 178, 0, 0.06);
+}
+body.theme-blackfriday .bundle-title-jp{color: rgba(255,255,255,0.65)}
+body.theme-blackfriday .bundle-title-en{color: #fff}
+body.theme-blackfriday .bundle-title .blue{color: #ffcf4a}
+body.theme-blackfriday .bundle-sub{color: rgba(255,255,255,0.75)}
+
+/* 内訳 */
+body.theme-blackfriday .bundle-price-block{
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: none;
+}
+body.theme-blackfriday .bundle-breakdown{border-bottom-color: rgba(255,255,255,0.14)}
+body.theme-blackfriday .bundle-row .item,
+body.theme-blackfriday .bundle-row .price{color: rgba(255,255,255,0.82)}
+body.theme-blackfriday .bundle-row.total .item,
+body.theme-blackfriday .bundle-row.total .price{color: #fff}
+body.theme-blackfriday .bundle-row-app .num{color: #ffcf4a}
+
+/* 価格 */
+body.theme-blackfriday .offer-card{
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255, 207, 74, 0.13) 0%, transparent 70%), #0a0a0c;
+  border: 1px solid rgba(255, 207, 74, 0.45);
+  box-shadow: none;
+}
+body.theme-blackfriday .offer-eyebrow{color: #ffcf4a}
+body.theme-blackfriday .offer-eyebrow::before{background: #ffcf4a; box-shadow: 0 0 0 4px rgba(255, 207, 74, 0.18)}
+body.theme-blackfriday .compare-label{color: rgba(255,255,255,0.6)}
+body.theme-blackfriday .compare-strike{color: rgba(255,255,255,0.45)}
+body.theme-blackfriday .compare-label-now{color: #ffcf4a}
+body.theme-blackfriday .offer-compare .compare-arrow{background: transparent; border-color: rgba(255, 207, 74, 0.45); color: #ffcf4a}
+body.theme-blackfriday .compare-now,
+body.theme-blackfriday .compare-now .yen{
+  background: linear-gradient(180deg, #fff3c4 0%, #ffcf4a 45%, #ffb200 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+body.theme-blackfriday .offer-savings-bar{background: rgba(255, 207, 74, 0.10); border-color: rgba(255, 207, 74, 0.45)}
+body.theme-blackfriday .savings-big,
+body.theme-blackfriday .savings-pct-big{color: #ffcf4a}
+body.theme-blackfriday .savings-bar-divider{background: rgba(255, 207, 74, 0.4)}
+body.theme-blackfriday .offer-tax{color: rgba(255,255,255,0.6)}
+
+/* カウントダウン */
+body.theme-blackfriday .offer-urgency{background: rgba(255,255,255,0.04); border-top-color: rgba(255,255,255,0.10)}
+body.theme-blackfriday .urgency-header{color: rgba(255,255,255,0.82)}
+body.theme-blackfriday .urgency-header strong,
+body.theme-blackfriday .urgency-header svg{color: #ffcf4a}
+body.theme-blackfriday .urgency-num{color: #fff}
+body.theme-blackfriday .urgency-lbl{color: rgba(255,255,255,0.5)}
+body.theme-blackfriday .urgency-sep span{background: rgba(255,255,255,0.3)}
+
+/* 購入ボタンのカード */
+body.theme-blackfriday .anchor-card{background: rgba(255,255,255,0.035); border: 1px solid rgba(255, 207, 74, 0.45)}
+body.theme-blackfriday .anchor-card::before{background: linear-gradient(90deg, transparent 0%, #ffcf4a 50%, transparent 100%)}
+body.theme-blackfriday .anchor-eyebrow{color: rgba(255,255,255,0.55)}
+body.theme-blackfriday .anchor-strike{color: rgba(255,255,255,0.45)}
+body.theme-blackfriday .anchor-pct,
+body.theme-blackfriday .anchor-pct strong{color: #ffcf4a}
+body.theme-blackfriday .anchor-desc{color: rgba(255,255,255,0.7)}
+body.theme-blackfriday .btn-anchor-cta{
+  background: linear-gradient(135deg, #ffb200 0%, #ffd766 100%);
+  color: #0a0a0a;
+  box-shadow: 0 12px 32px rgba(255, 178, 0, 0.32), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+body.theme-blackfriday .btn-anchor-cta:hover{box-shadow: 0 18px 42px rgba(255, 178, 0, 0.42), inset 0 1px 0 rgba(255,255,255,0.4)}
+body.theme-blackfriday .bundle-cta-row .meta,
+body.theme-blackfriday .bundle-cta-row .meta span{color: rgba(255,255,255,0.7)}
+/* スマホ（600px以下）は元々カードの枠を出さない作り。黒いセクションにそのまま載せる。 */
+@media (max-width: 600px){
+  body.theme-blackfriday .bundle-card{background: transparent; border: none; box-shadow: none}
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
@@ -6476,7 +6555,7 @@ body.theme-blackfriday .bundle-hero .bf-set-right img{object-position: 0% 46%}
 
       <div class="offer-card">
         <div class="offer-hero">
-          <div class="offer-eyebrow">特別価格</div>
+          <div class="offer-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY PRICE</span><span class="sale-mode-copy-discount-only">エディション価格</span></div>
 
           <!-- Direct price comparison -->
           <div class="offer-compare">
