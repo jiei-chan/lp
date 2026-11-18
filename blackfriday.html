@@ -5773,6 +5773,16 @@ body.theme-blackfriday .inside-meta .desc{margin-top: 4px; font-size: 15px; colo
   body.theme-blackfriday .inside-meta .name{font-size: 12px; line-height: 1.3}
   body.theme-blackfriday .inside-meta .desc{font-size: 11px}
 }
+
+/* スマホ（600px以下）ではオファーのカード背景が透明になり、黒いセクションの上に直接文字が載る。
+   題字と説明が黒地に埋もれないよう、明るい色にする。 */
+@media (max-width: 600px){
+  body.theme-blackfriday .bundle-title-jp{color: rgba(255,255,255,0.7)}
+  body.theme-blackfriday .bundle-title-en{color: #fff}
+  body.theme-blackfriday .bundle-title .blue{color: #ffcf4a}
+  body.theme-blackfriday .bundle-sub{color: rgba(255,255,255,0.78)}
+  body.theme-blackfriday .bundle-cta-row .meta span{color: rgba(255,255,255,0.72)}
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
