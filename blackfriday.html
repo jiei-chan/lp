@@ -6037,6 +6037,28 @@ body.theme-blackfriday .hero .cta-row,
 body.theme-blackfriday .hero-below .cta-row-m{display: none}
 /* ボタンがなくなった分、カードの下の余白を詰める */
 body.theme-blackfriday .hero-extra{margin-bottom: 0}
+
+/* --- ヒーローの第一印象の調整（計測に基づく） ---
+   1. PC：見出しの1行目の末尾がスマホの画像に重なっていた（1280〜1920px幅で確認）。
+      見出しを少し小さくして、画像の手前で収める。
+   2. スマホ：見出しが明るい青の上に載り、白文字のコントラスト比が中央値 4.2・最小 3.0 と弱かった。
+      見出しの背後だけ上から暗くして読みやすくする（キャラクターの顔にはかからない範囲）。
+   3. 「37% OFF」がナビ・金のバナー・下の固定バーの3か所に同時に出ていた。ナビのピルを外す。 */
+@media (min-width: 769px){
+  body.theme-blackfriday .hero h1{font-size: clamp(38px, 3.6vw, 52px)}
+}
+@media (max-width: 768px){
+  body.theme-blackfriday .hero-overlay{
+    /* 暗くするのは見出しの1行目あたりまで（ヒーロー上端から 15%）。その下はキャラクターの顔なので暗くしない */
+    background: linear-gradient(180deg, rgba(3, 8, 32, 0.62) 0%, rgba(3, 8, 32, 0.5) 9%, rgba(3, 8, 32, 0) 15%);
+  }
+  /* 2行目はキャラクターの横に来る。画像は暗くせず、文字の側に影を付けて読みやすくする */
+  /* text-shadow だとグラデーション文字（「忘れない。」）の上に影が乗って濁るので、文字の外側にだけ出る drop-shadow を使う */
+  body.theme-blackfriday .hero h1{filter: drop-shadow(0 1px 8px rgba(3, 8, 32, 0.6))}
+  /* ナビのピルを外しても、購入ボタンは右端に置く */
+  body.theme-blackfriday .nav-actions{justify-content: flex-end}
+}
+body.theme-blackfriday .nav-offer{display: none}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
@@ -6110,7 +6132,7 @@ body.theme-blackfriday .hero-extra{margin-bottom: 0}
 <ul class="bf-points" aria-label="Black Friday の完全版に含まれるもの">
   <li class="bf-point bf-point-app">
     <strong class="bf-point-main">アプリ版 先行アクセス</strong>
-    <span class="bf-point-note">完全版だけ（単品購入ではまだ使えません）</span>
+    <span class="bf-point-note">完全版の購入者だけが、先に使えます</span>
   </li>
   <li class="bf-point">
     <strong class="bf-point-main">映像教材 3本セット</strong>
@@ -6168,7 +6190,7 @@ body.theme-blackfriday .hero-extra{margin-bottom: 0}
 <ul class="bf-points" aria-label="Black Friday の完全版に含まれるもの">
   <li class="bf-point bf-point-app">
     <strong class="bf-point-main">アプリ版 先行アクセス</strong>
-    <span class="bf-point-note">完全版だけ（単品購入ではまだ使えません）</span>
+    <span class="bf-point-note">完全版の購入者だけが、先に使えます</span>
   </li>
   <li class="bf-point">
     <strong class="bf-point-main">映像教材 3本セット</strong>
