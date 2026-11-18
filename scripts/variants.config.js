@@ -53,9 +53,9 @@ module.exports = {
     finalTitle: ['BLACK FRIDAY', 'アプリ版に先行アクセス。'],
     finalSub: '完全版にはアプリ版の利用も含まれます。',
     // 訴求の軸は「完全版だけのアプリ版 先行アクセス」（アプリ版は単品購入ではまだ使えない）。
-    // ヒーロー直後にアプリ版の説明 → 中身 → 商品 → 価格。なぜ効くかの説明は価格の後ろへ。
+    // 中身 → 商品 → アプリ版の説明 → 価格。アプリ版の説明は価格の直前に置き、ボタンですぐ下の価格へつなぐ。
     extraSections: { appAccess: 'app-access.html' },
-    sections: ['hero', 'heroBelow', 'achievement', 'appAccess', 'inside', 'products', 'bundle', 'community', 'voices',
+    sections: ['hero', 'heroBelow', 'achievement', 'inside', 'products', 'appAccess', 'bundle', 'community', 'voices',
       'solution', 'authority', 'faq', 'final'],
     replace: [
       ['<span class="sale-mode-copy-scheduled">import 完全版 セール中</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY SALE 開催中</span>'],
