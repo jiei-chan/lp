@@ -5987,6 +5987,47 @@ body.theme-blackfriday .savings-pct-big{color: #ff5a5a}
 body.theme-blackfriday .savings-bar-divider{background: rgba(255, 90, 90, 0.5)}
 body.theme-blackfriday .anchor-pct,
 body.theme-blackfriday .anchor-pct strong{color: #ff4d4d}
+
+/* --- ヒーローの訴求カード（scripts/variant-sections/bf-hero-points.html） ---
+   「アプリ版 先行アクセス」「割引」「3教材」を、文章ではなく3枚のカードで見せる。
+   いちばん見せたいアプリ版のカードだけ金で塗る。 */
+.hero-extra{margin: 22px 0 26px}
+.bf-points{display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 10px; margin: 0; padding: 0; list-style: none; max-width: 640px}
+.bf-point{
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  padding: 14px 14px 13px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.bf-point-tag{
+  padding: 3px 9px; border-radius: 100px;
+  background: rgba(255, 207, 74, 0.16); color: #ffcf4a;
+  font-size: 10.5px; font-weight: 800; letter-spacing: 0.06em; line-height: 1.4;
+}
+.bf-point-main{font-size: 19px; font-weight: 800; line-height: 1.25; color: #fff; letter-spacing: 0.01em}
+.bf-point-note{font-size: 11.5px; line-height: 1.4; color: rgba(255,255,255,0.62)}
+.bf-point-app{
+  background: linear-gradient(150deg, #ffd766 0%, #ffb200 100%);
+  border-color: #ffd766;
+  box-shadow: 0 14px 34px rgba(255, 178, 0, 0.28);
+}
+.bf-point-app .bf-point-tag{background: #0a0a0a; color: #ffcf4a}
+.bf-point-app .bf-point-main{color: #0a0a0a}
+.bf-point-app .bf-point-note{color: rgba(10,10,10,0.72)}
+/* 「買い切り型」「スマホで完結」の小さなバッジは、説明文に入れたので Black Friday 版では出さない */
+body.theme-blackfriday .hero-trust,
+body.theme-blackfriday .hero-trust-m{display: none}
+@media (max-width: 768px){
+  .hero-extra{margin: 18px 0 22px}
+  /* スマホはアプリ版のカードを横いっぱいに、残り2枚をその下に並べる */
+  .bf-points{grid-template-columns: 1fr 1fr; gap: 8px; max-width: none}
+  .bf-point-app{grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 10px; row-gap: 4px; padding: 14px 16px}
+  .bf-point-app .bf-point-main{font-size: 20px}
+  .bf-point-app .bf-point-note{flex-basis: 100%}
+  .bf-point-main{font-size: 17px}
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
@@ -6048,12 +6089,32 @@ body.theme-blackfriday .anchor-pct strong{color: #ff4d4d}
       </h1>
 
       <p class="hero-tagline desktop-only">
-        完全版がブラックフライデー価格。アプリ版も使える。
+        生きた3D映像で、英語が「使える」に変わる。
       </p>
 
       <p class="hero-sub desktop-only">
-        生きた3D映像で、英語が「使える」に変わる。句動詞・イディオム・TOEIC語彙の3教材がそろう完全版には、単品では使えないアプリ版の先行アクセスも付きます。1日10分、スマホだけで完結。
+        1日10分、スマホだけで完結。買い切りで追加費用なし。
       </p>
+
+      <div class="hero-extra desktop-only">
+<ul class="bf-points" aria-label="Black Friday の完全版に含まれるもの">
+  <li class="bf-point bf-point-app">
+    <span class="bf-point-tag">完全版だけ</span>
+    <strong class="bf-point-main">アプリ版 先行アクセス</strong>
+    <span class="bf-point-note">単品購入ではまだ使えません</span>
+  </li>
+  <li class="bf-point">
+    <span class="bf-point-tag"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span><span class="sale-mode-copy-discount-only">セット価格</span></span>
+    <strong class="bf-point-main"><span data-sale-percent>37</span>% OFF</strong>
+    <span class="bf-point-note"><span class="sale-mode-copy-scheduled" data-sale-deadline-short>11/30 23:59まで</span><span class="sale-mode-copy-discount-only">単品合計より</span></span>
+  </li>
+  <li class="bf-point">
+    <span class="bf-point-tag">セット</span>
+    <strong class="bf-point-main">映像教材 3本</strong>
+    <span class="bf-point-note">句動詞・イディオム・TOEIC</span>
+  </li>
+</ul>
+      </div>
 
       <div class="cta-row desktop-only">
         <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="btn btn-primary" data-purchase-cta="hero_desktop">
@@ -6093,12 +6154,32 @@ body.theme-blackfriday .anchor-pct strong{color: #ff4d4d}
 <!-- ========== HERO BELOW (MOBILE ONLY) ========== -->
 <section class="hero-below mobile-only">
   <p class="hero-tagline-m">
-    完全版が<span class="highlight">ブラックフライデー価格</span>。<br>アプリ版も使える。
+    生きた3D映像で、<br>英語が<span class="highlight">「使える」</span>に変わる。
   </p>
 
   <p class="hero-sub-m">
-    生きた3D映像で、英語が「使える」に変わる。句動詞・イディオム・TOEIC語彙の3教材がそろう完全版には、単品では使えないアプリ版の先行アクセスも付きます。1日10分、スマホだけで完結。
+    1日10分、スマホだけで完結。買い切りで追加費用なし。
   </p>
+
+  <div class="hero-extra">
+<ul class="bf-points" aria-label="Black Friday の完全版に含まれるもの">
+  <li class="bf-point bf-point-app">
+    <span class="bf-point-tag">完全版だけ</span>
+    <strong class="bf-point-main">アプリ版 先行アクセス</strong>
+    <span class="bf-point-note">単品購入ではまだ使えません</span>
+  </li>
+  <li class="bf-point">
+    <span class="bf-point-tag"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span><span class="sale-mode-copy-discount-only">セット価格</span></span>
+    <strong class="bf-point-main"><span data-sale-percent>37</span>% OFF</strong>
+    <span class="bf-point-note"><span class="sale-mode-copy-scheduled" data-sale-deadline-short>11/30 23:59まで</span><span class="sale-mode-copy-discount-only">単品合計より</span></span>
+  </li>
+  <li class="bf-point">
+    <span class="bf-point-tag">セット</span>
+    <strong class="bf-point-main">映像教材 3本</strong>
+    <span class="bf-point-note">句動詞・イディオム・TOEIC</span>
+  </li>
+</ul>
+  </div>
 
   <div class="cta-row-m">
     <a href="https://www.import-language.com/ja/products/import完全版-premium-complete-edition-lp用割引" class="btn btn-primary" data-purchase-cta="hero_mobile">

@@ -140,6 +140,14 @@ function build(name, def, source) {
     c.heroBelow = replaceOnce(c.heroBelow, /(<p class="hero-sub-m">)[\s\S]*?(<\/p>)/, m =>
       `${m[1]}\n    ${def.sub}\n  ${m[2]}`, at('hero sub mobile'));
   }
+  // ヒーローの説明文のすぐ下に入れる要素（訴求を文章ではなくカード等で見せるためのもの）。
+  // PCはヒーロー内、スマホは画像の下のブロックに、同じ中身を1つずつ入れる。
+  if (def.heroExtra) {
+    c.hero = replaceOnce(c.hero, /<p class="hero-sub desktop-only">[\s\S]*?<\/p>/, m =>
+      `${m[0]}\n\n      <div class="hero-extra desktop-only">\n${def.heroExtra}\n      </div>`, at('hero extra'));
+    c.heroBelow = replaceOnce(c.heroBelow, /<p class="hero-sub-m">[\s\S]*?<\/p>/, m =>
+      `${m[0]}\n\n  <div class="hero-extra">\n${def.heroExtra}\n  </div>`, at('hero extra mobile'));
+  }
 
   // --- 中身プレビュー / 共感 / 商品 / 声 / FAQ ---
   if (def.inside) {

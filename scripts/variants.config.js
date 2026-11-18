@@ -19,6 +19,9 @@
 const fs = require('fs');
 const path = require('path');
 
+// Black Friday 版のヒーローに入れる訴求カード（アプリ版 先行アクセス / 割引 / 3教材）
+const bfHeroPoints = fs.readFileSync(path.join(__dirname, 'variant-sections', 'bf-hero-points.html'), 'utf8').trimEnd();
+
 // Black Friday 版のオファーに入れる「3教材セット」の構図
 const bfSetMarkup = fs.readFileSync(path.join(__dirname, 'variant-sections', 'bf-set.html'), 'utf8').trimEnd();
 
@@ -51,11 +54,13 @@ module.exports = {
     title: 'import｜BLACK FRIDAY SALE — 映像 × 音声で覚える、忘れない英単語学習',
     description: '映像×音声で覚える英単語学習 import。3教材がそろう完全版を、期間限定のブラックフライデー価格で。完全版にはアプリ版の利用も含まれます。',
     // ヒーローは「何の商品で、何が良いのか」を先に言う（初めて見る人にも通じる現行の見出し）。
-    // セールはヒーロー上のバナー（bfBanner）とタグライン、アプリ版は「完全版を選ぶ理由」として添える。主役にはしない。
+    // セールはヒーロー上のバナー（bfBanner）、アプリ版などの訴求は見出しの下のカード（heroExtra）で見せる。
     h1: ['<span class="yellow-marker">映像 × 音声</span>で覚えると、', '英単語は<span class="highlight">忘れない。</span>'],
-    tagline: '完全版がブラックフライデー価格。アプリ版も使える。',
-    taglineMobile: '完全版が<span class="highlight">ブラックフライデー価格</span>。<br>アプリ版も使える。',
-    sub: '生きた3D映像で、英語が「使える」に変わる。句動詞・イディオム・TOEIC語彙の3教材がそろう完全版には、単品では使えないアプリ版の先行アクセスも付きます。1日10分、スマホだけで完結。',
+    tagline: '生きた3D映像で、英語が「使える」に変わる。',
+    taglineMobile: '生きた3D映像で、<br>英語が<span class="highlight">「使える」</span>に変わる。',
+    sub: '1日10分、スマホだけで完結。買い切りで追加費用なし。',
+    // セール・アプリ版・セット内容は、文章ではなく3枚のカードで見せる
+    heroExtra: bfHeroPoints,
     productsLead: '3つの映像教材に加えて、完全版ならアプリ版も使えます。アプリ版は単品購入ではまだ使えません。',
     finalTitle: ['BLACK FRIDAY', 'アプリ版に先行アクセス。'],
     finalSub: '完全版にはアプリ版の利用も含まれます。',
