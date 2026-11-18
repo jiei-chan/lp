@@ -6034,6 +6034,39 @@ body.theme-blackfriday .nav-offer-copy{display: none}
   /* PCは帯を消した分、見出しを少し上へ */
   body.theme-blackfriday .hero-eyebrow{display: none}
 }
+
+/* --- ヒーローのボタン2つ（購入・中身を30秒で見る）は出さない。購入はナビと画面下の固定バーから --- */
+body.theme-blackfriday .hero .cta-row,
+body.theme-blackfriday .hero-below .cta-row-m{display: none}
+
+/* --- ヒーローの価格表示：定価 → セール価格、割引額、締切 --- */
+.bf-hero-price{margin: 0 0 18px}
+.bf-hero-price-label{
+  display: inline-block; padding: 4px 12px; border-radius: 100px;
+  background: #ffcf4a; color: #0a0a0a;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
+}
+.bf-hero-price-row{display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 14px; row-gap: 4px; margin-top: 8px}
+.bf-hero-price-was{font-family: var(--en); font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.7); text-decoration: line-through; text-decoration-thickness: 2px}
+.bf-hero-price-now{
+  font-family: var(--en); font-size: 76px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;
+  color: #fff; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+.bf-hero-price-off{
+  align-self: center;
+  padding: 7px 14px; border-radius: 10px;
+  background: #e5152b; color: #fff;
+  font-family: var(--en); font-size: 20px; font-weight: 900; letter-spacing: 0.02em; white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(229, 21, 43, 0.35);
+}
+.bf-hero-price-note{margin-top: 10px; font-size: 13px; color: rgba(255,255,255,0.8)}
+@media (max-width: 768px){
+  .bf-hero-price{margin-bottom: 16px}
+  .bf-hero-price-was{font-size: 18px}
+  .bf-hero-price-now{font-size: 60px}
+  .bf-hero-price-off{padding: 5px 11px; font-size: 16px}
+  .bf-hero-price-note{font-size: 12px}
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
@@ -6095,7 +6128,7 @@ body.theme-blackfriday .nav-offer-copy{display: none}
       </h1>
 
       <p class="hero-tagline desktop-only">
-        生きた3D映像で、英語が「使える」に変わる。
+        3教材＋アプリ版。完全版がBLACK FRIDAY価格。
       </p>
 
       <p class="hero-sub desktop-only">
@@ -6103,6 +6136,15 @@ body.theme-blackfriday .nav-offer-copy{display: none}
       </p>
 
       <div class="hero-extra desktop-only">
+<div class="bf-hero-price">
+  <div class="bf-hero-price-label"><span class="sale-mode-copy-scheduled">BLACK FRIDAY 価格</span><span class="sale-mode-copy-discount-only">完全版セット価格</span></div>
+  <div class="bf-hero-price-row">
+    <span class="bf-hero-price-was" data-sale-regular-price>¥20,340</span>
+    <span class="bf-hero-price-now" data-sale-price>¥12,800</span>
+    <span class="bf-hero-price-off"><span data-sale-savings-yen>7,540円</span> OFF</span>
+  </div>
+  <div class="bf-hero-price-note"><span class="sale-mode-copy-scheduled"><span data-sale-deadline-short>11/30 23:59まで</span>・</span>税込・買い切り・追加費用なし</div>
+</div>
 <ul class="bf-points" aria-label="Black Friday の完全版に含まれるもの">
   <li class="bf-point bf-point-app">
     <strong class="bf-point-main">アプリ版 先行アクセス</strong>
@@ -6153,7 +6195,7 @@ body.theme-blackfriday .nav-offer-copy{display: none}
 <!-- ========== HERO BELOW (MOBILE ONLY) ========== -->
 <section class="hero-below mobile-only">
   <p class="hero-tagline-m">
-    生きた3D映像で、<br>英語が<span class="highlight">「使える」</span>に変わる。
+    3教材＋アプリ版。<br>完全版が<span class="highlight">BLACK FRIDAY価格</span>。
   </p>
 
   <p class="hero-sub-m">
@@ -6161,6 +6203,15 @@ body.theme-blackfriday .nav-offer-copy{display: none}
   </p>
 
   <div class="hero-extra">
+<div class="bf-hero-price">
+  <div class="bf-hero-price-label"><span class="sale-mode-copy-scheduled">BLACK FRIDAY 価格</span><span class="sale-mode-copy-discount-only">完全版セット価格</span></div>
+  <div class="bf-hero-price-row">
+    <span class="bf-hero-price-was" data-sale-regular-price>¥20,340</span>
+    <span class="bf-hero-price-now" data-sale-price>¥12,800</span>
+    <span class="bf-hero-price-off"><span data-sale-savings-yen>7,540円</span> OFF</span>
+  </div>
+  <div class="bf-hero-price-note"><span class="sale-mode-copy-scheduled"><span data-sale-deadline-short>11/30 23:59まで</span>・</span>税込・買い切り・追加費用なし</div>
+</div>
 <ul class="bf-points" aria-label="Black Friday の完全版に含まれるもの">
   <li class="bf-point bf-point-app">
     <strong class="bf-point-main">アプリ版 先行アクセス</strong>

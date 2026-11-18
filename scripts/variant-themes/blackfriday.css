@@ -461,3 +461,36 @@ body.theme-blackfriday .nav-offer-copy{display: none}
   /* PCは帯を消した分、見出しを少し上へ */
   body.theme-blackfriday .hero-eyebrow{display: none}
 }
+
+/* --- ヒーローのボタン2つ（購入・中身を30秒で見る）は出さない。購入はナビと画面下の固定バーから --- */
+body.theme-blackfriday .hero .cta-row,
+body.theme-blackfriday .hero-below .cta-row-m{display: none}
+
+/* --- ヒーローの価格表示：定価 → セール価格、割引額、締切 --- */
+.bf-hero-price{margin: 0 0 18px}
+.bf-hero-price-label{
+  display: inline-block; padding: 4px 12px; border-radius: 100px;
+  background: #ffcf4a; color: #0a0a0a;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
+}
+.bf-hero-price-row{display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 14px; row-gap: 4px; margin-top: 8px}
+.bf-hero-price-was{font-family: var(--en); font-size: 24px; font-weight: 700; color: rgba(255,255,255,0.7); text-decoration: line-through; text-decoration-thickness: 2px}
+.bf-hero-price-now{
+  font-family: var(--en); font-size: 76px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;
+  color: #fff; text-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+.bf-hero-price-off{
+  align-self: center;
+  padding: 7px 14px; border-radius: 10px;
+  background: #e5152b; color: #fff;
+  font-family: var(--en); font-size: 20px; font-weight: 900; letter-spacing: 0.02em; white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(229, 21, 43, 0.35);
+}
+.bf-hero-price-note{margin-top: 10px; font-size: 13px; color: rgba(255,255,255,0.8)}
+@media (max-width: 768px){
+  .bf-hero-price{margin-bottom: 16px}
+  .bf-hero-price-was{font-size: 18px}
+  .bf-hero-price-now{font-size: 60px}
+  .bf-hero-price-off{padding: 5px 11px; font-size: 16px}
+  .bf-hero-price-note{font-size: 12px}
+}
