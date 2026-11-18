@@ -211,22 +211,84 @@ body.theme-blackfriday .inside-meta .desc{margin-top: 4px; font-size: 15px; colo
   body.theme-blackfriday .bundle-cta-row .meta span{color: rgba(255,255,255,0.72)}
 }
 
-/* --- オファーの3商品画像：箱の下部にある細かい文字（生成画像のため文字が崩れている）を隠す ---
-   画像の下 10% を切り落とし、下側を黒へのグラデーションで沈めて、その上に一行の説明を載せる。
-   対象は images/complete-bundle-bf.webp（1920×1449）。画像を差し替えたら位置を見直すこと。 */
+/* --- オファーの「3教材セット」（scripts/variant-sections/bf-set.html） ---
+   単品の商品画像3枚を、黒い舞台の上に扇形に重ねて置く。中央を手前に大きく、左右は奥へ傾ける。
+   金の細い縁・上からのスポットライト・床への映り込みで、箱入りのセットに見せる。 */
 body.theme-blackfriday .bundle-hero{background: #07070a}
-body.theme-blackfriday .bundle-hero img{aspect-ratio: 1920 / 1300; object-fit: cover; object-position: center top}
-body.theme-blackfriday .bundle-hero::after{
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: 0; height: 42%;
-  z-index: 3; pointer-events: none;
-  background: linear-gradient(180deg, rgba(7,7,10,0) 0%, rgba(7,7,10,0.5) 28%, rgba(7,7,10,0.93) 46%, #07070a 62%);
+.bf-set{
+  position: relative; overflow: hidden;
+  padding: 72px 24px 44px;
+  background:
+    radial-gradient(ellipse 46% 52% at 50% 40%, rgba(255, 207, 74, 0.30) 0%, rgba(255, 178, 0, 0.08) 45%, transparent 72%),
+    radial-gradient(ellipse 80% 30% at 50% 78%, rgba(255, 178, 0, 0.14) 0%, transparent 70%),
+    linear-gradient(180deg, #0c0b08 0%, #07070a 100%);
 }
-body.theme-blackfriday .bundle-hero::before{
-  content: '3つの映像教材 ＋ アプリ版 先行アクセス';
-  position: absolute; left: 0; right: 0; bottom: 6%;
-  z-index: 4; pointer-events: none;
-  text-align: center;
-  font-size: clamp(15px, 2.3vw, 28px); font-weight: 800; letter-spacing: 0.04em;
-  color: #ffcf4a;
+/* 上端の細い金のライン */
+.bf-set::before{
+  content: ''; position: absolute; left: 12%; right: 12%; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 207, 74, 0.8), transparent);
+}
+.bf-set-stage{
+  display: flex; justify-content: center; align-items: center;
+  max-width: 860px; margin: 0 auto;
+  perspective: 1800px;
+}
+.bf-set-card{
+  position: relative; margin: 0; flex: none;
+  aspect-ratio: 4 / 5;
+  border-radius: 22px; overflow: hidden;
+  background: #111;
+  box-shadow:
+    0 0 0 1px rgba(255, 215, 110, 0.55),
+    0 0 0 5px rgba(255, 207, 74, 0.07),
+    0 44px 70px rgba(0, 0, 0, 0.62);
+  /* 床への映り込み（Chrome / Safari。非対応のブラウザでは出ないだけ） */
+  -webkit-box-reflect: below 10px linear-gradient(to bottom, transparent 62%, rgba(0, 0, 0, 0.26));
+}
+body.theme-blackfriday .bundle-hero .bf-set-card img{
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 46%;
+}
+/* 面のツヤ：左上からの光と、下側の落ち込み */
+.bf-set-card::after{
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background:
+    linear-gradient(118deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.05) 22%, transparent 38%),
+    linear-gradient(180deg, transparent 58%, rgba(0,0,0,0.78) 100%);
+}
+.bf-set-card figcaption{
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  padding: 0 10px 16px; text-align: center;
+  font-family: var(--en); font-size: 14px; font-weight: 800; letter-spacing: 0.06em; color: #fff;
+}
+.bf-set-center{width: 38%; z-index: 3; transform: translateZ(60px)}
+.bf-set-left, .bf-set-right{width: 31%; z-index: 2; filter: brightness(0.86) saturate(0.95)}
+.bf-set-left{margin-right: -5%; transform: rotateY(26deg) rotateZ(-2.5deg) translateY(3%); transform-origin: right center}
+.bf-set-right{margin-left: -5%; transform: rotateY(-26deg) rotateZ(2.5deg) translateY(3%); transform-origin: left center}
+/* 左右のカードは中央のカードに一部隠れる。箱と商品名を、見えている側へ寄せる。 */
+body.theme-blackfriday .bundle-hero .bf-set-left img{object-position: 100% 46%}
+body.theme-blackfriday .bundle-hero .bf-set-right img{object-position: 0% 46%}
+.bf-set-left figcaption{text-align: left; padding-left: 9%}
+.bf-set-right figcaption{text-align: right; padding-right: 9%}
+.bf-set-caption{
+  position: relative; z-index: 5;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  margin-top: 92px;
+  font-size: clamp(15px, 2.1vw, 24px); font-weight: 800; letter-spacing: 0.06em; color: #ffcf4a;
+}
+.bf-set-caption::before, .bf-set-caption::after{
+  content: ''; flex: 1; max-width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 207, 74, 0.7));
+}
+.bf-set-caption::after{transform: scaleX(-1)}
+.bf-set-plus{color: #fff; font-weight: 400}
+@media (max-width: 768px){
+  .bf-set{padding: 44px 12px 28px}
+  .bf-set-card{border-radius: 14px}
+  .bf-set-card figcaption{padding: 0 4px 9px; font-size: 9px; letter-spacing: 0.02em}
+  .bf-set-center{width: 42%}
+  .bf-set-left, .bf-set-right{width: 35%}
+  .bf-set-left{margin-right: -6%}
+  .bf-set-right{margin-left: -6%}
+  .bf-set-caption{margin-top: 52px; gap: 8px; letter-spacing: 0.02em}
+  .bf-set-caption::before, .bf-set-caption::after{max-width: 28px}
 }

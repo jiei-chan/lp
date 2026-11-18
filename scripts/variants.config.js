@@ -16,6 +16,12 @@
 // PCのヒーローは tagline が1行固定。全角24字程度までに収める。
 // コピーには index.html に無い数値・実績・効果の断定を足さないこと。
 
+const fs = require('fs');
+const path = require('path');
+
+// Black Friday 版のオファーに入れる「3教材セット」の構図
+const bfSetMarkup = fs.readFileSync(path.join(__dirname, 'variant-sections', 'bf-set.html'), 'utf8').trimEnd();
+
 // Black Friday の価格・期間（2026-11-17 確定：12,800円、11/20〜11/30）。
 // 開始は 11/20 0:00、終了は 11/30 23:59（= 12/1 0:00）として設定。時刻が違う場合は startAt / endAt を直す。
 // 期間外は staticOffer（現行の通常オファー）が表示される。購入先 Shopify 商品の価格も同じ値にそろえること。
@@ -67,8 +73,10 @@ module.exports = {
       ['      <div class="inside-label">\n        WHAT IS INSIDE\n        <span class="small">まず中身を30秒で。</span>\n      </div>', '      <h2 class="inside-title">説明より、まず30秒。</h2>\n      <p class="inside-lead">3つの教材はどれも同じ形式。1シーンに1表現、音と一緒に。</p>'],
       // TOEIC の商品画像を「TOTAL 2000+ WORDS」のパッケージに（index.html が使う product-toeic-vocab.webp は残す）
       ['<img src="images/product-toeic-vocab.webp"', '<img src="images/product-toeic-vocab-2000.webp"'],
-      // オファーの3商品画像（index.html が使う CompleteBundle.png は残す）
-      ['<img src="images/CompleteBundle.png"', '<img src="images/complete-bundle-bf.webp"'],
+      // オファーの画像：1枚絵（CompleteBundle.png）の代わりに、単品の商品画像3枚を組んだ構図を入れる
+      [`      <picture>
+        <img src="images/CompleteBundle.png" alt="Complete Edition - Essential Verbs + NativeDose + TOEIC® - VOCAB COMPLETE" onerror="this.parentElement.parentElement.classList.add('no-image')" />
+      </picture>`, bfSetMarkup],
       // Essential Verbs の商品画像も新しいパッケージに（index.html が使う product-essential.png は残す）
       ['<img src="images/product-essential.png"', '<img src="images/product-essential-remastered.webp"'],
       // オファー：アプリ版が含まれることを見出し・説明・内訳に入れる
