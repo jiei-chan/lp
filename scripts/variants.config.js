@@ -76,7 +76,8 @@ module.exports = {
       ['<span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY OFFER</span>'],
       // 中身プレビュー：見出しを大きく左寄せに（見た目は blackfriday.css）。カードの説明は1行だけにし、アプリ版の数字は比較セクションに任せる
       ['      <div class="inside-label">\n        WHAT IS INSIDE\n        <span class="small">まず中身を30秒で。</span>\n      </div>', '      <h2 class="inside-title">説明より、まず30秒。</h2>\n      <p class="inside-lead">3つの教材はどれも同じ形式。1シーンに1表現、音と一緒に。</p>'],
-      // ヒーロー画像（PC）を「500 PHRASES / 2000+ WORDS」の版に。スマホ用の hero-mobile.png は未差し替え（400 / 1100 のまま）
+      // ヒーロー画像を「500 PHRASES / 2000+ WORDS」の版に。スマホ用は PC 用の右側を切り出して作った縦長画像
+      ['<source media="(max-width: 768px)" srcset="images/hero-mobile.png">', '<source media="(max-width: 768px)" srcset="images/hero-mobile-bf.webp">'],
       ['<img src="images/hero-pc.png" alt="import" />', '<img src="images/hero-pc-bf.webp" alt="import" />'],
       // TOEIC の商品画像を「TOTAL 2000+ WORDS」のパッケージに（index.html が使う product-toeic-vocab.webp は残す）
       ['<img src="images/product-toeic-vocab.webp"', '<img src="images/product-toeic-vocab-2000.webp"'],
