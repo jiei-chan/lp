@@ -63,6 +63,8 @@ module.exports = {
       ['<span class="sale-mode-copy-scheduled">— Special Offer</span>', '<span class="sale-mode-copy-scheduled">— Black Friday Offer</span>'],
       ['<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">エディション価格で。</span></span>', '<span class="sale-mode-copy-scheduled">3つすべてを、<br><span class="gradient">ブラックフライデー価格で。</span></span>'],
       ['<span class="sale-mode-copy-scheduled">期間限定 EDITION OFFER</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY OFFER</span>'],
+      // 中身プレビュー：見出しを大きく左寄せに（見た目は blackfriday.css）。カードの説明は1行だけにし、アプリ版の数字は比較セクションに任せる
+      ['      <div class="inside-label">\n        WHAT IS INSIDE\n        <span class="small">まず中身を30秒で。</span>\n      </div>', '      <h2 class="inside-title">説明より、まず30秒。</h2>\n      <p class="inside-lead">3つの教材はどれも同じ形式。1シーンに1表現、音と一緒に。</p>'],
       // オファー：アプリ版が含まれることを見出し・説明・内訳に入れる
       ['個別に買うより圧倒的にお得。期間限定の特別価格で、3教材すべてが手に入ります。', '3教材すべてに加えて、アプリ版の利用も含まれます。アプリ版は単品購入ではまだ使えません。'],
       ['<span class="blue">+ 限定特典付き</span>', '<span class="blue">+ 限定特典・アプリ版 先行アクセス付き</span>'],
@@ -73,8 +75,7 @@ module.exports = {
       //   TOEIC  … アプリ版 SCORE 990・2000語以上 / ストリーミング版 SCORE 660まで
       //   Essential Verbs … アプリ版 500 / ストリーミング版 400
       // どちらの版の数字かを必ず書く。版を書かずに 2000語・990 とだけ出さないこと。
-      ['<div class="desc">句動詞 400</div>', '<div class="desc"><span class="desc-line">句動詞 400</span><span class="desc-line">アプリ版は500</span></div>'],
-      ['<span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span>', '<span class="desc-line">アプリ版 〜990点</span><span class="desc-line">ストリーミング版</span><span class="desc-line">〜660点</span>'],
+      ['<span class="desc-line">BASIC → SCORE 600</span><span class="desc-line">いま必要な1,101単語</span>', '<span class="desc-line">TOEIC 頻出語彙</span>'],
       ['<div class="stat-num">1100</div>\n            <div class="stat-label">WORDS</div>', '<div class="stat-num">2000+</div>\n            <div class="stat-label">WORDS（アプリ版）</div>'],
       ['<li>BASICからSCORE 600までをカバー</li>', '<li>アプリ版はSCORE 990まで・2000語以上を掲載</li>'],
       ['<li>追加課金なし、SCORE 730以降も近日中に追加予定</li>', '<li>ストリーミング版はSCORE 660までをカバー</li>'],
