@@ -6060,6 +6060,14 @@ body.theme-blackfriday .nav-offer{display: none}
   body.theme-blackfriday .nav{display: none}
   body.theme-blackfriday .bf-banner{padding-top: 0}
 }
+
+/* --- ヒーロー画像の下端が、後ろのセクションの上にはみ出さないようにする ---
+   スマホのヒーローは高さ 240vw の箱で、その上に次のブロックを重ねて隠す作り（index.html の基準値）。
+   Black Friday 版ではヒーロー内のボタン・説明文・ヘッダーを外して重なる中身が短くなったため、
+   画像の下端が「累計受講者数」の下まで届き、次のセクションの見出しの上に青い帯として出ていた（実機で確認）。
+   ヒーローより後ろのセクションを、必ずヒーローの手前に描く。 */
+body.theme-blackfriday .hero-below ~ section,
+body.theme-blackfriday .hero-below ~ .app-access{position: relative; z-index: 2}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
