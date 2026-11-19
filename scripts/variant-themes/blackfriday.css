@@ -542,3 +542,36 @@ body.theme-blackfriday .bundle-pill{
   color: #0a0a0a;
   box-shadow: 0 4px 20px rgba(255, 178, 0, 0.35);
 }
+
+/* --- 最終CTAのカウントダウン：赤い帯の上に、白い丸に入った数字と日本語の単位を並べる ---
+   元は半透明の四角い箱4つに英語の単位（DAYS など）。帯は画面の横幅いっぱいに出し、色は価格の赤にそろえる。 */
+body.theme-blackfriday .final-countdown{
+  gap: 28px; flex-wrap: nowrap;
+  margin: 0 -24px 28px; padding: 22px 16px;
+  background: #e8553a;
+  /* 上の購入ボタンの影が帯の上に落ちないよう、帯を手前に描く */
+  position: relative; z-index: 1;
+}
+body.theme-blackfriday .cd-box{
+  display: flex; align-items: flex-end; gap: 7px;
+  min-width: 0; padding: 0;
+  background: none; border: none; border-radius: 0;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+body.theme-blackfriday .cd-box .num{
+  display: grid; place-items: center;
+  width: 66px; height: 66px; border-radius: 50%;
+  background: #fff; color: #e8553a;
+  font-size: 30px; font-weight: 800; letter-spacing: -0.02em;
+}
+body.theme-blackfriday .cd-box .lbl{
+  margin: 0 0 6px;
+  font-family: var(--jp); font-size: 16px; font-weight: 600; letter-spacing: 0.02em; text-transform: none;
+  color: #fff; white-space: nowrap;
+}
+@media (max-width: 768px){
+  body.theme-blackfriday .final-countdown{gap: 12px; margin: 0 -20px 26px; padding: 18px 10px}
+  body.theme-blackfriday .cd-box{gap: 4px}
+  body.theme-blackfriday .cd-box .num{width: 50px; height: 50px; font-size: 23px}
+  body.theme-blackfriday .cd-box .lbl{margin-bottom: 4px; font-size: 13px}
+}

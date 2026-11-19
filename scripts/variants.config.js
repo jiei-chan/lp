@@ -116,6 +116,11 @@ module.exports = {
       ['<div class="stat-num">400</div>\n            <div class="stat-label">PHRASES</div>', '<div class="stat-num">500</div>\n            <div class="stat-label">PHRASES<br>（アプリ版）</div>'],
       ['<li>日常会話・映画・ビジネスで圧倒的に使われる句動詞400個を、シーンと一緒に体感的に習得</li>', '<li>日常会話・映画・ビジネスで圧倒的に使われる句動詞を、シーンと一緒に体感的に習得</li>\n          <li>アプリ版は句動詞500・ストリーミング版は400を収録</li>'],
       ['Essential Verbs（句動詞400）', 'Essential Verbs（句動詞500・ストリーミング版は400）'],
+      // 最終CTAのカウントダウン：単位を英語（DAYS / HOURS / MIN / SEC）から日本語に。見た目は blackfriday.css
+      ['<div class="lbl">DAYS</div>', '<div class="lbl">日</div>'],
+      ['<div class="lbl">HOURS</div>', '<div class="lbl">時間</div>'],
+      ['<div class="lbl">MIN</div>', '<div class="lbl">分</div>'],
+      ['<div class="lbl">SEC</div>', '<div class="lbl">秒</div>'],
       // 固定バーのボタン：押すと購入ページに進むので、行き先が分かる文言にする（元は「中身を見る」）
       ['data-purchase-cta="sticky_offer">中身を見る</a>', 'data-purchase-cta="sticky_offer">購入する</a>'],
       ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
