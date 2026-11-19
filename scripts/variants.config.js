@@ -68,13 +68,14 @@ module.exports = {
     // 訴求の軸は「完全版だけのアプリ版 先行アクセス」（アプリ版は単品購入ではまだ使えない）。
     // 並び：中身 → 商品 → アプリ版の説明 → 価格 → import紹介（About import）→ インフルエンサー紹介 → 購入者の声 →（悩み → 3つの問題 → 本当の問題 → 解決策）。
     // import紹介はインフルエンサー紹介のすぐ上、購入者の声はすぐ下に置く（2026-11-19 の指定）。価格の後に信頼の材料を3つ続ける。
+    // FAQ は最終CTAの下（ページの最後、フッターの直前）に置く（2026-11-19 の指定）。
     // 悩み〜解決策の4つは、インフルエンサー紹介（Featured by）のすぐ下に置く（2026-11-19 の指定）。
     // アプリ版の説明は価格の直前に置き、ボタンですぐ下の価格へつなぐ。
     extraSections: { bfBanner: 'bf-banner.html', appAccess: 'app-access.html' },
     sections: ['bfBanner', 'hero', 'heroBelow', 'achievement', 'inside',
       'products', 'appAccess', 'bundle', 'authority', 'community', 'voices',
       'empathy', 'problem3', 'realProblem', 'solution',
-      'faq', 'final'],
+      'final', 'faq'],
     replace: [
       ['<span class="sale-mode-copy-scheduled">import 完全版 セール中</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY SALE 開催中</span>'],
       ['<span class="sale-mode-copy-scheduled">— Special Offer</span>', '<span class="sale-mode-copy-scheduled">— Black Friday Offer</span>'],
