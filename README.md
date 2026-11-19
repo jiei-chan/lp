@@ -61,6 +61,7 @@ HERO_KEY_COPY="映像で忘れない" node scripts/verify-mobile-hero.js http://
 - テーマは `scripts/variant-themes/blackfriday.css`。
 - 期間中に `/` を Black Friday 版にするには、`scripts/pages.config.js` の `home` を `'blackfriday'` にして main に入れる。終了後は `'index'` に戻す。仮値のままでは切り替えられない（ビルドがエラーで止まる）。
 - `/` を切り替えている間、`verify-price-ladder.js` などトップの価格を前提にした検査は期待値が変わる。
+- スマホでは上部の固定ヘッダーを出さない。スマホのファーストビュー検査は `MOBILE_NAV=none node scripts/verify-mobile-hero.js <URL>/blackfriday` で実行する。
 
 ## Vercelへのデプロイ
 

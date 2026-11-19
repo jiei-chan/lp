@@ -6052,6 +6052,14 @@ body.theme-blackfriday .nav-offer{display: none}
   body.theme-blackfriday .hero-sub-m{display: none}
   body.theme-blackfriday .hero-below .hero-extra{margin-top: 16px}
 }
+
+/* --- スマホでは上部の固定ヘッダー（「完全版を手に入れる」）を出さない ---
+   購入の入口は画面下の固定バー（「購入する」）に一本化する。
+   バナーはヘッダーの分だけ上を空けていたので、その余白もなくす。PCのヘッダーはそのまま。 */
+@media (max-width: 768px){
+  body.theme-blackfriday .nav{display: none}
+  body.theme-blackfriday .bf-banner{padding-top: 0}
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
