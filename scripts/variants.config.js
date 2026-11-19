@@ -66,12 +66,14 @@ module.exports = {
     finalTitle: ['BLACK FRIDAY', 'アプリ版に先行アクセス。'],
     finalSub: '完全版にはアプリ版の利用も含まれます。',
     // 訴求の軸は「完全版だけのアプリ版 先行アクセス」（アプリ版は単品購入ではまだ使えない）。
-    // LPの流れ：中身 →（悩み → 3つの問題 → 本当の問題 → 解決策）→ 商品 → アプリ版の説明 → 価格 → 証拠。
-    // 悩み〜解決策は index.html と同じ並び。アプリ版の説明は価格の直前に置き、ボタンですぐ下の価格へつなぐ。
+    // 並び：中身 → 商品 → アプリ版の説明 → 価格 → インフルエンサー紹介 →（悩み → 3つの問題 → 本当の問題 → 解決策）→ 声 → import紹介。
+    // 悩み〜解決策の4つは、インフルエンサー紹介（Featured by）のすぐ下に置く（2026-11-19 の指定）。
+    // アプリ版の説明は価格の直前に置き、ボタンですぐ下の価格へつなぐ。
     extraSections: { bfBanner: 'bf-banner.html', appAccess: 'app-access.html' },
     sections: ['bfBanner', 'hero', 'heroBelow', 'achievement', 'inside',
+      'products', 'appAccess', 'bundle', 'community',
       'empathy', 'problem3', 'realProblem', 'solution',
-      'products', 'appAccess', 'bundle', 'community', 'voices', 'authority', 'faq', 'final'],
+      'voices', 'authority', 'faq', 'final'],
     replace: [
       ['<span class="sale-mode-copy-scheduled">import 完全版 セール中</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY SALE 開催中</span>'],
       ['<span class="sale-mode-copy-scheduled">— Special Offer</span>', '<span class="sale-mode-copy-scheduled">— Black Friday Offer</span>'],
