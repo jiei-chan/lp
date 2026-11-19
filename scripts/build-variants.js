@@ -130,6 +130,15 @@ function build(name, def, source) {
   // テーマCSSは既存の <style> の後ろに足す（同じ詳細度なら後勝ち）。
   if (def.theme) {
     const css = fs.readFileSync(path.join(__dirname, 'variant-themes', `${def.theme}.css`), 'utf8');
+    // 波かっこの対応を検査する。余分な } が1つあるだけで、ブラウザは直後の指定を黙って無視する。
+    let depth = 0;
+    css.replace(/\/\*[\s\S]*?\*\//g, m => m.replace(/[^\n]/g, ' ')).split('\n').forEach((line, i) => {
+      for (const ch of line) {
+        if (ch === '{') depth += 1;
+        else if (ch === '}' && --depth < 0) fail(at(`テーマCSS ${def.theme}.css の ${i + 1} 行目に余分な } があります。`));
+      }
+    });
+    if (depth !== 0) fail(at(`テーマCSS ${def.theme}.css に閉じていない { が ${depth} 個あります。`));
     head = replaceOnce(head, /<\/head>/, `<style>\n${css}</style>\n</head>`, at('theme'));
   }
 

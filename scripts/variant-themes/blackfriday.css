@@ -430,8 +430,6 @@ body.theme-blackfriday .hero-trust-m{display: none}
   .bf-pack-app .bf-pack-main::before{content: '＋'; margin-right: 8px; font-weight: 300; color: rgba(255,255,255,0.55)}
   .bf-pack-main{font-size: 17px}
 }
-}
-}
 
 /* --- ヒーローの要素を減らす ---
    セールの告知は上の金のバナーに任せ、同じ内容の繰り返しと飾りを外す。 */
@@ -527,4 +525,20 @@ body.theme-blackfriday .final-fade{
   /* 価格カードの重なりは index.html の 250px より浅くして、キャラクターの上半身まで見せる */
   body.theme-blackfriday .final-action-area{margin-top: -170px}
 }
+
+/* --- 最終CTAの価格カード：割引率の丸と日付のピルから青みを取る ---
+   元の指定は、丸のグラデーションの始まりが水色（#00f0ff）で、まわりの光も水色。金に置き換えたテーマでは
+   左上が緑がかり、青い光がにじんで見えていた。グラデーションと光をどちらも金にそろえ、文字は黒にして読みやすくする。 */
+body.theme-blackfriday .off-badge{
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 52%),
+    linear-gradient(135deg, #ffe08a 0%, #ffc233 45%, #f0a000 100%);
+  color: #0a0a0a;
+  box-shadow: 0 8px 30px rgba(255, 178, 0, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.22) inset, 0 0 54px rgba(255, 178, 0, 0.22);
+}
+body.theme-blackfriday .off-badge .num{text-shadow: none}
+body.theme-blackfriday .bundle-pill{
+  background: linear-gradient(120deg, #ffd766 0%, #ffb200 100%);
+  color: #0a0a0a;
+  box-shadow: 0 4px 20px rgba(255, 178, 0, 0.35);
 }
