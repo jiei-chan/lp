@@ -62,6 +62,7 @@ HERO_KEY_COPY="映像で忘れない" node scripts/verify-mobile-hero.js http://
 - 期間中に `/` を Black Friday 版にするには、`scripts/pages.config.js` の `home` を `'blackfriday'` にして main に入れる。終了後は `'index'` に戻す。仮値のままでは切り替えられない（ビルドがエラーで止まる）。
 - `/` を切り替えている間、`verify-price-ladder.js` などトップの価格を前提にした検査は期待値が変わる。
 - 本番のドメイン以外（Cloudflare のプレビューやローカル）では、開始日時より前でもセール中の表示（12,800円・カウントダウン）になる（`salePreviewBeforeStart`）。本番のドメインでは開始日時どおりに切り替わる。
+- 表示を軽くする処理（`optimizeMedia`）：`images/webp/` の WebP を使い、ヒーロー以外の画像と中身プレビューの動画は画面に近づくまで読み込まない。`images/` の PNG / JPEG を追加・差し替えたら `python3 scripts/tools/make-webp.py` を実行して `images/webp/` をコミットする（要 Pillow。Cloudflare のビルドでは実行されない）。
 - スマホでは上部の固定ヘッダーを出さない。スマホのファーストビュー検査は `MOBILE_NAV=none node scripts/verify-mobile-hero.js <URL>/blackfriday` で実行する。
 
 ## Vercelへのデプロイ

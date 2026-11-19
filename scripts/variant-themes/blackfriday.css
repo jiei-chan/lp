@@ -619,3 +619,24 @@ body.theme-blackfriday .voices{background: #fff}
 /* 声のカードと下の注記は元々白で、細い枠線だけになる。白い背景の上でも面として見えるよう、薄いグレーにする（FAQ の項目と同じ色） */
 body.theme-blackfriday .voice,
 body.theme-blackfriday .voices-note{background: var(--bg-soft)}
+
+/* --- 累計受講者数の下に出す、SNSの規模の3つの数字 --- */
+.achievement-stats{
+  display: flex; justify-content: center; gap: 0;
+  margin: 26px auto 0; padding: 0; list-style: none; max-width: 620px;
+}
+.achievement-stats li{flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 14px}
+.achievement-stats li + li{border-left: 1px solid rgba(255,255,255,0.16)}
+.achievement-stats strong{font-family: var(--en); font-size: 26px; font-weight: 800; line-height: 1.1; color: #ffcf4a; white-space: nowrap}
+.achievement-stats span{font-size: 12px; color: rgba(255,255,255,0.72); white-space: nowrap}
+@media (max-width: 768px){
+  .achievement-stats{margin-top: 20px}
+  .achievement-stats li{padding: 0 6px}
+  .achievement-stats strong{font-size: 20px}
+  .achievement-stats span{font-size: 10.5px}
+}
+
+/* --- カウントダウンは「オファーのカード内」と「画面下の固定バー」の2か所にする ---
+   最終CTAの帯は出さない（期限は、すぐ上の価格カードの日付と、画面下の固定バーで分かる）。
+   期限の表示が多すぎると、急かされている印象が強くなるため。 */
+body.theme-blackfriday .final-countdown{display: none}

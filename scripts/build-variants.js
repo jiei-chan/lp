@@ -238,7 +238,51 @@ function build(name, def, source) {
     if (count !== 1) fail(at(`replace[${i}] "${from.slice(0, 40)}…" が ${count} 箇所（想定 1 箇所）。`));
     html = html.replace(from, () => to);
   });
+  if (def.optimizeMedia) html = optimizeMedia(html, at);
   return html;
+}
+
+// optimizeMedia: 表示を軽くする。index.html と元の画像ファイルは変えない。
+//  1. images/webp/ に同名の WebP があれば、PNG / JPEG の代わりにそれを使う（scripts/tools/make-webp.py で作る）
+//  2. ヒーロー以外の画像は、画面に近づくまで読み込まない（loading="lazy"）
+//  3. 中身プレビューの動画は、画面に入ったときに初めて読み込んで再生する（それまではポスター画像を表示）
+function optimizeMedia(html, at) {
+  const webpDir = path.join(root, 'images', 'webp');
+  let swapped = 0;
+  html = html.replace(/((?:src|srcset|poster)=")images\/([^"\/]+)\.(?:png|jpe?g)"/g, (m, attr, stem) => {
+    if (!fs.existsSync(path.join(webpDir, `${stem}.webp`))) return m;
+    swapped += 1;
+    return `${attr}images/webp/${stem}.webp"`;
+  });
+  if (!swapped) fail(at('optimizeMedia: images/webp/ に使える画像がありません。python3 scripts/tools/make-webp.py を実行してください。'));
+
+  // ヒーローの背景（最初に見える絵）だけは先に読み込む。それ以外は遅延させる
+  html = html.replace(/<img\b[^>]*>/g, tag => {
+    if (/\bloading=/.test(tag)) return tag;
+    if (/src="images\/(?:webp\/)?hero-/.test(tag)) return tag.replace('<img', '<img fetchpriority="high" decoding="async"');
+    return tag.replace('<img', '<img loading="lazy" decoding="async"');
+  });
+
+  const videoTag = '<video class="inside-video" autoplay muted loop playsinline preload="metadata"';
+  const videos = html.split(videoTag).length - 1;
+  if (videos !== 3) fail(at(`optimizeMedia: 中身プレビューの動画が ${videos} 個（想定 3 個）。`));
+  html = html.split(videoTag).join('<video class="inside-video" muted loop playsinline preload="none" data-lazy-autoplay');
+  return replaceOnce(html, /<\/body>/, `<script>
+// 中身プレビューの動画：画面に入ったら読み込んで再生し、外れたら止める（optimizeMedia）
+(function(){
+  var videos = document.querySelectorAll('video[data-lazy-autoplay]');
+  if (!videos.length) return;
+  if (!('IntersectionObserver' in window)) { videos.forEach(function(v){ v.play().catch(function(){}); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) e.target.play().catch(function(){});
+      else e.target.pause();
+    });
+  }, { rootMargin: '200px 0px' });
+  videos.forEach(function(v){ io.observe(v); });
+})();
+</script>
+</body>`, at('lazy video script'));
 }
 
 function main() {

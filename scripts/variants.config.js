@@ -66,15 +66,15 @@ module.exports = {
     finalTitle: ['BLACK FRIDAY', 'アプリ版に先行アクセス。'],
     finalSub: '完全版にはアプリ版の利用も含まれます。',
     // 訴求の軸は「完全版だけのアプリ版 先行アクセス」（アプリ版は単品購入ではまだ使えない）。
-    // 並び：中身 → 商品 → アプリ版の説明 → 価格 → import紹介（About import）→ インフルエンサー紹介 → 購入者の声 →（悩み → 3つの問題 → 本当の問題 → 解決策）。
-    // import紹介はインフルエンサー紹介のすぐ上、購入者の声はすぐ下に置く（2026-11-19 の指定）。価格の後に信頼の材料を3つ続ける。
-    // FAQ は最終CTAの下（ページの最後、フッターの直前）に置く（2026-11-19 の指定）。
-    // 悩み〜解決策の4つは、インフルエンサー紹介（Featured by）のすぐ下に置く（2026-11-19 の指定）。
-    // アプリ版の説明は価格の直前に置き、ボタンですぐ下の価格へつなぐ。
+    // 並び：中身 →（悩み → 3つの問題 → 本当の問題 → 解決策）→ 商品 → アプリ版の説明 → 価格
+    //       → import紹介 → インフルエンサー紹介 → 購入者の声 → 最終CTA → FAQ。
+    // 「なぜ効くのか」を価格より前に読めるようにする（初めて来た人が、価値を知る前に価格を見ないように）。
+    // 価格の後ろは信頼の材料を3つ続け、FAQ はページの最後に置く。
+    optimizeMedia: true,
     extraSections: { bfBanner: 'bf-banner.html', appAccess: 'app-access.html' },
     sections: ['bfBanner', 'hero', 'heroBelow', 'achievement', 'inside',
-      'products', 'appAccess', 'bundle', 'authority', 'community', 'voices',
       'empathy', 'problem3', 'realProblem', 'solution',
+      'products', 'appAccess', 'bundle', 'authority', 'community', 'voices',
       'final', 'faq'],
     replace: [
       ['<span class="sale-mode-copy-scheduled">import 完全版 セール中</span>', '<span class="sale-mode-copy-scheduled">BLACK FRIDAY SALE 開催中</span>'],
@@ -125,6 +125,13 @@ module.exports = {
       ['<div class="lbl">HOURS</div>', '<div class="lbl">時間</div>'],
       ['<div class="lbl">MIN</div>', '<div class="lbl">分</div>'],
       ['<div class="lbl">SEC</div>', '<div class="lbl">秒</div>'],
+      // 購入ボタンの文言をそろえる（押した先はどれも同じ購入ページ）。固定バーだけは幅が狭いので「購入する」
+      ['<span class="label-full">import完全版を手に入れる</span>', '<span class="label-full">完全版を購入する</span>'],
+      ['<span class="label-short">完全版を手に入れる</span>', '<span class="label-short">完全版を購入する</span>'],
+      ['        セット内容を確認して購入へ\n', '        完全版を購入する\n'],
+      ['      今すぐエディションを始める\n', '      完全版を購入する\n'],
+      // 8. いちばん強い数字（SNSの規模）を、累計受講者数のすぐ下にも出す。数字は「About import」のセクションと同じもの
+      ['      <span class="num suffix">人突破！</span>\n    </div>', '      <span class="num suffix">人突破！</span>\n    </div>\n    <ul class="achievement-stats">\n      <li><strong>200万+</strong><span>SNS総フォロワー</span></li>\n      <li><strong>4億+</strong><span>総再生回数</span></li>\n      <li><strong>190+</strong><span>ユーザーの国数</span></li>\n    </ul>'],
       // 固定バーのボタン：押すと購入ページに進むので、行き先が分かる文言にする（元は「中身を見る」）
       ['data-purchase-cta="sticky_offer">中身を見る</a>', 'data-purchase-cta="sticky_offer">購入する</a>'],
       ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
