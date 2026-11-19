@@ -79,6 +79,9 @@ module.exports = {
       // ヒーロー画像を「500 PHRASES / 2000+ WORDS」の版に。スマホ用は PC 用の右側を切り出して作った縦長画像
       ['<source media="(max-width: 768px)" srcset="images/hero-mobile.png">', '<source media="(max-width: 768px)" srcset="images/hero-mobile-bf.webp">'],
       ['<img src="images/hero-pc.png" alt="import" />', '<img src="images/hero-pc-bf.webp" alt="import" />'],
+      // 最終CTAの背景画像（PC・スマホとも同じ1枚を使い、見せ方は blackfriday.css で変える）
+      ['<source media="(max-width: 768px)" srcset="images/toeic-vo-comp-pack-cta-mobile.png">', '<source media="(max-width: 768px)" srcset="images/final-bf.webp">'],
+      ['<img src="images/toeic-vo-comp-pack-cta-pc.png" alt="" />', '<img src="images/final-bf.webp" alt="" />'],
       // TOEIC の商品画像を「TOTAL 2000+ WORDS」のパッケージに（index.html が使う product-toeic-vocab.webp は残す）
       ['<img src="images/product-toeic-vocab.webp"', '<img src="images/product-toeic-vocab-2000.webp"'],
       // 価格カードの上の小見出し（すぐ下のラベルも「特別価格」で重複していた）。Black Friday 表記は期間中だけ出す

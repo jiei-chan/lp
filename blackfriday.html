@@ -5645,9 +5645,9 @@ body.theme-blackfriday .bundle-ribbon{
 }
 
 /* --- 最終CTA --- */
-body.theme-blackfriday .final-bg-wrap img{filter: grayscale(1) brightness(0.5) contrast(1.1)}
+/* 最終CTAの画像は元の色のまま使う（見せ方はファイル末尾の「最終CTA」）。背景は画像の上端と同じ濃紺 */
 body.theme-blackfriday .final,
-body.theme-blackfriday .final-action-area{background-color: #050506}
+body.theme-blackfriday .final-action-area{background-color: #010f23}
 body.theme-blackfriday .final h2 .accent{
   background: linear-gradient(110deg, #fff0b8 0%, #ffcf4a 45%, #ffb200 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -6068,6 +6068,39 @@ body.theme-blackfriday .nav-offer{display: none}
    ヒーローより後ろのセクションを、必ずヒーローの手前に描く。 */
 body.theme-blackfriday .hero-below ~ section,
 body.theme-blackfriday .hero-below ~ .app-access{position: relative; z-index: 2}
+
+/* --- 最終CTA：images/final-bf.webp（1920×1280、濃紺の空間に3つの箱が浮かぶ絵）を元の色のまま見せる ---
+   絵の上 1/4 は何もない濃紺なので、そこに見出しを載せる。絵の上端とセクションの背景は同じ濃紺でつながり、
+   下端の青い床は、その下の価格のブロックへ向けて濃紺に溶かす。暗くする幕や周辺を落とす効果は掛けない。 */
+body.theme-blackfriday .final-bg-overlay{
+  background: linear-gradient(180deg, rgba(1, 15, 35, 0.55) 0%, rgba(1, 15, 35, 0) 26%);
+}
+body.theme-blackfriday .final-fade{
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(1, 15, 35, 0) 0%, rgba(1, 15, 35, 0.75) 60%, #010f23 100%);
+}
+/* 絵を画面の横幅いっぱいに出すため、セクションの左右の余白をなくす（中のブロックは各自の余白を持っている） */
+body.theme-blackfriday .final{padding-left: 0; padding-right: 0}
+@media (min-width: 769px){
+  /* PC：絵の全体が入る高さ（横幅の 2/3）に、見出しのぶんを少し足す。絵は下に寄せ、上の濃紺の余白に見出しを置く。
+     見出しが箱の絵にかからないよう、少し小さめにする */
+  body.theme-blackfriday .final-image-area{min-height: min(calc(66.67vw + 60px), 960px); padding-top: 48px}
+  body.theme-blackfriday .final-bg-wrap img{object-position: center bottom}
+  body.theme-blackfriday .final-spacer{height: 0; min-height: 0}
+  body.theme-blackfriday .final h2{font-size: clamp(34px, 3.4vw, 48px); margin-bottom: 18px}
+}
+@media (max-width: 768px){
+  /* スマホ：見出しは濃紺の地に置き、その下に絵を画面の横幅いっぱいで見せる。
+     縦長の枠に切り抜くと箱が1つしか入らないので、横 4:3 の枠にして3つとも見せる。
+     元の作りは価格カードを絵の上に 250px 重ねるが、それだと絵が隠れるので重ねない */
+  body.theme-blackfriday .final{padding-top: 40px}
+  body.theme-blackfriday .final-bg-wrap{top: auto; bottom: 0; height: 75vw}
+  body.theme-blackfriday .final-bg-wrap img{object-position: center}
+  body.theme-blackfriday .final-spacer{height: 75vw; max-height: none; min-height: 0}
+  body.theme-blackfriday .final-bg-overlay{background: linear-gradient(180deg, #010f23 0%, rgba(1, 15, 35, 0) 16%)}
+  body.theme-blackfriday .final-fade{height: 80px}
+  body.theme-blackfriday .final-action-area{margin-top: 0; padding-top: 28px}
+}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
@@ -7605,8 +7638,8 @@ body.theme-blackfriday .hero-below ~ .app-access{position: relative; z-index: 2}
   <div class="final-image-area">
     <div class="final-bg-wrap">
       <picture>
-        <source media="(max-width: 768px)" srcset="images/toeic-vo-comp-pack-cta-mobile.png">
-        <img src="images/toeic-vo-comp-pack-cta-pc.png" alt="" />
+        <source media="(max-width: 768px)" srcset="images/final-bf.webp">
+        <img src="images/final-bf.webp" alt="" />
       </picture>
       <div class="final-bg-overlay"></div>
     </div>
