@@ -516,17 +516,15 @@ body.theme-blackfriday .final-fade{
   body.theme-blackfriday .final-bg-wrap{top: 2.2vw; bottom: auto; left: -5vw; right: -5vw; height: 73.33vw}
 }
 @media (max-width: 768px){
-  /* スマホ：絵を横に 1.5 倍へ拡大して箱3つを画面いっぱいに見せる（左右のキャラクターは端で切れる）。
-     絵の上の余白は見出しの裏に回し、床から下は枠で切って暗く沈める。価格カードは絵に重ねず、すぐ下に続ける */
-  body.theme-blackfriday .final{padding-top: 40px}
-  body.theme-blackfriday .final-bg-wrap{top: auto; bottom: -22vw; height: 100vw}
-  body.theme-blackfriday .final-bg-wrap img{object-position: center}
-  body.theme-blackfriday .final-spacer{height: 56vw; max-height: none; min-height: 0}
+  /* スマホ：現行ページのスマホ版と同じ作りにする。
+     縦長の専用画像（images/final-bf-mobile.webp：上に箱3つ、下の左右にキャラクター）を背景に敷き、
+     見出しは絵の上の余白に、価格カードは絵の下側（キャラクターの足元）に重ねる。
+     絵の枠の高さは index.html の基準値のまま使い、ここでは暗くする幕とカードの重なり量だけ調整する */
   body.theme-blackfriday .final-bg-overlay{
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 46%, rgba(5, 8, 24, 0) 0%, rgba(5, 8, 24, 0.35) 70%, rgba(5, 8, 24, 0.7) 100%),
-      linear-gradient(180deg, #050818 0%, rgba(5, 8, 24, 0.55) 14%, rgba(5, 8, 24, 0) 34%);
+    background: linear-gradient(180deg, rgba(5, 8, 24, 0.5) 0%, rgba(5, 8, 24, 0.15) 16%, rgba(5, 8, 24, 0) 34%, rgba(5, 8, 24, 0) 58%, rgba(5, 8, 24, 0.5) 78%, rgba(5, 8, 24, 0.9) 94%, #050818 100%);
   }
-  body.theme-blackfriday .final-fade{height: 30%}
-  body.theme-blackfriday .final-action-area{margin-top: 0; padding-top: 20px}
+  body.theme-blackfriday .final-fade{height: 60px}
+  /* 価格カードの重なりは index.html の 250px より浅くして、キャラクターの上半身まで見せる */
+  body.theme-blackfriday .final-action-area{margin-top: -170px}
+}
 }

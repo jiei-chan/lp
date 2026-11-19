@@ -89,6 +89,19 @@ function escapeAttr(value) {
   return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+// salePreviewBeforeStart: 本番のドメイン以外では、まだ始まっていないセール期間を「開始済み」として扱う。
+// 開始前にプレビューで価格とカウントダウンを確認するためのもの。本番（import-language.com とそのサブドメイン）では何もしない。
+const previewBeforeStartScript = `
+(function(){
+  if (/(^|\\.)import-language\\.com$/.test(window.location.hostname)) return;
+  var now = Date.now();
+  window.IMPORT_SALE_CONFIG.periods.forEach(function(period){
+    if (period.startAt && new Date(period.startAt).getTime() > now && new Date(period.endAt).getTime() > now) {
+      period.startAt = '2000-01-01T00:00:00+09:00';
+    }
+  });
+})();`;
+
 function build(name, def, source) {
   const { chunks } = source;
   let head = source.head;
@@ -208,7 +221,7 @@ function build(name, def, source) {
   // --- セール設定の差し替え（価格・期間）。index.html の IMPORT_SALE_CONFIG を丸ごと置き換える。 ---
   if (def.sale) {
     html = replaceOnce(html, /window\.IMPORT_SALE_CONFIG = \{[\s\S]*?\n\};/, () =>
-      `window.IMPORT_SALE_CONFIG = ${JSON.stringify(def.sale, null, 2)};`, at('sale config'));
+      `window.IMPORT_SALE_CONFIG = ${JSON.stringify(def.sale, null, 2)};` + (def.salePreviewBeforeStart ? previewBeforeStartScript : ''), at('sale config'));
   }
   // --- 文言の個別差し替え：[元の文字列, 新しい文字列]。元の文字列はちょうど1回だけ現れること。 ---
   (def.replace || []).forEach(([from, to], i) => {
