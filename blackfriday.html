@@ -6185,6 +6185,13 @@ body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(11){order: 8; marg
   body.theme-blackfriday .urgency-num{width: 36px; height: 36px; font-size: 16px}
   body.theme-blackfriday .urgency-lbl{margin: 0 4px 3px 2px; font-size: 11px}
 }
+
+/* --- 購入者の声：背景を白にする ---
+   すぐ下の「悩み」のセクションと同じ薄いグレーで、境目が余白だけになっていた。白にして区切りをはっきりさせる。 */
+body.theme-blackfriday .voices{background: #fff}
+/* 声のカードと下の注記は元々白で、細い枠線だけになる。白い背景の上でも面として見えるよう、薄いグレーにする（FAQ の項目と同じ色） */
+body.theme-blackfriday .voice,
+body.theme-blackfriday .voices-note{background: var(--bg-soft)}
 </style>
 </head>
 <body class="sale-mode-discount-only theme-blackfriday" data-lp-variant="blackfriday">
