@@ -5625,8 +5625,6 @@ body.theme-blackfriday .sticky-discount,
 body.theme-blackfriday .sticky-discount *,
 body.theme-blackfriday .sticky-mobile-savings strong,
 body.theme-blackfriday .sticky-count-label strong{color: #ffcf4a}
-body.theme-blackfriday .sticky-time{background: rgba(255,255,255,0.08)}
-body.theme-blackfriday .sticky-time strong{background: rgba(255,255,255,0.12); color: #fff; box-shadow: none}
 body.theme-blackfriday .sticky-eyebrow{color: #ffcf4a}
 
 /* --- オファー：黒いカードに金の縁 --- */
@@ -6147,6 +6145,45 @@ body.theme-blackfriday .cd-box .lbl{
   body.theme-blackfriday .cd-box{gap: 4px}
   body.theme-blackfriday .cd-box .num{width: 50px; height: 50px; font-size: 23px}
   body.theme-blackfriday .cd-box .lbl{margin-bottom: 4px; font-size: 13px}
+}
+
+/* --- 残り2か所のカウントダウンも、最終CTAと同じ「白い丸に赤い数字＋白い単位」にそろえる --- */
+
+/* 画面下の固定バー：もともと丸＋右下に単位の並び。色だけ変える（丸を白、数字を赤、単位を白） */
+body.theme-blackfriday .sticky-time{background: none}
+body.theme-blackfriday .sticky-time strong{background: #fff; color: #e8553a; border-color: #fff; box-shadow: none}
+body.theme-blackfriday .sticky-time span{color: #fff}
+
+/* オファーのカード内：赤い帯にして、数字を白い丸に入れ、単位を丸の右下に置く。
+   元は「数字 : 数字 : 数字 : 数字」の下の段に単位が並ぶ格子。区切りの点は出さず、数字と単位を交互に一列へ並べ替える */
+body.theme-blackfriday .offer-urgency{background: #e8553a; border-top: none}
+body.theme-blackfriday .urgency-header{color: #fff}
+body.theme-blackfriday .urgency-header strong,
+body.theme-blackfriday .urgency-header svg{color: #fff}
+body.theme-blackfriday .urgency-grid{display: flex; justify-content: center; align-items: flex-end; gap: 0; max-width: none}
+body.theme-blackfriday .urgency-sep{display: none}
+body.theme-blackfriday .urgency-num{
+  display: grid; place-items: center; flex: none;
+  width: 62px; height: 62px; border-radius: 50%;
+  background: #fff; color: #e8553a;
+  font-size: 28px;
+}
+body.theme-blackfriday .urgency-lbl{flex: none; margin: 0 22px 5px 6px; font-size: 15px; letter-spacing: 0.02em; color: #fff; white-space: nowrap}
+body.theme-blackfriday .urgency-grid > #cd-days{order: 1}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(8){order: 2}
+body.theme-blackfriday .urgency-grid > #cd-hours{order: 3}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(9){order: 4}
+body.theme-blackfriday .urgency-grid > #cd-min{order: 5}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(10){order: 6}
+body.theme-blackfriday .urgency-grid > #cd-sec{order: 7}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(11){order: 8; margin-right: 0}
+@media (max-width: 600px){
+  body.theme-blackfriday .urgency-num{width: 46px; height: 46px; font-size: 21px}
+  body.theme-blackfriday .urgency-lbl{margin: 0 9px 4px 4px; font-size: 12px}
+}
+@media (max-width: 360px){
+  body.theme-blackfriday .urgency-num{width: 36px; height: 36px; font-size: 16px}
+  body.theme-blackfriday .urgency-lbl{margin: 0 4px 3px 2px; font-size: 11px}
 }
 </style>
 </head>
