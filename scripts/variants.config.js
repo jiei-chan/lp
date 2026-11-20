@@ -125,15 +125,8 @@ module.exports = {
       ['<div class="lbl">HOURS</div>', '<div class="lbl">時間</div>'],
       ['<div class="lbl">MIN</div>', '<div class="lbl">分</div>'],
       ['<div class="lbl">SEC</div>', '<div class="lbl">秒</div>'],
-      // 購入ボタンの文言をそろえる（押した先はどれも同じ購入ページ）。固定バーだけは幅が狭いので「購入する」
-      ['<span class="label-full">import完全版を手に入れる</span>', '<span class="label-full">完全版を購入する</span>'],
-      ['<span class="label-short">完全版を手に入れる</span>', '<span class="label-short">完全版を購入する</span>'],
-      ['        セット内容を確認して購入へ\n', '        完全版を購入する\n'],
-      ['      今すぐエディションを始める\n', '      完全版を購入する\n'],
       // 8. いちばん強い数字（SNSの規模）を、累計受講者数のすぐ下にも出す。数字は「About import」のセクションと同じもの
       ['      <span class="num suffix">人突破！</span>\n    </div>', '      <span class="num suffix">人突破！</span>\n    </div>\n    <ul class="achievement-stats">\n      <li><strong>200万+</strong><span>SNS総フォロワー</span></li>\n      <li><strong>4億+</strong><span>総再生回数</span></li>\n      <li><strong>190+</strong><span>ユーザーの国数</span></li>\n    </ul>'],
-      // 固定バーのボタン：押すと購入ページに進むので、行き先が分かる文言にする（元は「中身を見る」）
-      ['data-purchase-cta="sticky_offer">中身を見る</a>', 'data-purchase-cta="sticky_offer">購入する</a>'],
       ['<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">特別価格</span>', '<div class="sticky-eyebrow"><span class="sale-mode-copy-scheduled">BLACK FRIDAY</span>'],
     ],
   },
