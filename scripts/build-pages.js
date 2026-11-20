@@ -80,12 +80,17 @@ if (home !== 'index' && home !== 'scheduled') {
   fs.writeFileSync(path.join(output, 'index.html'), html.replace(noindex, ''));
   console.log(`Home (/) is served from ${home}.html.`);
 }
+// Keep video seeking available even when the homepage is pinned to a static version.
+const videoPaths = files.filter(file => file.startsWith('videos/')).map(file => `/${file}`);
+const videoSource = fs.readFileSync(path.join(root, 'cloudflare/video-worker.mjs'), 'utf8');
+const homeSource = homeSchedule ? fs.readFileSync(path.join(root, 'cloudflare/home-worker.mjs'), 'utf8') : '';
+const nextWorker = homeSchedule ? `createHomeWorker(${JSON.stringify(homeSchedule)})`
+  : '{ fetch: (request, env) => env.ASSETS.fetch(request) }';
+fs.writeFileSync(path.join(output, '_worker.js'), `${homeSource}\n${videoSource}\nexport default createVideoWorker(${nextWorker}, ${JSON.stringify(videoPaths)});\n`);
+fs.writeFileSync(path.join(output, '_routes.json'), JSON.stringify({
+  version: 1, include: [...(homeSchedule ? ['/', '/index', '/index.html'] : []), ...videoPaths], exclude: [],
+}, null, 2) + '\n');
 if (homeSchedule) {
-  const source = fs.readFileSync(path.join(root, 'cloudflare/home-worker.mjs'), 'utf8');
-  fs.writeFileSync(path.join(output, '_worker.js'), `${source}\nexport default createHomeWorker(${JSON.stringify(homeSchedule)});\n`);
-  fs.writeFileSync(path.join(output, '_routes.json'), JSON.stringify({
-    version: 1, include: ['/', '/index', '/index.html'], exclude: [],
-  }, null, 2) + '\n');
   console.log(`Home (/) switches to ${homeSchedule.page} from ${homeSchedule.startAt} until ${homeSchedule.endAt}.`);
 }
 fs.copyFileSync(path.join(root, 'cloudflare/_headers'), path.join(output, '_headers'));

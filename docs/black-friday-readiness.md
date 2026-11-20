@@ -23,7 +23,7 @@
 - `scripts/pages.config.js`: `home: 'scheduled', scheduledPage: 'blackfriday'`。
 - `scripts/build-pages.js`: 生成HTMLの鮮度を確認し、共通の販売期間から `dist/_worker.js` と `dist/_routes.json` を生成します。開始前のビルドでも開始・終了の再デプロイは不要です。
 - `cloudflare/home-worker.mjs`: Cloudflare Pagesのサーバー時刻で `/`、`/index`、`/index.html` の内容を選びます。ブラウザのURLは変えません。トップの応答は `no-store` にし、変更前のETag等を引き継ぎません。セール版の `noindex` はトップに出す場合だけ除きます。
-- 画像・動画・ペルソナ別ページはFunctions対象に含めず、従来どおり静的配信します。
+- 画像・ペルソナ別ページは従来どおり静的配信します。動画は部分取得・シーク対応のため、実ファイルを列挙してFunctions対象に含めます（[修正詳細](video-seeking.md)）。
 - トップの価格・カウントダウンはサーバー時刻からの経過時間で動きます。期限到達時、タブ復帰時、戻る操作によるキャッシュ復元時にトップを再取得します。JavaScript無効時も新規リクエストで正しい版を返しますが、開いたままの画面は自動更新されません。
 - `/blackfriday` への直接アクセスは既存の専用ページを維持します。開始前・終了後は通常価格になり、セール告知バナーとカウントダウンは非表示です。直接アクセスの日時判定は従来どおり端末時計です。
 - ローカル／プレビューの `/blackfriday` では、既存仕様どおり開始前でもセール中扱いです。自動切替するトップはプレビューでも実際の期間に従います。
@@ -65,7 +65,7 @@ MOBILE_NAV=none node scripts/verify-mobile-hero.js http://127.0.0.1:4187/blackfr
 
 ## 切戻し
 
-`scripts/pages.config.js` を `module.exports = { home: 'index' };` にして再ビルド・承認後に再公開すると通常版に固定できます。ビルド時にdistを再作成するため、前回のWorkerも残りません。今回の設定変更前バックアップは `/private/tmp/lp-bf-config-backup/pages.config.js`。他の開発者の変更を戻す必要はありません。
+`scripts/pages.config.js` を `module.exports = { home: 'index' };` にして再ビルド・承認後に再公開すると通常版に固定できます。トップ切替処理とそのルートは外れますが、動画シーク対応のWorkerは残ります。今回の設定変更前バックアップは `/private/tmp/lp-bf-config-backup/pages.config.js`。他の開発者の変更を戻す必要はありません。
 
 ## 公式仕様
 

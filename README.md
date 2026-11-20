@@ -29,6 +29,10 @@ SCREENSHOT_DIR=/tmp/import-lp-mobile-hero node scripts/verify-mobile-hero.js htt
 
 この検査は 320px / 390px 幅で、Hero 見出し、スマホヘッダーCTAの固定表示、初期 sticky CTA 非表示、横 overflow、Hero 高さ、ヘッダーCTAと見出しの距離、下部コピーとの距離を確認する。
 
+## 動画配信とシーク
+
+本番動画の部分取得・シークはPages Workerで対応します。前回のPythonプレビュー修正との違い、検証コマンドは [動画シークの修正](docs/video-seeking.md) を参照してください。
+
 ## ペルソナ別LP
 
 `index.html`（正本）から、訴求と構成を変えた派生ページを生成する。正本は書き換えない。
