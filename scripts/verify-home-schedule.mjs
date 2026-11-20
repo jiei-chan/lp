@@ -13,16 +13,17 @@ catch { ({ chromium } = require('/Users/uchida/.cache/codex-runtimes/codex-prima
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const workerSource = fs.readFileSync(path.join(dist, '_worker.js'), 'utf8');
-const { createHomeWorker, default: generatedWorker } = await import(`data:text/javascript;base64,${Buffer.from(workerSource).toString('base64')}`);
+const { createHomeWorker, createVideoWorker, default: generatedWorker } = await import(`data:text/javascript;base64,${Buffer.from(workerSource).toString('base64')}`);
 const schedule = {
   page: 'blackfriday', startAt: '2026-11-20T18:00:00+09:00', endAt: '2026-12-01T00:00:00+09:00',
   offer: { regularPrice: 20340, salePrice: 11980, savings: 8360, percent: 41 },
 };
-assert.ok(workerSource.includes(`export default createHomeWorker(${JSON.stringify(schedule)});`), 'The emitted schedule must match the confirmed sale');
+assert.ok(workerSource.includes(`createVideoWorker(createHomeWorker(${JSON.stringify(schedule)}),`), 'The emitted schedule must match the confirmed sale');
 const start = Date.parse(schedule.startAt);
 const end = Date.parse(schedule.endAt);
 let serverNow = start - 1000;
-const worker = createHomeWorker(schedule, () => serverNow);
+const videoPaths = fs.readdirSync(path.join(dist, 'videos')).map(file => `/videos/${file}`);
+const worker = createVideoWorker(createHomeWorker(schedule, () => serverNow), videoPaths);
 const mime = { '.html': 'text/html', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.mp4': 'video/mp4' };
 const requestedAssets = [];
 const env = { ASSETS: { async fetch(request) {
@@ -39,7 +40,7 @@ const env = { ASSETS: { async fetch(request) {
 } } };
 
 assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dist, '_routes.json'))), {
-  version: 1, include: ['/', '/index', '/index.html'], exclude: [],
+  version: 1, include: ['/', '/index', '/index.html', ...videoPaths], exclude: [],
 });
 assert.throws(() => createHomeWorker({ ...schedule, endAt: schedule.startAt }));
 assert.throws(() => createHomeWorker({ ...schedule, startAt: 'invalid' }));
