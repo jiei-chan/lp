@@ -7176,7 +7176,8 @@ window.IMPORT_SALE_CONFIG = {
   }
 
   function readNow(){
-    return window.IMPORT_SALE_NOW ? new Date(window.IMPORT_SALE_NOW) : new Date();
+    if (window.IMPORT_SALE_NOW) return new Date(window.IMPORT_SALE_NOW);
+    return typeof window.IMPORT_SALE_CLOCK === 'function' ? window.IMPORT_SALE_CLOCK() : new Date();
   }
 
   function withComputedValues(period){

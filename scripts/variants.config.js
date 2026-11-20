@@ -25,19 +25,19 @@ const bfHeroPoints = fs.readFileSync(path.join(__dirname, 'variant-sections', 'b
 // Black Friday 版のオファーに入れる「3教材セット」の構図
 const bfSetMarkup = fs.readFileSync(path.join(__dirname, 'variant-sections', 'bf-set.html'), 'utf8').trimEnd();
 
-// Black Friday の価格・期間（2026-11-17 確定：12,800円、11/20〜11/30）。
-// 開始は 11/20 0:00、終了は 11/30 23:59（= 12/1 0:00）として設定。時刻が違う場合は startAt / endAt を直す。
+// Confirmed on 2026-11-20: JPY 11,980, starting Nov 20 at 18:00 JST.
+// The sale ends at Dec 1 00:00 JST (exclusive); keep display and routing in sync.
 // 期間外は staticOffer（現行の通常オファー）が表示される。購入先 Shopify 商品の価格も同じ値にそろえること。
 const blackFridaySale = {
   mode: 'scheduled',
   regularPrice: 20340,
   staticOffer: { salePrice: 14980, savings: 5360, percent: 26, phase: 'after-ladder' },
   periods: [{
-    salePrice: 12800,
-    savings: 7540,
-    percent: 37,
+    salePrice: 11980,
+    savings: 8360,
+    percent: 41,
     phase: 'black-friday',
-    startAt: '2026-11-20T00:00:00+09:00',
+    startAt: '2026-11-20T18:00:00+09:00',
     endAt: '2026-12-01T00:00:00+09:00',
     deadlineLong: '11/30（月）23:59まで',
     deadlineShort: '11/30 23:59まで',

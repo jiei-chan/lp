@@ -60,13 +60,16 @@ HERO_KEY_COPY="映像で忘れない" node scripts/verify-mobile-hero.js http://
 
 `/blackfriday` は Black Friday 用の派生ページ（黒×金のテーマ、セール用の構成）。`index.html` は書き換えない。
 
-- 価格・期間は `scripts/variants.config.js` の `blackFridaySale`。**12,800円・11/20 0:00〜11/30 23:59 で確定**（2026-11-17）。購入先の Shopify 商品の価格も同じ値にそろえる。
+- 価格・期間は `scripts/variants.config.js` の `blackFridaySale`。**11,980円・11/20 18:00〜11/30 23:59 で設定**（2026-11-20更新、日本時間）。購入先の Shopify 商品の価格も同じ値にそろえる。
 - テーマは `scripts/variant-themes/blackfriday.css`。
-- 期間中に `/` を Black Friday 版にするには、`scripts/pages.config.js` の `home` を `'blackfriday'` にして main に入れる。終了後は `'index'` に戻す。仮値のままでは切り替えられない（ビルドがエラーで止まる）。
+- `/` は `scripts/pages.config.js` の `home: 'scheduled'` で自動切替する。Cloudflare Pagesのリクエスト時刻で、11/20 18:00からBlack Friday版、12/1 0:00から通常版になる（日本時間）。期間は価格設定と共通。開いたままのページも期限到達時に再読み込みし、URL・広告パラメーター・ハッシュを維持する。
+- 自動切替は `node scripts/build-pages.js` が出力するPages Workerで動く。Pythonの静的サーバーや従来のVercel設定では動かない。`home: 'index'` にすると通常版固定、`'blackfriday'` にするとセール版固定に戻せる。仮値・不正な期間・古い生成HTMLはビルドエラーになる。
 - `/` を切り替えている間、`verify-price-ladder.js` などトップの価格を前提にした検査は期待値が変わる。
-- 本番のドメイン以外（Cloudflare のプレビューやローカル）では、開始日時より前でもセール中の表示（12,800円・カウントダウン）になる（`salePreviewBeforeStart`）。本番のドメインでは開始日時どおりに切り替わる。
+- 本番のドメイン以外（Cloudflare のプレビューやローカル）では、開始日時より前でもセール中の表示（11,980円・カウントダウン）になる（`salePreviewBeforeStart`）。本番のドメインでは開始日時どおりに切り替わる。
 - 表示を軽くする処理（`optimizeMedia`）：`images/webp/` の WebP を使い、ヒーロー以外の画像と中身プレビューの動画は画面に近づくまで読み込まない。`images/` の PNG / JPEG を追加・差し替えたら `python3 scripts/tools/make-webp.py` を実行して `images/webp/` をコミットする（要 Pillow。Cloudflare のビルドでは実行されない）。
 - スマホでは上部の固定ヘッダーを出さない。スマホのファーストビュー検査は `MOBILE_NAV=none node scripts/verify-mobile-hero.js <URL>/blackfriday` で実行する。
+
+自動切替・価格・カウントダウンの検証と公開前確認は [Black Friday引き継ぎ](docs/black-friday-readiness.md) を参照。LPの価格設定はShopifyの商品価格を更新しない。
 
 ## Vercelへのデプロイ
 

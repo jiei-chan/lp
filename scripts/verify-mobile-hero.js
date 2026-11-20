@@ -55,6 +55,13 @@ function fail(message, details = {}) {
           : route.abort();
       });
       await page.goto(targetUrl, { waitUntil: 'networkidle' });
+      // Wait for both headline lines and their reveal container before checking the first view.
+      await page.waitForFunction(() => {
+        const lines = [...document.querySelectorAll('.hero h1 .h1-line')];
+        const container = document.querySelector('.hero h1')?.closest('.reveal');
+        return lines.length > 0 && lines.every(line => Number(getComputedStyle(line).opacity) === 1)
+          && (!container || Number(getComputedStyle(container).opacity) === 1);
+      });
 
       const metrics = await page.evaluate(() => {
         const nav = document.querySelector('.nav');

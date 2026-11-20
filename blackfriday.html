@@ -5714,6 +5714,8 @@ body.theme-blackfriday .btn-final-cta{background: #ffcf4a; color: #0a0a0a}
    固定ナビ（PC 70px / スマホ 58px）の分だけ上を空け、その下に金の帯を出す。
    ヒーローは元々ナビの分の余白を持っているので、その分だけ引き上げて二重にしない。 */
 .bf-banner{position: relative; z-index: 3; padding-top: 70px; background: #07070a}
+/* Do not advertise an active sale before its start or after its deadline. */
+body.theme-blackfriday:not(.sale-mode-scheduled) .bf-banner{display: none}
 .bf-banner-strip{
   display: flex; align-items: center; justify-content: center; gap: 22px;
   padding: 14px 20px;
@@ -6251,7 +6253,7 @@ body.theme-blackfriday .final-countdown{display: none}
     <span class="bf-banner-title">BLACK FRIDAY SALE</span>
     <span class="bf-banner-meta">
       <span class="bf-banner-date">11/20 – 11/30</span>
-      <span class="bf-banner-off"><span data-sale-percent>37</span>% OFF</span>
+      <span class="bf-banner-off"><span data-sale-percent>41</span>% OFF</span>
     </span>
   </div>
 </div>
@@ -7879,11 +7881,11 @@ window.IMPORT_SALE_CONFIG = {
   },
   "periods": [
     {
-      "salePrice": 12800,
-      "savings": 7540,
-      "percent": 37,
+      "salePrice": 11980,
+      "savings": 8360,
+      "percent": 41,
       "phase": "black-friday",
-      "startAt": "2026-11-20T00:00:00+09:00",
+      "startAt": "2026-11-20T18:00:00+09:00",
       "endAt": "2026-12-01T00:00:00+09:00",
       "deadlineLong": "11/30（月）23:59まで",
       "deadlineShort": "11/30 23:59まで",
@@ -7918,7 +7920,8 @@ window.IMPORT_SALE_CONFIG = {
   }
 
   function readNow(){
-    return window.IMPORT_SALE_NOW ? new Date(window.IMPORT_SALE_NOW) : new Date();
+    if (window.IMPORT_SALE_NOW) return new Date(window.IMPORT_SALE_NOW);
+    return typeof window.IMPORT_SALE_CLOCK === 'function' ? window.IMPORT_SALE_CLOCK() : new Date();
   }
 
   function withComputedValues(period){

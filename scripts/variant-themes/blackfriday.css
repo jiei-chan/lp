@@ -141,6 +141,8 @@ body.theme-blackfriday .btn-final-cta{background: #ffcf4a; color: #0a0a0a}
    固定ナビ（PC 70px / スマホ 58px）の分だけ上を空け、その下に金の帯を出す。
    ヒーローは元々ナビの分の余白を持っているので、その分だけ引き上げて二重にしない。 */
 .bf-banner{position: relative; z-index: 3; padding-top: 70px; background: #07070a}
+/* Do not advertise an active sale before its start or after its deadline. */
+body.theme-blackfriday:not(.sale-mode-scheduled) .bf-banner{display: none}
 .bf-banner-strip{
   display: flex; align-items: center; justify-content: center; gap: 22px;
   padding: 14px 20px;
