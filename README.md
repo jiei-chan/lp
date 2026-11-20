@@ -5,13 +5,16 @@
 ## ローカル確認
 
 ```bash
-# Pythonがあるなら
-python3 -m http.server 4173
-# → http://localhost:4173
+# 動画のシークにも対応するローカルプレビュー
+python3 scripts/preview.py
+# → http://localhost:4174/blackfriday.html
+# 通常版: http://localhost:4174/index.html
 
 # Node.jsがあるなら
 npx serve .
 ```
+
+動画の確認には `scripts/preview.py` を使います。`python3 -m http.server` は部分取得（Range）に対応しないため、動画を途中へ飛ばせない場合があります。3本のプレビューは共通のプレイヤーを使用しており、今後の動画差し替え時も、このサーバーで前方・後方へのシークを確認してください。本番配信は別途、動画のRangeリクエストが `206 Partial Content` と正しい `Content-Range` を返すことを確認します。
 
 ## レイアウト検査
 
