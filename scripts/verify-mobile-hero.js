@@ -55,6 +55,13 @@ function fail(message, details = {}) {
           : route.abort();
       });
       await page.goto(targetUrl, { waitUntil: 'networkidle' });
+      // Wait for both headline lines and their reveal container before checking the first view.
+      await page.waitForFunction(() => {
+        const lines = [...document.querySelectorAll('.hero h1 .h1-line')];
+        const container = document.querySelector('.hero h1')?.closest('.reveal');
+        return lines.length > 0 && lines.every(line => Number(getComputedStyle(line).opacity) === 1)
+          && (!container || Number(getComputedStyle(container).opacity) === 1);
+      });
 
       const metrics = await page.evaluate(() => {
         const nav = document.querySelector('.nav');
@@ -83,25 +90,34 @@ function fail(message, details = {}) {
         };
       });
 
-      if (!metrics.titleText.includes('英単語は忘れない')) {
+      // ペルソナ別ページは見出しが違う。HERO_KEY_COPY で期待文言を渡す（既定は正本の見出し）。
+      if (!metrics.titleText.includes(process.env.HERO_KEY_COPY || '英単語は忘れない')) {
         fail('Mobile hero title is missing the key copy.', { viewport: viewport.name, titleText: metrics.titleText });
       }
-      if (metrics.navDisplay === 'none' || metrics.navPosition !== 'fixed') {
-        fail('Mobile header CTA must stay visible and fixed without joining the hero layout flow.', {
-          viewport: viewport.name,
-          navDisplay: metrics.navDisplay,
-          navPosition: metrics.navPosition,
-        });
-      }
-      if (!metrics.navCtaText.includes('完全版を手に入れる')) {
-        fail('Mobile header CTA copy is missing.', { viewport: viewport.name, navCtaText: metrics.navCtaText });
-      }
-      if (metrics.titleTop <= metrics.navBottom + 16) {
-        fail('Mobile header CTA is too close to the hero title.', {
-          viewport: viewport.name,
-          navBottom: metrics.navBottom,
-          titleTop: metrics.titleTop,
-        });
+      // スマホで上部固定ヘッダーを出さないページ（Black Friday 版）は MOBILE_NAV=none を付けて実行する。
+      // その場合はヘッダーが無いことを確かめ、購入の入口は下の固定バー（この後の検査）に任せる。
+      if (process.env.MOBILE_NAV === 'none') {
+        if (metrics.navDisplay !== 'none') {
+          fail('Mobile header is expected to be hidden on this page.', { viewport: viewport.name, navDisplay: metrics.navDisplay });
+        }
+      } else {
+        if (metrics.navDisplay === 'none' || metrics.navPosition !== 'fixed') {
+          fail('Mobile header CTA must stay visible and fixed without joining the hero layout flow.', {
+            viewport: viewport.name,
+            navDisplay: metrics.navDisplay,
+            navPosition: metrics.navPosition,
+          });
+        }
+        if (!metrics.navCtaText.includes('完全版を手に入れる')) {
+          fail('Mobile header CTA copy is missing.', { viewport: viewport.name, navCtaText: metrics.navCtaText });
+        }
+        if (metrics.titleTop <= metrics.navBottom + 16) {
+          fail('Mobile header CTA is too close to the hero title.', {
+            viewport: viewport.name,
+            navBottom: metrics.navBottom,
+            titleTop: metrics.titleTop,
+          });
+        }
       }
       if (metrics.stickyVisibleInitially !== true) {
         fail('Sticky offer CTA should be visible from the initial view.', { viewport: viewport.name, stickyVisibleInitially: metrics.stickyVisibleInitially });

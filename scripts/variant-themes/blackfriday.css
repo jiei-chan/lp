@@ -1,0 +1,644 @@
+/* Black Friday テーマ。body.theme-blackfriday のときだけ効く。
+   ブランドの青を金に置き換え、ヒーロー・オファー・最終CTAを黒基調にする。 */
+body.theme-blackfriday{
+  --blue: #a87400;        /* 白地の上の文字・線に使う濃い金 */
+  --blue-deep: #8a5f00;
+  --blue-light: #f0b93a;
+  --blue-soft: #fbf1d6;
+  --blue-tint: #fdf8e8;
+  --accent: #ffcf4a;      /* 黒地の上で使う明るい金 */
+  --shadow-blue: 0 12px 32px rgba(168, 116, 0, 0.22);
+}
+
+/* --- ヒーロー：画像は元の色（青）のまま使う。上のバナー・ボタン・カードの金で Black Friday らしさを出す --- */
+body.theme-blackfriday .hero-eyebrow{
+  background: #ffcf4a;
+  border-color: #ffcf4a;
+  color: #0a0a0a;
+  font-weight: 800;
+}
+body.theme-blackfriday .hero-eyebrow::before{background: #0a0a0a; box-shadow: none}
+/* 見出しの「映像 × 音声」は index.html のまま（白字＋黄色のハイライト線）。ここでは上書きしない */
+/* 元のグラデーションと同じ止め位置で、色だけ黒に（スマホではヒーロー画像に重なる） */
+body.theme-blackfriday .hero-below{
+  background: linear-gradient(180deg,
+    transparent 0%, rgba(7,7,10,0.06) 6%, rgba(7,7,10,0.18) 14%, rgba(7,7,10,0.35) 25%,
+    rgba(7,7,10,0.5) 40%, rgba(7,7,10,0.72) 60%, rgba(7,7,10,0.92) 84%, #07070a 100%);
+}
+body.theme-blackfriday .hero-tagline-m .highlight{background: linear-gradient(120deg, #ffe08a 0%, #ffb200 100%); -webkit-background-clip: text; background-clip: text}
+body.theme-blackfriday .btn-primary{background: #ffcf4a; color: #0a0a0a; box-shadow: 0 12px 32px rgba(255, 207, 74, 0.3)}
+
+/* --- 上部ナビと下部固定CTA --- */
+body.theme-blackfriday .nav-purchase,
+body.theme-blackfriday .sticky-shop-btn{
+  background: linear-gradient(135deg, #ffb200 0%, #ffd766 100%);
+  color: #0a0a0a;
+  box-shadow: 0 12px 28px rgba(255, 178, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.3) inset;
+}
+body.theme-blackfriday .sticky-cta-panel{
+  background: rgba(12, 12, 14, 0.94);
+  border-color: rgba(255, 207, 74, 0.45);
+  color: #fff;
+}
+body.theme-blackfriday .sticky-cta-panel *{border-color: rgba(255,255,255,0.16)}
+body.theme-blackfriday .sticky-eyebrow,
+body.theme-blackfriday .sticky-count-label,
+body.theme-blackfriday .sticky-count-label *,
+body.theme-blackfriday .sticky-offer-note,
+body.theme-blackfriday .sticky-assurance-note,
+body.theme-blackfriday .sticky-time span,
+body.theme-blackfriday .sticky-mobile-savings span{color: rgba(255,255,255,0.78)}
+body.theme-blackfriday .sticky-discount,
+body.theme-blackfriday .sticky-discount *,
+body.theme-blackfriday .sticky-mobile-savings strong,
+body.theme-blackfriday .sticky-count-label strong{color: #ffcf4a}
+body.theme-blackfriday .sticky-eyebrow{color: #ffcf4a}
+
+/* --- オファー：黒いカードに金の縁 --- */
+body.theme-blackfriday .bundle{background: #07070a}
+body.theme-blackfriday .bundle .section-title{color: #fff}
+body.theme-blackfriday .bundle .section-lead{color: rgba(255,255,255,0.72)}
+body.theme-blackfriday .bundle .section-eyebrow{color: #ffcf4a}
+body.theme-blackfriday .bundle .section-title .gradient{
+  background: linear-gradient(120deg, #ffe08a 0%, #ffb200 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+body.theme-blackfriday .bundle-ribbon{
+  background: linear-gradient(135deg, #ffb200 0%, #ffd766 100%);
+  color: #0a0a0a;
+  box-shadow: 0 8px 24px rgba(255, 178, 0, 0.35);
+}
+
+/* --- 最終CTA --- */
+/* 最終CTAの画像は元の色のまま使う（見せ方はファイル末尾の「最終CTA」）。背景は index.html と同じ黒に近い濃紺 #050818 */
+body.theme-blackfriday .final h2 .accent{
+  background: linear-gradient(110deg, #fff0b8 0%, #ffcf4a 45%, #ffb200 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 16px rgba(255, 178, 0, 0.4));
+}
+body.theme-blackfriday .btn-final-cta{background: #ffcf4a; color: #0a0a0a}
+
+/* --- 仮値の注意表示（placeholder: true のページだけに出る） --- */
+.variant-placeholder-note{
+  position: fixed; right: 8px; bottom: 104px; z-index: 9999;
+  padding: 6px 10px; border-radius: 6px;
+  background: #d90429; color: #fff;
+  font: 700 11px/1.3 var(--jp);
+  pointer-events: none;
+}
+
+/* --- アプリ版 先行アクセス（scripts/variant-sections/app-access.html） --- */
+.app-access{background: #07070a; color: #fff; padding: 88px 0}
+.app-access-head{text-align: center; margin-bottom: 44px}
+.app-access .section-eyebrow{color: #ffcf4a; justify-content: center}
+.app-access .section-title{color: #fff; text-align: center}
+.app-access .section-lead{color: rgba(255,255,255,0.78); margin: 0 auto; text-align: center}
+.app-gold{
+  background: linear-gradient(120deg, #ffe08a 0%, #ffb200 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.app-compare{display: grid; grid-template-columns: 1fr 1.15fr; gap: 20px; max-width: 860px; margin: 0 auto; align-items: stretch}
+.app-col{
+  position: relative;
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.app-col-app{
+  background: linear-gradient(160deg, rgba(255,207,74,0.16) 0%, rgba(255,178,0,0.05) 100%);
+  border: 2px solid #ffcf4a;
+  box-shadow: 0 24px 60px rgba(255,178,0,0.14);
+}
+.app-badge{
+  position: absolute; top: -14px; left: 22px;
+  padding: 6px 14px; border-radius: 100px;
+  background: linear-gradient(135deg, #ffb200 0%, #ffd766 100%);
+  color: #0a0a0a; font-size: 12px; font-weight: 800; letter-spacing: 0.04em;
+}
+.app-col-label{font-size: 22px; font-weight: 800; letter-spacing: 0.02em}
+.app-col-app .app-col-label{color: #ffcf4a}
+.app-col-note{margin-top: 4px; font-size: 13px; color: rgba(255,255,255,0.6)}
+.app-row{margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.12)}
+.app-row-name{font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: rgba(255,255,255,0.6)}
+.app-row-value{margin-top: 6px; font-size: 24px; font-weight: 800; line-height: 1.3}
+.app-row-value small{display: block; margin-top: 2px; font-size: 14px; font-weight: 700; color: #ffcf4a}
+.app-col:not(.app-col-app) .app-row-value{color: rgba(255,255,255,0.72); font-size: 20px}
+.app-access-cta{margin-top: 40px; text-align: center}
+.app-access-note{margin-top: 18px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.5)}
+/* オファー内訳に足す「アプリ版」の行 */
+.bundle-row-app .item-text span{font-weight: 800}
+.bundle-row-app .num{color: var(--blue); font-weight: 800; font-size: 13px; white-space: nowrap}
+@media (max-width: 768px){
+  .app-access{padding: 64px 0}
+  .app-compare{grid-template-columns: 1fr; gap: 28px}
+  .app-col-app{order: -1}
+  .app-row-value{font-size: 22px}
+}
+.bundle-row-app .dot{background: #ffb200 !important}
+
+/* --- Black Friday バナー（scripts/variant-sections/bf-banner.html） ---
+   固定ナビ（PC 70px / スマホ 58px）の分だけ上を空け、その下に金の帯を出す。
+   ヒーローは元々ナビの分の余白を持っているので、その分だけ引き上げて二重にしない。 */
+.bf-banner{position: relative; z-index: 3; padding-top: 70px; background: #07070a}
+/* Do not advertise an active sale before its start or after its deadline. */
+body.theme-blackfriday:not(.sale-mode-scheduled) .bf-banner{display: none}
+.bf-banner-strip{
+  display: flex; align-items: center; justify-content: center; gap: 22px;
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #ffb200 0%, #ffd766 50%, #ffb200 100%);
+  color: #0a0a0a;
+}
+.bf-banner-title{font-family: var(--en); font-size: 26px; font-weight: 900; letter-spacing: 0.14em; line-height: 1}
+.bf-banner-meta{display: inline-flex; align-items: center; gap: 12px; font-family: var(--en); font-weight: 800; white-space: nowrap}
+.bf-banner-date{font-size: 16px; letter-spacing: 0.04em}
+.bf-banner-off{padding: 5px 12px; border-radius: 100px; background: #0a0a0a; color: #ffcf4a; font-size: 14px; letter-spacing: 0.04em}
+body.theme-blackfriday .hero{margin-top: -70px}
+@media (max-width: 768px){
+  .bf-banner{padding-top: 58px}
+  .bf-banner-strip{flex-direction: column; gap: 6px; padding: 10px 16px}
+  .bf-banner-title{font-size: 20px; letter-spacing: 0.12em}
+  .bf-banner-date{font-size: 13px}
+  .bf-banner-off{padding: 3px 10px; font-size: 12px}
+  /* スマホのヒーローは見出しの上に 76px の余白（ナビ分＋非表示同然の帯）がある。バナーの直下に見出しが来るよう詰める。 */
+  body.theme-blackfriday .hero{margin-top: -52px}
+  /* 元の小さな帯はバナーの裏に隠れる位置。端がはみ出さないよう消す（高さは残して見出し位置を保つ）。 */
+  body.theme-blackfriday .hero-eyebrow{visibility: hidden}
+}
+
+/* --- 中身プレビュー：白地・左寄せの大きな見出し・角丸の動画カードだけ、というシンプルな見せ方（韓国版LPに合わせる） --- */
+body.theme-blackfriday .inside{background: #fff; color: var(--ink); border-bottom: none; padding: 96px 24px}
+body.theme-blackfriday .inside-header{text-align: left; margin-bottom: 48px}
+.inside-title{font-size: clamp(30px, 4.2vw, 54px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.2; color: var(--ink)}
+.inside-lead{margin-top: 16px; font-size: 18px; line-height: 1.7; color: var(--text-soft)}
+body.theme-blackfriday .inside-products{max-width: 1000px; gap: 28px}
+body.theme-blackfriday .inside .inside-product{background: none; border: none; border-radius: 0; padding: 0; overflow: visible}
+body.theme-blackfriday .inside .inside-product:hover{box-shadow: none}
+body.theme-blackfriday .inside-video-wrap{border-radius: 28px; margin-bottom: 18px; box-shadow: 0 24px 60px rgba(10, 22, 40, 0.14)}
+body.theme-blackfriday .inside-meta{padding: 0 2px; text-align: left}
+body.theme-blackfriday .inside-meta .name{font-size: 19px; color: var(--ink)}
+body.theme-blackfriday .inside-meta .desc{margin-top: 4px; font-size: 15px; color: var(--muted)}
+@media (max-width: 768px){
+  body.theme-blackfriday .inside{padding: 56px 20px}
+  body.theme-blackfriday .inside-header{margin-bottom: 28px}
+  .inside-lead{margin-top: 10px; font-size: 14px}
+  body.theme-blackfriday .inside-products{gap: 10px}
+  body.theme-blackfriday .inside-video-wrap{border-radius: 16px; margin-bottom: 10px; box-shadow: 0 12px 28px rgba(10, 22, 40, 0.14)}
+  body.theme-blackfriday .inside-meta .name{font-size: 12px; line-height: 1.3}
+  body.theme-blackfriday .inside-meta .desc{font-size: 11px}
+}
+
+/* スマホ（600px以下）ではオファーのカード背景が透明になり、黒いセクションの上に直接文字が載る。
+   題字と説明が黒地に埋もれないよう、明るい色にする。 */
+@media (max-width: 600px){
+  body.theme-blackfriday .bundle-title-jp{color: rgba(255,255,255,0.7)}
+  body.theme-blackfriday .bundle-title-en{color: #fff}
+  body.theme-blackfriday .bundle-title .blue{color: #ffcf4a}
+  body.theme-blackfriday .bundle-sub{color: rgba(255,255,255,0.78)}
+  body.theme-blackfriday .bundle-cta-row .meta span{color: rgba(255,255,255,0.72)}
+}
+
+/* --- オファーの「3教材セット」（scripts/variant-sections/bf-set.html） ---
+   単品の商品画像3枚を、黒い舞台の上に扇形に重ねて置く。中央を手前に大きく、左右は奥へ傾ける。
+   金の細い縁・上からのスポットライト・床への映り込みで、箱入りのセットに見せる。 */
+body.theme-blackfriday .bundle-hero{background: #07070a}
+.bf-set{
+  position: relative; overflow: hidden;
+  padding: 72px 24px 44px;
+  background:
+    radial-gradient(ellipse 46% 52% at 50% 40%, rgba(255, 207, 74, 0.30) 0%, rgba(255, 178, 0, 0.08) 45%, transparent 72%),
+    radial-gradient(ellipse 80% 30% at 50% 78%, rgba(255, 178, 0, 0.14) 0%, transparent 70%),
+    linear-gradient(180deg, #0c0b08 0%, #07070a 100%);
+}
+/* 上端の細い金のライン */
+.bf-set::before{
+  content: ''; position: absolute; left: 12%; right: 12%; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 207, 74, 0.8), transparent);
+}
+.bf-set-stage{
+  display: flex; justify-content: center; align-items: center;
+  max-width: 860px; margin: 0 auto;
+  perspective: 1800px;
+}
+.bf-set-card{
+  position: relative; margin: 0; flex: none;
+  aspect-ratio: 4 / 5;
+  border-radius: 22px; overflow: hidden;
+  background: #111;
+  box-shadow:
+    0 0 0 1px rgba(255, 215, 110, 0.55),
+    0 0 0 5px rgba(255, 207, 74, 0.07),
+    0 44px 70px rgba(0, 0, 0, 0.62);
+  /* 床への映り込み（Chrome / Safari。非対応のブラウザでは出ないだけ） */
+  -webkit-box-reflect: below 10px linear-gradient(to bottom, transparent 62%, rgba(0, 0, 0, 0.26));
+}
+body.theme-blackfriday .bundle-hero .bf-set-card img{
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 46%;
+}
+/* 面のツヤ：左上からの光と、下側の落ち込み */
+.bf-set-card::after{
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background:
+    linear-gradient(118deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.05) 22%, transparent 38%),
+    linear-gradient(180deg, transparent 58%, rgba(0,0,0,0.78) 100%);
+}
+.bf-set-card figcaption{
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  padding: 0 10px 16px; text-align: center;
+  font-family: var(--en); font-size: 14px; font-weight: 800; letter-spacing: 0.06em; color: #fff;
+}
+.bf-set-center{width: 38%; z-index: 3; transform: translateZ(60px)}
+.bf-set-left, .bf-set-right{width: 31%; z-index: 2; filter: brightness(0.86) saturate(0.95)}
+.bf-set-left{margin-right: -5%; transform: rotateY(26deg) rotateZ(-2.5deg) translateY(3%); transform-origin: right center}
+.bf-set-right{margin-left: -5%; transform: rotateY(-26deg) rotateZ(2.5deg) translateY(3%); transform-origin: left center}
+/* 左右のカードは中央のカードに一部隠れる。箱と商品名を、見えている側へ寄せる。 */
+body.theme-blackfriday .bundle-hero .bf-set-left img{object-position: 100% 46%}
+body.theme-blackfriday .bundle-hero .bf-set-right img{object-position: 0% 46%}
+.bf-set-left figcaption{text-align: left; padding-left: 9%}
+.bf-set-right figcaption{text-align: right; padding-right: 9%}
+.bf-set-caption{
+  position: relative; z-index: 5;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  margin-top: 92px;
+  font-size: clamp(15px, 2.1vw, 24px); font-weight: 800; letter-spacing: 0.06em; color: #ffcf4a;
+}
+.bf-set-caption::before, .bf-set-caption::after{
+  content: ''; flex: 1; max-width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 207, 74, 0.7));
+}
+.bf-set-caption::after{transform: scaleX(-1)}
+.bf-set-plus{color: #fff; font-weight: 400}
+@media (max-width: 768px){
+  .bf-set{padding: 44px 12px 28px}
+  .bf-set-card{border-radius: 14px}
+  .bf-set-card figcaption{padding: 0 4px 9px; font-size: 9px; letter-spacing: 0.02em}
+  .bf-set-center{width: 42%}
+  .bf-set-left, .bf-set-right{width: 35%}
+  .bf-set-left{margin-right: -6%}
+  .bf-set-right{margin-left: -6%}
+  .bf-set-caption{margin-top: 52px; gap: 8px; letter-spacing: 0.02em}
+  .bf-set-caption::before, .bf-set-caption::after{max-width: 28px}
+}
+
+/* --- セットのカードの縁を、光がゆっくり一周する ---
+   角度を持つ円すいグラデーションを縁の幅だけ見せ、その角度を回す。
+   角度のアニメーションに対応していないブラウザでは、光は止まったまま（縁の一部が明るいだけ）になる。
+   「視差効果を減らす」設定の人には動かさない。 */
+@property --bf-edge-angle{syntax: '<angle>'; initial-value: 0deg; inherits: false}
+.bf-set-card::before{
+  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  padding: 2px; border-radius: inherit;
+  background: conic-gradient(from var(--bf-edge-angle),
+    transparent 0deg, transparent 250deg,
+    rgba(255, 207, 74, 0.55) 300deg, #fff3c4 335deg, rgba(255, 207, 74, 0.55) 352deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: bf-edge-run 7s linear infinite;
+}
+.bf-set-left::before{animation-delay: -2.3s}
+.bf-set-right::before{animation-delay: -4.6s}
+@keyframes bf-edge-run{to{--bf-edge-angle: 360deg}}
+@media (prefers-reduced-motion: reduce){
+  .bf-set-card::before{animation: none}
+}
+@media (max-width: 768px){
+  .bf-set-card::before{padding: 1.5px}
+}
+
+/* --- オファーのカード全体を黒×金にそろえる ---
+   元は白いカードに赤の価格・オレンジの購入ボタンで、上のセット構図（黒×金）と色がばらばらだった。
+   カード・内訳・価格・カウントダウン・購入ボタンを同じ黒い面と金のアクセントに統一する。 */
+body.theme-blackfriday .bundle-card{
+  background: linear-gradient(180deg, #0c0b08 0%, #08080a 100%);
+  border: 1px solid rgba(255, 207, 74, 0.55);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 178, 0, 0.06);
+}
+body.theme-blackfriday .bundle-title-jp{color: rgba(255,255,255,0.65)}
+body.theme-blackfriday .bundle-title-en{color: #fff}
+body.theme-blackfriday .bundle-title .blue{color: #ffcf4a}
+body.theme-blackfriday .bundle-sub{color: rgba(255,255,255,0.75)}
+
+/* 内訳 */
+body.theme-blackfriday .bundle-price-block{
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: none;
+}
+body.theme-blackfriday .bundle-breakdown{border-bottom-color: rgba(255,255,255,0.14)}
+body.theme-blackfriday .bundle-row .item,
+body.theme-blackfriday .bundle-row .price{color: rgba(255,255,255,0.82)}
+body.theme-blackfriday .bundle-row.total .item,
+body.theme-blackfriday .bundle-row.total .price{color: #fff}
+body.theme-blackfriday .bundle-row-app .num{color: #ffcf4a}
+
+/* 価格 */
+body.theme-blackfriday .offer-card{
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255, 207, 74, 0.13) 0%, transparent 70%), #0a0a0c;
+  border: 1px solid rgba(255, 207, 74, 0.45);
+  box-shadow: none;
+}
+body.theme-blackfriday .offer-eyebrow{color: #ffcf4a}
+body.theme-blackfriday .offer-eyebrow::before{background: #ffcf4a; box-shadow: 0 0 0 4px rgba(255, 207, 74, 0.18)}
+body.theme-blackfriday .compare-label{color: rgba(255,255,255,0.6)}
+body.theme-blackfriday .compare-strike{color: rgba(255,255,255,0.45)}
+body.theme-blackfriday .compare-label-now{color: #ffcf4a}
+body.theme-blackfriday .offer-compare .compare-arrow{background: transparent; border-color: rgba(255, 207, 74, 0.45); color: #ffcf4a}
+body.theme-blackfriday .compare-now,
+body.theme-blackfriday .compare-now .yen{
+  background: linear-gradient(180deg, #fff3c4 0%, #ffcf4a 45%, #ffb200 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+body.theme-blackfriday .offer-savings-bar{background: rgba(255, 207, 74, 0.10); border-color: rgba(255, 207, 74, 0.45)}
+body.theme-blackfriday .savings-big,
+body.theme-blackfriday .savings-pct-big{color: #ffcf4a}
+body.theme-blackfriday .savings-bar-divider{background: rgba(255, 207, 74, 0.4)}
+body.theme-blackfriday .offer-tax{color: rgba(255,255,255,0.6)}
+
+/* カウントダウン */
+body.theme-blackfriday .offer-urgency{background: rgba(255,255,255,0.04); border-top-color: rgba(255,255,255,0.10)}
+body.theme-blackfriday .urgency-header{color: rgba(255,255,255,0.82)}
+body.theme-blackfriday .urgency-header strong,
+body.theme-blackfriday .urgency-header svg{color: #ffcf4a}
+body.theme-blackfriday .urgency-num{color: #fff}
+body.theme-blackfriday .urgency-lbl{color: rgba(255,255,255,0.5)}
+body.theme-blackfriday .urgency-sep span{background: rgba(255,255,255,0.3)}
+
+/* 購入ボタンのカード */
+body.theme-blackfriday .anchor-card{background: rgba(255,255,255,0.035); border: 1px solid rgba(255, 207, 74, 0.45)}
+body.theme-blackfriday .anchor-card::before{background: linear-gradient(90deg, transparent 0%, #ffcf4a 50%, transparent 100%)}
+body.theme-blackfriday .anchor-eyebrow{color: rgba(255,255,255,0.55)}
+body.theme-blackfriday .anchor-strike{color: rgba(255,255,255,0.45)}
+body.theme-blackfriday .anchor-pct,
+body.theme-blackfriday .anchor-pct strong{color: #ffcf4a}
+body.theme-blackfriday .anchor-desc{color: rgba(255,255,255,0.7)}
+body.theme-blackfriday .btn-anchor-cta{
+  background: linear-gradient(135deg, #ffb200 0%, #ffd766 100%);
+  color: #0a0a0a;
+  box-shadow: 0 12px 32px rgba(255, 178, 0, 0.32), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+body.theme-blackfriday .btn-anchor-cta:hover{box-shadow: 0 18px 42px rgba(255, 178, 0, 0.42), inset 0 1px 0 rgba(255,255,255,0.4)}
+body.theme-blackfriday .bundle-cta-row .meta,
+body.theme-blackfriday .bundle-cta-row .meta span{color: rgba(255,255,255,0.7)}
+/* スマホ（600px以下）は元々カードの枠を出さない作り。黒いセクションにそのまま載せる。 */
+@media (max-width: 600px){
+  body.theme-blackfriday .bundle-card{background: transparent; border: none; box-shadow: none}
+}
+
+/* --- 価格と割引額は赤字（金より「安くなった」が伝わる）。枠・ボタンなどの装飾は金のまま。
+   黒地で沈まないよう、明るめの赤にする。 --- */
+body.theme-blackfriday .compare-now,
+body.theme-blackfriday .compare-now .yen{
+  background: none; -webkit-background-clip: border-box; background-clip: border-box;
+  color: #ff3b3b;
+  text-shadow: 0 0 28px rgba(255, 59, 59, 0.35);
+}
+body.theme-blackfriday .compare-label-now{color: #ff5a5a}
+body.theme-blackfriday .offer-savings-bar{background: rgba(255, 59, 59, 0.12); border-color: rgba(255, 90, 90, 0.55)}
+body.theme-blackfriday .savings-big,
+body.theme-blackfriday .savings-pct-big{color: #ff5a5a}
+body.theme-blackfriday .savings-bar-divider{background: rgba(255, 90, 90, 0.5)}
+body.theme-blackfriday .anchor-pct,
+body.theme-blackfriday .anchor-pct strong{color: #ff4d4d}
+
+/* --- ヒーローの「完全版に入っているもの」（scripts/variant-sections/bf-hero-points.html） ---
+   「映像教材 3本 ＋ アプリ版 先行アクセス」を、箱やアイコンを使わず文字だけで見せる。
+   上下の細い罫線で区切り、アプリ版だけ金の文字にする。塗り・影・光る縁・角丸のカードなどの装飾は付けない。 */
+.hero-extra{margin: 26px 0 26px}
+.bf-pack{
+  display: inline-flex; align-items: flex-start; gap: 22px;
+  padding: 16px 2px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+.bf-pack-item{display: flex; flex-direction: column; gap: 5px}
+.bf-pack-main{font-size: 18px; font-weight: 700; line-height: 1.3; letter-spacing: 0.02em; color: #fff; white-space: nowrap}
+.bf-pack-note{font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,0.72); white-space: nowrap}
+.bf-pack-app .bf-pack-main{color: #ffd766}
+.bf-pack-plus{align-self: center; font-size: 20px; font-weight: 300; line-height: 1; color: rgba(255,255,255,0.55)}
+/* 「買い切り型」「スマホで完結」の小さなバッジは、説明文に入れたので Black Friday 版では出さない */
+body.theme-blackfriday .hero-trust,
+body.theme-blackfriday .hero-trust-m{display: none}
+@media (max-width: 768px){
+  .hero-extra{margin: 18px 0 22px}
+  /* スマホは2行に分け、間を細い罫線で区切る。「＋」は2行目の頭に置く */
+  .bf-pack{display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 0}
+  .bf-pack-item{padding: 12px 2px}
+  .bf-pack-app{border-top: 1px solid rgba(255,255,255,0.18)}
+  .bf-pack-plus{display: none}
+  .bf-pack-app .bf-pack-main::before{content: '＋'; margin-right: 8px; font-weight: 300; color: rgba(255,255,255,0.55)}
+  .bf-pack-main{font-size: 17px}
+}
+
+/* --- ヒーローの要素を減らす ---
+   セールの告知は上の金のバナーに任せ、同じ内容の繰り返しと飾りを外す。 */
+/* 見出しの上の小さな帯（VIDEO × SOUND × MEMORY）。高さは残して見出しの位置を保つ */
+body.theme-blackfriday .hero-eyebrow{visibility: hidden}
+/* ナビの「BLACK FRIDAY SALE 開催中」の文字（すぐ下のバナーと重複）。割引率のピルは残す */
+body.theme-blackfriday .nav-offer-copy{display: none}
+@media (min-width: 769px){
+  /* PCは帯を消した分、見出しを少し上へ */
+  body.theme-blackfriday .hero-eyebrow{display: none}
+}
+
+/* --- ヒーローにボタンは出さない（購入・中身を30秒で見る の両方）。購入はナビと画面下の固定バーから --- */
+body.theme-blackfriday .hero .cta-row,
+body.theme-blackfriday .hero-below .cta-row-m{display: none}
+/* ボタンがなくなった分、カードの下の余白を詰める */
+body.theme-blackfriday .hero-extra{margin-bottom: 0}
+
+/* --- ヒーローの第一印象の調整（計測に基づく） ---
+   1. PC：見出しの1行目の末尾がスマホの画像に重なっていた（1280〜1920px幅で確認）。
+      見出しを少し小さくして、画像の手前で収める。
+   2. スマホ：見出しが明るい青の上に載り、白文字のコントラスト比が中央値 4.2・最小 3.0 と弱かった。
+      見出しの背後だけ上から暗くして読みやすくする（キャラクターの顔にはかからない範囲）。
+   3. 「37% OFF」がナビ・金のバナー・下の固定バーの3か所に同時に出ていた。ナビのピルを外す。 */
+@media (min-width: 769px){
+  body.theme-blackfriday .hero h1{font-size: clamp(38px, 3.6vw, 52px)}
+}
+@media (max-width: 768px){
+  body.theme-blackfriday .hero-overlay{
+    /* 暗くするのは見出しの1行目あたりまで（ヒーロー上端から 15%）。その下はキャラクターの顔なので暗くしない */
+    background: linear-gradient(180deg, rgba(3, 8, 32, 0.62) 0%, rgba(3, 8, 32, 0.5) 9%, rgba(3, 8, 32, 0) 15%);
+  }
+  /* 2行目はキャラクターの横に来る。画像は暗くせず、文字の側に影を付けて読みやすくする */
+  /* text-shadow だとグラデーション文字（「忘れない。」）の上に影が乗って濁るので、文字の外側にだけ出る drop-shadow を使う */
+  body.theme-blackfriday .hero h1{filter: drop-shadow(0 1px 8px rgba(3, 8, 32, 0.6))}
+  /* ナビのピルを外しても、購入ボタンは右端に置く */
+  body.theme-blackfriday .nav-actions{justify-content: flex-end}
+}
+body.theme-blackfriday .nav-offer{display: none}
+
+/* スマホでは説明文（3行）を出さず、訴求カードを最初の画面に上げる。PCは説明文を出したまま */
+@media (max-width: 768px){
+  body.theme-blackfriday .hero-sub-m{display: none}
+  body.theme-blackfriday .hero-below .hero-extra{margin-top: 16px}
+}
+
+/* --- スマホでは上部の固定ヘッダー（「完全版を手に入れる」）を出さない ---
+   購入の入口は画面下の固定バー（「購入する」）に一本化する。
+   バナーはヘッダーの分だけ上を空けていたので、その余白もなくす。PCのヘッダーはそのまま。 */
+@media (max-width: 768px){
+  body.theme-blackfriday .nav{display: none}
+  body.theme-blackfriday .bf-banner{padding-top: 0}
+}
+
+/* --- ヒーロー画像の下端が、後ろのセクションの上にはみ出さないようにする ---
+   スマホのヒーローは高さ 240vw の箱で、その上に次のブロックを重ねて隠す作り（index.html の基準値）。
+   Black Friday 版ではヒーロー内のボタン・説明文・ヘッダーを外して重なる中身が短くなったため、
+   画像の下端が「累計受講者数」の下まで届き、次のセクションの見出しの上に青い帯として出ていた（実機で確認）。
+   ヒーローより後ろのセクションを、必ずヒーローの手前に描く。 */
+body.theme-blackfriday .hero-below ~ section,
+body.theme-blackfriday .hero-below ~ .app-access{position: relative; z-index: 2}
+
+/* --- 最終CTA：images/final-bf.webp（1920×1280、濃紺の空間に3つの箱が浮かぶ絵）を、現行ページの最終CTAと同じ見せ方で出す ---
+   ・箱を画面の主役にして大きく見せ、絵の下側（床とキャラクターの足元）は枠で切って、黒に近い濃紺へ沈める
+   ・四隅と左右を暗く落として、中央の箱に目が行くようにする
+   ・見出しは絵の上の暗い余白に大きく置く
+   絵そのものは色を変えない（モノクロ加工なし）。 */
+body.theme-blackfriday .final{padding-left: 0; padding-right: 0}
+body.theme-blackfriday .final-bg-overlay{
+  background:
+    radial-gradient(ellipse 72% 62% at 50% 48%, rgba(5, 8, 24, 0) 0%, rgba(5, 8, 24, 0.42) 62%, rgba(5, 8, 24, 0.8) 100%),
+    linear-gradient(180deg, rgba(5, 8, 24, 0.62) 0%, rgba(5, 8, 24, 0.2) 24%, rgba(5, 8, 24, 0) 46%);
+}
+body.theme-blackfriday .final-fade{
+  height: 36%;
+  background: linear-gradient(to bottom, rgba(5, 8, 24, 0) 0%, rgba(5, 8, 24, 0.55) 42%, rgba(5, 8, 24, 0.92) 78%, #050818 100%);
+}
+@media (min-width: 769px){
+  /* 枠は横幅の約半分の高さ（参考の比率 2000:1027）。絵は枠より縦に長いので、少し下げて置き、床から下は枠で切る */
+  body.theme-blackfriday .final-image-area{min-height: min(51.35vw, 1000px)}
+  /* 箱を参考と同じくらい大きく見せるため、絵を横幅の 110% に拡大して中央に置く（左右 5vw ずつはみ出して切れる） */
+  body.theme-blackfriday .final-bg-wrap{top: 2.2vw; bottom: auto; left: -5vw; right: -5vw; height: 73.33vw}
+}
+@media (max-width: 768px){
+  /* スマホ：現行ページのスマホ版と同じ作りにする。
+     縦長の専用画像（images/final-bf-mobile.webp：上に箱3つ、下の左右にキャラクター）を背景に敷き、
+     見出しは絵の上の余白に、価格カードは絵の下側（キャラクターの足元）に重ねる。
+     絵の枠の高さは index.html の基準値のまま使い、ここでは暗くする幕とカードの重なり量だけ調整する */
+  body.theme-blackfriday .final-bg-overlay{
+    background: linear-gradient(180deg, rgba(5, 8, 24, 0.5) 0%, rgba(5, 8, 24, 0.15) 16%, rgba(5, 8, 24, 0) 34%, rgba(5, 8, 24, 0) 58%, rgba(5, 8, 24, 0.5) 78%, rgba(5, 8, 24, 0.9) 94%, #050818 100%);
+  }
+  body.theme-blackfriday .final-fade{height: 60px}
+  /* 価格カードの重なりは index.html の 250px より浅くして、キャラクターの上半身まで見せる */
+  body.theme-blackfriday .final-action-area{margin-top: -170px}
+}
+
+/* --- 最終CTAの価格カード：割引率の丸と日付のピルから青みを取る ---
+   元の指定は、丸のグラデーションの始まりが水色（#00f0ff）で、まわりの光も水色。金に置き換えたテーマでは
+   左上が緑がかり、青い光がにじんで見えていた。グラデーションと光をどちらも金にそろえ、文字は黒にして読みやすくする。 */
+body.theme-blackfriday .off-badge{
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 52%),
+    linear-gradient(135deg, #ffe08a 0%, #ffc233 45%, #f0a000 100%);
+  color: #0a0a0a;
+  box-shadow: 0 8px 30px rgba(255, 178, 0, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.22) inset, 0 0 54px rgba(255, 178, 0, 0.22);
+}
+body.theme-blackfriday .off-badge .num{text-shadow: none}
+body.theme-blackfriday .bundle-pill{
+  background: linear-gradient(120deg, #ffd766 0%, #ffb200 100%);
+  color: #0a0a0a;
+  box-shadow: 0 4px 20px rgba(255, 178, 0, 0.35);
+}
+
+/* --- 最終CTAのカウントダウン：赤い帯の上に、白い丸に入った数字と日本語の単位を並べる ---
+   元は半透明の四角い箱4つに英語の単位（DAYS など）。帯は画面の横幅いっぱいに出し、色は価格の赤にそろえる。 */
+body.theme-blackfriday .final-countdown{
+  gap: 28px; flex-wrap: nowrap;
+  margin: 0 -24px 28px; padding: 22px 16px;
+  background: #e8553a;
+  /* 上の購入ボタンの影が帯の上に落ちないよう、帯を手前に描く */
+  position: relative; z-index: 1;
+}
+body.theme-blackfriday .cd-box{
+  display: flex; align-items: flex-end; gap: 7px;
+  min-width: 0; padding: 0;
+  background: none; border: none; border-radius: 0;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+body.theme-blackfriday .cd-box .num{
+  display: grid; place-items: center;
+  width: 66px; height: 66px; border-radius: 50%;
+  background: #fff; color: #e8553a;
+  font-size: 30px; font-weight: 800; letter-spacing: -0.02em;
+}
+body.theme-blackfriday .cd-box .lbl{
+  margin: 0 0 6px;
+  font-family: var(--jp); font-size: 16px; font-weight: 600; letter-spacing: 0.02em; text-transform: none;
+  color: #fff; white-space: nowrap;
+}
+@media (max-width: 768px){
+  body.theme-blackfriday .final-countdown{gap: 12px; margin: 0 -20px 26px; padding: 18px 10px}
+  body.theme-blackfriday .cd-box{gap: 4px}
+  body.theme-blackfriday .cd-box .num{width: 50px; height: 50px; font-size: 23px}
+  body.theme-blackfriday .cd-box .lbl{margin-bottom: 4px; font-size: 13px}
+}
+
+/* --- 残り2か所のカウントダウンも、最終CTAと同じ「白い丸に赤い数字＋白い単位」にそろえる --- */
+
+/* 画面下の固定バー：もともと丸＋右下に単位の並び。色だけ変える（丸を白、数字を赤、単位を白） */
+body.theme-blackfriday .sticky-time{background: none}
+body.theme-blackfriday .sticky-time strong{background: #fff; color: #e8553a; border-color: #fff; box-shadow: none}
+body.theme-blackfriday .sticky-time span{color: #fff}
+
+/* オファーのカード内：赤い帯にして、数字を白い丸に入れ、単位を丸の右下に置く。
+   元は「数字 : 数字 : 数字 : 数字」の下の段に単位が並ぶ格子。区切りの点は出さず、数字と単位を交互に一列へ並べ替える */
+body.theme-blackfriday .offer-urgency{background: #e8553a; border-top: none}
+body.theme-blackfriday .urgency-header{color: #fff}
+body.theme-blackfriday .urgency-header strong,
+body.theme-blackfriday .urgency-header svg{color: #fff}
+body.theme-blackfriday .urgency-grid{display: flex; justify-content: center; align-items: flex-end; gap: 0; max-width: none}
+body.theme-blackfriday .urgency-sep{display: none}
+body.theme-blackfriday .urgency-num{
+  display: grid; place-items: center; flex: none;
+  width: 62px; height: 62px; border-radius: 50%;
+  background: #fff; color: #e8553a;
+  font-size: 28px;
+}
+body.theme-blackfriday .urgency-lbl{flex: none; margin: 0 22px 5px 6px; font-size: 15px; letter-spacing: 0.02em; color: #fff; white-space: nowrap}
+body.theme-blackfriday .urgency-grid > #cd-days{order: 1}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(8){order: 2}
+body.theme-blackfriday .urgency-grid > #cd-hours{order: 3}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(9){order: 4}
+body.theme-blackfriday .urgency-grid > #cd-min{order: 5}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(10){order: 6}
+body.theme-blackfriday .urgency-grid > #cd-sec{order: 7}
+body.theme-blackfriday .urgency-grid > .urgency-lbl:nth-child(11){order: 8; margin-right: 0}
+@media (max-width: 600px){
+  body.theme-blackfriday .urgency-num{width: 46px; height: 46px; font-size: 21px}
+  body.theme-blackfriday .urgency-lbl{margin: 0 9px 4px 4px; font-size: 12px}
+}
+@media (max-width: 360px){
+  body.theme-blackfriday .urgency-num{width: 36px; height: 36px; font-size: 16px}
+  body.theme-blackfriday .urgency-lbl{margin: 0 4px 3px 2px; font-size: 11px}
+}
+
+/* --- 購入者の声：背景を白にする ---
+   すぐ下の「悩み」のセクションと同じ薄いグレーで、境目が余白だけになっていた。白にして区切りをはっきりさせる。 */
+body.theme-blackfriday .voices{background: #fff}
+/* 声のカードと下の注記は元々白で、細い枠線だけになる。白い背景の上でも面として見えるよう、薄いグレーにする（FAQ の項目と同じ色） */
+body.theme-blackfriday .voice,
+body.theme-blackfriday .voices-note{background: var(--bg-soft)}
+
+/* --- 累計受講者数の下に出す、SNSの規模の3つの数字 --- */
+.achievement-stats{
+  display: flex; justify-content: center; gap: 0;
+  margin: 26px auto 0; padding: 0; list-style: none; max-width: 620px;
+}
+.achievement-stats li{flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 14px}
+.achievement-stats li + li{border-left: 1px solid rgba(255,255,255,0.16)}
+.achievement-stats strong{font-family: var(--en); font-size: 26px; font-weight: 800; line-height: 1.1; color: #ffcf4a; white-space: nowrap}
+.achievement-stats span{font-size: 12px; color: rgba(255,255,255,0.72); white-space: nowrap}
+@media (max-width: 768px){
+  .achievement-stats{margin-top: 20px}
+  .achievement-stats li{padding: 0 6px}
+  .achievement-stats strong{font-size: 20px}
+  .achievement-stats span{font-size: 10.5px}
+}
+
+/* --- カウントダウンは「オファーのカード内」と「画面下の固定バー」の2か所にする ---
+   最終CTAの帯は出さない（期限は、すぐ上の価格カードの日付と、画面下の固定バーで分かる）。
+   期限の表示が多すぎると、急かされている印象が強くなるため。 */
+body.theme-blackfriday .final-countdown{display: none}
