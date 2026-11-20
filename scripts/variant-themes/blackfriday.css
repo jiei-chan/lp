@@ -642,3 +642,9 @@ body.theme-blackfriday .voices-note{background: var(--bg-soft)}
    最終CTAの帯は出さない（期限は、すぐ上の価格カードの日付と、画面下の固定バーで分かる）。
    期限の表示が多すぎると、急かされている印象が強くなるため。 */
 body.theme-blackfriday .final-countdown{display: none}
+
+/* Keep the regular CTA copy on one line without changing type or vertical spacing. */
+@media (max-width: 359px){
+  body.theme-blackfriday .btn-anchor-cta{padding-inline: 8px}
+  body.theme-blackfriday .btn-final-cta{padding-inline: 32px}
+}
